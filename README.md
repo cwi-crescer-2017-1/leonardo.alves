@@ -1,2 +1,2 @@
 # leonardo.alves
-[github pessoal](www.github.com/leunardo)
+[github pessoal](http://www.github.com/leunardo)
