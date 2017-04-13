@@ -19,4 +19,15 @@ public class Saint {
         armaduraVestida = true;
     }
     
+    public boolean getArmaduraVestida () {
+        return armaduraVestida;
+    }
+    
+    public Genero getGenero () {
+        return genero;
+    }
+    
+    public void setGenero(Genero genero) {
+        this.genero = genero;
+    }
 }
