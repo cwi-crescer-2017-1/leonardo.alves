@@ -37,5 +37,6 @@ public class SaintTest{
         Armadura churrumingas = new Armadura("Churrumingas", Categoria.OURO);
         Genero genero;
         Saint shalon = new Saint("Shalon", churrumingas);
+        assertEquals(Genero.NAO_INFORMADO, shalon.getGenero());
     }
 }
