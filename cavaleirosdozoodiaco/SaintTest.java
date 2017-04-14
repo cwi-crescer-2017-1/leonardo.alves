@@ -46,4 +46,11 @@ public class SaintTest{
         assertEquals(Status.VIVO, jackieChan.getStatus());
     }
     
+    @Test
+    public void estaSaintPerdendoVida () {
+        Saint jackieChan = new Saint ("Jackie", new Armadura("Ásia", Categoria.OURO), Genero.MASCULINO);
+        jackieChan.perderVida(10);
+        assertEquals(90, jackieChan.getVida(), 0.1);
+    }
+    
 }
