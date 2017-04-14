@@ -39,4 +39,11 @@ public class SaintTest{
         Saint shalon = new Saint("Shalon", churrumingas);
         assertEquals(Genero.NAO_INFORMADO, shalon.getGenero());
     }
+    
+    @Test
+    public void saintNasceVivo () {
+        Saint jackieChan = new Saint ("Jackie", new Armadura("Ásia", Categoria.OURO), Genero.MASCULINO);
+        assertEquals(Status.VIVO, jackieChan.getStatus());
+    }
+    
 }
