@@ -21,6 +21,12 @@ public class Saint {
         armaduraVestida = true;
     }
     
+    public void perderVida(double vidaPerdida){
+        this.vida -= vidaPerdida;
+        if(this.vida == 0) this.status = Status.DESACORDADO;
+        if(this.vida < 0) this.status = Status.MORTO;
+    }
+    
     public boolean getArmaduraVestida () {
         return armaduraVestida;
     }
