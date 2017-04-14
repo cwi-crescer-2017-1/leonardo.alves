@@ -38,4 +38,21 @@ public class Saint {
     public void setGenero(Genero genero) {
         this.genero = genero;
     }
+    
+    public Status getStatus () {
+        return this.status;
+    }
+    
+    public void setStatus(Status status) {
+       this.status = status;
+    }
+    
+    public double getVida () {
+        return this.vida;
+    }
+    
+    public Armadura getArmadura () {
+        return this.armadura;
+    }
+    
 }
