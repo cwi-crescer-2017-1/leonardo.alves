@@ -8,7 +8,7 @@ public class Batalha {
     }
     
     public void iniciar () {
-        int categoria1 = categoria1 = saint1.getArmadura().getCategoria().getValor();
+        int categoria1 = saint1.getArmadura().getCategoria().getValor();
         int categoria2 = saint2.getArmadura().getCategoria().getValor();
         if(categoria1 == categoria2) {
             saint2.perderVida(10);            
