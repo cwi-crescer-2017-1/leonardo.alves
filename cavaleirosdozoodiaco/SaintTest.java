@@ -68,7 +68,7 @@ public class SaintTest{
     
     @Test
     public void criarSaintNasceCom5SentidosDespertados ()  throws Exception  {
-        BronzeSaint jackieChan = new BronzeSaint ("Jackie", new Armadura("Áries", Categoria.OURO), Genero.MASCULINO);
+        BronzeSaint jackieChan = new BronzeSaint ("Jackie", new Armadura("Áries", Categoria.BRONZE));
         assertEquals(5, jackieChan.getSentidosDespertados());
     }
     
