@@ -1,5 +1,4 @@
 
-
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
@@ -27,12 +26,12 @@ public class BatalhaTest {
         assertEquals(100, tesourinha.getVida(), 0.1);
     }
     
-    @Test
-    public void saintFicaDesacordado ()  throws Exception  {
-        Saint tesourinha = new Saint ("Tesourinha", new Armadura("Áries", Categoria.OURO));
+    /*@Test
+    public void saintFicaDesacordado () {
+        Saint tesourinha = new Saint ("Tesourinha", new Armadura("Afiadinus", Categoria.OURO));
         tesourinha.perderVida(100);
         assertEquals(Status.DESACORDADO, tesourinha.getStatus());
-    }
+    }*/
     
     @Test
     public void saintMorre ()  throws Exception  {
