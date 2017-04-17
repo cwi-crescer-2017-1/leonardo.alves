@@ -48,6 +48,12 @@ public class SaintTest{
     }
     
     @Test
+    public void vidaInicialDeveSer100 () {
+        Saint x = new Saint("Eximus", new Armadura("xis", Categoria.BRONZE), Genero.NAO_INFORMADO);
+        assertEquals(100, x.getVida(), 0.1);
+    }
+    
+    @Test
     public void saintNasceVivo () {
         Saint jackieChan = new Saint ("Jackie", new Armadura("Ásia", Categoria.OURO), Genero.MASCULINO);
         assertEquals(Status.VIVO, jackieChan.getStatus());
