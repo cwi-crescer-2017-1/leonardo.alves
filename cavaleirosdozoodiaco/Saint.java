@@ -5,22 +5,19 @@ public class Saint {
     private Genero genero = Genero.NAO_INFORMADO;
     private Status status = Status.VIVO;
     private double vida = 100;
-    private int sentidosDespertados = 5;
+
+    protected int sentidosDespertados;
+
     
-    public Saint(String nome, Armadura armadura, Genero genero) {
+    public Saint(String nome, Armadura armadura, Genero genero)  {
         this.genero = genero;
         this.nome = nome;
         this.armadura = armadura;
     }
-    public Saint(String nome, Armadura armadura) {
+    public Saint(String nome, Armadura armadura) throws Exception {
         
         this.nome = nome;
-        this.armadura = armadura;
-        
-        if(this.armadura.getCategoria() == Categoria.PRATA)
-            this.sentidosDespertados = 6;
-        else if (this.armadura.getCategoria() == Categoria.OURO) 
-            this.sentidosDespertados = 7;
+        this.armadura = armadura;      
     }
     
      public void vestirArmadura () {

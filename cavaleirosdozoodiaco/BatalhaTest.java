@@ -8,7 +8,7 @@ junit.Test;
 
 public class BatalhaTest {
     @Test
-    public void categoriaIgualPerdeVidaSaint2 () {
+    public void categoriaIgualPerdeVidaSaint2 ()  throws Exception  {
          Saint zeDoCaixao = new Saint ("Zé do Caixão", new Armadura("Morto-vivo", Categoria.BRONZE));
          Saint missPurpurina = new Saint("Miss Purpurina", new Armadura("Purpura", Categoria.BRONZE));
          Batalha zeVsPurpurina = new Batalha(zeDoCaixao, missPurpurina);
@@ -18,8 +18,8 @@ public class BatalhaTest {
     }
     
     @Test 
-    public void categoriaMenorPerdeVida () {
-        Saint tesourinha = new Saint ("Tesourinha", new Armadura("Afiadinus", Categoria.OURO));
+    public void categoriaMenorPerdeVida ()  throws Exception  {
+        Saint tesourinha = new Saint ("Tesourinha", new Armadura("Áries", Categoria.OURO));
         Saint yoloMan = new Saint("Vida Loca Jr.", new Armadura("Quebrada", Categoria.BRONZE));
         Batalha tesourinhaVsYolo = new Batalha(yoloMan, tesourinha);
         tesourinhaVsYolo.iniciar();
@@ -28,15 +28,15 @@ public class BatalhaTest {
     }
     
     @Test
-    public void saintFicaDesacordado () {
-        Saint tesourinha = new Saint ("Tesourinha", new Armadura("Afiadinus", Categoria.OURO));
+    public void saintFicaDesacordado ()  throws Exception  {
+        Saint tesourinha = new Saint ("Tesourinha", new Armadura("Áries", Categoria.OURO));
         tesourinha.perderVida(100);
         assertEquals(Status.DESACORDADO, tesourinha.getStatus());
     }
     
     @Test
-    public void saintMorre () {
-        Saint tesourinha = new Saint ("Tesourinha", new Armadura("Afiadinus", Categoria.OURO));
+    public void saintMorre ()  throws Exception  {
+        Saint tesourinha = new Saint ("Tesourinha", new Armadura("Áries", Categoria.OURO));
         tesourinha.perderVida(101);
         assertEquals(Status.MORTO, tesourinha.getStatus());
     }
