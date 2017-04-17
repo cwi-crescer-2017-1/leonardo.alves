@@ -1,3 +1,4 @@
+import java.security.InvalidParameterException;
 public class Saint {
     private String nome;
     private Armadura armadura;
@@ -14,6 +15,7 @@ public class Saint {
         this.nome = nome;
         this.armadura = armadura;
     }
+
     public Saint(String nome, Armadura armadura) throws Exception {
         
         this.nome = nome;
@@ -24,10 +26,14 @@ public class Saint {
         armaduraVestida = true;
     }
     
-    public void perderVida(double vidaPerdida){
-        this.vida -= vidaPerdida;
-        if(this.vida == 0) this.status = Status.DESACORDADO;
-        if(this.vida < 0) this.status = Status.MORTO;
+    public void perderVida(double vidaPerdida) throws InvalidParameterException{
+        if(vidaPerdida < 0) throw new InvalidParameterException("o dano não pode ser negativo");
+        if(this.status != Status.MORTO) {
+
+            this.vida -= vidaPerdida;
+            if(this.vida < 1) this.status = Status.MORTO;
+        }
+               
     }
     
     public boolean getArmaduraVestida () {
