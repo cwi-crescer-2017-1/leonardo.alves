@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+import java.security.InvalidParameterException;
 public class SaintTest{
     @Test
     public void vestirArmaduraDeixaArmaduraVestida ()  throws Exception {
@@ -94,6 +94,12 @@ public class SaintTest{
     @Test(expected=Exception.class)
     public void constelacaoInvalidaDeOuroDeveLancarErro () throws Exception {
         GoldSaint jackieChan = new GoldSaint ("Jackie", new Armadura("Café", Categoria.OURO));
+    }
+    
+    @Test(expected=InvalidParameterException.class)
+    public void saintRecebeDanoNegativo () throws Exception{
+         GoldSaint jackieChan = new GoldSaint ("Jackie", new Armadura("Áries", Categoria.OURO));
+         jackieChan.perderVida(-30);
     }
     
 }
