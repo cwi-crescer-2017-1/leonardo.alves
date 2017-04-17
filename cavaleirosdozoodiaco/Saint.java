@@ -5,6 +5,7 @@ public class Saint {
     private Genero genero = Genero.NAO_INFORMADO;
     private Status status = Status.VIVO;
     private double vida = 100;
+    private int sentidosDespertados = 5;
     
     public Saint(String nome, Armadura armadura, Genero genero) {
         this.genero = genero;
@@ -15,6 +16,11 @@ public class Saint {
         
         this.nome = nome;
         this.armadura = armadura;
+        
+        if(this.armadura.getCategoria() == Categoria.PRATA)
+            this.sentidosDespertados = 6;
+        else if (this.armadura.getCategoria() == Categoria.OURO) 
+            this.sentidosDespertados = 7;
     }
     
      public void vestirArmadura () {
@@ -50,4 +56,7 @@ public class Saint {
         return this.armadura;
     }
     
+    public int getSentidosDespertados () {
+        return this.sentidosDespertados;
+    }
 }

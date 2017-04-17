@@ -66,4 +66,30 @@ public class SaintTest{
         assertEquals(90, jackieChan.getVida(), 0.1);
     }
     
+    @Test
+    public void criarSaintNasceCom5SentidosDespertados () {
+        Saint jackieChan = new Saint ("Jackie", new Armadura("Ásia", Categoria.OURO), Genero.MASCULINO);
+        assertEquals(5, jackieChan.getSentidosDespertados());
+    }
+    
+    @Test
+    public void saintBronzeTem5Sentidos () {
+         Saint jackieChan = new Saint ("Jackie", new Armadura("Ásia", Categoria.BRONZE));
+         assertEquals(5, jackieChan.getSentidosDespertados());
+    }
+    
+    @Test
+    public void saintPrataTem6Sentidos () {
+        Saint jackieChan = new Saint ("Jackie", new Armadura("Ásia", Categoria.PRATA));
+        assertEquals(6, jackieChan.getSentidosDespertados());
+    }
+    
+
+    @Test
+    public void saintOuroTem7Sentidos () {
+         Saint jackieChan = new Saint ("Jackie", new Armadura("Ásia", Categoria.OURO));
+         assertEquals(7, jackieChan.getSentidosDespertados());
+    }
+    
+    
 }
