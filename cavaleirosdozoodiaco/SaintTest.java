@@ -41,6 +41,13 @@ public class SaintTest{
     }
     
     @Test
+    public void ePossivelAlterarGenero () {
+        Saint x = new Saint("Eximus", new Armadura("xis", Categoria.BRONZE), Genero.NAO_INFORMADO);
+        x.setGenero(Genero.FEMININO);
+        assertEquals(Genero.FEMININO, x.getGenero());
+    }
+    
+    @Test
     public void saintNasceVivo () {
         Saint jackieChan = new Saint ("Jackie", new Armadura("Ásia", Categoria.OURO), Genero.MASCULINO);
         assertEquals(Status.VIVO, jackieChan.getStatus());
