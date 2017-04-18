@@ -6,6 +6,7 @@ public class Saint {
     private Genero genero = Genero.NAO_INFORMADO;
     private Status status = Status.VIVO;
     private double vida = 100;
+    private int golpeAtual = 0;
 
     protected int sentidosDespertados;
 
@@ -61,5 +62,25 @@ public class Saint {
     
     public int getSentidosDespertados () {
         return this.sentidosDespertados;
+    }
+    
+    public Golpe [] getGolpes() {
+        return this.armadura.getConstelacao().getGolpes();
+    }
+    
+    public void aprenderGolpe(Golpe golpe){
+        this.armadura.getConstelacao().adicionarGolpe(golpe);
+    }
+    
+    public Golpe getProximoGolpe () {
+        int numeroGolpes = this.armadura.getConstelacao().getGolpes().length - 1;        
+        Golpe golpes [] = this.armadura.getConstelacao().getGolpes();
+        Golpe golpeAtual = golpes[this.golpeAtual];
+        if(this.golpeAtual == numeroGolpes){
+            this.golpeAtual = 0;
+        } else {
+            this.golpeAtual++;
+        }
+        return golpeAtual;
     }
 }
