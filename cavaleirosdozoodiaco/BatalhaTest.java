@@ -8,18 +8,19 @@ junit.Test;
 public class BatalhaTest {
     @Test
     public void categoriaIgualPerdeVidaSaint2 ()  throws Exception  {
-         Saint zeDoCaixao = new Saint ("Zé do Caixão", new Armadura("Morto-vivo", Categoria.BRONZE));
-         Saint missPurpurina = new Saint("Miss Purpurina", new Armadura("Purpura", Categoria.BRONZE));
+         Saint zeDoCaixao = new Saint ("Zé do Caixão", new Armadura(new Constelacao("Áries"), Categoria.BRONZE));
+         Saint missPurpurina = new Saint("Miss Purpurina", new Armadura(new Constelacao("Áries"), Categoria.BRONZE));
          Batalha zeVsPurpurina = new Batalha(zeDoCaixao, missPurpurina);
          zeVsPurpurina.iniciar();
          assertEquals(90, missPurpurina.getVida(), 0.1);
          assertEquals(100, zeDoCaixao.getVida(), 0.1);
     }
     
+    
     @Test 
     public void categoriaMenorPerdeVida ()  throws Exception  {
-        Saint tesourinha = new Saint ("Tesourinha", new Armadura("Áries", Categoria.OURO));
-        Saint yoloMan = new Saint("Vida Loca Jr.", new Armadura("Quebrada", Categoria.BRONZE));
+        Saint tesourinha = new Saint ("Tesourinha", new Armadura(new Constelacao("Áries"), Categoria.OURO));
+        Saint yoloMan = new Saint("Vida Loca Jr.", new Armadura(new Constelacao("Áries"), Categoria.BRONZE));
         Batalha tesourinhaVsYolo = new Batalha(yoloMan, tesourinha);
         tesourinhaVsYolo.iniciar();
         assertEquals(90, yoloMan.getVida(), 0.1);
