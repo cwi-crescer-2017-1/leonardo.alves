@@ -8,10 +8,8 @@ public class Constelacao {
     
 
     public void adicionarGolpe(Golpe golpe) {
-       if(numeroGolpes <= golpes.length - 1){
-           this.golpes[numeroGolpes] = golpe;
-           this.numeroGolpes++;
-        }        
+         this.golpes[numeroGolpes] = golpe;
+         numeroGolpes++;
     }
     
 
