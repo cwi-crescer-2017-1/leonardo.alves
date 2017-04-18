@@ -64,12 +64,16 @@ public class Saint {
         return this.sentidosDespertados;
     }
     
+    private Constelacao getConstelacao() {
+        return this.armadura.getConstelacao();
+    }
+    
     public Golpe [] getGolpes() {
-        return this.armadura.getConstelacao().getGolpes();
+        return getConstelacao().getGolpes();
     }
     
     public void aprenderGolpe(Golpe golpe){
-        this.armadura.getConstelacao().adicionarGolpe(golpe);
+        getConstelacao().adicionarGolpe(golpe);
     }
     
     public Golpe getProximoGolpe () {
