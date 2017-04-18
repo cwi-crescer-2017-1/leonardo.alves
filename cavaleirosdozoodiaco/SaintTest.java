@@ -100,6 +100,13 @@ public class SaintTest{
     public void saintRecebeDanoNegativo () throws Exception{
          GoldSaint jackieChan = new GoldSaint ("Jackie", new Armadura(new Constelacao("Áries"), Categoria.OURO));
          jackieChan.perderVida(-30);
+    }  
+    
+    @Test
+    public void saintMorre ()  throws Exception  {
+        Saint tesourinha = new Saint ("Tesourinha", new Armadura(new Constelacao("Áries"), Categoria.OURO));
+        tesourinha.perderVida(101);
+        assertEquals(Status.MORTO, tesourinha.getStatus());
     }
     
 }
