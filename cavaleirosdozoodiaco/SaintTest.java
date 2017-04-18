@@ -5,7 +5,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import java.security.InvalidParameterException;
-public class SaintTest{
+public class SaintTest{   
     @Test
     public void vestirArmaduraDeixaArmaduraVestida ()  throws Exception {
     /* 
@@ -130,7 +130,7 @@ public class SaintTest{
         GoldSaint jackieChan = new GoldSaint ("Jackie", new Armadura(new Constelacao("Áries"), Categoria.OURO));
         Golpe socao = new Golpe("Socão", 7);
         jackieChan.aprenderGolpe(socao);
-        assertEquals(socao, jackieChan.getArmadura().getConstelacao().getGolpes()[0]);
+        assertEquals(socao, jackieChan.getArmadura().getConstelacao().getGolpes().get(0));
     }
     
     @Test
@@ -140,8 +140,9 @@ public class SaintTest{
         Golpe socao2 = new Golpe("Socão", 7);
         jackieChan.aprenderGolpe(socao);
         jackieChan.aprenderGolpe(socao2);
-        assertEquals(socao2, jackieChan.getArmadura().getConstelacao().getGolpes()[1]);
+        assertEquals(socao2, jackieChan.getArmadura().getConstelacao().getGolpes().get(1));
     }
+
     
     
     @Test
