@@ -109,4 +109,57 @@ public class SaintTest{
         assertEquals(Status.MORTO, tesourinha.getStatus());
     }
     
+    @Test
+    public void getGolpesRetornaTodosOsGolpesDaConstelacao () throws Exception {
+        GoldSaint jackieChan = new GoldSaint ("Jackie", new Armadura(new Constelacao("Áries"), Categoria.OURO));
+        Golpe socao = new Golpe("Socão", 7);
+        Golpe socao2 = new Golpe("Socão2", 7);
+        Golpe socao3 = new Golpe("Socão3", 7);
+        jackieChan.getArmadura().getConstelacao().adicionarGolpe(socao);
+        jackieChan.getArmadura().getConstelacao().adicionarGolpe(socao2);
+        jackieChan.getArmadura().getConstelacao().adicionarGolpe(socao3);
+        Constelacao constelacao = new Constelacao("Zumba");
+        constelacao.adicionarGolpe(socao);
+        constelacao.adicionarGolpe(socao2);
+        constelacao.adicionarGolpe(socao3);
+        assertEquals(constelacao.getGolpes(), jackieChan.getGolpes());
+    }
+    
+    @Test
+    public void saintAprendeGolpe () throws Exception {
+        GoldSaint jackieChan = new GoldSaint ("Jackie", new Armadura(new Constelacao("Áries"), Categoria.OURO));
+        Golpe socao = new Golpe("Socão", 7);
+        jackieChan.aprenderGolpe(socao);
+        assertEquals(socao, jackieChan.getArmadura().getConstelacao().getGolpes()[0]);
+    }
+    
+    @Test
+    public void saintAprendeOutroGolpe () throws Exception {
+        GoldSaint jackieChan = new GoldSaint ("Jackie", new Armadura(new Constelacao("Áries"), Categoria.OURO));
+        Golpe socao = new Golpe("Socão", 7);
+        Golpe socao2 = new Golpe("Socão", 7);
+        jackieChan.aprenderGolpe(socao);
+        jackieChan.aprenderGolpe(socao2);
+        assertEquals(socao2, jackieChan.getArmadura().getConstelacao().getGolpes()[1]);
+    }
+    
+    
+    @Test
+    public void saintAtacaComGolpesDiferentes () throws Exception {
+        GoldSaint jackieChan = new GoldSaint ("Jackie", new Armadura(new Constelacao("Áries"), Categoria.OURO));
+        Golpe socao = new Golpe("Socão", 7);
+        Golpe socao2 = new Golpe("Socão2", 7);
+        Golpe socao3 = new Golpe("Socão3", 7);
+        jackieChan.aprenderGolpe(socao);
+        jackieChan.aprenderGolpe(socao2);
+        jackieChan.aprenderGolpe(socao3);
+        
+        assertEquals(socao, jackieChan.getProximoGolpe());
+        assertEquals(socao2, jackieChan.getProximoGolpe());
+        assertEquals(socao3, jackieChan.getProximoGolpe());
+        assertEquals(socao, jackieChan.getProximoGolpe());
+        
+    }
+    
+    
 }
