@@ -45,6 +45,10 @@ public class Saint {
     public Genero getGenero () {
         return genero;
     }
+
+	public String getNome () {
+		return this.nome;
+	}
     
     public void setGenero(Genero genero) {
         this.genero = genero;
