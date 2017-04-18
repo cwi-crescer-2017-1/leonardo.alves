@@ -29,11 +29,11 @@ public class Saint {
     
     public void perderVida(double vidaPerdida) throws InvalidParameterException{
         if(vidaPerdida < 0) throw new InvalidParameterException("o dano não pode ser negativo");
-        if(this.status != Status.MORTO) {
-
-            this.vida -= vidaPerdida;
-            if(this.vida < 1) this.status = Status.MORTO;
-        }
+        if(this.vida - vidaPerdida < 1) {
+            this.status = Status.MORTO;
+            this.vida = 0;            
+        } else this.vida -= vidaPerdida;
+        
                
     }
     
