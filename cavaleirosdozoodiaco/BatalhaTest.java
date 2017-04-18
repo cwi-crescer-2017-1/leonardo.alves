@@ -34,11 +34,6 @@ public class BatalhaTest {
         assertEquals(Status.DESACORDADO, tesourinha.getStatus());
     }*/
     
-    @Test
-    public void saintMorre ()  throws Exception  {
-        Saint tesourinha = new Saint ("Tesourinha", new Armadura("Áries", Categoria.OURO));
-        tesourinha.perderVida(101);
-        assertEquals(Status.MORTO, tesourinha.getStatus());
-    }
+   
     
 }
