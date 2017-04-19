@@ -59,6 +59,40 @@ public class ListaSaintsTest {
         assertEquals(saints.buscarPorNome("Shyriu"), saints.get(0));
     }
     
+     @Test
+    public void buscarSaintComRepeticaoPorNome () throws Exception {
+        ListaSaints saints = new ListaSaints();
+        Saint saintTest = new Saint("Shyriu", new Armadura(new Constelacao("Pégaso"), Categoria.BRONZE));
+        Saint saintTest2 = new Saint("Shalon", new Armadura(new Constelacao("Pégaso"), Categoria.BRONZE));
+        Saint saintTest3 = new Saint("Shalon", new Armadura(new Constelacao("Pégaso"), Categoria.BRONZE));
+        saints.adicionar(saintTest);
+        saints.adicionar(saintTest2);
+        saints.adicionar(saintTest3);
+        
+        assertEquals(saints.buscarPorNome("Shalon"), saints.get(1));
+    }
+    
+    @Test
+    public void buscarSaintInexistentePorNome () throws Exception {
+        ListaSaints saints = new ListaSaints();
+        Saint saintTest = new Saint("Shyriu", new Armadura(new Constelacao("Pégaso"), Categoria.BRONZE));
+        Saint saintTest2 = new Saint("Shalon", new Armadura(new Constelacao("Pégaso"), Categoria.BRONZE));
+        saints.adicionar(saintTest);
+        saints.adicionar(saintTest2);
+        
+        assertNull(saints.buscarPorNome("Ximbas"));
+    }
+    
+    @Test
+    public void buscarSaintComListaVazia() throws Exception {
+        ListaSaints saints = new ListaSaints();       
+        
+        assertNull(saints.buscarPorNome("Ximbas"));
+    }
+    
+    
+    
+    
     @Test
     public void buscarSaintsPorCategoria () throws Exception {
         ListaSaints saints = new ListaSaints();
@@ -72,11 +106,25 @@ public class ListaSaintsTest {
         saints.adicionar(saintTest3);
         saints.adicionar(saintTest4);
         arrayTest.add(saintTest2);
-        arrayTest.add(saintTest4);
-        
-        assertEquals(saints.buscarPorCategoria(Categoria.BRONZE), arrayTest);
-        
-        
+        arrayTest.add(saintTest4);        
+        assertEquals(saints.buscarPorCategoria(Categoria.BRONZE), arrayTest);      
+    }
+    
+    @Test
+    public void buscarSaintsInexistentePorCategoria () throws Exception {
+        ListaSaints saints = new ListaSaints();
+       
+        Saint saintTest = new Saint("Shyriu", new Armadura(new Constelacao("Pégaso"), Categoria.OURO));
+        Saint saintTest2 = new Saint("Shalon", new Armadura(new Constelacao("Pégaso"), Categoria.PRATA));
+        Saint saintTest3 = new Saint("Shalon", new Armadura(new Constelacao("Pégaso"), Categoria.PRATA));
+        Saint saintTest4 = new Saint("Shalon", new Armadura(new Constelacao("Pégaso"), Categoria.PRATA));
+        saints.adicionar(saintTest);
+        saints.adicionar(saintTest2);
+        saints.adicionar(saintTest3);
+        saints.adicionar(saintTest4);    
+        ArrayList<Saint> arrayTest = saints.buscarPorCategoria(Categoria.BRONZE);
+        assertEquals(0, arrayTest.size());
+           
     }
     
       
@@ -123,6 +171,12 @@ public class ListaSaintsTest {
         
     }
     
+    @Test
+    public void pegarSaintMaiorVidaSemLista () {
+        ListaSaints saints = new ListaSaints();
+        assertNull(saints.getSaintMaiorVida());
+    }
+    
      @Test
     public void pegarPrimeiroSaintMaiorVidaComMaisDeUmIgual () throws Exception {
         ListaSaints saints = new ListaSaints();
@@ -163,6 +217,13 @@ public class ListaSaintsTest {
         assertEquals(saints.getSaintMenorVida().getVida(), 26, 0.001);
         
         
+    }
+    
+    
+    @Test
+    public void pegarSaintMenorVidaSemLista () {
+        ListaSaints saints = new ListaSaints();
+        assertNull(saints.getSaintMenorVida());
     }
     
      @Test
