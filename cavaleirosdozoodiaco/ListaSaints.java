@@ -84,5 +84,27 @@ public class ListaSaints {
         this.listaSaints = saintsOrdenados.todos();
     }
     
-    
+    public void ordenar(TipoOrdenacao ordenacao) {
+        
+        ListaSaints listaAuxiliar = new ListaSaints();  
+        ListaSaints saintsOrdenados = new ListaSaints();
+        ArrayList<Saint> auxiliar = this.listaSaints;
+        int tamanho = auxiliar.size();        
+        for(Saint saintAuxiliar : auxiliar) listaAuxiliar.adicionar(saintAuxiliar);
+        
+        for(int i = 0; i < tamanho; i++) {
+            if(ordenacao == TipoOrdenacao.ASCENDENTE) {
+                 Saint saintMenorVida;            
+                 saintMenorVida = listaAuxiliar.getSaintMenorVida();            
+                 saintsOrdenados.adicionar(saintMenorVida);            
+                 listaAuxiliar.remover(saintMenorVida);
+            } else if(ordenacao == TipoOrdenacao.DESCENDENTE) {
+                Saint saintMaiorVida;
+                saintMaiorVida = listaAuxiliar.getSaintMaiorVida();
+                saintsOrdenados.adicionar(saintMaiorVida);
+                listaAuxiliar.remover(saintMaiorVida);
+            }            
+            this.listaSaints = saintsOrdenados.todos();
+        }        
+    }   
 }

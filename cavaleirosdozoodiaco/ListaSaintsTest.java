@@ -273,7 +273,7 @@ public class ListaSaintsTest {
     }
     
     @Test
-    public void ordenarSaintsJaOrdenados () throws Exception {
+    public void ordenarSaintsJaOrdenados() throws Exception {
         ListaSaints saints = new ListaSaints();
         
         Saint saintTest = new Saint("Shyriu", new Armadura(new Constelacao("Pégaso"), Categoria.OURO));
@@ -294,4 +294,97 @@ public class ListaSaintsTest {
         assertEquals(saints.get(0), saints.getSaintMenorVida());
         assertEquals(saints.get(3), saints.getSaintMaiorVida());
     }  
+    
+    
+    @Test
+    public void ordenarSaintsAscendentemente () throws Exception {
+        ListaSaints saints = new ListaSaints();
+        
+        Saint saintTest = new Saint("Shyriu", new Armadura(new Constelacao("Pégaso"), Categoria.OURO));
+        Saint saintTest2 = new Saint("Shalon", new Armadura(new Constelacao("Pégaso"), Categoria.BRONZE));
+        Saint saintTest3 = new Saint("Shalon", new Armadura(new Constelacao("Pégaso"), Categoria.PRATA));
+        Saint saintTest4 = new Saint("Shalon", new Armadura(new Constelacao("Pégaso"), Categoria.BRONZE));
+        saintTest.perderVida(99);
+        saintTest2.perderVida(98);
+        saintTest3.perderVida(97);   
+        saintTest4.perderVida(10);
+        saints.adicionar(saintTest);       
+        saints.adicionar(saintTest2);
+        saints.adicionar(saintTest3);
+        saints.adicionar(saintTest4);        
+        
+        saints.ordenar(TipoOrdenacao.ASCENDENTE);
+        
+        assertEquals(saints.get(0), saints.getSaintMenorVida());
+        assertEquals(saints.get(3), saints.getSaintMaiorVida());
+    }
+    
+    @Test
+    public void ordenarSaintsJaOrdenadosAscendentemente () throws Exception {
+        ListaSaints saints = new ListaSaints();
+        
+        Saint saintTest = new Saint("Shyriu", new Armadura(new Constelacao("Pégaso"), Categoria.OURO));
+        Saint saintTest2 = new Saint("Shalon", new Armadura(new Constelacao("Pégaso"), Categoria.BRONZE));
+        Saint saintTest3 = new Saint("Shalon", new Armadura(new Constelacao("Pégaso"), Categoria.PRATA));
+        Saint saintTest4 = new Saint("Shalon", new Armadura(new Constelacao("Pégaso"), Categoria.BRONZE));
+        saintTest.perderVida(40);
+        saintTest2.perderVida(30);
+        saintTest3.perderVida(20);   
+        saintTest4.perderVida(10);
+        saints.adicionar(saintTest);       
+        saints.adicionar(saintTest2);
+        saints.adicionar(saintTest3);
+        saints.adicionar(saintTest4);        
+        
+        saints.ordenar(TipoOrdenacao.ASCENDENTE);
+        
+        assertEquals(saints.get(0), saints.getSaintMenorVida());
+        assertEquals(saints.get(3), saints.getSaintMaiorVida());
+    }  
+    
+    @Test
+    public void ordenarSaintsDescendentemente () throws Exception {
+        ListaSaints saints = new ListaSaints();
+        
+        Saint saintTest = new Saint("Shyriu", new Armadura(new Constelacao("Pégaso"), Categoria.OURO));
+        Saint saintTest2 = new Saint("Shalon", new Armadura(new Constelacao("Pégaso"), Categoria.BRONZE));
+        Saint saintTest3 = new Saint("Shalon", new Armadura(new Constelacao("Pégaso"), Categoria.PRATA));
+        Saint saintTest4 = new Saint("Shalon", new Armadura(new Constelacao("Pégaso"), Categoria.BRONZE));
+        saintTest.perderVida(99);
+        saintTest2.perderVida(98);
+        saintTest3.perderVida(97);   
+        saintTest4.perderVida(10);
+        saints.adicionar(saintTest);       
+        saints.adicionar(saintTest2);
+        saints.adicionar(saintTest3);
+        saints.adicionar(saintTest4);        
+        
+        saints.ordenar(TipoOrdenacao.DESCENDENTE);
+        
+        assertEquals(saints.get(3), saints.getSaintMenorVida());
+        assertEquals(saints.get(0), saints.getSaintMaiorVida());
+    }
+    
+    @Test
+    public void ordenarSaintsJaOrdenadosDescendentemente () throws Exception {
+        ListaSaints saints = new ListaSaints();
+        
+        Saint saintTest = new Saint("Shyriu", new Armadura(new Constelacao("Pégaso"), Categoria.OURO));
+        Saint saintTest2 = new Saint("Shalon", new Armadura(new Constelacao("Pégaso"), Categoria.BRONZE));
+        Saint saintTest3 = new Saint("Shalon", new Armadura(new Constelacao("Pégaso"), Categoria.PRATA));
+        Saint saintTest4 = new Saint("Shalon", new Armadura(new Constelacao("Pégaso"), Categoria.BRONZE));
+        saintTest.perderVida(40);
+        saintTest2.perderVida(30);
+        saintTest3.perderVida(20);   
+        saintTest4.perderVida(10);
+        saints.adicionar(saintTest);       
+        saints.adicionar(saintTest2);
+        saints.adicionar(saintTest3);
+        saints.adicionar(saintTest4);        
+        
+        saints.ordenar(TipoOrdenacao.DESCENDENTE);
+        
+        assertEquals(saints.get(3), saints.getSaintMenorVida());
+        assertEquals(saints.get(0), saints.getSaintMaiorVida());
+    } 
 }
