@@ -122,6 +122,27 @@ public class ListaSaintsTest {
         
         
     }
+    
+     @Test
+    public void pegarPrimeiroSaintMaiorVidaComMaisDeUmIgual () throws Exception {
+        ListaSaints saints = new ListaSaints();
+        
+        Saint saintTest = new Saint("Shyriu", new Armadura(new Constelacao("Pégaso"), Categoria.OURO));
+        Saint saintTest2 = new Saint("Xerere", new Armadura(new Constelacao("Pégaso"), Categoria.BRONZE));
+        Saint saintTest3 = new Saint("Shalon", new Armadura(new Constelacao("Pégaso"), Categoria.PRATA));
+        Saint saintTest4 = new Saint("Shalon", new Armadura(new Constelacao("Pégaso"), Categoria.BRONZE));
+        saintTest.perderVida(32);
+        saintTest3.perderVida(74);
+        saintTest2.perderVida(1);  
+        saintTest4.perderVida(1);
+        saints.adicionar(saintTest);
+        saints.adicionar(saintTest2);
+        saints.adicionar(saintTest3);
+        saints.adicionar(saintTest4);        
+        
+        assertEquals(saints.getSaintMaiorVida().getNome(), "Xerere");        
+        
+    }
    
     @Test
     public void pegarSaintMenorVida () throws Exception {
@@ -140,6 +161,28 @@ public class ListaSaintsTest {
         saints.adicionar(saintTest4);        
         
         assertEquals(saints.getSaintMenorVida().getVida(), 26, 0.001);
+        
+        
+    }
+    
+     @Test
+    public void pegarPrimeiroSaintMenorVidaComMaisDeUmIgual () throws Exception {
+        ListaSaints saints = new ListaSaints();
+        
+        Saint saintTest = new Saint("Shyriu", new Armadura(new Constelacao("Pégaso"), Categoria.OURO));
+        Saint saintTest2 = new Saint("Ximbas", new Armadura(new Constelacao("Pégaso"), Categoria.BRONZE));
+        Saint saintTest3 = new Saint("Shalon", new Armadura(new Constelacao("Pégaso"), Categoria.PRATA));
+        Saint saintTest4 = new Saint("Shalon", new Armadura(new Constelacao("Pégaso"), Categoria.BRONZE));
+        saintTest.perderVida(32);
+        saintTest3.perderVida(74);
+        saintTest2.perderVida(99);
+        saintTest4.perderVida(99);
+        saints.adicionar(saintTest);
+        saints.adicionar(saintTest2);
+        saints.adicionar(saintTest3);
+        saints.adicionar(saintTest4);        
+        
+        assertEquals(saints.getSaintMenorVida().getNome(), "Ximbas");
         
         
     }
