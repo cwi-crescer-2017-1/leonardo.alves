@@ -131,6 +131,7 @@ public class SaintTest{
         Golpe socao = new Golpe("Socão", 7);
         jackieChan.aprenderGolpe(socao);
         assertEquals(socao, jackieChan.getArmadura().getConstelacao().getGolpes().get(0));
+        assertEquals(1, jackieChan.getArmadura().getConstelacao().getGolpes().size());
     }
     
     @Test
@@ -141,6 +142,31 @@ public class SaintTest{
         jackieChan.aprenderGolpe(socao);
         jackieChan.aprenderGolpe(socao2);
         assertEquals(socao2, jackieChan.getArmadura().getConstelacao().getGolpes().get(1));
+        assertEquals(2, jackieChan.getArmadura().getConstelacao().getGolpes().size());
+    }
+    
+     @Test
+    public void saintAprendeVariosGolpes () throws Exception {
+        GoldSaint jackieChan = new GoldSaint ("Jackie", new Armadura(new Constelacao("Áries"), Categoria.OURO));
+        Golpe socao = new Golpe("Socão", 7);
+        Golpe socao2 = new Golpe("Socão2", 7);
+        Golpe socao3 = new Golpe("Socão3", 7);
+        Golpe socao4 = new Golpe("Socão4", 7);
+        Golpe socao5 = new Golpe("Socão5", 7);
+        Golpe socao6 = new Golpe("Socão6", 7);
+        jackieChan.aprenderGolpe(socao);
+        jackieChan.aprenderGolpe(socao2);
+        jackieChan.aprenderGolpe(socao3);
+        jackieChan.aprenderGolpe(socao4);
+        jackieChan.aprenderGolpe(socao5);
+        jackieChan.aprenderGolpe(socao6);
+        assertEquals(socao, jackieChan.getArmadura().getConstelacao().getGolpes().get(0));
+        assertEquals(socao2, jackieChan.getArmadura().getConstelacao().getGolpes().get(1));
+        assertEquals(socao3, jackieChan.getArmadura().getConstelacao().getGolpes().get(2));
+        assertEquals(socao4, jackieChan.getArmadura().getConstelacao().getGolpes().get(3));
+        assertEquals(socao5, jackieChan.getArmadura().getConstelacao().getGolpes().get(4));
+        assertEquals(socao6, jackieChan.getArmadura().getConstelacao().getGolpes().get(5));
+        assertEquals(6, jackieChan.getArmadura().getConstelacao().getGolpes().size());
     }
 
     
