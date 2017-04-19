@@ -15,10 +15,7 @@ public class ListaSaints {
     }
     
     public void remover(Saint saint) {
-        if(listaSaints.contains(saint)) {
-            int indice = listaSaints.indexOf(saint);
-            listaSaints.remove(indice);
-        }
+        listaSaints.remove(saint);
     }
     
     public Saint buscarPorNome(String nome) {
