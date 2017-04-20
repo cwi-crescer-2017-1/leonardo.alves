@@ -387,4 +387,40 @@ public class ListaSaintsTest {
         assertEquals(saints.get(3), saints.getSaintMenorVida());
         assertEquals(saints.get(0), saints.getSaintMaiorVida());
     } 
+    
+    @Test public void unirListaSaints () throws Exception {
+        ListaSaints ls1 = new ListaSaints();
+        ListaSaints ls2 = new ListaSaints();
+        
+        Saint saintTest = new Saint("Shyriu", new Armadura(new Constelacao("Pégaso"), Categoria.OURO));
+        Saint saintTest2 = new Saint("Shyriu", new Armadura(new Constelacao("Pégaso"), Categoria.OURO));
+        ls1.adicionar(saintTest);
+        ls1.adicionar(saintTest2);
+        ls2.adicionar(saintTest);
+        ls2.adicionar(saintTest2);
+        ListaSaints ls3 = ls1.unir(ls2);
+        
+        assertEquals(4, ls3.todos().size());
+    }
+    
+    @Test public void unirListaSaintComListaVazia () throws Exception {
+        ListaSaints ls1 = new ListaSaints();
+        ListaSaints ls2 = new ListaSaints();
+        
+        Saint saintTest = new Saint("Shyriu", new Armadura(new Constelacao("Pégaso"), Categoria.OURO));
+        Saint saintTest2 = new Saint("Shyriu", new Armadura(new Constelacao("Pégaso"), Categoria.OURO));
+        ls1.adicionar(saintTest);
+        ls1.adicionar(saintTest2);        
+        ListaSaints ls3 = ls1.unir(ls2);
+        
+        assertEquals(2, ls3.todos().size());
+    }
+    
+    @Test public void unirDoisListaSaintVazio () {
+        ListaSaints ls1 = new ListaSaints();
+        ListaSaints ls2 = new ListaSaints();
+        ListaSaints ls3 = ls1.unir(ls2);
+        assertEquals(0, ls3.todos().size());
+    }
+    
 }

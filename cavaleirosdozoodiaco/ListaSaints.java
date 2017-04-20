@@ -106,5 +106,21 @@ public class ListaSaints {
             }            
             this.listaSaints = saintsOrdenados.todos();
         }        
-    }   
+    }
+    
+    public ListaSaints unir (ListaSaints listaSaints) {
+        boolean listaSaintsRecebidaVazia = listaSaints.todos().isEmpty();
+        boolean essaListaEstaVaziaEaOutraNao =
+            this.listaSaints.isEmpty() && !listaSaints.todos().isEmpty();
+            
+        if(listaSaintsRecebidaVazia)  return this;
+        else if(essaListaEstaVaziaEaOutraNao) return listaSaints;
+        
+        ListaSaints newListaSaints = new ListaSaints();
+        for(Saint saint : this.listaSaints) newListaSaints.adicionar(saint);
+        for(Saint saint : listaSaints.todos()) newListaSaints.adicionar(saint);
+        
+        return newListaSaints;
+    }
+    
 }
