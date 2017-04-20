@@ -518,7 +518,29 @@ public class ListaSaintsTest {
         ListaSaints ls3 = ls1.intersec(ls2);        
         assertEquals(0, ls3.todos().size());
     }
-
+    
+    @Test public void intersecDoisSaintsCategoriaDiferente () throws Exception {
+        ListaSaints ls1 = new ListaSaints();
+        ListaSaints ls2 = new ListaSaints();
+        SilverSaint ssaint = new SilverSaint("Jon", new Armadura(new Constelacao("Pégaso"), Categoria.PRATA));
+        BronzeSaint bsaint = new BronzeSaint("Jon", new Armadura(new Constelacao("Pégaso"), Categoria.BRONZE));
+        ls1.adicionar(ssaint);
+        ls2.adicionar(bsaint);
+        ListaSaints ls3 = ls1.intersec(ls2);
+        assertEquals(0, ls3.todos().size());
+    }
+    
+    @Test public void intersecDoisSaintsMesmaClasseCategoriaDiferente () throws Exception {
+        ListaSaints ls1 = new ListaSaints();
+        ListaSaints ls2 = new ListaSaints();
+        Saint ssaint = new Saint("Jon", new Armadura(new Constelacao("Pégaso"), Categoria.BRONZE));
+        Saint bsaint = new Saint("Jon", new Armadura(new Constelacao("Pégaso"), Categoria.BRONZE));
+        ls1.adicionar(ssaint);
+        ls2.adicionar(bsaint);
+        ListaSaints ls3 = ls1.intersec(ls2);
+        assertEquals(0, ls3.todos().size());
+    }
+    
     @Test public void getCSVSemSaints(){
         ListaSaints ls1 = new ListaSaints();
         ls1.getCSV();
@@ -532,10 +554,12 @@ public class ListaSaintsTest {
         lista.adicionar(june);
         
         Saint dohko = new Saint("Dohko", new Armadura(new Constelacao(""), Categoria.OURO));
+        Saint dohko2 = new Saint("Dohko", new Armadura(new Constelacao(""), Categoria.OURO));
+        System.out.println(dohko.hashCode());
+        System.out.println(dohko2.hashCode());
         dohko.perderVida(90);
         dohko.vestirArmadura();
-        lista.adicionar(dohko);
-       
+        lista.adicionar(dohko);      
         String csv = lista.getCSV(); 
         String compare = "June,84.5,Camaleão,BRONZE,VIVO,FEMININO,false\nDohko,10.0,,OURO,VIVO,NAO_INFORMADO,true\n";
         assertEquals(compare, csv);       
