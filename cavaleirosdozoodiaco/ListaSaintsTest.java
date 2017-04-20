@@ -423,4 +423,39 @@ public class ListaSaintsTest {
         assertEquals(0, ls3.todos().size());
     }
     
+    @Test public void diffListaSaints () throws Exception {
+        ListaSaints ls1 = new ListaSaints();
+        ListaSaints ls2 = new ListaSaints();
+        
+        Saint saintTest = new Saint("Xalão", new Armadura(new Constelacao("Pégaso"), Categoria.PRATA));
+        Saint saintTest2 = new Saint("Shyriu", new Armadura(new Constelacao("Pégaso"), Categoria.OURO));
+        ls1.adicionar(saintTest);
+        ls1.adicionar(saintTest2);
+        ls2.adicionar(saintTest);        
+        ListaSaints ls3 = ls1.diff(ls2);
+        
+        assertEquals(1, ls3.todos().size());
+        assertEquals(saintTest2, ls3.get(0));
+    }
+    
+    @Test public void diffListaSaintsComListaVazia () throws Exception {
+        ListaSaints ls1 = new ListaSaints();
+        ListaSaints ls2 = new ListaSaints();
+        
+        Saint saintTest = new Saint("Shyriu", new Armadura(new Constelacao("Pégaso"), Categoria.OURO));
+        Saint saintTest2 = new Saint("Xarompe", new Armadura(new Constelacao("Pégaso"), Categoria.OURO));
+        ls1.adicionar(saintTest);
+        ls1.adicionar(saintTest2);        
+        ListaSaints ls3 = ls1.diff(ls2);
+        
+        assertEquals(2, ls3.todos().size());
+    }
+    
+    @Test public void diffDoisListaSaintVazio (){
+        ListaSaints ls1 = new ListaSaints();
+        ListaSaints ls2 = new ListaSaints();
+        ListaSaints ls3 = ls1.unir(ls2);
+        assertEquals(0, ls3.todos().size());
+    }    
+    
 }

@@ -123,4 +123,21 @@ public class ListaSaints {
         return newListaSaints;
     }
     
+    public ListaSaints diff (ListaSaints listaSaints) {
+        ListaSaints newListaSaints = new ListaSaints();
+        for(Saint saint : this.listaSaints) newListaSaints.adicionar(saint);
+        int tamanho = newListaSaints.todos().size();
+        
+        for(int i = 0; i < tamanho; i++){
+            for(Saint saint : listaSaints.todos()) {
+                if(saint.equals(this.listaSaints.get(i))){
+                    newListaSaints.remover(saint);
+                }
+            }
+        }
+        
+        return newListaSaints;
+    }
+    
+    
 }
