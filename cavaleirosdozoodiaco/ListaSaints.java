@@ -155,4 +155,22 @@ public class ListaSaints {
     }
     
 
+    public String getCSV () {
+        
+       
+            String csv = "";
+            for(Saint saint : listaSaints) {            
+            csv += saint.getNome() + "," +
+                saint.getVida() + "," +
+                saint.getArmadura().getConstelacao().getNome() + "," +
+                saint.getArmadura().getCategoria().toString() + "," +
+                saint.getStatus().toString() + "," +
+                saint.getGenero().toString() + "," +
+                saint.getArmaduraVestida() + "\n";     
+            }
+          
+             
+                
+        return csv;
+    }
 }
