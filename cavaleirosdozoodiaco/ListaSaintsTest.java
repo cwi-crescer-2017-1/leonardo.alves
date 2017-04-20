@@ -458,4 +458,65 @@ public class ListaSaintsTest {
         assertEquals(0, ls3.todos().size());
     }    
     
+    @Test public void intersecListaSaint () throws Exception {
+        ListaSaints ls1 = new ListaSaints();
+        ListaSaints ls2 = new ListaSaints();
+        
+        Saint saintTest = new Saint("Shyriu", new Armadura(new Constelacao("Pégaso"), Categoria.OURO));
+        Saint saintTest2 = new Saint("Xarompe", new Armadura(new Constelacao("Xiu"), Categoria.OURO));
+        
+        ls1.adicionar(saintTest);
+        ls1.adicionar(saintTest2);
+        ls2.adicionar(saintTest2);
+        ListaSaints ls3 = ls1.intersec(ls2);
+        assertEquals(saintTest2, ls3.todos().get(0));
+        assertEquals(1, ls3.todos().size());
+    }
+    
+    @Test public void intersecListaSaintsComListaVazia () throws Exception {
+        ListaSaints ls1 = new ListaSaints();
+        ListaSaints ls2 = new ListaSaints();
+        
+        Saint saintTest = new Saint("Shyriu", new Armadura(new Constelacao("Pégaso"), Categoria.OURO));
+        Saint saintTest2 = new Saint("Xarompe", new Armadura(new Constelacao("Xiu"), Categoria.OURO));
+        
+        ls1.adicionar(saintTest);
+        ls1.adicionar(saintTest2);
+        
+        ListaSaints ls3 = ls1.intersec(ls2);
+        
+        assertEquals(0, ls3.todos().size());
+    }
+    
+    @Test public void intersecListasNaoTemNadaEmComum () throws Exception { 
+        ListaSaints ls1 = new ListaSaints();
+        ListaSaints ls2 = new ListaSaints();
+        
+        Saint saintTest = new Saint("Shyriu", new Armadura(new Constelacao("Pégaso"), Categoria.OURO));
+        Saint saintTest2 = new Saint("Xarompe", new Armadura(new Constelacao("Xiu"), Categoria.OURO));
+        Saint saintTest3 = new Saint("A", new Armadura(new Constelacao("Pégaso"), Categoria.PRATA));
+        Saint saintTest4 = new Saint("B", new Armadura(new Constelacao("Pégaso"), Categoria.BRONZE));
+        Saint saintTest5 = new Saint("C", new Armadura(new Constelacao("Pégaso"), Categoria.OURO));
+        Saint saintTest6 = new Saint("D", new Armadura(new Constelacao("Pégaso"), Categoria.PRATA));
+        Saint saintTest7 = new Saint("E", new Armadura(new Constelacao("Pégaso"), Categoria.OURO));
+        ls1.adicionar(saintTest);
+        ls1.adicionar(saintTest2);
+        ls1.adicionar(saintTest3);
+        ls1.adicionar(saintTest4);
+        ls2.adicionar(saintTest5);
+        ls2.adicionar(saintTest6);
+        ls2.adicionar(saintTest7);
+        
+        ListaSaints ls3 = ls1.intersec(ls2);
+        
+        assertEquals(0, ls3.todos().size());
+        }       
+        
+    @Test public void intersecDoisListaSaintVazio () throws Exception {
+        ListaSaints ls1 = new ListaSaints();
+        ListaSaints ls2 = new ListaSaints();        
+        ListaSaints ls3 = ls1.intersec(ls2);        
+        assertEquals(0, ls3.todos().size());
+    }
+
 }

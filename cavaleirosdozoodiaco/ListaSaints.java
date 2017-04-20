@@ -140,4 +140,19 @@ public class ListaSaints {
     }
     
     
+    public ListaSaints intersec(ListaSaints listaSaints) {
+        ListaSaints newListaSaints = new ListaSaints();
+        int tamanho = this.listaSaints.size();
+        
+        for(int i = 0; i < tamanho; i++) {
+            for(Saint saint : listaSaints.todos()){
+                if(saint.equals(this.listaSaints.get(i))) {
+                    newListaSaints.adicionar(saint);
+                }
+            }
+        }
+        return newListaSaints;
+    }
+    
+
 }
