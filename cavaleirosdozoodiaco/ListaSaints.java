@@ -139,16 +139,13 @@ public class ListaSaints {
     
 
     public String getCSV () {      
-        String csv = "";
-        for(Saint saint : listaSaints) {              
-            csv += saint.getNome() + "," +
-                saint.getVida() + "," +
-                saint.getArmadura().getConstelacao().getNome() + "," +
-                saint.getArmadura().getCategoria().toString() + "," +
-                saint.getStatus().toString() + "," +
-                saint.getGenero().toString() + "," +
-                saint.getArmaduraVestida() + "\n";     
-        }               
-        return csv;
+        StringBuilder builder = new StringBuilder(1024);
+        
+        for(Saint saint : listaSaints) {
+            builder.append(saint.getCSV()); 
+            builder.append(System.getProperty("line.separator"));  
+        }       
+        if(builder.length() != 0) builder.delete(builder.length() - 2 , builder.length());
+        return builder.toString();
     }
 }

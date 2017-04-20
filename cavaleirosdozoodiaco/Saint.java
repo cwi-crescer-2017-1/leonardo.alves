@@ -92,4 +92,16 @@ public class Saint {
         }
         return golpeAtual;
     }
+    
+    public String getCSV () {
+        String csv =
+        this.getNome() + "," +
+                this.getVida() + "," +
+                this.getConstelacao().getNome() + "," +
+                this.getArmadura().getCategoria().toString() + "," +
+                this.getStatus().toString() + "," +
+                this.getGenero().toString() + "," +
+                this.getArmaduraVestida();  
+        return csv;
+    }
 }
