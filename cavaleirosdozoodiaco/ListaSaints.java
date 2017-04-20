@@ -65,47 +65,30 @@ public class ListaSaints {
     }
     
     public void ordenar() {              
-        ListaSaints listaAuxiliar = new ListaSaints();  
-        ListaSaints saintsOrdenados = new ListaSaints();
-        ArrayList<Saint> auxiliar = this.listaSaints;
-        int tamanho = auxiliar.size();
-        
-        for(Saint saintAuxiliar : auxiliar) {            
-            listaAuxiliar.adicionar(saintAuxiliar);
-        }               
-        
-        for(int i = 0; i < tamanho; i++){
-            Saint saintMenorVida;            
-            saintMenorVida = listaAuxiliar.getSaintMenorVida();            
-            saintsOrdenados.adicionar(saintMenorVida);            
-            listaAuxiliar.remover(saintMenorVida);
-        }
-        
-        this.listaSaints = saintsOrdenados.todos();
+        ordenar(TipoOrdenacao.ASCENDENTE);
     }
     
-    public void ordenar(TipoOrdenacao ordenacao) {
-        
+    public void ordenar(TipoOrdenacao ordenacao) {        
         ListaSaints listaAuxiliar = new ListaSaints();  
         ListaSaints saintsOrdenados = new ListaSaints();
         ArrayList<Saint> auxiliar = this.listaSaints;
-        int tamanho = auxiliar.size();        
+        int tamanho = auxiliar.size();  
+        
         for(Saint saintAuxiliar : auxiliar) listaAuxiliar.adicionar(saintAuxiliar);
         
         for(int i = 0; i < tamanho; i++) {
-            if(ordenacao == TipoOrdenacao.ASCENDENTE) {
-                 Saint saintMenorVida;            
-                 saintMenorVida = listaAuxiliar.getSaintMenorVida();            
-                 saintsOrdenados.adicionar(saintMenorVida);            
-                 listaAuxiliar.remover(saintMenorVida);
-            } else if(ordenacao == TipoOrdenacao.DESCENDENTE) {
-                Saint saintMaiorVida;
-                saintMaiorVida = listaAuxiliar.getSaintMaiorVida();
-                saintsOrdenados.adicionar(saintMaiorVida);
-                listaAuxiliar.remover(saintMaiorVida);
-            }            
-            this.listaSaints = saintsOrdenados.todos();
+            Saint saint = null;            
+            boolean isAscendente = ordenacao == TipoOrdenacao.ASCENDENTE;
+            
+            if (isAscendente)                
+                saint = listaAuxiliar.getSaintMenorVida();            
+            else 
+                saint = listaAuxiliar.getSaintMaiorVida();
+            
+            saintsOrdenados.adicionar(saint);            
+            listaAuxiliar.remover(saint);           
         }        
+        this.listaSaints = saintsOrdenados.todos();
     }
     
     public ListaSaints unir (ListaSaints listaSaints) {
@@ -148,18 +131,16 @@ public class ListaSaints {
             for(Saint saint : listaSaints.todos()){
                 if(saint.equals(this.listaSaints.get(i))) {
                     newListaSaints.adicionar(saint);
-                }
+                }  
             }
         }
         return newListaSaints;
     }
     
 
-    public String getCSV () {
-        
-       
-            String csv = "";
-            for(Saint saint : listaSaints) {            
+    public String getCSV () {      
+        String csv = "";
+        for(Saint saint : listaSaints) {              
             csv += saint.getNome() + "," +
                 saint.getVida() + "," +
                 saint.getArmadura().getConstelacao().getNome() + "," +
@@ -167,10 +148,7 @@ public class ListaSaints {
                 saint.getStatus().toString() + "," +
                 saint.getGenero().toString() + "," +
                 saint.getArmaduraVestida() + "\n";     
-            }
-          
-             
-                
+        }               
         return csv;
     }
 }
