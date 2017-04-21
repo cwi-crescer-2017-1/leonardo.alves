@@ -81,6 +81,10 @@ public abstract class Saint {
             this.golpeAtual++;
         }
         return golpeAtual;
+    private final <T extends Object> T getProximoItem
+        (ArrayList <? extends Object>  obj, int acaoAtual, Class<T> type) {
+        int posicao = acaoAtual % obj.size();
+        return type.cast(obj.get(posicao));
     }
     
     public String getCSV () {
