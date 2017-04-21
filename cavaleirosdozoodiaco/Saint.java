@@ -8,8 +8,8 @@ public abstract class Saint {
     private Status status = Status.VIVO;
     private double vida = 100;
     private int golpeAtual = 0;
+    protected int sentidosDespertados;  
 
-    protected int sentidosDespertados;
         this.nome = nome;
         this.armadura = armadura;
     }
