@@ -143,7 +143,7 @@ public class ListaSaints {
         
         for(Saint saint : listaSaints) {
             builder.append(saint.getCSV()); 
-            builder.append("\n");  
+            builder.append(System.getProperty("line.separator"));  
         }       
         if(builder.length() != 0) builder.delete(builder.length() - 2 , builder.length());
         return builder.toString();
