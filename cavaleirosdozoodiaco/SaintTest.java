@@ -186,6 +186,27 @@ public class SaintTest{
         assertEquals(socao3, jackieChan.getProximoGolpe());
         assertEquals(socao, jackieChan.getProximoGolpe());
         
+    @Test
+    public void saintTrocaDeMovimentos () throws Exception {
+        GoldSaint jackieChan = new GoldSaint ("Jackie", "Áries");
+        SilverSaint jackLee = new SilverSaint ("Jack lee", "Áries");
+        Golpe socao = new Golpe("Socão", 7);
+        Golpe socao2 = new Golpe("Socão2", 7);
+        Golpe socao3 = new Golpe("Socão3", 7);
+        jackieChan.aprenderGolpe(socao);
+        jackieChan.aprenderGolpe(socao2);
+        jackieChan.aprenderGolpe(socao3);
+        Golpear golpearTRUM = new Golpear(jackieChan, jackLee);
+        VestirArmadura vestir = new VestirArmadura(jackieChan);
+
+        jackieChan.adicionarMovimento(golpearTRUM);
+        jackieChan.adicionarMovimento(vestir);
+        Movimento primeiro =  jackieChan.getProximoMovimento();       
+        assertEquals(golpearTRUM, primeiro);
+        Movimento segundo = jackieChan.getProximoMovimento();
+        assertEquals(vestir, segundo);   
+        Movimento primeiroDeNovo = jackieChan.getProximoMovimento();
+        assertEquals(golpearTRUM, primeiroDeNovo);
     }
     
     
