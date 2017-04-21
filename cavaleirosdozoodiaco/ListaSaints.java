@@ -143,9 +143,11 @@ public class ListaSaints {
         
         for(Saint saint : listaSaints) {
             builder.append(saint.getCSV()); 
-            builder.append(System.getProperty("line.separator"));  
+            builder.append("\n");
+            
         }       
-        if(builder.length() != 0) builder.delete(builder.length() - 2 , builder.length());
+        if(builder.length() != 0) builder.setLength(builder.length() - 1);
         return builder.toString();
     }
+    
 }
