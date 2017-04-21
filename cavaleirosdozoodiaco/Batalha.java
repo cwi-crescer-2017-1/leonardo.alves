@@ -20,5 +20,10 @@ public class Batalha {
             this.saintAtacaDepois = saint1;
         }               
     }
+
+    private boolean saintsEstaoVivos() {
+        return this.saintAtacaPrimeiro.getStatus() == Status.VIVO &&
+        this.saintAtacaDepois.getStatus() == Status.VIVO;  
     }
+
 }
