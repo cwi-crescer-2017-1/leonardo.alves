@@ -7,33 +7,52 @@ junit.Test;
 
 public class BatalhaTest {
     @Test
-    public void categoriaIgualPerdeVidaSaint2 ()  throws Exception  {
-         Saint zeDoCaixao = new Saint ("Zé do Caixão", new Armadura(new Constelacao("Áries"), Categoria.BRONZE));
-         Saint missPurpurina = new Saint("Miss Purpurina", new Armadura(new Constelacao("Áries"), Categoria.BRONZE));
-         Batalha zeVsPurpurina = new Batalha(zeDoCaixao, missPurpurina);
-         zeVsPurpurina.iniciar();
-         assertEquals(90, missPurpurina.getVida(), 0.1);
-         assertEquals(100, zeDoCaixao.getVida(), 0.1);
+    public void categoriaIgualPerdeBatalhaSaint2 ()  throws Exception  {
+        Golpe golpe = new Golpe("Paulada", 10);
+        Saint zeDoCaixao = new BronzeSaint ("Zé do Caixão", "Áries");         
+        Saint missPurpurina = new BronzeSaint("Miss Purpurina", "Áries");  
+
+        missPurpurina.aprenderGolpe(golpe);
+        zeDoCaixao.aprenderGolpe(golpe);
+
+        Golpear golpear = new Golpear(zeDoCaixao, missPurpurina);
+        Golpear golpear2 = new Golpear(missPurpurina, zeDoCaixao);
+
+        zeDoCaixao.adicionarMovimento(golpear);
+        missPurpurina.adicionarMovimento(golpear2);
+
+        Batalha zeVsPurpurina = new Batalha(zeDoCaixao, missPurpurina);
+        zeVsPurpurina.iniciar();
+        assertEquals(0, missPurpurina.getVida(), 0.1);
+        assertEquals(10, zeDoCaixao.getVida(), 0.1);
     }
-    
-    
+
     @Test 
-    public void categoriaMenorPerdeVida ()  throws Exception  {
-        Saint tesourinha = new Saint ("Tesourinha", new Armadura(new Constelacao("Áries"), Categoria.OURO));
-        Saint yoloMan = new Saint("Vida Loca Jr.", new Armadura(new Constelacao("Áries"), Categoria.BRONZE));
-        Batalha tesourinhaVsYolo = new Batalha(yoloMan, tesourinha);
-        tesourinhaVsYolo.iniciar();
-        assertEquals(90, yoloMan.getVida(), 0.1);
-        assertEquals(100, tesourinha.getVida(), 0.1);
+    public void categoriaMenorPerdeBatalha ()  throws Exception  {
+        Golpe golpe = new Golpe("Paulada", 10);
+        Saint zeDoCaixao = new BronzeSaint ("Zé do Caixão", "Áries");         
+        Saint missPurpurina = new SilverSaint("Miss Purpurina", "Áries");  
+
+        missPurpurina.aprenderGolpe(golpe);
+        zeDoCaixao.aprenderGolpe(golpe);
+
+        Golpear golpear = new Golpear(zeDoCaixao, missPurpurina);
+        Golpear golpear2 = new Golpear(missPurpurina, zeDoCaixao);
+
+        zeDoCaixao.adicionarMovimento(golpear);
+        missPurpurina.adicionarMovimento(golpear2);
+
+        Batalha zeVsPurpurina = new Batalha(zeDoCaixao, missPurpurina);
+        zeVsPurpurina.iniciar();
+        assertEquals(10, missPurpurina.getVida(), 0.1);
+        assertEquals(0, zeDoCaixao.getVida(), 0.1);
     }
-    
+
     /*@Test
     public void saintFicaDesacordado () {
-        Saint tesourinha = new Saint ("Tesourinha", new Armadura("Afiadinus", Categoria.OURO));
-        tesourinha.perderVida(100);
-        assertEquals(Status.DESACORDADO, tesourinha.getStatus());
+    Saint tesourinha = new BronzeSaint ("Tesourinha", new Armadura("Afiadinus", Categoria.OURO));
+    tesourinha.perderVida(100);
+    assertEquals(Status.DESACORDADO, tesourinha.getStatus());
     }*/
-    
-   
-    
+
 }

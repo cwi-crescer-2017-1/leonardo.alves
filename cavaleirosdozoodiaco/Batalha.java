@@ -2,15 +2,7 @@ public class Batalha {
     private Saint saintAtacaPrimeiro, saintAtacaDepois; 
 
     public Batalha (Saint saint1, Saint saint2) {
-    public void iniciar () {
         int categoria1 = saint1.getArmadura().getCategoria().getValor();
-        int categoria2 = saint2.getArmadura().getCategoria().getValor();
-        
-        if (categoria1 >= categoria2)
-           saint2.perderVida(dano);
-        else if (categoria1 < categoria2) 
-           saint1.perderVida(dano);
-                      
         int categoria2 = saint2.getArmadura().getCategoria().getValor(); 
         if(categoria1 >= categoria2) {
             this.saintAtacaPrimeiro = saint1;
@@ -26,4 +18,17 @@ public class Batalha {
         this.saintAtacaDepois.getStatus() == Status.VIVO;  
     }
 
+    public void iniciar () {        
+        boolean saintsEstaoVivos = saintsEstaoVivos();
+        boolean saintQueAtacaDepoisAindaEstaVivo;
+        while(saintsEstaoVivos) {     
+            saintAtacaPrimeiro.getProximoMovimento().executar();
+            saintsEstaoVivos = saintsEstaoVivos();      
+
+            if(saintsEstaoVivos){
+                saintAtacaDepois.getProximoMovimento().executar();   
+            }                                             
+
+        }                         
+    }
 }
