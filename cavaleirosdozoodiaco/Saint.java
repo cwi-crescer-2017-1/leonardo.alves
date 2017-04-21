@@ -8,6 +8,8 @@ public abstract class Saint {
     private Status status = Status.VIVO;
     private double vida = 100;
     private int golpeAtual = 0;
+    private int movimentoAtual = 0;
+    private ArrayList<Movimento> movimentos = new ArrayList <> ();
     protected int sentidosDespertados;  
 
     public Saint(String nome, Armadura armadura) throws Exception {        
@@ -76,6 +78,16 @@ public abstract class Saint {
         Golpe golpe = getProximoItem(golpes, golpeAtual, Golpe.class); 
         golpeAtual++;
         return golpe;      
+    }
+    
+    public void adicionarMovimento(Movimento movimento) {
+        this.movimentos.add(movimento);
+    }
+    
+    public Movimento getProximoMovimento() {       
+         Movimento movAtual =  getProximoItem(movimentos, movimentoAtual, Movimento.class);
+         movimentoAtual++;
+         return movAtual;
     }
     
     private final <T extends Object> T getProximoItem
