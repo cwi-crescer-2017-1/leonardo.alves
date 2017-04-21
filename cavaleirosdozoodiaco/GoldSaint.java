@@ -1,28 +1,22 @@
 public class GoldSaint extends Saint {
     
     public GoldSaint(String nome, String constelacao) throws Exception {
-        this(nome, new Armadura(new Constelacao(constelacao), Categoria.OURO));
-    }
-    
-    public GoldSaint(String nome, Armadura armadura) throws Exception {
-        super(nome,armadura);
-        this.sentidosDespertados = 7;
-        if(!armadura.getConstelacao().getNome().equals("Áries")
-        && !armadura.getConstelacao().getNome().equals("Touro")
-        && !armadura.getConstelacao().getNome().equals("Gêmeos")
-        && !armadura.getConstelacao().getNome().equals("Câncer")
-        && !armadura.getConstelacao().getNome().equals("Virgem")
-        && !armadura.getConstelacao().getNome().equals("Leão")
-        && !armadura.getConstelacao().getNome().equals("Libra")
-        && !armadura.getConstelacao().getNome().equals("Escorpião")
-        && !armadura.getConstelacao().getNome().equals("Sagitário")
-        && !armadura.getConstelacao().getNome().equals("Capricórnio")
-        && !armadura.getConstelacao().getNome().equals("Aquário")
-        && !armadura.getConstelacao().getNome().equals("Peixes")) {
+        super(nome, new Armadura(new Constelacao(constelacao), Categoria.OURO));
+        super.sentidosDespertados = 7;
+        if(!getArmadura().getConstelacao().getNome().equals("Áries")
+        && !getArmadura().getConstelacao().getNome().equals("Touro")
+        && !getArmadura().getConstelacao().getNome().equals("Gêmeos")
+        && !getArmadura().getConstelacao().getNome().equals("Câncer")
+        && !getArmadura().getConstelacao().getNome().equals("Virgem")
+        && !getArmadura().getConstelacao().getNome().equals("Leão")
+        && !getArmadura().getConstelacao().getNome().equals("Libra")
+        && !getArmadura().getConstelacao().getNome().equals("Escorpião")
+        && !getArmadura().getConstelacao().getNome().equals("Sagitário")
+        && !getArmadura().getConstelacao().getNome().equals("Capricórnio")
+        && !getArmadura().getConstelacao().getNome().equals("Aquário")
+        && !getArmadura().getConstelacao().getNome().equals("Peixes")) {
             throw new Exception("Constelação inválida");
-        }
-        
-        
+        }        
     }
     
     public String getNome () {
