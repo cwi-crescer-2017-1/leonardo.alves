@@ -545,7 +545,9 @@ public class ListaSaintsTest {
         dohko.vestirArmadura();
         lista.adicionar(dohko);      
         String csv = lista.getCSV(); 
-        String compare = "June,84.5,Camaleão,BRONZE,VIVO,FEMININO,false"+ System.getProperty("line.separator") + "Dohko,10.0,,PRATA,VIVO,NAO_INFORMADO,true";
+        String compare = "June,84.5,Camaleão,BRONZE,VIVO,FEMININO,false"+ "\n" +"Dohko,10.0,,PRATA,VIVO,NAO_INFORMADO,true";
+        System.out.println(csv);
+        System.out.println(compare);
         assertEquals(compare, csv);       
     }
 }
