@@ -70,6 +70,7 @@ public abstract class Saint {
     
     public void aprenderGolpe(Golpe golpe){
         getConstelacao().adicionarGolpe(golpe);
+    }
     public Golpe getProximoGolpe () {               
         ArrayList<Golpe> golpes = getConstelacao().getGolpes();       
         Golpe golpe = getProximoItem(golpes, golpeAtual, Golpe.class); 
