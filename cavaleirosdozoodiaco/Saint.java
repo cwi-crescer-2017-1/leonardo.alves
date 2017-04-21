@@ -69,18 +69,13 @@ public abstract class Saint {
     
     public void aprenderGolpe(Golpe golpe){
         getConstelacao().adicionarGolpe(golpe);
+    public Golpe getProximoGolpe () {               
+        ArrayList<Golpe> golpes = getConstelacao().getGolpes();       
+        Golpe golpe = getProximoItem(golpes, golpeAtual, Golpe.class); 
+        golpeAtual++;
+        return golpe;      
     }
     
-    public Golpe getProximoGolpe () {
-        int numeroGolpes = this.armadura.getConstelacao().getGolpes().size() - 1;        
-        ArrayList<Golpe> golpes = getConstelacao().getGolpes();
-        Golpe golpeAtual = golpes.get(this.golpeAtual);
-        if(this.golpeAtual == numeroGolpes){
-            this.golpeAtual = 0;
-        } else {
-            this.golpeAtual++;
-        }
-        return golpeAtual;
     private final <T extends Object> T getProximoItem
         (ArrayList <? extends Object>  obj, int acaoAtual, Class<T> type) {
         int posicao = acaoAtual % obj.size();
