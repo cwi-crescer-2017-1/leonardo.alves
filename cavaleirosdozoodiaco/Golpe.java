@@ -16,6 +16,10 @@ public class Golpe {
         return this.fatorDano;
     }
     
+    public void setFatorDano (int fatorDano) {
+        this.fatorDano = fatorDano;
+    }
+    
     
     public boolean equals(Object object) {
         Golpe outroGolpe = (Golpe)object;
