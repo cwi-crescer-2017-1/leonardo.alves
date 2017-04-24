@@ -18,14 +18,15 @@ public class Batalha {
         this.saintAtacaDepois.getStatus() != Status.MORTO;  
     }
 
-    public void iniciar () {        
+    public void iniciar () {  
+        Saint saintEmAcao = null;
         boolean saintsEstaoVivos = saintsEstaoVivos();        
         while(saintsEstaoVivos) {     
-            saintAtacaPrimeiro.getProximoMovimento().executar();
+             saintEmAcao = saintEmAcao == this.saintAtacaPrimeiro ?
+                                this.saintAtacaDepois : this.saintAtacaPrimeiro;
+            saintEmAcao.getProximoMovimento().executar();
+            
             saintsEstaoVivos = saintsEstaoVivos();
-
-            if(saintsEstaoVivos) saintAtacaDepois.getProximoMovimento().executar();                                           
-            saintsEstaoVivos = saintsEstaoVivos();  
         }                         
     }
 }
