@@ -9,13 +9,12 @@ public class Golpear implements Movimento {
     }
 
     public void executar () {
-
+        int danoInfligido = golpe.getFatorDano();
         if(atacante.getArmaduraVestida() ){
             int valorArmadura = atacante.getArmadura().getCategoria().getValor();
-            int novoFatorDano = golpe.getFatorDano() * (1 + valorArmadura);
-            golpe.setFatorDano(novoFatorDano);
+            danoInfligido = golpe.getFatorDano() * (1 + valorArmadura);            
         }
 
-        atacado.perderVida(golpe.getFatorDano());
+        atacado.perderVida(danoInfligido);
     }
 }
