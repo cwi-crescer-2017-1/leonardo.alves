@@ -84,4 +84,16 @@ public class GolpearTest {
         assertEquals(100,saintTest.getVida(), 0.01);
         assertEquals(60,saintTest2.getVida(), 0.01);
     }
+    
+    @Test(expected=NullPointerException.class)
+    public void golpearComGolpeNulo () throws Exception {
+        Saint saintTest = new GoldSaint("Shyriu", "Áries");
+        Saint saintTest2 = new BronzeSaint("Shyriu", "Áries");
+        Golpe golpe = null;
+        
+        saintTest.aprenderGolpe(golpe);
+        Golpear golpear = new Golpear(saintTest, saintTest2);
+        golpear.executar();
+    
+    }
 }
