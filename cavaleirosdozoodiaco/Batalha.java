@@ -14,8 +14,8 @@ public class Batalha {
     }
 
     private boolean saintsEstaoVivos() {
-        return this.saintAtacaPrimeiro.getStatus() == Status.VIVO &&
-        this.saintAtacaDepois.getStatus() == Status.VIVO;  
+        return this.saintAtacaPrimeiro.getStatus() != Status.MORTO &&
+        this.saintAtacaDepois.getStatus() != Status.MORTO;  
     }
 
     public void iniciar () {        
