@@ -203,13 +203,4 @@ public class SaintTest{
         Movimento primeiroDeNovo = jackieChan.getProximoMovimento();
         assertEquals(golpearTRUM, primeiroDeNovo);
     }
-    
-    @Test
-    public void movimentoVestirArmaduraRealmenteFunciona () throws Exception {
-        GoldSaint jackieChan = new GoldSaint ("Jackie", "Áries");
-        Movimento vestirArmadura = new VestirArmadura(jackieChan);
-        vestirArmadura.executar();
-        assertEquals(true, jackieChan.getArmaduraVestida());
-    }
-
 }
