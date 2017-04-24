@@ -5,12 +5,38 @@ import org.junit.Test;
 
 public class GolpearTest {
     @Test 
-    public void golpearSemArmaduraVestida() throws Exception {
+    public void golpearBronzeSemArmaduraVestida() throws Exception {
         Saint saintTest = new BronzeSaint("Shyriu", "Áries");
         Saint saintTest2 = new BronzeSaint("Shyriu", "Áries");
         Golpe golpe = new Golpe("Paulada", 10);
         saintTest.aprenderGolpe(golpe);
-        Golpear golpear = new Golpear(saintTest, saintTest2);
+        Movimento golpear = new Golpear(saintTest, saintTest2);
+        golpear.executar();
+
+        assertEquals(100,saintTest.getVida(), 0.01);
+        assertEquals(90,saintTest2.getVida(), 0.01);
+    }    
+    
+     @Test 
+    public void golpearSilverSemArmaduraVestida() throws Exception {
+        Saint saintTest = new SilverSaint("Shyriu", "Áries");
+        Saint saintTest2 = new BronzeSaint("Shyriu", "Áries");
+        Golpe golpe = new Golpe("Paulada", 10);
+        saintTest.aprenderGolpe(golpe);
+        Movimento golpear = new Golpear(saintTest, saintTest2);
+        golpear.executar();
+
+        assertEquals(100,saintTest.getVida(), 0.01);
+        assertEquals(90,saintTest2.getVida(), 0.01);
+    }    
+    
+     @Test 
+    public void golpearGoldSemArmaduraVestida() throws Exception {
+        Saint saintTest = new GoldSaint("Shyriu", "Áries");
+        Saint saintTest2 = new BronzeSaint("Shyriu", "Áries");
+        Golpe golpe = new Golpe("Paulada", 10);
+        saintTest.aprenderGolpe(golpe);
+        Movimento golpear = new Golpear(saintTest, saintTest2);
         golpear.executar();
 
         assertEquals(100,saintTest.getVida(), 0.01);
@@ -24,7 +50,7 @@ public class GolpearTest {
         Golpe golpe = new Golpe("Paulada", 10);
         saintTest.vestirArmadura();
         saintTest.aprenderGolpe(golpe);
-        Golpear golpear = new Golpear(saintTest, saintTest2);
+        Movimento golpear = new Golpear(saintTest, saintTest2);
         golpear.executar();
 
         assertEquals(100,saintTest.getVida(), 0.01);
@@ -38,7 +64,7 @@ public class GolpearTest {
         Golpe golpe = new Golpe("Paulada", 10);
         saintTest.vestirArmadura();
         saintTest.aprenderGolpe(golpe);
-        Golpear golpear = new Golpear(saintTest, saintTest2);
+        Movimento golpear = new Golpear(saintTest, saintTest2);
         golpear.executar();
 
         assertEquals(100,saintTest.getVida(), 0.01);
