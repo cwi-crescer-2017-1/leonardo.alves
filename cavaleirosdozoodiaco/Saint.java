@@ -10,15 +10,21 @@ public abstract class Saint {
     private int golpeAtual = 0;
     private int movimentoAtual = 0;
     private ArrayList<Movimento> movimentos = new ArrayList <> ();
-    protected int sentidosDespertados;  
+    protected int sentidosDespertados; 
+    private static int qtdSaints = 0;
 
     public Saint(String nome, Armadura armadura) throws Exception {        
         this.nome = nome;
         this.armadura = armadura;
+        Saint.qtdSaints++;
     }
 
     public void vestirArmadura () {
         armaduraVestida = true;
+    }
+    
+    public static int getQtdSaints () {
+        return Saint.qtdSaints;
     }
 
     public void perderVida(double vidaPerdida) throws InvalidParameterException{
@@ -113,5 +119,9 @@ public abstract class Saint {
         csv.append(",");
         csv.append(this.getArmaduraVestida());                    
         return csv.toString();
+    }
+    
+    public void golpear(Saint atacado) {
+        this.adicionarMovimento(new Golpear(this, atacado));
     }
 }

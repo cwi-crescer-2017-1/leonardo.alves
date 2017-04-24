@@ -203,4 +203,24 @@ public class SaintTest{
         Movimento primeiroDeNovo = jackieChan.getProximoMovimento();
         assertEquals(golpearTRUM, primeiroDeNovo);
     }
+    
+    @Test 
+    public void golpearNoSaintAdicionaOMovimento () throws Exception {
+    Saint jackieChan = new GoldSaint ("Jackie", "Áries");
+    Saint jackLee = new SilverSaint ("Jack lee", "Áries");
+    Golpe xgolpe = new Golpe("Pow", 10);
+    jackieChan.aprenderGolpe(xgolpe);
+    Golpear golpe = new Golpear(jackieChan, jackLee);
+    
+    
+    jackieChan.golpear(jackLee);
+    assertTrue(golpe.equals(jackieChan.getProximoMovimento()));
+    }
+
+	@Test
+	public void verificarQuantidadeDeSaintsComMais1 () throws Exception {
+		int  saintsIniciais = Saint.getQtdSaints();
+		Saint seyia = new SilverSaint("Seyia", "jaa");
+		assertEquals(saintsIniciais + 1, Saint.getQtdSaints());
+	}
 }
