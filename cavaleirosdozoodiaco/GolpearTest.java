@@ -16,7 +16,7 @@ public class GolpearTest {
         assertEquals(100,saintTest.getVida(), 0.01);
         assertEquals(90,saintTest2.getVida(), 0.01);
     }    
-    
+
     @Test
     public void bronzeSaintGolpearComArmaduraMultiplicaPor2 () throws Exception {
         Saint saintTest = new BronzeSaint("Shyriu", "Áries");
@@ -30,7 +30,7 @@ public class GolpearTest {
         assertEquals(100,saintTest.getVida(), 0.01);
         assertEquals(80,saintTest2.getVida(), 0.01);
     }
-    
+
     @Test
     public void silverSaintGolpearComArmaduraMultiplicaPor3 () throws Exception {
         Saint saintTest = new SilverSaint("Shyriu", "Áries");
@@ -44,7 +44,7 @@ public class GolpearTest {
         assertEquals(100,saintTest.getVida(), 0.01);
         assertEquals(70,saintTest2.getVida(), 0.01);
     }
-    
+
     @Test
     public void goldSaintGolpearComArmaduraMultiplicaPor4 () throws Exception {
         Saint saintTest = new GoldSaint("Shyriu", "Áries");

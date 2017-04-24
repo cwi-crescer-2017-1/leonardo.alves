@@ -16,25 +16,24 @@ public abstract class Saint {
         this.nome = nome;
         this.armadura = armadura;
     }
-    
-     public void vestirArmadura () {
+
+    public void vestirArmadura () {
         armaduraVestida = true;
     }
-    
+
     public void perderVida(double vidaPerdida) throws InvalidParameterException{
         if(vidaPerdida < 0) throw new InvalidParameterException("o dano não pode ser negativo");
         if(this.vida - vidaPerdida < 1) {
             this.status = Status.MORTO;
             this.vida = 0;            
         } else this.vida -= vidaPerdida;
-        
-               
+
     }
-    
+
     public boolean getArmaduraVestida () {
         return armaduraVestida;
     }
-    
+
     public Genero getGenero () {
         return genero;
     }
@@ -42,60 +41,62 @@ public abstract class Saint {
     public String getNome () {
         return this.nome;
     }
-    
+
     public void setGenero(Genero genero) {
         this.genero = genero;
     }
-    
+
     public Status getStatus () {
         return this.status;
     }
+
     public double getVida () {
         return this.vida;
     }
-    
+
     public Armadura getArmadura () {
         return this.armadura;
     }
-    
+
     public int getSentidosDespertados () {
         return this.sentidosDespertados;
     }
-    
+
     private Constelacao getConstelacao() {
         return this.armadura.getConstelacao();
     }
-    
+
     public ArrayList<Golpe> getGolpes() {
         return getConstelacao().getGolpes();
     }
-    
+
     public void aprenderGolpe(Golpe golpe){
         getConstelacao().adicionarGolpe(golpe);
     }
+
     public Golpe getProximoGolpe () {               
         ArrayList<Golpe> golpes = getConstelacao().getGolpes();       
         Golpe golpe = getProximoItem(golpes, golpeAtual, Golpe.class); 
         golpeAtual++;
         return golpe;      
     }
-    
+
     public void adicionarMovimento(Movimento movimento) {
         this.movimentos.add(movimento);
     }
-    
+
     public Movimento getProximoMovimento() {       
-         Movimento movAtual =  getProximoItem(movimentos, movimentoAtual, Movimento.class);
-         movimentoAtual++;
-         return movAtual;
+        Movimento movAtual =  getProximoItem(movimentos, movimentoAtual, Movimento.class);
+        movimentoAtual++;
+        return movAtual;
     }
-    
+
     private final <T extends Object> T getProximoItem
-        (ArrayList <? extends Object>  obj, int acaoAtual, Class<T> type) {
+    (ArrayList <? extends Object>  obj, int acaoAtual, Class<T> type) {
         int posicao = acaoAtual % obj.size();
         return type.cast(obj.get(posicao));
     }
-    
+
     public String getCSV () {
         StringBuilder csv = new StringBuilder(512);       
         csv.append(this.getNome());

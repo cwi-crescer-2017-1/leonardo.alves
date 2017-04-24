@@ -88,7 +88,6 @@ public class ListaSaintsTest {
         assertNull(saints.buscarPorNome("Ximbas"));
     }
 
-    
     @Test
     public void buscarSaintsPorCategoria () throws Exception {
         ListaSaints saints = new ListaSaints();
@@ -143,6 +142,7 @@ public class ListaSaintsTest {
         assertEquals(saints.buscarPorStatus(Status.MORTO), arrayTest);
 
     }
+
     @Test
     public void pegarSaintMaiorVida () throws Exception {
         ListaSaints saints = new ListaSaints();
@@ -162,6 +162,7 @@ public class ListaSaintsTest {
         assertEquals(saints.getSaintMaiorVida().getVida(), 100, 0.001);
 
     }
+
     @Test
     public void pegarSaintMaiorVidaSemLista () {
         ListaSaints saints = new ListaSaints();
@@ -208,7 +209,7 @@ public class ListaSaintsTest {
         assertEquals(saints.getSaintMenorVida().getVida(), 26, 0.001);
 
     }
-    
+
     @Test
     public void pegarSaintMenorVidaSemLista () {
         ListaSaints saints = new ListaSaints();
@@ -235,7 +236,7 @@ public class ListaSaintsTest {
         assertEquals(saints.getSaintMenorVida().getNome(), "Ximbas");
 
     }
-    
+
     @Test
     public void ordenarSaints () throws Exception {
         ListaSaints saints = new ListaSaints();
@@ -545,8 +546,7 @@ public class ListaSaintsTest {
         dohko.vestirArmadura();
         lista.adicionar(dohko);      
         String csv = lista.getCSV(); 
-       
-        
+
         String compare = "June,84.5,Camaleão,BRONZE,VIVO,FEMININO,false"+ "\n" +"Dohko,10.0,,PRATA,VIVO,NAO_INFORMADO,true";
         System.out.println(csv);
         System.out.println(compare);
