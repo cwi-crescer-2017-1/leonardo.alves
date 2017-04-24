@@ -19,16 +19,13 @@ public class Batalha {
     }
 
     public void iniciar () {        
-        boolean saintsEstaoVivos = saintsEstaoVivos();
-        boolean saintQueAtacaDepoisAindaEstaVivo;
+        boolean saintsEstaoVivos = saintsEstaoVivos();        
         while(saintsEstaoVivos) {     
             saintAtacaPrimeiro.getProximoMovimento().executar();
-            saintsEstaoVivos = saintsEstaoVivos();      
+            saintsEstaoVivos = saintsEstaoVivos();
 
-            if(saintsEstaoVivos){
-                saintAtacaDepois.getProximoMovimento().executar();   
-            }                                             
-
+            if(saintsEstaoVivos) saintAtacaDepois.getProximoMovimento().executar();                                           
+            saintsEstaoVivos = saintsEstaoVivos();  
         }                         
     }
 }
