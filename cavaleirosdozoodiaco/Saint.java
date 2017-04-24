@@ -97,15 +97,20 @@ public abstract class Saint {
     }
     
     public String getCSV () {
-        StringBuilder csv = new StringBuilder();
-        csv.append(
-            this.getNome() + "," +
-            this.getVida() + "," +
-            this.getConstelacao().getNome() + "," + 
-            this.getArmadura().getCategoria().toString() + "," +
-            this.getStatus().toString() + "," + 
-            this.getGenero().toString() + "," + 
-            this.getArmaduraVestida());        
+        StringBuilder csv = new StringBuilder(512);       
+        csv.append(this.getNome());
+        csv.append(",");
+        csv.append(this.getVida());
+        csv.append(",");
+        csv.append(this.getConstelacao().getNome());
+        csv.append(",");
+        csv.append(this.getArmadura().getCategoria());
+        csv.append(",");
+        csv.append(this.getStatus());
+        csv.append(",");
+        csv.append(this.getGenero());
+        csv.append(",");
+        csv.append(this.getArmaduraVestida());                    
         return csv.toString();
     }
 }
