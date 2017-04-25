@@ -5,6 +5,12 @@ import org.junit.Before;
 import org.junit.Test;
 import java.security.InvalidParameterException;
 public class SaintTest{   
+    
+    @After
+    public void tearDown () {
+        System.gc();        
+    }
+    
     @Test
     public void vestirArmaduraDeixaArmaduraVestida ()  throws Exception {
         /* 
@@ -27,7 +33,7 @@ public class SaintTest{
     @Test
     public void naoVestirArmaduraDeixaArmaduraNaoVestida ()  throws Exception  {
         BronzeSaint hyoga = new BronzeSaint("Hyoga", "Áries");
-        System.out.println(hyoga.getId());
+       
         assertEquals(false, hyoga.getArmaduraVestida());
     }
 
@@ -225,29 +231,25 @@ public class SaintTest{
     }
     
     @Test
-    public void verificarQuantidadeDeSaintsAposAdicionar4 () throws Exception {
-        int  saintsIniciais = Saint.getQtdSaints();
-        Saint seyia = new SilverSaint("Seyia", "Pégaso");
-        assertEquals(saintsIniciais + 1, Saint.getQtdSaints());
-        Saint shiryu = new SilverSaint("Shiryu", "Dragão");
-        assertEquals(saintsIniciais + 2, Saint.getQtdSaints());
-        Saint hyoga = new SilverSaint("Hyoga", "Cisne");
-        assertEquals(saintsIniciais + 3, Saint.getQtdSaints());
-        Saint ikki = new SilverSaint("Ikki", "Fênix");
-        assertEquals(saintsIniciais + 4, Saint.getQtdSaints());
+    public void verificarQuantidadeDeSaintsAposAdicionar50 () throws Exception {        
+        for(int i = 0; i < 50; i++) new BronzeSaint("generico","constelacao");
+        assertEquals(50, Saint.getQtdSaints());
     }
     
     @Test
-    public void getIdDoSaint () throws Exception {
-        
-        Saint seyia = new BronzeSaint("Seyia", "Pégaso");
-        int  saintsIniciais = Saint.getQtdSaints();
-        Saint shiryu = new SilverSaint("Shiryu", "Dragão"); //1
-        Saint hyoga = new SilverSaint("Hyoga", "Cisne");    //2
-        Saint shun = new SilverSaint("Shun", "Andrômeda");  //3
-        Saint ikki = new SilverSaint("Ikki", "Fênix");
-        
-        assertEquals(saintsIniciais+3, shun.getId());
+    public void getIdDoSaint () throws Exception { 
+        int antes = Saint.getAcumuladorQtdSaints();
+        Saint ikki = new SilverSaint("Ikki", "Fênix");        
+        assertEquals(antes + 1, ikki.getId());    
+    }  
     
-    }    
+     @Test
+    public void getIdDoSaintAposMemoriaSerLimpada () throws Exception {        
+        int idAntes = Saint.getAcumuladorQtdSaints();
+        Saint ikki = new SilverSaint("Ikki", "Fênix"); 
+        ikki = null;
+        System.gc();
+        Saint seiya = new BronzeSaint("Seiya","Pégaso");
+        assertEquals(idAntes + 2, seiya.getId());    
+    }      
 }

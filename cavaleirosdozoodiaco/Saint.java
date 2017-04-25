@@ -12,17 +12,27 @@ public abstract class Saint {
     private ArrayList<Movimento> movimentos = new ArrayList <> ();
     protected int sentidosDespertados; 
     private static int qtdSaints = 0;
-    private final int id;
+    private static int acumuladorQtdSaints = 0;
+    private int id;
     public Saint(String nome, Armadura armadura) throws Exception {        
         this.nome = nome;
         this.armadura = armadura;
+        this.id = ++acumuladorQtdSaints;
         Saint.qtdSaints++;
-        id = qtdSaints;
+               
+    }
+    
+    public static int getAcumuladorQtdSaints () {
+        return Saint.acumuladorQtdSaints;
+    }
+    
+    protected void finalize () throws Throwable  {
+        Saint.qtdSaints--;
     }
     
     public int getId () {
         return this.id;
-    }
+    }    
 
     public void vestirArmadura () {
         armaduraVestida = true;
