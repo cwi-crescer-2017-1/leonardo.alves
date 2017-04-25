@@ -40,6 +40,13 @@ public class ConstelacaoTest {
         assertEquals(socao3, constelacao.getGolpes().get(2));
     }
     
+    @Test
+    public void adicionarGolpeNulo () {
+        Constelacao constelacao = new Constelacao("XX");
+        constelacao.adicionarGolpe(null);
+        assertNull(constelacao.getGolpes().get(0));    
+    }
+    
     /*@Test(expected=ArrayIndexOutOfBoundsException.class)
     public void adicionarQuatroGolpes () {
         Constelacao constelacao = new Constelacao("Zumba");

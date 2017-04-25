@@ -402,6 +402,21 @@ public class ListaSaintsTest {
 
         assertEquals(2, ls3.todos().size());
     }
+    
+    @Test
+    public void unirListaVaziaComOutraComCoisas () throws Exception {
+        ListaSaints ls1 = new ListaSaints();
+        ListaSaints ls2 = new ListaSaints();
+
+        Saint saintTest = new BronzeSaint("Shyriu", "Áries");
+        Saint saintTest2 = new BronzeSaint("Shyriu", "Áries");
+        ls2.adicionar(saintTest);
+        ls2.adicionar(saintTest2);        
+        ListaSaints ls3 = ls1.unir(ls2);
+
+        assertEquals(2, ls3.todos().size());
+    
+    }
 
     @Test public void unirDoisListaSaintVazio () {
         ListaSaints ls1 = new ListaSaints();
@@ -436,6 +451,20 @@ public class ListaSaintsTest {
         ListaSaints ls3 = ls1.diff(ls2);
 
         assertEquals(2, ls3.todos().size());
+    }
+    
+    @Test
+    public void diffListaVaziaComOutraComCoisas () throws Exception {
+        ListaSaints ls1 = new ListaSaints();
+        ListaSaints ls2 = new ListaSaints();
+
+        Saint saintTest = new BronzeSaint("Shyriu", "Áries");
+        Saint saintTest2 = new BronzeSaint("Xarompe", "Áries");
+        ls2.adicionar(saintTest);
+        ls2.adicionar(saintTest2);        
+        ListaSaints ls3 = ls1.diff(ls2);
+
+        assertEquals(2, ls3.todos().size());   
     }
 
     @Test public void diffDoisListaSaintVazio (){
