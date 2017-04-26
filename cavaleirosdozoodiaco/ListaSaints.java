@@ -109,7 +109,9 @@ public class ListaSaints {
     public ListaSaints diff (ListaSaints listaSaints) {
         ListaSaints newListaSaints = new ListaSaints();
         for(Saint saint : this.listaSaints) newListaSaints.adicionar(saint);
-        int tamanho = newListaSaints.todos().size();
+        int tamanho = 
+        listaSaints.todos().size() > newListaSaints.todos().size() ? 
+        listaSaints.todos().size() : newListaSaints.todos().size();
         
         for(int i = 0; i < tamanho; i++){
             for(Saint saint : listaSaints.todos()) {

@@ -453,7 +453,7 @@ public class ListaSaintsTest {
         assertEquals(2, ls3.todos().size());
     }
     
-    @Test
+    @Test (expected=IndexOutOfBoundsException.class)
     public void diffListaVaziaComOutraComCoisas () throws Exception {
         ListaSaints ls1 = new ListaSaints();
         ListaSaints ls2 = new ListaSaints();
@@ -462,9 +462,7 @@ public class ListaSaintsTest {
         Saint saintTest2 = new BronzeSaint("Xarompe", "Áries");
         ls2.adicionar(saintTest);
         ls2.adicionar(saintTest2);        
-        ListaSaints ls3 = ls1.diff(ls2);
-
-        assertEquals(2, ls3.todos().size());   
+        ListaSaints ls3 = ls1.diff(ls2);          
     }
 
     @Test public void diffDoisListaSaintVazio (){
