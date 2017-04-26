@@ -45,7 +45,7 @@ public class ListaSaints {
         Saint saint = listaSaints.get(0);
       
         for(int i = 1; i < listaSaints.size(); i++) {
-             boolean pegarSaintPorTipo = 
+            boolean pegarSaintPorTipo = 
                 tipo == TipoOrdenacaoVida.MAIOR ?
                     saint.getVida() < listaSaints.get(i).getVida() :
                     saint.getVida() > listaSaints.get(i).getVida(); 

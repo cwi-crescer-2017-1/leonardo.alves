@@ -18,8 +18,7 @@ public abstract class Saint {
         this.nome = nome;
         this.armadura = armadura;
         this.id = ++acumuladorQtdSaints;
-        Saint.qtdSaints++;
-               
+        Saint.qtdSaints++;               
     }
     
     public static int getAcumuladorQtdSaints () {
@@ -48,7 +47,6 @@ public abstract class Saint {
             this.status = Status.MORTO;
             this.vida = 0;            
         } else this.vida -= vidaPerdida;
-
     }
 
     public boolean getArmaduraVestida () {

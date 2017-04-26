@@ -8,5 +8,4 @@ public class VestirArmadura implements Movimento {
     public void executar (){
         this.saint.vestirArmadura();
     }
-
 }
