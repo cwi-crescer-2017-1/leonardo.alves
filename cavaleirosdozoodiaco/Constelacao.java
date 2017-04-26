@@ -9,8 +9,7 @@ public class Constelacao {
 
     public void adicionarGolpe(Golpe golpe) {
          golpes.add(golpe);        
-    }
-    
+    }    
 
     public ArrayList<Golpe> getGolpes () {
         return  golpes;

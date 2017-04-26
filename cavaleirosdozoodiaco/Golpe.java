@@ -1,7 +1,6 @@
 public class Golpe {
     private String nome;
-    private int fatorDano;       
-   
+    private int fatorDano;
     
     public Golpe(String nome, int fatorDano) {
         this.nome = nome;
@@ -23,6 +22,7 @@ public class Golpe {
     
     public boolean equals(Object object) {
         Golpe outroGolpe = (Golpe)object;
-        return this.nome.equals(outroGolpe.nome) && this.fatorDano == outroGolpe.fatorDano;
+        return this.nome.equals(outroGolpe.nome) 
+            && this.fatorDano == outroGolpe.fatorDano;
     }
 }

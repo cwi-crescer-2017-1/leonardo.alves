@@ -40,28 +40,27 @@ public class ListaSaints {
         .collect(Collectors.toList());
     }
     
-    public Saint getSaintMaiorVida () {
+    private Saint getSaintPorVida(TipoOrdenacaoVida tipo) {
         if(this.listaSaints.isEmpty()) return null;
-        
-        Saint saintMaiorVida = listaSaints.get(0);
-        for(int i=1; i < listaSaints.size(); i++){
-            if(listaSaints.get(i).getVida() > saintMaiorVida.getVida()) {
-                saintMaiorVida = listaSaints.get(i);                              
-            }            
+        Saint saint = listaSaints.get(0);
+      
+        for(int i = 1; i < listaSaints.size(); i++) {
+             boolean pegarSaintPorTipo = 
+                tipo == TipoOrdenacaoVida.MAIOR ?
+                    saint.getVida() < listaSaints.get(i).getVida() :
+                    saint.getVida() > listaSaints.get(i).getVida(); 
+                    
+            if(pegarSaintPorTipo) saint = listaSaints.get(i);
         }
-        return saintMaiorVida;       
+        return saint;
     }
     
-    public Saint getSaintMenorVida () {
-        if(this.listaSaints.isEmpty()) return null;
-        
-        Saint saintMenorVida = listaSaints.get(0);
-        for(int i=1; i < listaSaints.size(); i++){
-            if(listaSaints.get(i).getVida() < saintMenorVida.getVida()) {
-                saintMenorVida = listaSaints.get(i);                              
-            }            
-        }
-        return saintMenorVida;  
+    public Saint getSaintMaiorVida () {
+        return getSaintPorVida(TipoOrdenacaoVida.MAIOR);      
+    }
+    
+    public Saint getSaintMenorVida () {        
+        return getSaintPorVida(TipoOrdenacaoVida.MENOR);
     }
     
     public void ordenar() {              
