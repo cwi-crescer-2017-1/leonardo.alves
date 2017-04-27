@@ -15,6 +15,12 @@ public class ContraAtaque implements Movimento {
         this.chanceContraAtaque = new VerificadorSortear(sorteador);
     }
     
-    public void executar (){        
+    public void executar (){      
+        if((atacado.getVida() < 50) && (atacado.getArmaduraVestida() == false)){
+            if(chanceContraAtaque.verificarContraAtaque()) {
+                this.atacado.setDefenderProximoAtaque(true);
+            }
+        }
+        //boolean defender =
     }
 }
