@@ -1,36 +1,39 @@
-public class AtaqueDuplo implements Movimento {    
-    private Saint atacante, atacado;    
-    private Golpe golpe;
-    private SorteDoDia chanceDupla;
+public class AtaqueDuplo extends AcaoOfensiva implements Movimento {        
+    private VerificadorSortear chanceDupla;
 
     public  AtaqueDuplo (Saint atacante, Saint atacado) {
-        this.atacante = atacante;
-        this.atacado = atacado;
-        this.golpe = atacante.getProximoGolpe();
-        this.chanceDupla = new SorteDoDia(new DadoD3(atacante));
+        super(atacante,atacado);
+        this.chanceDupla = new VerificadorSortear(new DadoD3(atacante));
     }
     
     public AtaqueDuplo (Saint atacante, Saint atacado, Sorteador sorteador) {
-        this.atacante = atacante;
-        this.atacado = atacado;
-        this.golpe = atacante.getProximoGolpe();
-        this.chanceDupla = new SorteDoDia(sorteador);
+        super(atacante, atacado);
+        this.chanceDupla = new VerificadorSortear(sorteador);
     }
     
-    public void executar () {
-        int danoInfligido = golpe.getFatorDano();
-       
-        if(chanceDupla.estouComSorte()) {
+    protected void causarDano () {        
+        int danoInfligido = verificarDanoComArmadura();
+        
+        if(atacado.getDefenderProximoAtaque()){
+            atacante.perderVida(atacante.getVida() * 0.25);
+            atacado.setDefenderProximoAtaque(false);
+        } else {
+            danoInfligido = definirSeDuplicaDanoOuPerdeVida(danoInfligido);
+        }       
+
+        atacado.perderVida(danoInfligido);
+    }
+    
+    private int definirSeDuplicaDanoOuPerdeVida (int danoInfligido) {
+        if(chanceDupla.verificarAtaqueDuplo()) {
             danoInfligido *= 2;
         } else {
             atacante.perderVida(atacante.getVida() * 0.05);     
         }
-
-        if(atacante.getArmaduraVestida()) {
-            int valorArmadura = atacante.getArmadura().getCategoria().getValor();
-            danoInfligido = golpe.getFatorDano() * (1 + valorArmadura);            
-        }
-
-         atacado.perderVida(danoInfligido);
+        return danoInfligido;
+    }
+    
+    public void executar () {
+        causarDano();
     }
 }
