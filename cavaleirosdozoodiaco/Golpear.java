@@ -1,21 +1,20 @@
-public class Golpear implements Movimento {
-    Golpe golpe;
-    Saint atacante, atacado;
-
+public class Golpear extends AcaoOfensiva implements Movimento {
+    
     public Golpear(Saint atacante, Saint atacado) {
-        this.atacante = atacante;
-        this.atacado = atacado;
-        this.golpe = atacante.getProximoGolpe();
+        super(atacante, atacado);
     }
 
-    public void executar () {
-        int danoInfligido = golpe.getFatorDano();
-        if(atacante.getArmaduraVestida()) {
-            int valorArmadura = atacante.getArmadura().getCategoria().getValor();
-            danoInfligido = golpe.getFatorDano() * (1 + valorArmadura);            
-        }
-
-        atacado.perderVida(danoInfligido);
+    public void executar () {        
+        causarDano();
+    }
+    
+    protected void causarDano () {
+         if(atacado.getDefenderProximoAtaque()){
+            atacante.perderVida(atacante.getVida() * 0.25);
+            atacado.setDefenderProximoAtaque(false);
+        } else {
+           atacado.perderVida(verificarDanoComArmadura());
+        }    
     }
     
     public boolean equals (Object obj) {
