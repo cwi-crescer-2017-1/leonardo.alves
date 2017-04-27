@@ -137,4 +137,8 @@ public abstract class Saint {
     public void golpear(Saint atacado) {
         this.adicionarMovimento(new Golpear(this, atacado));
     }
+    
+    public void atacarDuplamente(Saint atacado) {
+        this.adicionarMovimento(new AtaqueDuplo(this, atacado));
+    }   
 }
