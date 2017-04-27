@@ -14,6 +14,7 @@ public abstract class Saint {
     private static int qtdSaints = 0;
     private static int acumuladorQtdSaints = 0;
     private int id;
+    private boolean defenderProximoAtaque;
     public Saint(String nome, Armadura armadura) throws Exception {        
         this.nome = nome;
         this.armadura = armadura;
@@ -140,5 +141,14 @@ public abstract class Saint {
     
     public void atacarDuplamente(Saint atacado) {
         this.adicionarMovimento(new AtaqueDuplo(this, atacado));
-    }   
+    }       
+    
+    public void setDefenderProximoAtaque(boolean defenderProximoAtaque){
+        this.defenderProximoAtaque = defenderProximoAtaque;
+    }
+    
+    public boolean getDefenderProximoAtaque() {
+        return this.defenderProximoAtaque;
+    }
+    
 }
