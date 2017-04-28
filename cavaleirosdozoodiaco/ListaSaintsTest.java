@@ -106,9 +106,9 @@ public class ListaSaintsTest {
     }
 
     @Test
-    public void buscarSaintsInexistentePorCategoria () throws Exception {
+    public void buscarSaintsInexistentePorCategoria () throws Exception {       
         ListaSaints saints = new ListaSaints();
-
+            
         Saint saintTest = new BronzeSaint("Shyriu", "Áries");
         Saint saintTest2 = new BronzeSaint("Shalon", "Áries");
         Saint saintTest3 = new BronzeSaint("Shalon", "Áries");
@@ -119,7 +119,6 @@ public class ListaSaintsTest {
         saints.adicionar(saintTest4);    
         ArrayList<Saint> arrayTest = saints.buscarPorCategoria(Categoria.OURO);
         assertEquals(0, arrayTest.size());
-
     }
 
     @Test
