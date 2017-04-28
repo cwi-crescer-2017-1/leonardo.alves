@@ -136,8 +136,7 @@ public class ListaSaints {
             }
         }
         return newListaSaints;
-    }
-    
+    }    
 
     public String getCSV () {      
         StringBuilder builder = new StringBuilder(1024);
