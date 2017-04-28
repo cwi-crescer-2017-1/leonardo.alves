@@ -11,6 +11,10 @@ public abstract class ExercitoDeSaints extends ListaSaints{
           
     }
     
+    protected boolean existeSaintNaCategoria () {
+        return (buscarPorCategoria(this.valorCategoriaSaint).size() != 0) ?
+            true : false;       
+    }
     
     protected Saint getProximoSaintNaCategoria () {
         
