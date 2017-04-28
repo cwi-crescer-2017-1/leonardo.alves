@@ -4,6 +4,10 @@ public abstract class ExercitoDeSaints extends ListaSaints{
     protected int valorCategoriaSaint = 1;   
     protected Saint proximoSaint;    
     
+    public int tamanhoDoExercito () {
+        return this.todos().size();
+    }
+    
     protected void proximoValorCategoria () {
         if(this.valorCategoriaSaint < 3) this.valorCategoriaSaint++; 
             else this.valorCategoriaSaint = 1;
