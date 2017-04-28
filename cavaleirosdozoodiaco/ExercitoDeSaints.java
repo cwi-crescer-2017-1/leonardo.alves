@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-public abstract class ExercitoDeSaints extends ListaSaints{    
 public abstract class ExercitoDeSaints extends ListaSaints{  
     
     protected int valorCategoriaSaint = 1;   
@@ -20,6 +19,11 @@ public abstract class ExercitoDeSaints extends ListaSaints{
         
         return buscarPorCategoria(this.valorCategoriaSaint).get(0);
     }
+    
+    protected void removerSaintDaCategoria (Saint saintJaAtacou) {
+        remover(saintJaAtacou);
+    }
+    
     public void alistar(Saint saint) {
         adicionar(saint);
     }
