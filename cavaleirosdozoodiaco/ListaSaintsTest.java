@@ -546,7 +546,7 @@ public class ListaSaintsTest {
     @Test public void intersecDoisSaintsMesmaClasseCategoriaDiferente () throws Exception {
         ListaSaints ls1 = new ListaSaints();
         ListaSaints ls2 = new ListaSaints();
-        Saint ssaint = new BronzeSaint("Jon", "Áries");
+        Saint ssaint = new SilverSaint("Jon", "Áries");
         Saint bsaint = new BronzeSaint("Jon", "Áries");
         ls1.adicionar(ssaint);
         ls2.adicionar(bsaint);
