@@ -15,4 +15,11 @@ public class Armadura {
     public Constelacao getConstelacao () {
         return this.constelacao;
    }
+   
+   public boolean equals (Object object) {
+       Armadura outraArmadura = (Armadura) object;
+       
+       return this.constelacao.getNome().equals(outraArmadura.constelacao.getNome())
+            && this.categoria.equals(outraArmadura.categoria);
+   }
 }

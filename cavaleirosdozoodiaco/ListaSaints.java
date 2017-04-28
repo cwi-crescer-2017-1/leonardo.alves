@@ -34,6 +34,12 @@ public class ListaSaints {
         .collect(Collectors.toList());       
     }   
     
+    public ArrayList<Saint> buscarPorCategoria(int valorCategoria) {
+        return (ArrayList<Saint>) this.listaSaints.stream()
+        .filter(s -> s.getArmadura().getCategoria().getValor() == valorCategoria)
+        .collect(Collectors.toList());    
+    }
+    
     public ArrayList<Saint> buscarPorStatus(Status status) {
         return (ArrayList<Saint>) this.listaSaints.stream()
         .filter(s -> s.getStatus() == status)
@@ -136,8 +142,7 @@ public class ListaSaints {
             }
         }
         return newListaSaints;
-    }
-    
+    }    
 
     public String getCSV () {      
         StringBuilder builder = new StringBuilder(1024);
