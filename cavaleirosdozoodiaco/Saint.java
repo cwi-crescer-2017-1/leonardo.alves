@@ -151,4 +151,15 @@ public abstract class Saint {
         return this.defenderProximoAtaque;
     }
     
+    public boolean equals(Object object) {    
+        Saint outroSaint = (Saint)object;
+        return this.nome.equals(outroSaint.nome) 
+            && this.armadura.equals(outroSaint.armadura) 
+            && this.genero.equals(outroSaint.genero)            
+            && this.vida == (outroSaint.vida)
+            && this.golpeAtual == (outroSaint.golpeAtual)
+            && this.movimentoAtual == (outroSaint.movimentoAtual);
+             
+    }
+    
 }
