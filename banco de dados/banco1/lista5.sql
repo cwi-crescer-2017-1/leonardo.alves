@@ -63,7 +63,7 @@ create view vwIDENomeDasCidadesDuplicadas as --pega o id e o nome
 		on Cidade.Nome = vwNomeDasCidadesDuplicadas.Nome;
 		
 
-create view vwIDDasCidadesDuplicadas as -- pega só o id maior das cidades duplicadas
+create view vwIDDasCidadesDuplicadas as -- pega so o id maior das cidades duplicadas
 	select	max(Cidade.IDCidade) as id			
 	from Cidade inner join vwIDENomeDasCidadesDuplicadas
 			on Cidade.Nome = vwIDENomeDasCidadesDuplicadas.Nome
