@@ -36,14 +36,42 @@ update Empregado set Salario = (salario * 1.173) where
 commit
 
 -- ex 04 
+
 select	Cidade.UF, 
 		Cidade.Nome 
 from	Cidade 
 group by	Cidade.UF, 
 			Cidade.Nome 
 having	count(Cidade.UF) > 1 AND 
-		count(Cidade.Nome) > 1;
+		count(Cidade.Nome) > 1
 
 -- ex 05 
+begin transaction
 
-		 
+create view vwNomeDasCidadesDuplicadas as --pega o nome
+	select	Nome 
+	from	Cidade 
+	group by	Cidade.UF, 
+				Cidade.Nome 
+	having	count(Cidade.UF) > 1 AND 
+			count(Cidade.Nome) > 1
+
+create view vwIDENomeDasCidadesDuplicadas as --pega o id e o nome
+	select	IDCidade, 
+			Cidade.Nome 
+	from Cidade  inner join vwNomeDasCidadesDuplicadas 
+		on Cidade.Nome = vwNomeDasCidadesDuplicadas.Nome;
+		
+
+create view vwIDDasCidadesDuplicadas as -- pega só o id maior das cidades duplicadas
+	select	max(Cidade.IDCidade) as id			
+	from Cidade inner join vwIDENomeDasCidadesDuplicadas
+			on Cidade.Nome = vwIDENomeDasCidadesDuplicadas.Nome
+	group by Cidade.Nome; 
+
+
+
+update Cidade set Nome = CONCAT(Cidade.Nome,'*') --faz o update com os ids maiores das cidades com nome duplicado
+from vwIdDasCidadesDuplicadas where cidade.IDCidade = vwIDDasCidadesDuplicadas.id;
+
+commit
