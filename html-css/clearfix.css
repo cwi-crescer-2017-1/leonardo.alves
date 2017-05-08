@@ -1,0 +1,8 @@
+/*Clear fix é um seletor que deve ser utilizado na div pai sempre que seus
+filhos haverem o float, assim a classe pai saberá a altura dos filhos.
+A altura não pode ser reconhecida com elementos que possuam float.*/
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}

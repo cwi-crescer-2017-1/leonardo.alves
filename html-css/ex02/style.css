@@ -1,0 +1,38 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+.container {
+  font-size: 0;
+  height: 100vh;
+}
+
+.linha {
+  font-size: initial;
+  display: inline-block;
+  height: 25%;
+  border: 2px solid black;
+}
+
+.l1 {
+  background: red;
+  width: 25%;
+}
+
+.l2 {
+  background: blue;
+  width: 50%;
+}
+
+.l3 {
+  background: purple;
+  width: 100%;
+}
+
+.l4 {
+  background: yellow;
+  width: 10%;
+}
