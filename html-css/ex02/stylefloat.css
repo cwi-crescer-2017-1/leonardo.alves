@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+}
+.clearfix::after {
+  content: "";
+  clear:both;
+  display:block;
+}
+
+body {
+  margin: 0;
+}
+
+.container {
+  height: 100vh;
+}
+
+.linha {
+  border: 2px solid black;
+  float: left;
+  height: 25%;
+}
+
+.l1 {  
+  background: red;
+  width: 25%;
+}
+
+.l2 {
+  background: blue;
+  width: 50%;
+}
+
+.l3 {
+  background: purple;
+  width: 100%;
+}
+
+.l4 {
+  background: yellow;
+  width: 10%;
+}
