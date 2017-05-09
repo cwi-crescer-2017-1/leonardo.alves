@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+}
+
+img {
+  width: 100%;
+  float: left;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.footer {
+  position: absolute;
+  color: white;
+  padding: 20px;
+  width: 100%;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 191, 255, 0.5);
+}
+
+.footer:hover p {
+  display: block;  
+}
+
+p {
+  display: none;
+}
