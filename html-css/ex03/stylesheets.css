@@ -30,7 +30,7 @@ header > h1 {
 
 img {
   float: right;
-
+  margin-left: 10px;
   width: 150px;
   height: auto;
 }
@@ -52,7 +52,7 @@ img {
 
 .text {
   color: #333;
-  line-height: 200%;  
+  line-height: 200%;
   text-align: justify;
 }
 
