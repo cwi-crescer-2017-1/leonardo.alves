@@ -5,13 +5,12 @@
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
+  background: #fafafa;
 }
 
 .container {
   font-size: 0;
-  height: 100vh;
-  width: 100vw;
-  background: #fafafa;
+  height: 100vh;   
 }
 
 header {
@@ -26,10 +25,50 @@ header > h1 {
   display: table-cell;
   vertical-align: middle;
   color: white;
+  font-size: 200%;
+}
+
+img {
+  float: right;
+  
+  width: 150px;
+  height: auto;
 }
 
 .title {
+  letter-spacing: -2;
   color: #c4170c;
+  font-size: 200%;
+  font-weight: 700;
+  line-height: 100%;
+}
+
+.subtitle {
+  font-weight: 600;
+  line-height: 100%;
+  font-size: 1.10em;
+  color:#C7C7C7;
+}
+
+
+.text {  
+  color: #333;
+  line-height: 200%;
+  font-weight: 600;
+}
+
+.time {
+  float: right;
+  font-weight: 500;
+  font-size: 0.9em;
+  color: #B0B0B0;
+  padding-bottom: 13px;
+}
+
+.first-paragraph::first-letter {   
+  color: #c4170c;
+  font-size: 330%;
+  font-weight: bold;
 }
 
 .content {
@@ -44,10 +83,12 @@ header > h1 {
   width: 45%;
   font-size: initial;
   background: white;
-  border: 1px solid gray;
+  border: 1px solid #CACACA;
   border-radius: 6px;
   margin-bottom: 4%;
-  padding:10px;
+  padding-top: 20px;
+  padding-left: 35px;
+  padding-right: 35px;
   clear: right;
 
 }
@@ -56,7 +97,7 @@ header > h1 {
   float: left;
 }
 
-.clearfix:after {
+.clearfix::after {
   content: "";
   display: block;
   clear: both;
