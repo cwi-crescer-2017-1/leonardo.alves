@@ -10,7 +10,7 @@ body {
 
 .container {
   font-size: 0;
-  height: 100vh;   
+  height: 100vh;
 }
 
 header {
@@ -30,7 +30,7 @@ header > h1 {
 
 img {
   float: right;
-  
+
   width: 150px;
   height: auto;
 }
@@ -44,17 +44,16 @@ img {
 }
 
 .subtitle {
-  font-weight: 600;
   line-height: 100%;
   font-size: 1.10em;
   color:#C7C7C7;
 }
 
 
-.text {  
+.text {
   color: #333;
-  line-height: 200%;
-  font-weight: 600;
+  line-height: 200%;  
+  text-align: justify;
 }
 
 .time {
@@ -65,14 +64,17 @@ img {
   padding-bottom: 13px;
 }
 
-.first-paragraph::first-letter {   
+.first-paragraph::first-letter {
   color: #c4170c;
-  font-size: 330%;
-  font-weight: bold;
+  font-size: 60px;
+  float:left;
+  margin-right: 3%;
+  line-height: 1.01;
+
 }
 
 .content {
-  
+
   padding-right: 5%;
   padding-top: 2.5%;
   width: 100%;
@@ -86,7 +88,7 @@ img {
   margin-top: 4%;
   margin-bottom: 2%;
   border: 1px solid #CACACA;
-  border-radius: 6px;  
+  border-radius: 6px;
   padding-top: 20px;
   padding-left: 35px;
   padding-right: 35px;
@@ -94,8 +96,8 @@ img {
 
 .left {
   margin-left: 5%;
-  
-  float: left;  
+
+  float: left;
   clear: left;
 }
 
