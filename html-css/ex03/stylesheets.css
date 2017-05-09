@@ -94,14 +94,13 @@ img {
   padding-right: 35px;
 }
 
-.left {
+.card:nth-child(odd) {
   margin-left: 5%;
-
   float: left;
   clear: left;
 }
 
-.right {
+.card:nth-child(even) {
   margin-left: 1%;
   clear: right;
   float: right;
