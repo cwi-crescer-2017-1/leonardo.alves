@@ -91,29 +91,30 @@ nav {
   border: none;
 }
 
-.blanka {
+.blanka, .about {
   display: inline-block;
   padding: 15px;
   font-size: 24px;
 }
 
-.blanka .blanka-img {
+.blanka .blanka-img, .about .about-img {
   float:left;
   margin-right: 20px;  
+  max-width: 300px;
 }
 
-.blanka .info {  
+.info {  
    width: 50%;
    float: right;
   line-height: 1.19;
   font-size: 15px;
   
 }
-.blanka .info li {
+.info li {
   margin: 0;
   list-style: none;
 }
 
-.blanka .info li span {
+.info li span {
   font-weight: bold;
 }
