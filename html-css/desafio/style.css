@@ -1,32 +1,37 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
+
 * {
   box-sizing: border-box;
 }
 
 body {
+  font-size:0;
   margin: 0;
   height: 100vh;
   background-image: url("images/background.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size:cover;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .container {
+  font-size:initial;
   width: 50%;
   height: 100%;
   position: relative;
   left: 50%;
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
-  background: green;
+/*  background: green;*/
   /*opacity: 0.3;*/
 }
 
 nav {
   color: white;
-  position: absolute;
+  position: relative;
   width: 60%;
-  background: rgba(204, 202, 203, .3);
+  background: rgba(204, 202, 203, .5);
   height: 8%;
   left: 50%;
   top: 30%;
@@ -37,23 +42,54 @@ nav {
 
 .menu {
   list-style: none;
+  height: 100%;
+  margin: 0;
 }
 
-.menu-item {
-  position: relative;
-  top: -11px;
-  margin: 13px;
-  display: inline-block;
+.menu .menu-item {   
+  line-height: 50px;
+  
+  padding: 0 10px;  
+  float: left;
+  font-weight: 700;
+}
+
+.menu .menu-item a {
+  text-decoration: none;
+  color: white;
 }
 
 .header {
+  clear: both;
   position: relative;
   height: 10%;
-  background: red;
-  top: 44%;
+  background: #414141;
+  top: 33%;
+    
 }
 
-.header > span {
-  line-height: 65px;
+.header > span {  
+  color: #C0BDBD;
+  line-height: 65px;  
+  font-size: 28px;
+  margin-left: 20px;
+  font-weight: 700;    
+}
 
+.content {
+  position: relative;
+  background: #C7C7C7;
+  width: 100%;
+  top: 33%;  
+}
+
+
+.section{  
+  padding: 10px;
+  border-bottom: 2px #717070 solid;  
+  margin: 0 10px 10px 10px;
+}
+
+.section:last-child {
+  border: none;
 }
