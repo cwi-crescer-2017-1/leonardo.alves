@@ -59,13 +59,10 @@ nav {
   color: white;
 }
 
-.header {
-  clear: both;
-  position: relative;
+.header {   
   height: 10%;
   background: #414141;
-  top: 33%;
-    
+  top: 33%;    
 }
 
 .header > span {  
@@ -92,4 +89,31 @@ nav {
 
 .section:last-child {
   border: none;
+}
+
+.blanka {
+  display: inline-block;
+  padding: 15px;
+  font-size: 24px;
+}
+
+.blanka .blanka-img {
+  float:left;
+  margin-right: 20px;  
+}
+
+.blanka .info {  
+   width: 50%;
+   float: right;
+  line-height: 1.19;
+  font-size: 15px;
+  
+}
+.blanka .info li {
+  margin: 0;
+  list-style: none;
+}
+
+.blanka .info li span {
+  font-weight: bold;
 }
