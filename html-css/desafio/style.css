@@ -42,14 +42,14 @@ nav {
 
 .menu {
   list-style: none;
-  height: 100%;
   margin: 0;
+  padding: 0 29px;
 }
 
-.menu .menu-item {   
+.menu .menu-item {
   line-height: 50px;
-  
-  padding: 0 10px;  
+
+  padding: 0 10px;
   float: left;
   font-weight: 700;
 }
@@ -59,31 +59,31 @@ nav {
   color: white;
 }
 
-.header {   
+.header {
   height: 10%;
   background: #414141;
-  top: 33%;    
+  top: 33%;
 }
 
-.header > span {  
+.header > span {
   color: #C0BDBD;
-  line-height: 65px;  
+  line-height: 65px;
   font-size: 28px;
   margin-left: 20px;
-  font-weight: 700;    
+  font-weight: 700;
 }
 
 .content {
   position: relative;
   background: #C7C7C7;
   width: 100%;
-  top: 33%;  
+  top: 33%;
 }
 
 
-.section{  
+.section{
   padding: 10px;
-  border-bottom: 2px #717070 solid;  
+  border-bottom: 2px #717070 solid;
   margin: 0 10px 10px 10px;
 }
 
@@ -99,16 +99,16 @@ nav {
 
 .blanka .blanka-img, .about .about-img {
   float:left;
-  margin-right: 20px;  
+  margin-right: 20px;
   max-width: 300px;
 }
 
-.info {  
+.info {
    width: 50%;
    float: right;
   line-height: 1.19;
   font-size: 15px;
-  
+
 }
 .info li {
   margin: 0;
