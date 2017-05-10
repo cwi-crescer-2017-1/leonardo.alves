@@ -1,0 +1,63 @@
+ <!DOCTYPE html>
+   <html>
+    <head>
+         <meta charset="UTF-8">
+         <title>ex06</title>         
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+     </head>
+     <body>
+       <div class="container">
+         <div class="row">
+           <div class="col-md-12">
+             <h1>Formulário de Cadastro</h1>
+           </div>
+         </div>
+         <hr>
+         <form>
+         <div class="row form-group">
+           <div class="col-md-6">
+             <label for="nome-completo">Nome Completo</label>
+             <input type="text" class="form-control" id="nome-completo" placeholder="Ex: João Nevoso">
+           </div>
+           <div class="col-md-6">
+             <label for="email">Email</label>
+             <input type="email" class="form-control col-md-6" id="email" placeholder="Ex: jn@hotube.com">
+           </div>
+         </div>
+         <div class="row form-group">
+           <div class="col-md-6">
+             <label for="nome-completo">Data de Nascimento</label>
+             <input type="date" class="form-control" id="data-nascimento">
+           </div>
+           <div class="col-md-6">
+             <label for="estado">Estado</label>
+             <select class="form-control" name="estado" id="estado">
+               <option value="1">Bahia</option>
+               <option value="2">Rio Grande do Sul</option>
+             </select>
+           </div>
+         </div>
+         <div class="row form-group">
+           <div class="col-md-6">
+             <label for="cidade">Cidade</label>
+             <input type="text" class="form-control" id="cidade">
+           </div>
+           <div class="col-md-6">
+             <label for="sexo">Sexo</label>
+             <select class="form-control" name="sexo" id="sexo">
+               <option value="1">Feminino</option>
+               <option value="2">Masculino</option>
+             </select>
+           </div>
+         </div>
+         <hr>
+          <div class="row form-group">
+            <div class="col-md-2 col-md-push-10">
+              <input type="submit" class="btn btn-primary" value="Enviar">
+              <input type="reset" class="btn btn-default" value="Limpar">
+            </div>
+          </div>
+       </form>
+       </div>
+     </body>
+   </html>
