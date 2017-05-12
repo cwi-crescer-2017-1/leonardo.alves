@@ -1,11 +1,13 @@
 //Daisy Game 1
-function daisyGame(numero) {
-    if (numero % 2 == 0) {
-        return "Love me not";
-    } else {
-        return "Love me";
-    }
-}
+var daisyGame = numero => `love me${numero % 2 == 0 ? '' :  ' not'}`;
+
+/*function daisyGame(numero) {
+  if (numero % 2 == 0) {
+      return "Love me not";
+  } else {
+      return "Love me";
+  }
+} */
 
 //Maior texto 2
 function maiorTexto(strings) {
@@ -21,24 +23,31 @@ function maiorTexto(strings) {
 }
 
 //Instrutor querido 3
+function imprime(instrutores, funcaoParaExecutar) {
+  if(typeof funcaoParaExecutar === "function"){
+    instrutores.forEach(funcaoParaExecutar);
+  }
+}
+
+/*
 function olaInstrutor(instrutores) {
     for (let instrutor of instrutores) {
         console.log("olá querido instrutor:", instrutor);
     }
 }
-
 function imprime(instrutores, olaInstrutor) {
     if (typeof olaInstrutor === "function") {
         return olaInstrutor(instrutores);
     }
-}
+} */
 
 //Soma diferentona 4
-function adicionar(a) {
+var adicionar = a => b => a + b;
+/*function adicionar(a) {
     return function (b) {
         return a + b;
     }
-}
+}*/
 
 //Fibona 5
 var fiboSum = function (n) {
@@ -61,6 +70,6 @@ function queroCafe(mascada, precos) {
             precosQueOPovoGosta.push(preco);
         }
     }
-    precosQueOPovoGosta.sort();
+    precosQueOPovoGosta.sort((a, b) => a - b);
     return precosQueOPovoGosta.toString();
 }
