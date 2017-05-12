@@ -46,26 +46,21 @@ var fiboSum = function (n) {
         soma = 0;
     fib[0] = 0;
     fib[1] = 1;
-
     for (i = 2; i <= n; i++) {
         fib[i] = fib[i - 2] + fib[i - 1];
+        soma += fib[i];
     }
-
-    for (let index of fib) {
-        soma += index;
-    }
-
-    return soma;
+    return soma + 1;
 }
 
 //QUERO CAFEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 6
 function queroCafe(mascada, precos) {
-    precos.sort();
     let precosQueOPovoGosta = [];
     for (let preco of precos) {
         if (preco <= mascada) {
             precosQueOPovoGosta.push(preco);
         }
     }
+    precosQueOPovoGosta.sort();
     return precosQueOPovoGosta.toString();
 }
