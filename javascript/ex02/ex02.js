@@ -27,3 +27,16 @@ function filtrarSeriesPorAno(series, ano) {
     }
     return seriesFiltradas;
 }
+
+function mediaDeEpisodios(series) {
+    let somaEpisodios = 0,
+        numeroSeries = 0;
+    
+    for(serie of series) {
+        console.log(serie.titulo, serie.numeroEpisodios);
+        somaEpisodios += serie.numeroEpisodios;
+        numeroSeries += 1;
+    }
+    
+    return somaEpisodios / numeroSeries;
+}
