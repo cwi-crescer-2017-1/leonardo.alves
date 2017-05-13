@@ -7,7 +7,7 @@ function seriesInvalidas(series) {
         } else {
             let propriedadeSeries = Object.getOwnPropertyDescriptors(serie);
             for (propriedade in propriedadeSeries) {
-                let valorProp = propriedadeSeries[propriedade].value;               
+                let valorProp = propriedadeSeries[propriedade].value;
                 if (valorProp === "undefined" || valorProp === null) {
                     seriesInvalidas.push(serie);
                 }
@@ -20,10 +20,10 @@ function seriesInvalidas(series) {
 function filtrarSeriesPorAno(series, ano) {
     let seriesFiltradas = [];
     for (serie of series) {
-        if(serie.anoEstreia >= ano) {
+        if (serie.anoEstreia >= ano) {
             seriesFiltradas.push(serie);
             console.log(serie.anoEstreia);
-        }        
+        }
     }
     return seriesFiltradas;
 }
@@ -31,12 +31,12 @@ function filtrarSeriesPorAno(series, ano) {
 function mediaDeEpisodios(series) {
     let somaEpisodios = 0,
         numeroSeries = 0;
-    
-    for(serie of series) {
+
+    for (serie of series) {
         console.log(serie.titulo, serie.numeroEpisodios);
         somaEpisodios += serie.numeroEpisodios;
         numeroSeries += 1;
     }
-    
+
     return somaEpisodios / numeroSeries;
 }
