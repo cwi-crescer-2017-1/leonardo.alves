@@ -16,3 +16,14 @@ function seriesInvalidas(series) {
     }
     return seriesInvalidas;
 }
+
+function filtrarSeriesPorAno(series, ano) {
+    let seriesFiltradas = [];
+    for (serie of series) {
+        if(serie.anoEstreia >= ano) {
+            seriesFiltradas.push(serie);
+            console.log(serie.anoEstreia);
+        }        
+    }
+    return seriesFiltradas;
+}
