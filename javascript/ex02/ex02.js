@@ -78,4 +78,20 @@ function queroTitulo(titulo) {
     return 0;
 }
 
+function creditosIlluminatis (serie) {   
+    let creditosDoCapiroto = "",
+        diretores = [],
+        elenco = [];
+    
+    creditosDoCapiroto += "TITULO: " + serie.titulo + ";";
+    creditosDoCapiroto += "\nDIRETORES: ";
+    
+    serie.diretor.sort(sortUltimoNome);
+    creditosDoCapiroto += serie.diretor.join();
+    
+    creditosDoCapiroto += ";\nELENCO: ";
+    serie.elenco.sort(sortUltimoNome);
+    creditosDoCapiroto += serie.elenco.join();
+
+    return creditosDoCapiroto + ";";
 }
