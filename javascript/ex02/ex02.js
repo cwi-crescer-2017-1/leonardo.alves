@@ -21,8 +21,7 @@ function filtrarSeriesPorAno(series, ano) {
     let seriesFiltradas = [];
     for (serie of series) {
         if (serie.anoEstreia >= ano) {
-            seriesFiltradas.push(serie);
-            console.log(serie.anoEstreia);
+            seriesFiltradas.push(serie);            
         }
     }
     return seriesFiltradas;
@@ -32,8 +31,7 @@ function mediaDeEpisodios(series) {
     let somaEpisodios = 0,
         numeroSeries = 0;
 
-    for (serie of series) {
-        console.log(serie.titulo, serie.numeroEpisodios);
+    for (serie of series) {        
         somaEpisodios += serie.numeroEpisodios;
         numeroSeries += 1;
     }
