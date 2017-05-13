@@ -60,3 +60,12 @@ function queroGenero(genero) {
     }
     return seriesComOGenero;
 }
+
+function queroTitulo(titulo) {
+    let seriesComOTituloSemelhante = [];
+    for(serie of series) {
+        if(serie.titulo.includes(titulo)) 
+            seriesComOTituloSemelhante.push(serie.titulo);
+    }
+    return seriesComOTituloSemelhante;
+}
