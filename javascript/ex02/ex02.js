@@ -40,3 +40,11 @@ function mediaDeEpisodios(series) {
 
     return somaEpisodios / numeroSeries;
 }
+
+function procurarPorNome(series, nome) {
+    for (serie of series) {
+        for (indice in serie.elenco)
+            if (serie.elenco[indice] === nome) return true;
+    }
+    return false;
+}
