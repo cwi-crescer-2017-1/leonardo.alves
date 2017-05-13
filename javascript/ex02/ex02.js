@@ -69,3 +69,13 @@ function queroTitulo(titulo) {
     }
     return seriesComOTituloSemelhante;
 }
+
+ function sortUltimoNome (item1, item2) {        
+    if(item1.slice(item1.lastIndexOf(" ") + 1 ) > item2.slice(item2.lastIndexOf(" ") + 1))
+        return 1;    
+    if(item1.slice(item1.lastIndexOf(" ") + 1 ) < item2.slice(item2.lastIndexOf(" ") + 1))
+        return -1;        
+    return 0;
+}
+
+}
