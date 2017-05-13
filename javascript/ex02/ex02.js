@@ -95,3 +95,32 @@ function creditosIlluminatis (serie) {
 
     return creditosDoCapiroto + ";";
 }
+
+
+var todosPossuemNomeAbreviado = (function (nomes) {
+    for(indice in nomes){
+        if(nomes[indice].indexOf(".") === -1) return false;
+    }
+    return true;
+});
+
+var nomesAbreviados = (function (nomes){
+    let palavraMagica = "#";
+    
+    for(indice in nomes) {
+        let indiceDoPonto = nomes[indice].indexOf(".");
+        palavraMagica += nomes[indice].substring(indiceDoPonto - 1, indiceDoPonto);
+    }
+    return palavraMagica;
+});
+
+function serieIlluminati (series) {
+    let serieDoCramunhao;
+    
+    for(serie of series) {
+        if(todosPossuemNomeAbreviado(serie.elenco)) {
+            serieDoCramunhao = serie;
+        }
+    }
+    return nomesAbreviados(serieDoCramunhao.elenco);
+}
