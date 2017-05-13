@@ -50,3 +50,13 @@ function procurarPorNome(series, nome) {
 var mascadaEmSerie = (serie) =>  
     (serie.elenco.length) * 40000 + (serie.diretor.length * 100000);
     
+function queroGenero (genero) {
+    let seriesComOGenero = [];
+    for(serie of series) {
+        for(indice in serie.genero) {
+            if(serie.genero[indice] === genero) 
+                seriesComOGenero.push(serie.titulo);
+        }
+    }
+    return seriesComOGenero;
+}
