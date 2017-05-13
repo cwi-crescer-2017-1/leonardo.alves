@@ -46,3 +46,7 @@ function procurarPorNome(series, nome) {
     }
     return false;
 }
+
+var mascadaEmSerie = (serie) =>  
+    (serie.elenco.length) * 40000 + (serie.diretor.length * 100000);
+    
