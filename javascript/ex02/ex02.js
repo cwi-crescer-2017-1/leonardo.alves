@@ -28,15 +28,12 @@ function filtrarSeriesPorAno(series, ano) {
 }
 
 function mediaDeEpisodios(series) {
-    let somaEpisodios = 0,
-        numeroSeries = 0;
+    let somaEpisodios = 0;
 
-    for (serie of series) {
+    for (serie of series)
         somaEpisodios += serie.numeroEpisodios;
-        numeroSeries += 1;
-    }
 
-    return somaEpisodios / numeroSeries;
+    return somaEpisodios / series.length;
 }
 
 function procurarPorNome(series, nome) {
