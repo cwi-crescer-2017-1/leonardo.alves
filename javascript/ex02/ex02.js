@@ -17,15 +17,8 @@ function seriesInvalidas(series) {
     return "Séries Inválidas: " + seriesInvalidas.join(" - ");
 }
 
-function filtrarSeriesPorAno(series, ano) {
-    let seriesFiltradas = [];
-    for (serie of series) {
-        if (serie.anoEstreia >= ano) {
-            seriesFiltradas.push(serie);
-        }
-    }
-    return seriesFiltradas;
-}
+var filtrarSeriesPorAno = (series, ano) =>
+    series.filter(serie => serie.anoEstreia >= ano);
 
 function mediaDeEpisodios(series) {
     let somaEpisodios = 0;
@@ -36,36 +29,21 @@ function mediaDeEpisodios(series) {
     return somaEpisodios / series.length;
 }
 
-function procurarPorNome(series, nome) {
-    for (serie of series) {
-        for (indice in serie.elenco)
-            if (serie.elenco[indice] === nome) return true;
-    }
-    return false;
-}
+var procurarPorNome = (series, nome) =>
+    series.some(
+        serie => serie.elenco.some(
+            elenco  => elenco.includes(nome)));
 
 var mascadaEmSerie = (serie) =>
-    (serie.elenco.length) * 40000 + (serie.diretor.length * 100000);
+    (serie.elenco.length * 40000) + (serie.diretor.length * 100000);
 
-function queroGenero(genero) {
-    let seriesComOGenero = [];
-    for(serie of series) {
-        for(indice in serie.genero) {
-            if(serie.genero[indice] === genero)
-                seriesComOGenero.push(serie.titulo);
-        }
-    }
-    return seriesComOGenero;
-}
+var queroGenero = (genero) =>
+    series.filter(
+        s => s.genero.some(
+            g => g === genero));
 
-function queroTitulo(titulo) {
-    let seriesComOTituloSemelhante = [];
-    for(serie of series) {
-        if(serie.titulo.includes(titulo))
-            seriesComOTituloSemelhante.push(serie.titulo);
-    }
-    return seriesComOTituloSemelhante;
-}
+var queroTitulo = (titulo) =>
+    series.filter(s => s.titulo.includes(titulo));
 
  function sortUltimoNome (item1, item2) {
     if(item1.slice(item1.lastIndexOf(" ") + 1 ) > item2.slice(item2.lastIndexOf(" ") + 1))
@@ -76,48 +54,37 @@ function queroTitulo(titulo) {
 }
 
 function creditosIlluminatis (serie) {
-    let creditosDoCapiroto = "",
-        diretores = [],
-        elenco = [];
-
-    creditosDoCapiroto += "TITULO: " + serie.titulo + ";";
-    creditosDoCapiroto += "\nDIRETORES: ";
-
+    let creditosDoCapiroto = "";
     serie.diretor.sort(sortUltimoNome);
-    creditosDoCapiroto += serie.diretor.join();
-
-    creditosDoCapiroto += ";\nELENCO: ";
     serie.elenco.sort(sortUltimoNome);
-    creditosDoCapiroto += serie.elenco.join();
+
+    creditosDoCapiroto += "TITULO: "      + serie.titulo         + ";";
+    creditosDoCapiroto += "\nDIRETORES: " + serie.diretor.join() + ";";
+    creditosDoCapiroto += "\nELENCO: "    + serie.elenco.join()  + ";";
 
     return creditosDoCapiroto + ";";
 }
 
 
-var todosPossuemNomeAbreviado = (function (nomes) {
-    for(indice in nomes){
-        if(nomes[indice].indexOf(".") === -1) return false;
-    }
-    return true;
-});
+var todosPossuemNomeAbreviado = (nomes) =>
+    nomes.every(n => n.indexOf(".") !== -1);
 
-var nomesAbreviados = (function (nomes){
+var nomesAbreviados = function (nomes){
     let palavraMagica = "#";
 
-    for(indice in nomes) {
-        let indiceDoPonto = nomes[indice].indexOf(".");
-        palavraMagica += nomes[indice].substring(indiceDoPonto - 1, indiceDoPonto);
-    }
+    nomes.forEach(e =>
+        palavraMagica += e.substring(e.indexOf(".") - 1, e.indexOf("."))
+    );
+
     return palavraMagica;
-});
+};
 
 function serieIlluminati (series) {
     let serieDoCramunhao;
 
-    for(serie of series) {
-        if(todosPossuemNomeAbreviado(serie.elenco)) {
+    for(serie of series)
+        if(todosPossuemNomeAbreviado(serie.elenco))
             serieDoCramunhao = serie;
-        }
-    }
+    
     return nomesAbreviados(serieDoCramunhao.elenco);
 }
