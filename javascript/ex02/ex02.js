@@ -3,25 +3,25 @@ function seriesInvalidas(series) {
         seriesInvalidas = [];
     for (serie of series) {
         if (serie.anoEstreia > data.getFullYear()) {
-            seriesInvalidas.push(serie);
+            seriesInvalidas.push(serie.titulo);
         } else {
             let propriedadeSeries = Object.getOwnPropertyDescriptors(serie);
             for (propriedade in propriedadeSeries) {
                 let valorProp = propriedadeSeries[propriedade].value;
                 if (valorProp === "undefined" || valorProp === null) {
-                    seriesInvalidas.push(serie);
+                    seriesInvalidas.push(serie.titulo);
                 }
             }
         }
     }
-    return seriesInvalidas;
+    return "Séries Inválidas: " + seriesInvalidas.join(" - ");
 }
 
 function filtrarSeriesPorAno(series, ano) {
     let seriesFiltradas = [];
     for (serie of series) {
         if (serie.anoEstreia >= ano) {
-            seriesFiltradas.push(serie);            
+            seriesFiltradas.push(serie);
         }
     }
     return seriesFiltradas;
@@ -31,7 +31,7 @@ function mediaDeEpisodios(series) {
     let somaEpisodios = 0,
         numeroSeries = 0;
 
-    for (serie of series) {        
+    for (serie of series) {
         somaEpisodios += serie.numeroEpisodios;
         numeroSeries += 1;
     }
@@ -47,14 +47,14 @@ function procurarPorNome(series, nome) {
     return false;
 }
 
-var mascadaEmSerie = (serie) =>  
+var mascadaEmSerie = (serie) =>
     (serie.elenco.length) * 40000 + (serie.diretor.length * 100000);
-    
+
 function queroGenero(genero) {
     let seriesComOGenero = [];
     for(serie of series) {
         for(indice in serie.genero) {
-            if(serie.genero[indice] === genero) 
+            if(serie.genero[indice] === genero)
                 seriesComOGenero.push(serie.titulo);
         }
     }
@@ -64,31 +64,31 @@ function queroGenero(genero) {
 function queroTitulo(titulo) {
     let seriesComOTituloSemelhante = [];
     for(serie of series) {
-        if(serie.titulo.includes(titulo)) 
+        if(serie.titulo.includes(titulo))
             seriesComOTituloSemelhante.push(serie.titulo);
     }
     return seriesComOTituloSemelhante;
 }
 
- function sortUltimoNome (item1, item2) {        
+ function sortUltimoNome (item1, item2) {
     if(item1.slice(item1.lastIndexOf(" ") + 1 ) > item2.slice(item2.lastIndexOf(" ") + 1))
-        return 1;    
+        return 1;
     if(item1.slice(item1.lastIndexOf(" ") + 1 ) < item2.slice(item2.lastIndexOf(" ") + 1))
-        return -1;        
+        return -1;
     return 0;
 }
 
-function creditosIlluminatis (serie) {   
+function creditosIlluminatis (serie) {
     let creditosDoCapiroto = "",
         diretores = [],
         elenco = [];
-    
+
     creditosDoCapiroto += "TITULO: " + serie.titulo + ";";
     creditosDoCapiroto += "\nDIRETORES: ";
-    
+
     serie.diretor.sort(sortUltimoNome);
     creditosDoCapiroto += serie.diretor.join();
-    
+
     creditosDoCapiroto += ";\nELENCO: ";
     serie.elenco.sort(sortUltimoNome);
     creditosDoCapiroto += serie.elenco.join();
@@ -106,7 +106,7 @@ var todosPossuemNomeAbreviado = (function (nomes) {
 
 var nomesAbreviados = (function (nomes){
     let palavraMagica = "#";
-    
+
     for(indice in nomes) {
         let indiceDoPonto = nomes[indice].indexOf(".");
         palavraMagica += nomes[indice].substring(indiceDoPonto - 1, indiceDoPonto);
@@ -116,7 +116,7 @@ var nomesAbreviados = (function (nomes){
 
 function serieIlluminati (series) {
     let serieDoCramunhao;
-    
+
     for(serie of series) {
         if(todosPossuemNomeAbreviado(serie.elenco)) {
             serieDoCramunhao = serie;
