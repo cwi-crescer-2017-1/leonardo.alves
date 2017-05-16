@@ -80,11 +80,7 @@ var nomesAbreviados = function (nomes){
 };
 
 function serieIlluminati (series) {
-    let serieDoCramunhao;
-
     for(serie of series)
-        if(todosPossuemNomeAbreviado(serie.elenco))
-            serieDoCramunhao = serie;
-    
-    return nomesAbreviados(serieDoCramunhao.elenco);
+        if(todosPossuemNomeAbreviado(serie.elenco))    
+            return nomesAbreviados(serie.elenco);
 }
