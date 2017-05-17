@@ -1,0 +1,116 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin:0;    
+    background: url(http://wallpaper-gallery.net/images/pokemon-wallpapers/pokemon-wallpapers-7.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.container {
+    width: 100%;    
+}
+
+h1 {    
+    text-align: center;
+}
+
+.menu {
+    text-align: center;    
+}
+
+.pokemon{
+    padding: 10px;
+    width: 33%;
+    display: inline-block;
+    border: 1px black solid;
+    margin: 2px;
+    background: rgba(255,255,255, 0.3);
+}
+
+.poke-name {    
+    font-size: 200%;
+    margin: 10px;
+    display: inline-block;
+}
+
+.poke-id {
+    margin: 0;
+    display: inline-block;    
+    position: relative;
+    top: -1px;
+    font-style: italic;
+    color: lightgray;
+    
+}
+
+.poke-sprite {
+    border: 1px black solid;
+    border-radius: 50%;
+    float: left;
+}
+
+.poke-desc {
+    display: inline-block;
+    float: right;    
+    position: relative;
+    right: 10%;
+    top: 40px;    
+    margin: 0;
+}
+
+.poke-stats-li p {
+    margin-bottom: 1px;
+}
+
+.poke-stats {
+    list-style: none;
+    display: inline-block;
+    padding-left: 0;
+    clear: both;
+    float: left;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+#content {
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.pokemash > img{
+    position: absolute;
+    width: 120px;
+    top:  30%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    opacity: 0.9;
+    border: 1px black solid;
+    border-radius: 50%;
+}
+
+.colorpicker {
+    display:inline-block;
+    float: left;
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
+}
+
+@media screen and (max-width: 1220px) {
+    .pokemon {
+        width: 49%;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .pokemon {
+        width: 100%;
+    }
+}
+
+
