@@ -70,8 +70,7 @@ var renderPoke = function (json) {
 
     div.append(name);
     div.append(id);
-    div.append(sprite);
-    div.append(sprite);
+    div.append(sprite);    
     div.append(description);
     div.append(stats);
 
