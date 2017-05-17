@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="pokemon">
+
+<head>
+    <title>Poke Angular</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css">
+    <script type="text/javascript" src="https://code.angularjs.org/1.6.4/angular.js"></script>
+    
+</head>
+
+<body>
+    <div class="container is-fluid">
+        <div ng-controller="controller" class="tile is-ancestor">
+            <div class="tile is-vertical">
+                <div class="tile is-parent">
+                    <div class="control is-child box notification is-success">
+                        <label for="textinput" class="title">Pesquisar Pokémon:</label>
+                        <input type="text" ng-model="filtro" class="normal input" id="textinput">
+                    </div>
+                </div>
+                <ul class="tile is-parent ">
+                    <div class="is-child box notification is-danger">
+                        <li ng-repeat="pokemon in pokemons | filter: filtro" class="content">
+                            <p class="title is-4">
+                                <a ng-href="http://www.pokemon.com/br/pokedex/{{pokemon}}" target="_blank">{{pokemon}}</a>
+                            </p>
+                           
+                        </li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="pokemon-names.min.js"></script>
+</body>
+
+</html>
+
+ <!--<h1>Vc escolheu: {{ pokemon.nome }}</h1>
+            <input type="text" ng-model="pokemon.nome" placeholder="Renomeie. Ex: Wartotle">
+             
+            <h3>Tipo: {{ pokemon.tipo }}</h3>
+            <input type="text" ng-model="pokemon.tipo" placeholder="Mude o tipo. Ex: Psiquico">-->
+
+ <!--<p class="subtitle is-5">
+                        {{pokemon.tipo}}
+                    </p>-->
