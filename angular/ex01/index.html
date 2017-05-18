@@ -12,13 +12,7 @@
             padding: 30px;
             background: #FFE0B2;
             height: 100vh;
-        }
-
-        #li-01,
-        #li-02 {
-            height: 400px;
-            overflow: auto;
-        }
+        }      
 
         .notification.is-danger {
             background: #FF9800;
@@ -32,16 +26,16 @@
             <div class="tile is-parent">
                 <p class="title">Poke search</p>
             </div>
-            <div id="li-01" class="tile is-parent is-vertical">
+            <div class="tile is-parent is-vertical">
                 <div class="control is-child box notification is-danger">
-                    <label for="textinput" class="title is-4" ">Pesquisar Pokémon:</label>
+                    <label for="textinput" class="title is-4">Pesquisar Pokémon:</label>
                     <input type="text " ng-model="filtro " placeholder="Ex: '4' ou 'charmander' " class="normal input
                         " id="textinput ">
                 </div>
             </div>
-            <div class="tile is-parent ">
+            <div id="li-01" class="tile is-parent ">
                  <ul>
-                    <div id="li-02 " class="notification is-danger is-child ">
+                    <div class="notification is-danger is-child " style="height: 400px;  overflow: auto;">
                         <p class="title ">Poke id</p>
                         <li ng-repeat="objPoke in objPokemons | filter: {id : filtro} ">
                             <a ng-href="http://www.pokemon.com/br/pokedex/{{objPoke.id}} ">{{objPoke.nome}}</a>           
@@ -52,7 +46,7 @@
             </div>
             <div class="tile is-parent ">
                 <ul>                    
-                    <div id="li-01 " class="notification is-danger is-child ">
+                    <div class="notification is-danger is-child " style="height: 400px;  overflow: auto;">
                         <p class="title ">Poke name</p>
                         <li ng-repeat="pokemon in pokemons | filter: filtro ">                           
                             <a ng-href="http://www.pokemon.com/br/pokedex/{{pokemon}} " target="_blank ">{{pokemon}}</a> 
