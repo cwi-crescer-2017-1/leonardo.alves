@@ -14,20 +14,21 @@
         <div class="column is-offset-one-quarter is-4 ">
             <div class="card notification is-danger box">
                 <header class="card-header">
-                    <p class="card-header-title">Exibir Hora:</p>                    
+                    <p class="card-header-title">Exibir Hora:</p>
                 </header>
-                    <div class="card-content">
-                        <div class="content">
+                <div class="card-content">
+                    <div class="content">
+                        <div class="field has-addons">
                             <div class="control">
                                 <input type="text" ng-model="inputHora" class="input" placeholder="DIA/MES/ANO">
                             </div>
                             <div class="control">
-                                <button class="button is-primary" ng-click="converterHora()">Converter data</button>                                
+                                <button class="button is-primary" ng-click="converterHora()">Converter</button>
                             </div>
-                                
-                            <h2>{{horaConvertida | date:"shortDate"}}</h2>
                         </div>
+                        <h2 class="is-full-width has-text-centered">{{horaConvertida | date:"shortDate"}}</h2>                     
                     </div>
+                </div>
             </div>
         </div>
     </div>
