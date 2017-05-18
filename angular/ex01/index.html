@@ -48,8 +48,7 @@
                     <div class="notification is-danger is-child " style="height: 400px;  overflow: auto;">
                         <p class="title ">Poke id</p>
                         <li ng-repeat="objPoke in objPokemons | filter: {id : filtro.id} ">
-                            <a ng-href="http://www.pokemon.com/br/pokedex/{{objPoke.id}} ">{{objPoke.nome}}</a>           
-                            <span>{{objPoke.tipo}}</span>                 
+                            <a ng-href="http://www.pokemon.com/br/pokedex/{{objPoke.id}} ">{{objPoke.nome}}</a>                                           
                         </li>
                     </div>
                 </ul>
