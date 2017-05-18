@@ -8,50 +8,54 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css">
     <script type="text/javascript" src="https://code.angularjs.org/1.6.4/angular.js"></script>
     <style>
-    body {
-        padding: 30px;
-        background: #FFE0B2;
-        height: 100vh;
-    }
-    #li-01, #li-02 {
-        height: 400px;
-        overflow: auto;
-    }
+        body {
+            padding: 30px;
+            background: #FFE0B2;
+            height: 100vh;
+        }
 
-    .notification.is-danger {
-        background: #FF9800;
-    }
+        #li-01,
+        #li-02 {
+            height: 400px;
+            overflow: auto;
+        }
+
+        .notification.is-danger {
+            background: #FF9800;
+        }
     </style>
 </head>
 
 <body>
     <div class="container is-fluid">
         <div ng-controller="controller" class="tile is-ancestor">
-            <div class="tile is-parent"><p class="title">Poke search</p></div>
+            <div class="tile is-parent">
+                <p class="title">Poke search</p>
+            </div>
             <div id="li-01" class="tile is-parent is-vertical">
                 <div class="control is-child box notification is-danger">
                     <label for="textinput" class="title is-4" ">Pesquisar Pokémon:</label>
-                    <input type="text" ng-model="filtro" placeholder="Ex: '4' ou 'charmander'" class="normal input" id="textinput">
+                    <input type="text " ng-model="filtro " placeholder="Ex: '4' ou 'charmander' " class="normal input
+                        " id="textinput ">
                 </div>
             </div>
-            <div class="tile is-parent">
+            <div class="tile is-parent ">
                  <ul>
-                    <div id="li-02" class="notification is-danger is-child">
-                        <p class="title">Poke id</p>
-                        <li ng-repeat="objPoke in objPokemons | filter: {id : filtro}">
-                            <a ng-href="http://www.pokemon.com/br/pokedex/{{objPoke.id}}">{{objPoke.nome}}</a>           
+                    <div id="li-02 " class="notification is-danger is-child ">
+                        <p class="title ">Poke id</p>
+                        <li ng-repeat="objPoke in objPokemons | filter: {id : filtro} ">
+                            <a ng-href="http://www.pokemon.com/br/pokedex/{{objPoke.id}} ">{{objPoke.nome}}</a>           
                             <span>{{objPoke.tipo}}</span>                 
                         </li>
                     </div>
                 </ul>
             </div>
-            <div class="tile is-parent">
-                <ul>
-                    
-                    <div id="li-01" class="notification is-danger is-child">
-                        <p class="title">Poke name</p>
-                        <li ng-repeat="pokemon in pokemons | filter: filtro">                           
-                            <a ng-href="http://www.pokemon.com/br/pokedex/{{pokemon}}" target="_blank">{{pokemon}}</a> 
+            <div class="tile is-parent ">
+                <ul>                    
+                    <div id="li-01 " class="notification is-danger is-child ">
+                        <p class="title ">Poke name</p>
+                        <li ng-repeat="pokemon in pokemons | filter: filtro ">                           
+                            <a ng-href="http://www.pokemon.com/br/pokedex/{{pokemon}} " target="_blank ">{{pokemon}}</a> 
                         </li>
                     </div>
                 </ul>
@@ -59,18 +63,18 @@
         </div>
 
     </div>
-    <script type="text/javascript" src="script.js"></script>
-    <script type="text/javascript" src="pokemon-names.min.js"></script>
+    <script type="text/javascript " src="script.js "></script>
+    <script type="text/javascript " src="pokemon-names.min.js "></script>
 </body>
 
 </html>
 
 <!--<h1>Vc escolheu: {{ pokemon.nome }}</h1>
-            <input type="text" ng-model="pokemon.nome" placeholder="Renomeie. Ex: Wartotle">
+            <input type="text " ng-model="pokemon.nome " placeholder="Renomeie. Ex: Wartotle ">
              
             <h3>Tipo: {{ pokemon.tipo }}</h3>
-            <input type="text" ng-model="pokemon.tipo" placeholder="Mude o tipo. Ex: Psiquico">-->
+            <input type="text " ng-model="pokemon.tipo " placeholder="Mude o tipo. Ex: Psiquico ">
 
-<!--<p class="subtitle is-5">
+<p class="subtitle is-5 ">
                         {{pokemon.tipo}}
                     </p>-->
