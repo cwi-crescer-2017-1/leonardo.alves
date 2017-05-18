@@ -29,7 +29,17 @@
             <div class="tile is-parent is-vertical">
                 <div class="control is-child box notification is-danger">
                     <label for="textinput" class="title is-4">Pesquisar Pokémon:</label>
-                    <input type="text " ng-model="filtro " placeholder="Ex: '4' ou 'charmander' " class="normal input
+                    <input type="text " ng-model="filtro.nome" placeholder="Ex: 'charmander' " class="normal input
+                        " id="textinput ">
+                </div>
+                <div class="control is-child box notification is-danger">
+                    <label for="textinput" class="title is-4">Pesquisar Tipo:</label>
+                    <input type="text " ng-model="filtro.tipo" placeholder="Ex: 'grass' " class="normal input
+                        " id="textinput ">
+                </div>
+                <div class="control is-child box notification is-danger">
+                    <label for="textinput" class="title is-4">Pesquisar Id:</label>
+                    <input type="text " ng-model="filtro.id" placeholder="Ex: '4'" class="normal input
                         " id="textinput ">
                 </div>
             </div>
@@ -37,7 +47,7 @@
                  <ul>
                     <div class="notification is-danger is-child " style="height: 400px;  overflow: auto;">
                         <p class="title ">Poke id</p>
-                        <li ng-repeat="objPoke in objPokemons | filter: {id : filtro} ">
+                        <li ng-repeat="objPoke in objPokemons | filter: {id : filtro.id} ">
                             <a ng-href="http://www.pokemon.com/br/pokedex/{{objPoke.id}} ">{{objPoke.nome}}</a>           
                             <span>{{objPoke.tipo}}</span>                 
                         </li>
@@ -48,12 +58,22 @@
                 <ul>                    
                     <div class="notification is-danger is-child " style="height: 400px;  overflow: auto;">
                         <p class="title ">Poke name</p>
-                        <li ng-repeat="pokemon in pokemons | filter: filtro ">                           
+                        <li ng-repeat="pokemon in pokemons | filter: filtro.nome ">                           
                             <a ng-href="http://www.pokemon.com/br/pokedex/{{pokemon}} " target="_blank ">{{pokemon}}</a> 
                         </li>
                     </div>
                 </ul>
-            </div>            
+            </div>
+            <div class="tile is-parent ">
+                <ul>                    
+                    <div class="notification is-danger is-child " style="height: 400px;  overflow: auto;">
+                        <p class="title ">Poke type</p>
+                        <li ng-repeat="tipo in tipos | filter: filtro.tipo">                           
+                            <a ng-href="http://www.pokemon.com/br/pokedex/{{pokemon}} " target="_blank ">{{tipo}}</a> 
+                        </li>
+                    </div>
+                </ul>
+            </div>               
         </div>
 
     </div>

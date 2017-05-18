@@ -1,29 +1,24 @@
 var app = angular.module('pokemon', []);
 
 
-app.controller("controller", function ($scope) {
-    let dPoke = addPoke();
-    // $scope.pokemons = [
-    //     {nome: "Bulbassauro", tipo: "Grama"},
-    //     {nome: "Charmander", tipo: "Fogo"},
-    //     {nome: "Squirtle", tipo: "Água"}
-    // ];
+app.controller("controller", function ($scope) {    
+    var tipos =["fire", "grass", "water", "psychic", "ground", "normal",
+        "fighting", "flying", "poison", "electric", "rock", "ice", "bug", 
+        "dragon", "ghost", "dark", "steel", "fairy", "???"];
+    let dPoke = addPoke(tipos);
+    $scope.tipos =  tipos;    
     $scope.pokemons = pokenames;
-    $scope.objPokemons = dPoke;
+    $scope.objPokemons = dPoke;    
 });
 
-var tipoAleatorio = function (obj) {
+function tipoAleatorio (obj) {
     var keys = Object.keys(obj)
     return obj[keys[keys.length * Math.random() << 0]];
 };
 
-
-function addPoke() {
+function addPoke(tipos) {
     let pokemons = [];
-    let tipos = ["fire", "grass", "water", "psychic", "ground", "normal",
-        "fighting", "flying", "poison", "electric", "rock", "ice", "bug", 
-        "dragon", "ghost", "dark", "steel", "fairy", "???"
-    ];
+    
     for (let i = 1; i <= 200; i++) {
         pokemons.push({
             nome: "Pokemon " + i,
@@ -33,3 +28,4 @@ function addPoke() {
     }
     return pokemons;
 }
+
