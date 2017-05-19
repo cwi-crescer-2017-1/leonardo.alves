@@ -23,7 +23,17 @@
                 <ul class="list-group">
                     <li class="list-group-item" ng-repeat="instrutor in instToSort">
                         <span class="badge">{{instrutor.numero}}</span>
-                       {{instrutor.nome}} {{instrutor.nomeIns}}
+                       {{instrutor.nome}} {{instrutor.nomeIns | mascada}}
+                    </li>              
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="instrutor in instToSort">
+                        <span class="badge">{{instrutor.numero | formatar}}</span>
+                       {{instrutor.nome | formatar:true}} {{instrutor.nomeIns | mascada}}
                     </li>              
                 </ul>
             </div>
