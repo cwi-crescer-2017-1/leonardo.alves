@@ -53,12 +53,12 @@ app.controller("controller", function ($scope) {
                 nome: 'Banco de Dados I'
             }]
         }
-    ];   
+    ];
     let instToSort = []; //variavel auxiliar para exibição
 
     let newInst = instrutores.map(e => { //mapeia todos os os obj dentro de instrutores 
-        let newObj = [];                 //para um obj contendo arrays que possuem numero, nome do instrutor
-        e.aula.forEach(a =>              //e nome da aula
+        let newObj = []; //para um obj contendo arrays que possuem numero, nome do instrutor
+        e.aula.forEach(a => //e nome da aula
             newObj.push({
                 numero: a.numero,
                 nomeIns: e.nome,
@@ -76,8 +76,7 @@ app.controller("controller", function ($scope) {
 });
 
 var instSort = function (a, b) {
-    if(a.numero > b.numero) return 1;
-    if(a.numero < b.numero) return -1;
+    if (a.numero > b.numero) return 1;
+    if (a.numero < b.numero) return -1;
     return 0;
 }
-
