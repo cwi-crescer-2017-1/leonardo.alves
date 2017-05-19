@@ -66,9 +66,9 @@ app.controller("controller", function ($scope) {
             }))
         return newObj
     });
-    newInst.forEach(e => e.forEach(d => instToSort.push(d))); //ordena os instrutores com base no numero
+    newInst.forEach(e => e.forEach(d => instToSort.push(d))); 
 
-    instToSort.sort(instSort);
+    instToSort.sort(instSort); //ordena os instrutores com base no numero
 
     $scope.instToSort = instToSort;
     $scope.instrutores = instrutores;
