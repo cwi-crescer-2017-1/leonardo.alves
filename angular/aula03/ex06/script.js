@@ -26,8 +26,8 @@ app.controller("controller", function ($scope) {
     $scope.inserirInstrutor = function inserirInstrutor () {
         if($scope.instrutor.$invalid) return;             
 
-        instrutores.push(angular.copy(ins));
-        $scope.ins = {};
+        instrutores.push(angular.copy($scope.novoInstrutor));
+        $scope.novoInstrutor = {};
     }
     
 });
