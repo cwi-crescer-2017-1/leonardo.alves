@@ -6,6 +6,19 @@ app.filter("mascada", function () {
     }
 });
 
+app.filter("formatar", function () {
+    return function (arg, uppercase) {
+        if (uppercase) {
+            arg = arg.toUpperCase();
+            return arg;
+        }
+        let numParaString = String(arg);
+        let lpad = "000";
+        //substring (lpad.length - n.length) => 3 - 1 = 2 => 00 concatenado com n => 002
+        return lpad.substring(0, lpad.length - numParaString.length) + numParaString;
+    }
+});
+
 app.controller("controller", function ($scope) {
     let instrutores = [{
             nome: 'Pedro (PHP)',
