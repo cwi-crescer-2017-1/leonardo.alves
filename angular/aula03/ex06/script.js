@@ -23,7 +23,7 @@ app.controller("controller", function ($scope) {
     $scope.instrutores = instrutores;
     $scope.aulas = aulas;   
     
-    $scope.inserirInstrutor = function inserirInstrutor (ins) {
+    $scope.inserirInstrutor = function inserirInstrutor () {
         if($scope.instrutor.$invalid) return;             
 
         instrutores.push(angular.copy(ins));
