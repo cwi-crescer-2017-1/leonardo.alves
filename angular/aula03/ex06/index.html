@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app="instrutorForm">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+</head>
+
+<body ng-controller="controller">
+    <form novalidate name="instrutor">
+        <label for="nome">
+            <span ng-show="instrutor.nome.$error.required">Campo obrigatório</span>
+            <span ng-show="instrutor.nome.$error.minlength">Minimo 3 letras</span>
+            <span ng-show="instrutor.nome.$error.maxlength">Maximo 20 letras</span>
+            Nome:
+            </label>
+        <input id="nome" type="text" name="nome" required ng-model="novoInstrutor.nome" ng-minlength="3" ng-maxlength="30">
+
+        <label for="sobrenome">Sobrenome:</label>
+        <input id="sobrenome" type="text" ng-model="novoInstrutor.sobrenome" ng-maxlength="30">
+
+        <label for="idade">Idade:</label>
+        <input id="idade" type="number" required name="idade" ng-model="novoInstrutor.idade">
+
+        <label for="email">Email:</label>
+        <input id="email" type="email" required name="email" ng-model="novoInstrutor.email">
+
+        <input id="deu-aula" type="checkbox" name="jaDeuAula" ng-model="novoInstrutor.jaDeuAula">
+        <label for="deu-aula">Já deu aula?</label>
+
+        <select name="nselect" id="select" ng-model="novoInstrutor.aula">           
+            <option value="{{aula}}" ng-repeat="aula in aulas" >{{aula}}</option>
+        </select>
+
+        <button ng-click="inserirInstrutor(novoInstrutor)">Adicionar</button>
+    </form>
+
+    <div>
+        <ul>
+            <li ng-repeat="instrutor in instrutores">{{instrutor.nome}}</li>
+        </ul>
+    </div>
+
+
+
+    <script type="text/javascript" src="script.js"></script>
+
+</body>
+
+</html>
+
+<!--rafaelbarizon [4:14 PM] 
+listar Instrutores
+   Permitir Inclusao de novos instrutores
+
+  Instrutor deve ter:
+
+   Nome (texto - obrigatorio - 3~20Letras)
+    Sobrenome ( texto - max 30 Letras)
+    Idade (Numero - Obrigatorio)
+    Email (obrigatorio)
+    Informar se ja deu aula (checkbox)
+    Qual aula ele ministra (select - lista de string de aulas)-->
