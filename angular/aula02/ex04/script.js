@@ -1,5 +1,11 @@
 var app = angular.module("aula02", []);
 
+app.filter("mascada", function () {
+    return function (nome) {
+        return nome.replace(/(nunes)/i, "$ $1 $");
+    }
+});
+
 app.controller("controller", function ($scope) {
     let instrutores = [{
             nome: 'Pedro (PHP)',
