@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+
+img {
+    width: 50px;
+    height: auto;
+}
+
+.col-md-6, .col-md-5 {
+    padding: 0;
+}
+
+.panel.panel-primary>.panel-heading {
+    background: #ff6f00;
+    border-color:  #c43e00;
+    
+}
+
+.panel-primary {
+    border-color:  #c43e00;
+}
+
+.panel-body {
+    background: #ffa040;
+}
+
+*{
+    font-family: 'Slabo 27px', serif;
+    font-size: 101%;
+}

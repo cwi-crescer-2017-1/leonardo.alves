@@ -19,102 +19,217 @@
             <div class="col-md-10 col-md-offset-1" ng-controller="aulaController">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3>Aulas</h3>
+                        <h3>Aulas
+                            <span>
+                                <a class="btn btn-default pull-right" role="button" data-toggle="collapse" href="#formAulas" aria-expanded="false" aria-controls="formAulas">
+                                    Editar
+                                    <span class="caret"></span>
+                            </a>
+                            </span>
+                        </h3>
                     </div>
                     <div class="panel-body">
                         <div class="notifications">
-                            <div class="alert alert-danger" role="alert" ng-show="adicionaAula.aula.$error.maxlength">Nome muito longo (max:20)</div>
-                            <div class="alert alert-danger" role="alert" ng-show="adicionaAula.aula.$error.minlength">Nome muito curto (min:03)</div>
-                            <div class="alert alert-danger" role="alert" ng-show="adicionaAula.aula.$error.unic">Aula já cadastrada!</div>
-                            <div class="alert alert-danger" role="alert" ng-show="modificaAula.achaAula.$error.inexistentClass">Aula não existente!</div>
-                            <div class="alert alert-success" role="alert" ng-show="success.add">Aula adicionada com sucesso!</div>
-                            <div class="alert alert-success" role="alert" ng-show="success.modify">Aula modificada com sucesso!</div>
+                            <div class="alert alert-danger alert-dismissable" role="alert" ng-show="adicionaAula.aula.$error.maxlength">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                </button> Nome muito longo (max:20)</div>
+                            <div class="alert alert-danger alert-dismissable" role="alert" ng-show="adicionaAula.aula.$error.minlength">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                </button> Nome muito curto (min:03)</div>
+                            <div class="alert alert-danger alert-dismissable" role="alert" ng-show="adicionaAula.aula.$error.unic">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                </button> Aula já cadastrada!</div>
+                            <div class="alert alert-danger alert-dismissable" role="alert" ng-show="modificaAula.achaAula.$error.existentClass">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                </button> Aula não existente!</div>                           
+
+                            <div class="alert alert-danger alert-dismissable" role="alert" ng-show="removeAula.delAula.$error.inUseClass">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                </button>
+                                Um instrutor leciona esta aula no momento.</div>
+
+                            <div class="alert alert-success alert-dismissable" role="alert" ng-show="success.add">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                </button> Aula adicionada com sucesso!</div>
+                            <div class="alert alert-success alert-dismissable" role="alert" ng-show="success.modify">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                </button> Aula modificada com sucesso!</div>
                         </div>
 
-                        <form novalidate class="form-group" name="adicionaAula">
-                            <div class="input-group">
-                                <input class="form-control" type="text" name="aula" ng-model="aula.nome" placeholder="Insira uma nova aula..." ng-minlength="3"
-                                    ng-maxlength="20" required unica-aula>
-                                <span class="input-group-btn"><button ng-click="addAula()" class="btn btn-primary">Adicionar</button></span>
-                            </div>
-                        </form>
+                        <div class="collapse" id="formAulas">
+                            <div class="well">
 
-                        <form novalidate class="form-inline form-group" name="modificaAula">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="achaAula" ng-model="mod.acha" placeholder="Substituir..." required existe-essa-aula>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input class="form-control" type="text" name="novaAula" ng-model="mod.novo" placeholder="Por..." required>
-                                    <span class="input-group-btn"><button ng-click="modAula()" class="btn btn-warning">Alterar</button></span>
-                                </div>
-                            </div>
-                        </form>
+                                <form novalidate name="adicionaAula">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input class="form-control" type="text" name="aula" ng-model="aula.nome" placeholder="Insira uma nova aula..." ng-minlength="3"
+                                                ng-maxlength="20" required unica-aula>
+                                            <span class="input-group-btn"><button ng-click="addAula()" class="btn btn-primary">Adicionar</button></span>
+                                        </div>
+                                    </div>
+                                </form>
 
-                        <form novalidate class="form-group" name="removeAula">
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="delAula" ng-model="delAula" placeholder="Quero deletar essa aula...">
-                                <span class="input-group-btn"> <button ng-click="delAula()" class="btn btn-danger">DELETAR</button></span>
-                            </div>
-                        </form>
+                                <form novalidate name="modificaAula">
+                                    <div class="col-md-5 col-offset-1">
+                                        <div class="form-group">
+                                            
+                                            <input type="text" class="form-control" name="achaAula" ng-model="mod.acha" placeholder="Substituir..." required existe-essa-aula-n>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 pull-right">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input class="form-control" type="text" name="novaAula" ng-model="mod.novo" placeholder="Por..." required>
+                                                <span class="input-group-btn"><button ng-click="modAula()" class="btn btn-warning">Alterar</button></span>
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                </form>                               
+                                <form novalidate name="removeAula">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            {{removeAula.delAula | json}}
+                                            <input type="number"  class="form-control" name="delAula" ng-model="idAula" placeholder="Quero deletar essa aula... (ID)"
+                                                existe-essa-aula-i aula-em-uso>
+                                            <span class="input-group-btn"> <button ng-click="delAula()" class="btn btn-danger">DELETAR</button></span>
+                                        </div>
+                                    </div>
+                                </form>
+
+
+                            </div>
+                        </div>
                     </div>
                     <ul class="list-group">
-                        <li class="list-group-item" ng-repeat="aula in aulas">
-                            {{aula.nome}} <span class="badge">{{aula.id}}</span>
-                        </li>
+                        <span ng-repeat="aula in aulas">
+                            <li class="list-group-item" ng-show="aula.nome">
+                                {{aula.nome}} <span class="badge">{{aula.id}}</span>
+                            </li>
+                        </span>
+                        
                     </ul>
                 </div>
             </div>
             <div class="col-md-10 col-md-offset-1" ng-controller="instrutorController">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3>Instrutores</h3>
+                        <h3>Instrutores
+                            <span>
+                            <a class="btn btn-default pull-right" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                Editar
+                                <span class="caret"></span>
+                            </a>
+                            </span>
+                        </h3>
+
+
                     </div>
                     <div class="panel-body">
                         <div class="notifications">
-                            <!--TODO adicionar notificações de sucesso e falha-->
+
+                            <div class="alert alert-warning alert-dismissible" role="alert" ng-show="adicionaInstrutor.id.$error.notAvailableInstructor">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                         <span aria-hidden="true">&times;</span>
+                                    </button> O instrutor está dando aula!
+                            </div>
+                            <div class="alert alert-success alert-dismissible" role="alert" ng-show="success.add">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                         <span aria-hidden="true">&times;</span>
+                                     </button> Instrutor adicionado com sucesso!
+                            </div>
+                            <div class="alert alert-success alert-dismissible" role="alert" ng-show="success.modify">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button> Instrutor modificado com sucesso!
+                            </div>
+                            <div class="alert alert-danger alert-dismissible" role="alert" ng-show="adicionaInstrutor.nome.$error.maxlength"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                </button> Nome muito longo (max:20)
+                            </div>
+                            <div class="alert alert-danger alert-dismissible" role="alert" ng-show="adicionaInstrutor.nome.$error.minlength"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                </button> Nome muito curto (min:03)
+                            </div>
+                            <div class="alert alert-danger alert-dismissible" role="alert" ng-show="adicionaInstrutor.nome.$error.unic"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                </button> Instrutor com esse nome já cadastrado!
+                            </div>                            
+                            <div class="alert alert-danger alert-dismissible" role="alert"  ng-show="adicionaInstrutor.id.$error.notFoundInstructor"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                </button> Não há instrutor com esse ID!
+                            </div>
+                            <div class="alert alert-danger alert-dismissible" role="alert"  ng-show="adicionaInstrutor.email.$error.duplicatedEmail"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                </button> Email já cadastrado no sistema!
+                            </div>
+                            <div class="alert alert-danger alert-dismissible" role="alert"  ng-show="adicionaInstrutor.idade.$error.maxlength"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                </button> Idade inválida
+                            </div>
+                            <div class="alert alert-danger alert-dismissible" role="alert"  ng-show="adicionaInstrutor.sobrenome.$error.maxlength"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                </button> Máximo 30 caracteres
+                            </div>
+
+
                         </div>
-                        <form novalidate class="form" name="adicionaInstrutor">
 
-                            <label for="nome">Nome:</label>
-                            <input type="text" class="form-control" name="nome" ng-model="instrutor.nome" required ng-minlength="3" ng-maxlength="20">
+                        <div class="collapse" id="collapseExample">
+                            <div class="well">
+                                <form novalidate class="form" name="adicionaInstrutor">
+                                    <label for="nome">Nome:</label>
+                                    <input type="text" class="form-control" name="nome" ng-model="instrutor.nome" required ng-minlength="3" ng-maxlength="20"
+                                        placeholder="Obrigatório e único" unico-ins>
+                                        {{adicionaInstrutor|json}}
+                                    <label for="nome">Sobrenome:</label>
+                                    <input type="text" class="form-control" name="sobrenome" ng-model="instrutor.sobrenome" ng-maxlength="30" placeholder="Opcional">
 
-                            <label for="nome">Sobrenome:</label>
-                            <input type="text" class="form-control" name="sobrenome" ng-model="instrutor.sobrenome" ng-maxlength="30">
+                                    <label for="idade">Idade:</label>
+                                    <input type="number" class="form-control" max="90" min="1" name="idade" ng-model="instrutor.idade" required ng-maxlength="90" placeholder="Obrigatório">
 
-                            <label for="idade">Idade:</label>
-                            <input type="number" class="form-control" name="idade" ng-model="instrutor.idade" required ng-maxlength="90">
+                                    <label for="email">Email:</label>
+                                    <input type="email" class="form-control" name="email" ng-model="instrutor.email" required placeholder="Obrigatório" nao-duplicado>
 
-                            <label for="email">Email:</label>
-                            <input type="email" class="form-control" name="email" ng-model="instrutor.email" required>
-
-                            <div class="checkbox">
-                                <label for="dandoAula">
+                                    <div class="checkbox">
+                                        <label for="dandoAula">
                                     <input type="checkbox" name="dandoAula" ng-model="instrutor.dandoAula">                                
                                     <strong>Dando aula?</strong>
                                 </label>
-                            </div>
-                            <span><strong>Aulas:</strong></span>
-                            <div class="checkbox-inline" ng-repeat="aula in aulas">                                
-                                <label for="{{instrutor.aula}}">
-                                    <input type="checkbox" name="{{aula.nome}}" ng-model="instrutor.aula[aula.id]">                      
+                                    </div>
+                                    <span><strong>Aulas:</strong></span>
+                                    <div class="checkbox-inline" ng-repeat="aula in aulas">
+                                        <label for="{{instrutor.aula}}">
+                                    <input type="checkbox" name="{{aula.nome}}" ng-show="aula.nome" ng-true-value="{{aula.id}}" ng-model="instrutor.aula[aula.id]">                      
                                     {{aula.nome}}
-                                </label>                               
-                            </div>
+                                </label>
+                                    </div>
 
-                            <div>
-                                 <label for="urlFoto">URL da Foto:</label>
-                                <input type="text" class="form-control" name="url" ng-model="instrutor.urlFoto">
-                            </div>
-                           
-                           <div class="input-group">
-                            <button class="btn btn-primary" ng-click="addInstrutor()">Adicionar Instrutor</button>
+                                    <div class="form-group">
+                                        <label for="urlFoto">URL da Foto:</label>
+                                        <input type="text" class="form-control" name="url" ng-model="instrutor.urlFoto" placeholder="Opcional">
+                                    </div>
 
-                           </div>
-                        </form>
+                                    <div class="has-warning form-group">
+                                        <label class="control-label" for="idInstrutor">ID do Instrutor:</label>
+                                        <input type="number" class="form-control" name="id" ng-model="instrutor.id" placeholder="Apenas para Exclusão/Modificação de Instrutor"
+                                            instrutor-da-aula existe-instrutor>
+                                    </div>                                    
+
+                                    <div class="input-group btn-group btn-group-justified">
+                                        <div class="btn-group">
+                                            <button class="btn btn-primary" ng-click="addInstrutor()">Adicionar Instrutor</button>
+                                        </div>
+                                        <div class="btn-group">
+                                            <button class="btn btn-warning" ng-click="modInstrutor()">Alterar dados</button>
+
+                                        </div>
+                                        <div class="btn-group">
+                                            <button class="btn btn-danger" ng-click="delInstrutor()">DELETAR INSTRUTOR</button>
+
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
 
                     </div>
+
                     <table class="table table-striped">
                         <tr>
                             <th>ID</th>
@@ -127,21 +242,31 @@
                             <th>Aulas</th>
                         </tr>
                         <tr ng-repeat="instrutor in instrutores | orderBy:'nome'">
+                            {{addAulas}}
                             <td>{{instrutor.id}}</td>
-                            <td>{{instrutor.urlFoto}}</td>
+                            <td><img ng-src="{{instrutor.urlFoto}}"></td>
                             <td>{{instrutor.nome}}</td>
                             <td>{{instrutor.sobrenome}}</td>
                             <td>{{instrutor.idade}}</td>
                             <td>{{instrutor.email}}</td>
                             <td>{{instrutor.dandoAula}}</td>
-                            <td><span ng-repeat="aula in instrutor.aula | orderBy:'aula' ">{{aula}}</span></td>
+                            <td>
+                                <p ng-repeat="a in instrutor.aula">{{aulas[a].nome}}</p>
+                            </td>
                         </tr>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="script.js">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
