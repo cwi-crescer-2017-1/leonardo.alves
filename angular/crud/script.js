@@ -155,11 +155,16 @@ function instrutorController($scope, $rootScope) {
 
     let procuraEmail = (instrutor) =>
         $scope.instrutores.find(i => i.email === instrutor.email);
+
+    function sortIdAulaByName (aula1, aula2) {
+        if($scope.aulas[aula1].nome.toLowerCase() > $scope.aulas[aula2].nome.toLowerCase()) return 1;
+        if($scope.aulas[aula1].nome.toLowerCase() > $scope.aulas[aula2].nome.toLowerCase()) return -1;
+        return 0;
+    }
 }
 
 
 function unicClassDirective() {
-        return {
             require: "ngModel",
             link: function (scope, element, attr, ctrl) {
                 function unicaAula(nome) {
