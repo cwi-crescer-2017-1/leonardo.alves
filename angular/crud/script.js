@@ -84,8 +84,12 @@ function aulaController($scope, $rootScope) {
         setTimeout(() => {$scope.success.delete = false;}, 500);
 
         function aulaDada() {
+            
             $scope.instrutores.forEach(i => {
-                aulaDadaAux.push(i.aula.find(n => n === $scope.idAula));
+                let aulaNotNull = i.aula.find(n => n == $scope.idAula);
+                if(typeof aulaNotNull !== "undefined"){
+                    aulaDadaAux.push($scope.idAula);                    
+                }
             })
         }
 
@@ -263,12 +267,13 @@ function inUseClassByIdDirective() {
     return {
         require: "ngModel",
         link: function (scope, element, attr, ctrl) {
-            function aulaEmUso(id) {
-
+            function aulaEmUso(id) {                
                 let aux = [];
-                scope.instrutores.forEach(i =>
-                    aux.push(i.aula.find(n => n === id)));
-                console.log(aux);
+                scope.instrutores.forEach(i => {
+                    if(typeof i.aula.find(n => n == id) !== "undefined") {
+                        aux.push(i.aula.find(n => n == id));                        
+                    }
+                });                
                 if (ctrl.$isEmpty(id)) {
                     ctrl.$setValidity("inUseClass", true);
                 } else if (typeof aux[0] === "undefined") {
