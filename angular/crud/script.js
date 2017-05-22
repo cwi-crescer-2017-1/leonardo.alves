@@ -122,6 +122,7 @@ function instrutorController($scope, $rootScope) {
         if ($scope.adicionaInstrutor.$invalid) return;
         let findEmail = procuraEmail($scope.instrutor);
         if (findEmail) return; //email duplicado
+        if($scope.instrutor.id) return; //usuario informou id. usuario nao pode informar
         let instrutor = angular.copy($scope.instrutor);
         instrutor.id = ++idInstrutores;
 
