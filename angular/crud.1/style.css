@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+
+img {
+    width: 50px;
+    height: auto;
+}
+
+body {
+    background-color: lightgoldenrodyellow;
+}
+
+h1 {
+    font-weight: 600;
+}
+.col-md-6, .col-md-5 {
+    padding: 0;
+}
+
+.panel.panel-primary>.panel-heading {
+    background: #ff6f00;
+    border-color:  #c43e00;
+    
+}
+
+.panel-primary {
+    border-color:  #c43e00;
+}
+
+.panel-body {
+    background: #ffa040;
+}
+
+*{
+    font-family: 'Slabo 27px', serif;
+    font-size: 101%;
+}
+
+.container {
+    margin-top: 1%;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+ 
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.3); 
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.3);
+}
+ 
+
+::-webkit-scrollbar-thumb {    
+    background: #ffa040; 
+    -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.5); 
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(255,0,0,0.4); 
+}
