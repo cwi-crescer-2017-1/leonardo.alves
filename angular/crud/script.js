@@ -5,11 +5,11 @@ crudApp.controller("instrutorController", instrutorController);
 
 crudApp.directive("unicaAula", unicClassDirective);
 crudApp.directive("unicoIns", unicInstDirective);
-crudApp.directive("existeEssaAulaN", notFoundClassByNameDirective);
+crudApp.directive("existeEssaAulaNome", notFoundClassByNameDirective);
 crudApp.directive("instrutorDaAula", notAvailableInstDirective);
-crudApp.directive("existeEssaAulaI", notFoundClassByIdDirective);
+crudApp.directive("existeEssaAulaId", notFoundClassByIdDirective);
 crudApp.directive("existeInstrutor", notFoundInstDirective);
-crudApp.directive("aulaEmUso", inUseClassByIdDirective);
+crudApp.directive("aulaSendoUsada", inUseClassByIdDirective);
 crudApp.directive("naoDuplicado", duplicatedEmailDirective);
 
 
@@ -38,7 +38,7 @@ function aulaController($scope, $rootScope) {
     function addAula() {
         $scope.success.add = false;
         let find = procuraNome($scope.aula.nome);
-        if($scope.adicionaAula.$invalid) return;
+        if ($scope.adicionaAula.$invalid) return;
         if (find || typeof $scope.aula.nome === "undefined") return;
 
         let aula = angular.copy($scope.aula);
@@ -46,6 +46,9 @@ function aulaController($scope, $rootScope) {
         $scope.aulas.push(aula);
         $scope.aula = {};
         $scope.success.add = true;
+
+        setTimeout(() => {$scope.success.add = false;}, 500);
+        
     }
 
     function modAula() {
@@ -53,13 +56,15 @@ function aulaController($scope, $rootScope) {
 
         //if($scope.modificaAula.$invalid) return;
         let find = procuraNome($scope.mod.acha);
-        
+
         if (!find || typeof $scope.mod.acha === "undefined" || typeof $scope.mod.novo === "undefined") return;
 
         let novaAula = angular.copy($scope.mod);
         $scope.aulas[find.id].nome = novaAula.novo;
         $scope.mod = {};
         $scope.success.modify = true;
+
+        setTimeout(() => {$scope.success.modify = false;}, 500);
     }
 
     function delAula() {
@@ -74,21 +79,24 @@ function aulaController($scope, $rootScope) {
 
         let idAula = angular.copy($scope.idAula);
         $scope.aulas[idAula] = {};
-                
+
         $scope.success.delete = true;
+        setTimeout(() => {$scope.success.delete = false;}, 500);
 
         function aulaDada() {
             $scope.instrutores.forEach(i => {
                 aulaDadaAux.push(i.aula.find(n => n === $scope.idAula));
             })
         }
+
     }
 }
 
 function instrutorController($scope, $rootScope) {
     $scope.success = {
         add: false,
-        modify: false
+        modify: false,
+        delete: false
     };
     let idInstrutores = 0;
     $rootScope.instrutores = [{
@@ -107,46 +115,60 @@ function instrutorController($scope, $rootScope) {
 
     function addInstrutor() {
         $scope.success.add = false;
-        if($scope.adicionaInstrutor.$invalid) return;
+        if ($scope.adicionaInstrutor.$invalid) return;
         let findEmail = procuraEmail($scope.instrutor);
-        if(findEmail) return; //email duplicado
+        if (findEmail) return; //email duplicado
         let instrutor = angular.copy($scope.instrutor);
         instrutor.id = ++idInstrutores;
 
-        if(instrutor.aula)  instrutor.aula = Object.keys(instrutor.aula);
+        if (instrutor.aula) {
+            instrutor.aula = Object.keys(instrutor.aula);
+            instrutor.aula.sort(sortIdAulaByName);            
+        } 
         instrutor.urlFoto = !instrutor.urlFoto ? "https://bs.simplusmedia.com/i/730/838/banana-beneficios.jpg" : instrutor.urlFoto;
         instrutor.dandoAula = !instrutor.dandoAula ? "Não" : "Sim";
 
+
         $scope.instrutores.push(instrutor);
         $scope.instrutor = {};
-        $scope.success.add = true;        
+        $scope.success.add = true;       
+
+        setTimeout(() => {$scope.success.add = false;}, 500);
     }
 
     function modInstrutor() {
         $scope.success.modify = false;
         let find = acharInst($scope.instrutor);
 
-        if (!find) return;
-        if($scope.adicionaInstrutor.$invalid) return;
+        if (!find) return;        
 
         let instrutor = angular.copy($scope.instrutor);
-        instrutor = !instrutor.urlFoto ? "https://bs.simplusmedia.com/i/730/838/banana-beneficios.jpg" : instrutor.urlFoto;
-        
+        instrutor.urlFoto = !instrutor.urlFoto ? "https://bs.simplusmedia.com/i/730/838/banana-beneficios.jpg" : instrutor.urlFoto;
+
+        if(instrutor.aula) {
+            instrutor.aula = Object.keys(instrutor.aula);
+            instrutor.aula.sort(sortIdAulaByName);  
+        }
+
         $scope.instrutores[find.id] = instrutor;
-        
+
         $scope.instrutor = {};
         $scope.success.modify = true;
+
+        setTimeout(() => {$scope.success.modify = false;}, 500);
     }
 
     function delInstrutor() {
-        $scope.success.del = false;
-        let find = acharInst($scope.instrutor);
-        let isUndefined = typeof find.aula;
+        $scope.success.delete = false;
+        let find = acharInst($scope.instrutor);        
         if (!find) return;
-        if (isUndefined !=="undefined") return;
-        if($scope.adicionaInstrutor.$invalid) return;
+        if($scope.instrutores[find.id].dandoAula === "Sim") return;
+       
         $scope.instrutores[find.id] = {};
         $scope.instrutor = {};
+        $scope.success.delete = true;
+
+        setTimeout(() => {$scope.success.delete = false;}, 500);
 
     }
 
@@ -165,20 +187,21 @@ function instrutorController($scope, $rootScope) {
 
 
 function unicClassDirective() {
-            require: "ngModel",
-            link: function (scope, element, attr, ctrl) {
-                function unicaAula(nome) {
-                    if (scope.aulas.find(a => a.nome === nome)) {
-                        ctrl.$setValidity("unic", false);
-                    } else {
-                        ctrl.$setValidity("unic", true);
-                    }
-                    return nome;
+    return {
+        require: "ngModel",
+        link: function (scope, element, attr, ctrl) {
+            function unicaAula(nome) {
+                if (scope.aulas.find(a => a.nome === nome)) {
+                    ctrl.$setValidity("unic", false);
+                } else {
+                    ctrl.$setValidity("unic", true);
                 }
-                ctrl.$parsers.push(unicaAula);
+                return nome;
             }
+            ctrl.$parsers.push(unicaAula);
         }
     }
+}
 
 function unicInstDirective() {
     return {
@@ -201,15 +224,17 @@ function notFoundClassByNameDirective() {
     return {
         require: "ngModel",
         link: function (scope, element, attr, ctrl) {
-            function existeEssaAula(nome) {
-                if (scope.aulas.find(a => a.nome === nome)) {                    
-                    ctrl.$setValidity("inexistentClass", false);
-                } else {
+            function existeEssaAulaNome(nome) {
+                if (ctrl.$isEmpty(nome)) {
                     ctrl.$setValidity("inexistentClass", true);
-                }                
+                } else if (scope.aulas.find(a => a.nome === nome)) {
+                    ctrl.$setValidity("inexistentClass", true);
+                } else {
+                    ctrl.$setValidity("inexistentClass", false);
+                }
                 return nome;
             }
-            ctrl.$parsers.push(existeEssaAula);
+            ctrl.$parsers.push(existeEssaAulaNome);
         }
     }
 }
@@ -218,16 +243,18 @@ function notFoundClassByIdDirective() {
     return {
         require: "ngModel",
         link: function (scope, element, attr, ctrl) {
+            function existeEssaAulaId(id) {
 
-            function existeEssaAula(id) {
-                if (scope.aulas.find(a => a.id === id)) {
+                if (ctrl.$isEmpty(id)) {
+                    ctrl.$setValidity("existentClass", true);
+                } else if (scope.aulas.find(a => a.id == id)) {
                     ctrl.$setValidity("existentClass", true);
                 } else {
                     ctrl.$setValidity("existentClass", false);
                 }
                 return id;
             }
-            ctrl.$parsers.push(existeEssaAula);
+            ctrl.$parsers.push(existeEssaAulaId);
         }
     }
 }
@@ -236,22 +263,25 @@ function inUseClassByIdDirective() {
     return {
         require: "ngModel",
         link: function (scope, element, attr, ctrl) {
+            function aulaEmUso(id) {
 
-
-            function existeAula(id) {
                 let aux = [];
                 scope.instrutores.forEach(i =>
                     aux.push(i.aula.find(n => n === id)));
-                if(ctrl.$isEmpty(id)) {
-                ctrl.$setValidity("inUseClass", false);
-                } else if (aux.length) {
-                    ctrl.$setValidity("inUseClass", false);
-                } else {
+                console.log(aux);
+                if (ctrl.$isEmpty(id)) {
                     ctrl.$setValidity("inUseClass", true);
+                } else if (typeof aux[0] === "undefined") {
+                    ctrl.$setValidity("inUseClass", true);
+                } else {
+                    ctrl.$setValidity("inUseClass", false);
                 }
+
+
+
                 return id;
             }
-            ctrl.$parsers.push(existeAula);
+            ctrl.$parsers.push(aulaEmUso);
         }
     }
 }
@@ -261,8 +291,9 @@ function notFoundInstDirective() {
         require: "ngModel",
         link: function (scope, element, attr, ctrl) {
             function existeEsseInst(id) {
-                if (scope.instrutores.find(i => i.id == id)) {
-                    console.log(id);
+                if(ctrl.$isEmpty(id)){
+                    ctrl.$setValidity("notFoundInstructor", true);                    
+                } else if (scope.instrutores.find(i => i.id == id)) {                    
                     ctrl.$setValidity("notFoundInstructor", true);
                 } else {
                     ctrl.$setValidity("notFoundInstructor", false);
@@ -275,19 +306,19 @@ function notFoundInstDirective() {
     }
 }
 
-function notAvailableInstDirective () {
+function notAvailableInstDirective() {
     return {
         require: "ngModel",
         link: function (scope, element, attr, ctrl) {
-            function instrutorDaAula (id) {
-                if(scope.instrutores[id]){
-                    let isUndefined = typeof scope.instrutores[id].aula;
-                    if(isUndefined !== "undefined" || scope.instrutores[id].aula.length > 0){                                                       
-                        ctrl.$setValidity("notAvailableInstructor", false);
-                    } else {
-                        ctrl.$setValidity("notAvailableInstructor", true);
-                    }                    
-                }                  
+            function instrutorDaAula(id) {
+                console.log(id);
+                if (ctrl.$isEmpty(id)) {
+                    ctrl.$setValidity("notAvailableInstructor", true);
+                } else if (ctrl.$isEmpty(scope.instrutores[id])) {
+                    ctrl.$setValidity("notAvailableInstructor", true);
+                } else if(scope.instrutores[id].dandoAula === "Sim") {
+                    ctrl.$setValidity("notAvailableInstructor", false);
+                }
                 return id;
             }
             ctrl.$parsers.push(instrutorDaAula);
@@ -295,12 +326,12 @@ function notAvailableInstDirective () {
     }
 }
 
-function duplicatedEmailDirective () {
+function duplicatedEmailDirective() {
     return {
         require: "ngModel",
         link: function (scope, element, attr, ctrl) {
-            function procurarEmail (email) {
-                if(scope.instrutores.find(i => i.email === email)){
+            function procurarEmail(email) {
+                if (scope.instrutores.find(i => i.email === email)) {
                     ctrl.$setValidity("duplicatedEmail", false);
                 } else {
                     ctrl.$setValidity("duplicatedEmail", true);
@@ -311,4 +342,3 @@ function duplicatedEmailDirective () {
         }
     }
 }
-
