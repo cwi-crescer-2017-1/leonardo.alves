@@ -95,7 +95,7 @@ function instrutorController($scope, $routeParams, aulaService, instrutorService
 
     var sortIdAulaByName = (aula1, aula2) => {
         if($scope.aulas[aula1].nome.toLowerCase() > $scope.aulas[aula2].nome.toLowerCase()) return 1;
-        if($scope.aulas[aula1].nome.toLowerCase() > $scope.aulas[aula2].nome.toLowerCase()) return -1;
+        if($scope.aulas[aula1].nome.toLowerCase() < $scope.aulas[aula2].nome.toLowerCase()) return -1;
         return 0;
     }
 
