@@ -58,3 +58,10 @@ h1 {
 ::-webkit-scrollbar-thumb:window-inactive {
 	background: rgba(255,0,0,0.4); 
 }
+
+.navlink {
+    position: relative;
+    top: 5px;
+    margin: 4px;
+    font-size: 2rem;
+}
