@@ -25,10 +25,8 @@ function aulaController($scope, $routeParams, aulaService, instrutorService) {
     }
     
     function addAula() {
-        $scope.success.add = false;
-        let find = procuraNome($scope.aula.nome);
-        if ($scope.adicionaAula.$invalid) return;
-        if (find || typeof $scope.aula.nome === "undefined") return;
+        $scope.success.add = false;        
+        if(!podeAdicionarAula()) return;
 
         let aula = angular.copy($scope.aula);
         aulaService.create(aula);   
@@ -39,13 +37,12 @@ function aulaController($scope, $routeParams, aulaService, instrutorService) {
     }
 
     function modAula() {
-        $scope.success.modify = false;        
-        let find = procuraNome($scope.mod.acha);
-        if (!find || typeof $scope.mod.acha === "undefined" || typeof $scope.mod.novo === "undefined") return;
+        $scope.success.modify = false;    
+        if(!podeModificarAula()) return;
 
         find.nome = $scope.mod.novo; //renomeia 
 
-        aulaService.update(find);   
+        aulaService.update(find).then(getAula());   
 
         $scope.mod = {};
         $scope.success.modify = true;
@@ -54,18 +51,11 @@ function aulaController($scope, $routeParams, aulaService, instrutorService) {
     }
 
     function delAula() {
-        $scope.success.delete = false;
-        let aulaDadaAux = [];
-        console.log($scope.idAula);
-        let find = procuraId($scope.idAula);
-
-        if (!find) return; //caso nao encontre o ID, ele retorna   
-
-        aAulaEstaSendoDada();
-
-        if (typeof aulaDadaAux[0] !== "undefined") return; //verifica se a aula está sendo dada
-               
-        aulaService.delete(find).then(getAula());
+        $scope.success.delete = false;        
+        let aula = podeDeletarAula();
+        if(!aula) return; //se o metodo podeDeletarAula retornar undefined ele sai
+        
+        aulaService.delete(aula).then(getAula());
 
         $scope.success.delete = true;
         setTimeout(() => {$scope.success.delete = false;}, 500);
@@ -91,4 +81,31 @@ function aulaController($scope, $routeParams, aulaService, instrutorService) {
 
     var procuraId = (id) =>
         $scope.aulas.find(a => a.id == id);
+
+    var podeAdicionarAula = () => {
+        let find = procuraNome($scope.aula.nome);
+        if ($scope.adicionaAula.$invalid) return false;
+        if (find || typeof $scope.aula.nome === "undefined") return false;
+        return true;
+    };
+
+    var podeModificarAula = () => {
+        let find = procuraNome($scope.mod.acha);
+        if (!find || 
+            typeof $scope.mod.acha === "undefined" || 
+            typeof $scope.mod.novo === "undefined") return false;
+        return true;
+    };
+
+    var podeDeletarAula = () => {
+        let aulaDadaAux = [];       
+        let find = procuraId($scope.idAula);
+
+        if (!find) return false; //caso nao encontre o ID, ele retorna
+        aAulaEstaSendoDada();
+        if (typeof aulaDadaAux[0] !== "undefined") 
+            return false; //verifica se a aula está sendo dada
+
+        return find;
+    };
 }
