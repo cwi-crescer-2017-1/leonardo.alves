@@ -119,7 +119,7 @@ function instrutorController($scope, $routeParams, aulaService, instrutorService
     var podeDeletarInstrutor = () => {
         let find = acharInst($scope.instrutor);        
         if (!find) return false;
-        if($scope.instrutores[find.id].dandoAula === "Sim") return false;
+        if(find.dandoAula === "Sim") return false;
         return find;
     }
 }
