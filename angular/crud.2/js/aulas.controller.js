@@ -29,7 +29,7 @@ function aulaController($scope, $routeParams, aulaService, instrutorService) {
         if(!podeAdicionarAula()) return;
 
         let aula = angular.copy($scope.aula);
-        aulaService.create(aula);   
+        aulaService.create(aula).then(getAula());   
 
         $scope.aula = {};
 
