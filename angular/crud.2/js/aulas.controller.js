@@ -29,7 +29,8 @@ function aulaController($scope, $routeParams, aulaService, instrutorService) {
         if(!podeAdicionarAula()) return;
 
         let aula = angular.copy($scope.aula);
-        aulaService.create(aula).then(getAula());   
+        
+        aulaService.create(aula).then(() =>  getAula());   
 
         $scope.aula = {};
 
@@ -42,7 +43,7 @@ function aulaController($scope, $routeParams, aulaService, instrutorService) {
 
         find.nome = $scope.mod.novo; //renomeia 
 
-        aulaService.update(find).then(getAula());   
+        aulaService.update(find).then(() =>  getAula());   
 
         $scope.mod = {};
         $scope.success.modify = true;
@@ -55,7 +56,7 @@ function aulaController($scope, $routeParams, aulaService, instrutorService) {
         let aula = podeDeletarAula();
         if(!aula) return; //se o metodo podeDeletarAula retornar undefined ele sai
         
-        aulaService.delete(aula).then(getAula());
+        aulaService.delete(aula).then(() =>  getAula());
 
         $scope.success.delete = true;
         setTimeout(() => {$scope.success.delete = false;}, 500);

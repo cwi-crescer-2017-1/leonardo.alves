@@ -42,7 +42,8 @@ function instrutorController($scope, $routeParams, aulaService, instrutorService
         instrutor.urlFoto = !instrutor.urlFoto ? "https://bs.simplusmedia.com/i/730/838/banana-beneficios.jpg" : instrutor.urlFoto;
         instrutor.dandoAula = !instrutor.dandoAula ? "Não" : "Sim";
 
-        instrutorService.create(instrutor).then(getInstrutor());
+        instrutorService.create(instrutor).then(() =>  getInstrutor());
+        
         $scope.instrutor = {};
         $scope.success.add = true;       
 
@@ -63,7 +64,7 @@ function instrutorController($scope, $routeParams, aulaService, instrutorService
             instrutor.aula.sort(sortIdAulaByName);  
         }
         
-        instrutorService(instrutor).then(getInstrutor());
+        instrutorService(instrutor).then(() =>  getInstrutor());
 
         $scope.instrutor = {};
         $scope.success.modify = true;
@@ -76,7 +77,7 @@ function instrutorController($scope, $routeParams, aulaService, instrutorService
         let instrutor = podeDeletarInstrutor();       
         if(!instrutor) return;
 
-        instrutorService.delete(instrutor).then(getInstrutor());
+        instrutorService.delete(instrutor).then(() =>  getInstrutor());
         $scope.instrutor = {};
         $scope.success.delete = true;
 
