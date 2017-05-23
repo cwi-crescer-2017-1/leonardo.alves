@@ -14,5 +14,9 @@ crudApp.config(function ($routeProvider){
             controller: "instrutorController",
             templateUrl: "instrutores.html"
         })
+        .when("/instrutores/:idInstrutor", {
+            controller: "instrutorController",
+            templateUrl: "instrutores.html"
+        })
         .otherwise({redirectTo: "/aulas"});
 });
