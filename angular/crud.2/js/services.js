@@ -25,11 +25,11 @@ function instrutorService ($http) {
 
     var getInstrutor = () => $http.get(url + "/instrutor");
 
-    var putInstrutor = () => $http.put(url + "/instrutor/" + instrutor.id, instrutor);
+    var putInstrutor = (instrutor) => $http.put(url + "/instrutor/" + instrutor.id, instrutor);
 
-    var postInstrutor = () => $http.post(url + "/instrutor", instrutor);
+    var postInstrutor = (instrutor) => $http.post(url + "/instrutor", instrutor);
 
-    var deleteInstrutor = () => $http.delete(url + "/instrutor/" + instrutor.id, instrutor);
+    var deleteInstrutor = (instrutor) => $http.delete(url + "/instrutor/" + instrutor.id, instrutor);
 
     return {
         create: postInstrutor,
