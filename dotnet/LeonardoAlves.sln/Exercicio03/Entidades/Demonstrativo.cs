@@ -1,34 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Exercicio03.Entidades
 {
     public class Demonstrativo
     {
         public Demonstrativo(
-            double salarioBase,
-            double hrsConvencao,
-            HorasCalculadas horasExtras,
-            HorasCalculadas horasDescontadas,
-            double totalProventos,
-            Desconto inss,
-            Desconto irrf,
-            double totalDescontos,
-            double totalLiquido,
-            Desconto fgts)
+             double salarioBase,
+             double hrsConvencao,
+             HorasCalculadas horasExtras,
+             HorasCalculadas horasDescontadas,
+             double totalProventos,
+             Desconto inss,
+             Desconto irrf,
+             double totalDescontos,
+             double totalLiquido,
+             Desconto fgts)
         {
-            SalarioBase = salarioBase;
-            HrsConvencao = hrsConvencao;
+            SalarioBase = Math.Round(salarioBase,2);
+            HrsConvencao = Math.Round(hrsConvencao,2);
             HorasExtras = horasExtras;
             HorasDescontadas = horasDescontadas;
-            TotalProventos = totalProventos;
+            TotalProventos = Math.Round(totalProventos,2);
             Inss = inss;
             Irrf = irrf;
-            TotalDescontos = totalDescontos;
-            TotalLiquido = totalLiquido;
+            TotalDescontos = Math.Round(totalDescontos,2);
+            TotalLiquido = Math.Round(totalLiquido,2);
             Fgts = fgts;
         }
 
