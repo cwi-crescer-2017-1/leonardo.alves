@@ -1,11 +1,11 @@
-﻿using System;
-
-namespace Exercicio03
+﻿
+namespace Exercicio03.Entidades
 {
     class Program
     {
-        static void Main(string[] args)
+      static void Main(string [] args)
         {
+
         }
     }
 }
