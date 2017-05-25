@@ -1,1 +1,7 @@
 C:\Users\leonardo.alves\Documents\leonardo.alves\dotnet\LeonardoAlves.sln\Exercicio03\bin\Debug\Exercicio03.exe.config
+C:\Users\Leu\Documents\cwi\leonardo.alves\dotnet\LeonardoAlves.sln\Exercicio03\bin\Debug\Exercicio03.exe.config
+C:\Users\Leu\Documents\cwi\leonardo.alves\dotnet\LeonardoAlves.sln\Exercicio03\obj\Debug\Exercicio03.csprojResolveAssemblyReference.cache
+C:\Users\Leu\Documents\cwi\leonardo.alves\dotnet\LeonardoAlves.sln\Exercicio03\bin\Debug\Exercicio03.exe
+C:\Users\Leu\Documents\cwi\leonardo.alves\dotnet\LeonardoAlves.sln\Exercicio03\bin\Debug\Exercicio03.pdb
+C:\Users\Leu\Documents\cwi\leonardo.alves\dotnet\LeonardoAlves.sln\Exercicio03\obj\Debug\Exercicio03.exe
+C:\Users\Leu\Documents\cwi\leonardo.alves\dotnet\LeonardoAlves.sln\Exercicio03\obj\Debug\Exercicio03.pdb
