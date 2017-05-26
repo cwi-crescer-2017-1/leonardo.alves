@@ -230,8 +230,8 @@ namespace Repositorio
             {
                 Nome = complexo.Nome,
                 DataNascimento = FormatarDataNascimento(complexo.DataNascimento),
-                SalarioRS = TrocarSalarioDePais(complexo.Cargo.Salario, "pt-BR"),
-                SalarioUS = TrocarSalarioDePais(complexo.Cargo.Salario, "en-US"),
+                SalarioRS = $"R$ { TrocarSalarioDePais(complexo.Cargo.Salario, "pt-BR")}",
+                SalarioUS = $"${TrocarSalarioDePais(complexo.Cargo.Salario, "en-US")}",
                 QuantidadeMesmoCargo = mesmoCargo
             };
         }
@@ -262,7 +262,7 @@ namespace Repositorio
 
         private string TrocarSalarioDePais (double salario, string cultura)
         {
-            return salario.ToString("C", CultureInfo.CreateSpecificCulture(cultura));
+            return salario.ToString("N", CultureInfo.CreateSpecificCulture(cultura)).PadLeft(1);
         }
     }
 }
