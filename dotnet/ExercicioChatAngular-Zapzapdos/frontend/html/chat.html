@@ -1,0 +1,6 @@
+<ul>
+    <li ng-repeat="mensagem in mensagens">{{mensagem.Texto}} | {{mensagem.IdUsuario}}</li>
+</ul>
+
+<input type="text" name="mensagem" ng-model="mensagem.Texto">
+<button ng-click="enviarMensagem()">Enviar Mensagem</button>
