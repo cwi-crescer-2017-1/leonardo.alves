@@ -22,10 +22,19 @@ namespace ExercicioChatAngular.Controllers
 
         public IHttpActionResult Post(Usuario user)
         {
+            var comparacao = System.StringComparison.OrdinalIgnoreCase;
+            
             if (user.Id == 0)
             {
                 lock (objLock)
                 {
+                    var nome = user.Nome;
+                    if (string.Equals("andre nunes", nome, comparacao)||
+                        string.Equals("andré nunes", nome, comparacao)||
+                        string.Equals("andré nune$", nome, comparacao)||
+                        string.Equals("andre nune$", nome, comparacao)) 
+                            user.Nome = "$$$$$ $$$$$";
+
                     user.Id = ++idUser;
                     allUsers.Add(user);
                 }
