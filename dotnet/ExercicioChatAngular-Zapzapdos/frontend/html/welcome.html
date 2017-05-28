@@ -1,7 +1,20 @@
-<form novalidate name="formWelcome">
-    <label for="nome">Insira seu nome:</label>
-    <input type="text" name="nome" placeholder="Ex: João" ng-model="usuario.nome" required>
-    <label for="nome">Insira sua foto (url):</label>    
-    <input type="text" name="urlFoto" placeholder="Ex: http://www.google.com/foto.jpg" ng-model="usuario.urlFoto" required>
-    <button ng-click="adicionarUsuario()">Entrar no chat</button>
-</form>
+<div class="jumbotron">
+    <form  class="form-horizontal" novalidate name="formWelcome">
+        <div>
+
+            <div class="form-group">
+                <label for="nome">Insira seu nome:</label>
+                <input class="form-control" type="text" name="nome" placeholder="Ex: João" ng-model="usuario.nome" required>
+            </div>
+            <div class="form-group">
+                <label for="nome">Insira sua foto (url):</label>    
+                <input class="form-control" type="text" name="urlFoto" placeholder="Ex: http://www.google.com/foto.jpg" ng-model="usuario.urlFoto" required>
+            </div>
+            <button class="btn btn-default btn-sm btn-block" ng-click="adicionarUsuario()">Entrar no chat</button>   
+
+        </div>
+        
+        
+    </form>
+</div>
+

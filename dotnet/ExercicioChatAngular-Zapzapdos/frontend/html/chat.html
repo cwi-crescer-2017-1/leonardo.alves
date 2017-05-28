@@ -1,6 +1,29 @@
-<ul>
-    <li ng-repeat="mensagem in mensagens">{{mensagem.Texto}} | {{mensagem.IdUsuario}}</li>
-</ul>
+<div class="panel panel-warning">
+    <div class="panel-heading">Conversa</div>
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="mensagem in mensagens">
+            <p><strong>{{ mensagem.Usuario.Nome }}</strong></p>    
+            
+            <img class="icon" ng-src="{{mensagem.Usuario.UrlFoto}}">
+            <div class="text">
+                {{ mensagem.Texto }}
+            </div>
+            <div class="time">
+                <small class="pull-right">{{ mensagem.HoraMensagem | timeago }}</small>                
+            </div>
 
-<input type="text" name="mensagem" ng-model="mensagem.Texto">
-<button ng-click="enviarMensagem()">Enviar Mensagem</button>
+        </li>
+    </ul>
+    <div class="panel-footer">
+        <footer class="input-group">
+        <input class="form-control" type="text" name="mensagem" ng-model="mensagem.Texto">
+        <span class="input-group-btn">
+            <button class="btn btn-default" ng-click="enviarMensagem()">Enviar Mensagem</button>        
+        </span>
+    </footer>
+
+    </div>
+    
+</div>
+
+

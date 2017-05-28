@@ -5,15 +5,26 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="../css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js"></script>
     </head>
     <body ng-app="zapzapdos">
-        <ng-view></ng-view>
+        <div class="container-fluid">
+            <nav>
+                <h1><span><img src="http://pa1.narvii.com/6167/6a37dab8143bcbcc62fdce510fd54044edbb3f04_128.gif" alt=""></span>Zapzapdos</h1>
+            </nav>            
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">        
+                    <ng-view></ng-view>                 
+                </div>
+            </div>                          
+        </div>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js"></script>
         <script type="text/javascript" src="../js/config.js"></script>
+        <script type="text/javascript" src="../js/ngtimeago.js"></script>
         <script type="text/javascript" src="../js/services.js"></script>
         <script type="text/javascript" src="../js/usuario.controller.js"></script>
         <script type="text/javascript" src="../js/mensagem.controller.js"></script>
-
     </body>
 </html>
