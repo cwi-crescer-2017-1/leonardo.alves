@@ -13,6 +13,6 @@ namespace ExercicioChatAngular.Models
 
         public DateTime HoraMensagem { get; set; } 
 
-        public int IdUsuario { get; set; }
+        public Usuario Usuario { get; set; }
     }
 }
