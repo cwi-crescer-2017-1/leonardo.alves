@@ -29,7 +29,7 @@ namespace ExercicioChatAngular.Controllers
                     user.Id = ++idUser;
                     allUsers.Add(user);
                 }
-                return Ok("Usuario entrou no canal com sucesso.");
+                return Ok(user);
             }
 
             else
