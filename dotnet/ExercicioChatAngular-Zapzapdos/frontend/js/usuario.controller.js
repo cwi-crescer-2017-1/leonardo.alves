@@ -1,16 +1,16 @@
 app.controller("usuarioController", usuarioController);
 
 
-function usuarioController($scope, $location, usuarioService) {
+function usuarioController($scope, redirecionarService, usuarioService) {
+    redirecionarService.redirect();
 
-    $scope.adicionarUsuario = adicionarUsuario;
-
-    function adicionarUsuario() {
-        debugger;
-        usuarioService.create($scope.usuario).then(()=>{
+    $scope.adicionarUsuario = adicionarUsuario;    
+    function adicionarUsuario() {        
+        usuarioService.create($scope.usuario).then((usuarioRetorno)=>{
             $scope.usuario = {};            
-            $location.path("/chat");
-        });
-        
-    }
+            var usuarioCopia = JSON.stringify(usuarioRetorno.data);
+            localStorage.setItem("usuario", usuarioCopia);            
+            redirecionarService.redirect();       
+        });        
+    }   
 }
