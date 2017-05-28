@@ -27,6 +27,7 @@ namespace ExercicioChatAngular.Controllers
             {
                 lock (objLock)
                 {
+                    mensagem.HoraMensagem = DateTime.Now;
                     mensagem.Id = ++idMensagem;
                     allMessages.Add(mensagem);
                 }
