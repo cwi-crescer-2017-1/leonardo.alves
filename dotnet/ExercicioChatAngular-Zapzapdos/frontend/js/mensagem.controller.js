@@ -1,9 +1,12 @@
 app.controller("mensagemController", mensagemController);
 
 
-function mensagemController($scope, $location, usuarioService, mensagemService) {
+function mensagemController($scope, $location, redirecionarService, usuarioService, mensagemService) {
+    redirecionarService.redirect();
     atualizarMensagens();
-    if($location.path = "/chat") setInterval(atualizarMensagens, 5000);    
+
+    setTimeout(atualizarMensagens, 1000);    
+    setInterval(atualizarMensagens, 5000)
     $scope.enviarMensagem = enviarMensagem;
     
     function enviarMensagem() {
