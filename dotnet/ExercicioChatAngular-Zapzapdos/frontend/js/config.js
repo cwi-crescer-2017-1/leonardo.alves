@@ -1,5 +1,5 @@
 
-var app = angular.module("zapzapdos", ["ngRoute"]);
+var app = angular.module("zapzapdos", ["ngRoute", "ngtimeago"]);
 
 app.config(function ($routeProvider, $locationProvider){
     $routeProvider
