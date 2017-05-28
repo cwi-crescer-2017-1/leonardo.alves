@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Monoton');
+
+body {
+    background: url(https://i.redd.it/8ncj88qz0evy.jpg);
+    background-size: cover;
+}
+img {
+    width: 50px;
+}
+
+
+nav h1 {
+    font-family: 'Monoton', monospace;
+    text-align: center;
+    background: white;
+    border-radius: 10px;
+}
+
+.ng-scope.panel-warning{
+    border-color: #0e102a;
+}
+
+.ng-scope.panel-warning>.panel-heading {
+    color: white;
+    background-color: #0e102a;
+    border-color: #0e102a;
+
+}
+
+.ng-scope.list-group-item {
+    border: 1px solid #0e102a;
+    background-color: #14173b;
+    color: #bec9d0;
+}
+.list-group {
+    max-height: 450px;
+    overflow: auto;
+
+}
+
+.ng-scope.panel-footer {
+    background-color: #0e102a;
+}
+
+.time {
+    float: right;  
+}
+
+.text {
+    max-width: 400px;
+    word-wrap: break-word;
+    margin: 10px;
+    display: inline-block;
+}
+
+.icon {
+    float: left;
+    position: relative;
+    top: -10px;
+}
