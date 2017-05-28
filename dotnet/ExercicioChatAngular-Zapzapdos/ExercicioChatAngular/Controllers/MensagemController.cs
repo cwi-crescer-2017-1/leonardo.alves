@@ -23,10 +23,7 @@ namespace ExercicioChatAngular.Controllers
 
         public IHttpActionResult Post (Mensagem mensagem)
         {
-            if (mensagem.IdUsuario > UsuarioController.idUser)
-                return BadRequest("Impossível enviar mensagem, pois há um erro no id do comunicador.");
-
-            if(mensagem.Id == 0)
+            if (mensagem.Id == 0)
             {
                 lock (objLock)
                 {
