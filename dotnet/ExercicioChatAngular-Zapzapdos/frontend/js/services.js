@@ -1,5 +1,7 @@
 app.factory("usuarioService", usuarioService);
 app.factory("mensagemService", mensagemService);
+app.factory("redirecionarService", redirecionarService);
+
 
 var url = "http://localhost:50693/api";
 
@@ -27,4 +29,16 @@ function mensagemService ($http) {
         create: postMensagem,
         read: getMensagem
     }
+}
+
+function redirecionarService ($location) {
+     var redirecionar = function () {
+        if (localStorage.getItem("usuario") === null) {
+            $location.path("/welcome");
+        } else {
+            $location.path("/chat");
+        }
+    }
+
+    return { redirect: redirecionar }
 }
