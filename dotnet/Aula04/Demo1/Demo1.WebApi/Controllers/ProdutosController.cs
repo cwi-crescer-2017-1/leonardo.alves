@@ -13,6 +13,7 @@ namespace Demo1.WebApi.Controllers
     public class ProdutosController : ApiController
     {
         ProdutoRepositorio _produtoRepositorio = new ProdutoRepositorio();
+        ItemPedidoRepositorio _itemPedidoRepositorio = new ItemPedidoRepositorio();
         public IHttpActionResult Post (Produto produto)
         {            
             var mensagens = new List<string>();
