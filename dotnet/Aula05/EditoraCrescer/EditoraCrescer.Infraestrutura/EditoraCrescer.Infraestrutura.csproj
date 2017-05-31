@@ -52,18 +52,29 @@
     <Compile Include="Contexto.cs" />
     <Compile Include="Entidades\Autor.cs" />
     <Compile Include="Entidades\Livro.cs" />
+    <Compile Include="Entidades\Revisor.cs" />
     <Compile Include="Mappings\AutorMap.cs" />
     <Compile Include="Mappings\LivroMap.cs" />
+    <Compile Include="Mappings\RevisorMap.cs" />
     <Compile Include="Migrations\201705301939367_InitialCreate.cs" />
     <Compile Include="Migrations\201705301939367_InitialCreate.Designer.cs">
       <DependentUpon>201705301939367_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705301954595_CriacaoBanco.cs" />
-    <Compile Include="Migrations\201705301954595_CriacaoBanco.Designer.cs">
-      <DependentUpon>201705301954595_CriacaoBanco.cs</DependentUpon>
+    <Compile Include="Migrations\201705310232012_AdicionarRevisorAoLivro.cs" />
+    <Compile Include="Migrations\201705310232012_AdicionarRevisorAoLivro.Designer.cs">
+      <DependentUpon>201705310232012_AdicionarRevisorAoLivro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705310300119_CorrexaoRevisor.cs" />
+    <Compile Include="Migrations\201705310300119_CorrexaoRevisor.Designer.cs">
+      <DependentUpon>201705310300119_CorrexaoRevisor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705310306022_AdicionarAutorAoContexto.cs" />
+    <Compile Include="Migrations\201705310306022_AdicionarAutorAoContexto.Designer.cs">
+      <DependentUpon>201705310306022_AdicionarAutorAoContexto.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorios\AutorRepositorio.cs" />
     <Compile Include="Repositorios\LivroRepositorio.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -74,8 +85,14 @@
     <EmbeddedResource Include="Migrations\201705301939367_InitialCreate.resx">
       <DependentUpon>201705301939367_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705301954595_CriacaoBanco.resx">
-      <DependentUpon>201705301954595_CriacaoBanco.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705310232012_AdicionarRevisorAoLivro.resx">
+      <DependentUpon>201705310232012_AdicionarRevisorAoLivro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705310300119_CorrexaoRevisor.resx">
+      <DependentUpon>201705310300119_CorrexaoRevisor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705310306022_AdicionarAutorAoContexto.resx">
+      <DependentUpon>201705310306022_AdicionarAutorAoContexto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
