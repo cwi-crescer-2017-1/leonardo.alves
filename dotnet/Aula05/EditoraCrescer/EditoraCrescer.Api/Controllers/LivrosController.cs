@@ -1,5 +1,6 @@
 ﻿using EditoraCrescer.Infraestrutura.Entidades;
 using EditoraCrescer.Infraestrutura.Repositorios;
+using System.Collections.Generic;
 using System.Web.Http;
 
 namespace EditoraCrescer.Api.Controllers
@@ -16,6 +17,11 @@ namespace EditoraCrescer.Api.Controllers
     
         public IHttpActionResult Post (Livro livro)
         {
+            var mensagens = new List<string>();
+
+            if (!livro.Validar(out mensagens))
+                return BadRequest(string.Join("; ", mensagens.ToArray()));
+
             repositorio.Criar(livro);  
             return Ok("Livro adicionado.");
         }

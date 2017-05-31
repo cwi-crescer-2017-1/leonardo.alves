@@ -21,5 +21,22 @@ namespace EditoraCrescer.Infraestrutura.Entidades
         public Revisor Revisor { get; set; }
 
         public DateTime DataRevisao { get; set; }
+
+        public bool Validar(out List<string> mensagens)
+        {
+            mensagens = new List<string>();
+
+            if (string.IsNullOrWhiteSpace(Titulo))
+                mensagens.Add("O título não pode ser vazio.");
+
+            if (string.IsNullOrWhiteSpace(Descricao))
+                mensagens.Add("A descrição não pode ser vazia.");
+
+            if (string.IsNullOrWhiteSpace(Genero))
+                mensagens.Add("O gênero não pode ser vazio.");
+
+            return mensagens.Count == 0;
+        }
+
     }
 }
