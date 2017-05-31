@@ -18,6 +18,13 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
 
         public void Criar (Livro livro)
         {
+            if (livro.IdAutor == 0)
+                contexto.Autores.Add(livro.Autor);
+
+
+            if (livro.IdRevisor == 0)
+                contexto.Revisores.Add(livro.Revisor);
+
             contexto.Livros.Add(livro);
             contexto.SaveChanges();
         }
