@@ -25,6 +25,8 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
             if (livro.IdRevisor == 0)
                 contexto.Revisores.Add(livro.Revisor);
 
+            adicionarDataSeNaoExiste(livro);
+
             contexto.Livros.Add(livro);
             contexto.SaveChanges();
         }
@@ -33,6 +35,21 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
         {
             var livro = contexto.Livros.FirstOrDefault(l => l.Isbn == id);
             contexto.Livros.Remove(livro) ;
+        }
+
+
+        private int compararData (DateTime data)
+        {
+            return DateTime.MinValue.CompareTo(data);
+        }
+
+        private void adicionarDataSeNaoExiste (Livro livro)
+        {
+            if (compararData(livro.DataPublicacao) < 1)
+                livro.DataPublicacao = DateTime.Now;
+
+            if (compararData(livro.DataRevisao) < 1)
+                livro.DataRevisao = DateTime.Now;
         }
     }
 }
