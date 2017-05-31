@@ -11,5 +11,16 @@ namespace EditoraCrescer.Infraestrutura.Entidades
         public int Id { get; set; }
 
         public string Nome { get; set; }
+
+        public bool Validar(out List<string> mensagens)
+        {
+            mensagens = new List<string>();
+
+            if (string.IsNullOrWhiteSpace(Nome))
+                mensagens.Add("O nome não pode ser inválido.");
+
+            return mensagens.Count == 0;
+        }
+
     }
 }

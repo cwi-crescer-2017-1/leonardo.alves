@@ -21,6 +21,11 @@ namespace EditoraCrescer.Api.Controllers
 
         public IHttpActionResult Post(Autor autor)
         {
+            var mensagens = new List<string>();
+
+            if (!autor.Validar(out mensagens))
+                return BadRequest(string.Join("; ", mensagens.ToArray()));
+
             repositorio.Criar(autor);
             return Ok("Autor adicionado.");
         }

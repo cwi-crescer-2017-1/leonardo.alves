@@ -20,6 +20,12 @@ namespace EditoraCrescer.Api.Controllers
 
         public IHttpActionResult Post (Revisor revisor)
         {
+
+            var mensagens = new List<string>();
+
+            if (!revisor.Validar(out mensagens))
+                return BadRequest(string.Join("; ", mensagens.ToArray()));
+
             _revisorRepositorio.Criar(revisor);
             return Ok("Revisor adicionado");
         }
