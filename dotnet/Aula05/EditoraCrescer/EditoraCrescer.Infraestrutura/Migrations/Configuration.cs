@@ -5,7 +5,7 @@ namespace EditoraCrescer.Infraestrutura.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<EditoraCrescer.Infraestrutura.Contexto.Contexto>
+    internal sealed class Configuration : DbMigrationsConfiguration<EditoraCrescer.Infraestrutura.Contexto>
     {
         public Configuration()
         {
@@ -13,7 +13,7 @@ namespace EditoraCrescer.Infraestrutura.Migrations
             ContextKey = "EditoraCrescer.Infraestrutura.Contexto.Contexto";
         }
 
-        protected override void Seed(EditoraCrescer.Infraestrutura.Contexto.Contexto context)
+        protected override void Seed(EditoraCrescer.Infraestrutura.Contexto context)
         {
             //  This method will be called after migrating to the latest version.
 
