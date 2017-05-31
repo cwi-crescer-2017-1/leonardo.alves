@@ -1,5 +1,4 @@
 ﻿using EditoraCrescer.Infraestrutura.Entidades;
-using EditoraCrescer.Infraestrutura.Contexto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +10,22 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
 
     public class LivroRepositorio
     {
-        private Contexto.Contexto contexto = new Contexto.Contexto();
-        private List<Livro> Obter()
+        private Contexto contexto = new Contexto();
+        public List<Livro> Obter()
         {
             return contexto.Livros.ToList();
+        }
+
+        public void Criar (Livro livro)
+        {
+            contexto.Livros.Add(livro);
+            contexto.SaveChanges();
+        }
+
+        public void Deletar (int id)
+        {
+            var livro = contexto.Livros.FirstOrDefault(l => l.Isbn == id);
+            contexto.Livros.Remove(livro) ;
         }
     }
 }
