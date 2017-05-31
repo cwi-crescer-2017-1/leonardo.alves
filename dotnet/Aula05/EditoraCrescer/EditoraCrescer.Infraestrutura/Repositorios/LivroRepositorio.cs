@@ -11,9 +11,16 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
     public class LivroRepositorio
     {
         private Contexto contexto = new Contexto();
-        public List<Livro> Obter()
+        public dynamic Obter()
         {
-            return contexto.Livros.ToList();
+            return contexto.Livros.Select(l => new
+            {
+                Isbn = l.Isbn,
+                Titulo = l.Titulo,
+                Capa = l.Capa,
+                NomeAutor = l.Autor.Nome,
+                Genero = l.Genero
+            }).ToList();
         }
 
         public Livro ObterPorIsbn (int isbn)
@@ -28,18 +35,17 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
 
         public void Criar (Livro livro)
         {
-            if (livro.IdAutor == 0)
-                contexto.Autores.Add(livro.Autor);
+            procurarPorAutor(livro);
 
-
-            if (livro.IdRevisor == 0)
-                contexto.Revisores.Add(livro.Revisor);
+            procurarPorRevisor(livro);
 
             adicionarDataSeNaoExiste(livro);
 
             contexto.Livros.Add(livro);
             contexto.SaveChanges();
         }
+
+        
 
         public bool AtualizarLivro (int isbn, Livro livro, out List<string> mensagens)
         {           
@@ -87,6 +93,27 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
 
             if (livro.Isbn != isbn)
                 mensagens.Add("O url não é compativel com o livro que você quer alterar.");
+        }
+
+        private void procurarPorAutor(Livro livro)
+        {
+            if (livro.IdAutor == 0)
+            {
+                if (contexto.Autores.Any(a => a.Nome == livro.Autor.Nome))
+                    livro.Autor = contexto.Autores.First(a => a.Nome == livro.Autor.Nome);
+                else
+                    contexto.Revisores.Add(livro.Revisor);
+            }
+        }
+        private void procurarPorRevisor(Livro livro)
+        {
+            if (livro.IdRevisor == 0)
+            {
+                if (contexto.Revisores.Any(r => r.Nome == livro.Revisor.Nome))
+                    livro.Revisor = contexto.Revisores.First(r => r.Nome == livro.Revisor.Nome);
+                else
+                    contexto.Revisores.Add(livro.Revisor);
+            }
         }
 
         public void Dispose ()
