@@ -22,6 +22,8 @@ namespace EditoraCrescer.Infraestrutura.Entidades
 
         public DateTime DataRevisao { get; set; }
 
+        public string Capa { get; set; }
+
         public bool Validar(out List<string> mensagens)
         {
             mensagens = new List<string>();
