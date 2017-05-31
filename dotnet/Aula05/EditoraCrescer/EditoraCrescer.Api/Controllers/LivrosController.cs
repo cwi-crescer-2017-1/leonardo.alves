@@ -16,11 +16,6 @@ namespace EditoraCrescer.Api.Controllers
     
         public IHttpActionResult Post (Livro livro)
         {
-            /*TODO: adicionar verificação para o argumento IdRevisor e IdAutor
-                    caso um desses faltem, ele verificará se o Revisor/Autor 
-                    foi adicionado, se sim, adicionará o autor/revisor, 
-                    junto com o livro, senão retornar badRequest.
-            */
             repositorio.Criar(livro);  
             return Ok("Livro adicionado.");
         }
