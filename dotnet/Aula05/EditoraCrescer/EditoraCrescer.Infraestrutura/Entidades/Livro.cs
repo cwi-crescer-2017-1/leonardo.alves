@@ -37,6 +37,9 @@ namespace EditoraCrescer.Infraestrutura.Entidades
             if (string.IsNullOrWhiteSpace(Genero))
                 mensagens.Add("O gênero não pode ser vazio.");
 
+            if (string.IsNullOrWhiteSpace(Capa))
+                mensagens.Add("A capa deve ser informada.");
+
             return mensagens.Count == 0;
         }
 
