@@ -25,5 +25,10 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
             var autor = contexto.Autores.FirstOrDefault(x => x.Id == id);
             contexto.Autores.Remove(autor);
         }
+
+        public void Dispose()
+        {
+            contexto.Dispose();
+        }
     }
 }

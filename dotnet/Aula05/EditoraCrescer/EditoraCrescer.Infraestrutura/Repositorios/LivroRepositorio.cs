@@ -51,5 +51,9 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
             if (compararData(livro.DataRevisao) < 1)
                 livro.DataRevisao = DateTime.Now;
         }
+        public void Dispose ()
+        {
+            contexto.Dispose();
+        }
     }
 }
