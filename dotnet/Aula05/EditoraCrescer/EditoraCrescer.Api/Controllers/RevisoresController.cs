@@ -20,7 +20,7 @@ namespace EditoraCrescer.Api.Controllers
 
         public IHttpActionResult Post (Revisor revisor)
         {
-            _revisorRepositorio.Adicionar(revisor);
+            _revisorRepositorio.Criar(revisor);
             return Ok("Revisor adicionado");
         }
 

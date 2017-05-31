@@ -10,15 +10,15 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
     public class RevisorRepositorio
     {
         private Contexto contexto = new Contexto();
-
+        
         public List<Revisor> Obter ()
         {
             return contexto.Revisores.ToList();
         }
 
-        public void Adicionar (Revisor revisor)
+        public void Criar (Revisor revisor)
         {
-            contexto.Revisores.Add(revisor);
+            contexto.Revisores.Add(revisor);            
         }
 
         public void Deletar (int id)
