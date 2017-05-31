@@ -35,5 +35,11 @@ namespace EditoraCrescer.Api.Controllers
             _revisorRepositorio.Deletar(id);
             return Ok("Revisor deletado");
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            _revisorRepositorio.Dispose();
+            base.Dispose(disposing);
+        }
     }
 }

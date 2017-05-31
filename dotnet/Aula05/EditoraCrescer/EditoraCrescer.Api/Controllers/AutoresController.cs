@@ -12,10 +12,10 @@ namespace EditoraCrescer.Api.Controllers
     
     public class AutoresController : ApiController
     {
-        private AutorRepositorio repositorio = new AutorRepositorio();
+        private AutorRepositorio _autorRepositorio = new AutorRepositorio();
         public IHttpActionResult Get ()
         {
-            var autores = repositorio.Obter();
+            var autores = _autorRepositorio.Obter();
             return Ok(autores);
         }
 
@@ -26,14 +26,20 @@ namespace EditoraCrescer.Api.Controllers
             if (!autor.Validar(out mensagens))
                 return BadRequest(string.Join("; ", mensagens.ToArray()));
 
-            repositorio.Criar(autor);
+            _autorRepositorio.Criar(autor);
             return Ok("Autor adicionado.");
         }
 
         public IHttpActionResult Delete(int id)
         {
-            repositorio.Deletar(id);
+            _autorRepositorio.Deletar(id);
             return Ok("Autor deletado.");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _autorRepositorio.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

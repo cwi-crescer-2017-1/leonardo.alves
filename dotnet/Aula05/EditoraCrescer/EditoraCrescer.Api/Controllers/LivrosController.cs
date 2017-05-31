@@ -5,31 +5,72 @@ using System.Web.Http;
 
 namespace EditoraCrescer.Api.Controllers
 {
+    [RoutePrefix("api/Livros")]
+
     public class LivrosController : ApiController
     {
-        private LivroRepositorio repositorio = new LivroRepositorio();
+        private LivroRepositorio _repositorioLivro = new LivroRepositorio();
 
-        public IHttpActionResult Get()
+        [HttpGet]
+        public IHttpActionResult ObterLivros()
         {
-            var livros = repositorio.Obter();
-            return Ok(livros);
-        }       
+            var livros = _repositorioLivro.Obter();
+            return Ok(new { data = livros });
+        }
+
+        [HttpGet]
+        [Route("{isbn:int}")]
+        public IHttpActionResult ObterLivroPorIsbn (int isbn)
+        {
+            var livro = _repositorioLivro.ObterPorIsbn(isbn);
+            return Ok(new { data = livro });
+        }
+
+        [HttpGet]
+        [Route("{genero}")]
+        public IHttpActionResult ObterLivrosPorGenero (string genero)
+        {
+            var livros = _repositorioLivro.ObterPorGenero(genero);
+            return Ok(new { data = livros });
+        }
+
+        [HttpPut]
+        [Route("{isbn:int}")]
+        public IHttpActionResult AtualizarLivro (int isbn, Livro livro)
+        {
+            List<string> mensagens = new List<string>();
+            
+            if(_repositorioLivro.AtualizarLivro(isbn, livro, out mensagens))           
+                return Ok(new { data = livro });
+            else                           
+                return BadRequest(string.Join("; ", mensagens.ToArray()));
+        }
     
-        public IHttpActionResult Post (Livro livro)
+        [HttpPost]
+        public IHttpActionResult InserirLivro (Livro livro)
         {
             var mensagens = new List<string>();
 
             if (!livro.Validar(out mensagens))
                 return BadRequest(string.Join("; ", mensagens.ToArray()));
 
-            repositorio.Criar(livro);  
-            return Ok("Livro adicionado.");
+            _repositorioLivro.Criar(livro);  
+
+            return Ok(new { data = livro });
         }
 
-        public IHttpActionResult Delete (int id)
+        [HttpDelete]
+        public IHttpActionResult DeletarLivro (int id)
         {
-            repositorio.Deletar(id);
-            return Ok("Livro deletado.");
+            _repositorioLivro.Deletar(id);
+            return Ok("Deletado");
+        }
+
+
+        protected override void Dispose(bool disposing)
+        {
+            _repositorioLivro.Dispose();
+            base.Dispose(disposing);
         }
     }
 }
