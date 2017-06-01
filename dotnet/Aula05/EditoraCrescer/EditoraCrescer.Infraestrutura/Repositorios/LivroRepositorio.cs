@@ -116,6 +116,18 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
             }
         }
 
+        private dynamic gerarResumo(Livro livro)
+        {
+            return new
+            {
+                Isbn = livro.Isbn,
+                Titulo = livro.Titulo,
+                Capa = livro.Capa,
+                NomeAutor = livro.Autor.Nome,
+                Genero = livro.Genero
+            };
+        }
+
         public void Dispose ()
         {
             contexto.Dispose();
