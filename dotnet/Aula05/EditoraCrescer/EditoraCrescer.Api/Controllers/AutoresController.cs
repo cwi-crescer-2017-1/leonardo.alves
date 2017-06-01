@@ -33,6 +33,18 @@ namespace EditoraCrescer.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, new { data = autor });
         }
 
+        [HttpGet]
+        [Route("{id}/livros")]
+        public HttpResponseMessage ObterLivrosAutor(int id)
+        {
+            var livros = _autorRepositorio.ObterLivrosAutor(id);
+
+            if (livros.Count < 1)
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { message = "O id informado é inválido" });
+
+            return Request.CreateResponse(HttpStatusCode.OK, new { data = livros });
+        }
+
             var mensagens = new List<string>();
 
             if (!autor.Validar(out mensagens))
