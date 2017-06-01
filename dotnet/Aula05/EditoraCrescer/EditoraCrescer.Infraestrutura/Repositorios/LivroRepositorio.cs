@@ -74,7 +74,7 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
 
         private int compararData (DateTime data)
         {
-            return DateTime.MinValue.CompareTo(data);
+            return data.CompareTo(DateTime.MinValue);
         }
 
         private void adicionarDataSeNaoExiste (Livro livro)
