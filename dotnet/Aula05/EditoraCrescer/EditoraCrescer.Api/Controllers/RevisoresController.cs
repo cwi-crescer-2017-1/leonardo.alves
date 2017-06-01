@@ -9,13 +9,15 @@ using System.Web.Http;
 
 namespace EditoraCrescer.Api.Controllers
 {
+    [RoutePrefix("api/Revisores")]
     public class RevisoresController : ApiController
     {
         private RevisorRepositorio _revisorRepositorio = new RevisorRepositorio();
 
-        public IHttpActionResult Get ()
+        [HttpGet]
+        public IHttpActionResult ObterRevisores ()
         {
-            return Ok(_revisorRepositorio.Obter());
+            return Ok(_revisorRepositorio.ObterRevisores());
         }
 
         public IHttpActionResult Post (Revisor revisor)
