@@ -13,21 +13,23 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
         private Contexto contexto = new Contexto();
         public dynamic Obter()
         {
-            return contexto.Livros.Select(l => new
-            {
-                Isbn = l.Isbn,
-                Titulo = l.Titulo,
-                Capa = l.Capa,
-                NomeAutor = l.Autor.Nome,
-                Genero = l.Genero
-            }).ToList();
+            return contexto.Livros
+                .Select(l => gerarResumo(l))
+                .ToList();
         }
 
         public Livro ObterPorIsbn (int isbn)
         {
             return contexto.Livros.FirstOrDefault(l => l.Isbn == isbn);
         }
-        public List<Livro> ObterPorGenero(string genero)
+        public dynamic ObterPorGenero(string genero)
+        {
+            return contexto.Livros
+                .Where(l => l.Genero.Contains(genero))
+                .Select(l => gerarResumo(l))
+                .ToList();
+        }
+
         public object ObterPorLancamento()
         {
             return contexto.Livros
