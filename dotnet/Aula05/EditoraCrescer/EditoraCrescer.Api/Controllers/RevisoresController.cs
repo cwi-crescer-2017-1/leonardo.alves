@@ -19,8 +19,15 @@ namespace EditoraCrescer.Api.Controllers
         }
 
         public IHttpActionResult Post (Revisor revisor)
+        [HttpGet]
+        public HttpResponseMessage ObterRevisor(int id)
         {
+            var revisor = _revisorRepositorio.ObterRevisor(id);
+            if (revisor == null)
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { message = "Id inválido." });
 
+            return Request.CreateResponse(HttpStatusCode.OK, new { data = revisor });
+        }
             var mensagens = new List<string>();
 
             if (!revisor.Validar(out mensagens))
