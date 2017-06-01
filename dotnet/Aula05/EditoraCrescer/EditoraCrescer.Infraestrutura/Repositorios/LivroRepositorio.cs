@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,14 +16,7 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
         public dynamic Obter()
         {
             return contexto.Livros
-                .Select(l => new
-                {
-                    Isbn = l.Isbn,
-                    Titulo = l.Titulo,
-                    Capa = l.Capa,
-                    NomeAutor = l.Autor.Nome,
-                    Genero = l.Genero
-                })
+                .Select(resumo)
                 .ToList();
         }
 
@@ -34,13 +28,7 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
         {
             return contexto.Livros
                 .Where(l => l.Genero.Contains(genero))
-                .Select(l => new {
-                    Isbn = l.Isbn,
-                    Titulo = l.Titulo,
-                    Capa = l.Capa,
-                    NomeAutor = l.Autor.Nome,
-                    Genero = l.Genero
-                })
+                .Select(resumo)
                 .ToList();
         }
 
@@ -48,14 +36,7 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
         {
             return contexto.Livros
                  .Where(l => DbFunctions.DiffDays(l.DataPublicacao, DateTime.Now) <= 7)
-                 .Select(l => new
-                 {
-                     Isbn = l.Isbn,
-                     Titulo = l.Titulo,
-                     Capa = l.Capa,
-                     NomeAutor = l.Autor.Nome,
-                     Genero = l.Genero
-                 })
+                 .Select(resumo)
                  .ToList();
         }
 
@@ -141,6 +122,14 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
                     contexto.Revisores.Add(livro.Revisor);
             }
         }
+
+        private Expression<Func<Livro, dynamic>> resumo = (x => new
+        {
+            Isbn = x.Isbn,
+            Titulo = x.Titulo,
+            NomeAutor = x.Autor.Nome,
+            Genero = x.Genero
+        });
                
         public void Dispose ()
         {
