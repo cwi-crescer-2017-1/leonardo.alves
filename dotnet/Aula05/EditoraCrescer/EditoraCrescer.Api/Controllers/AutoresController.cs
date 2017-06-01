@@ -61,7 +61,17 @@ namespace EditoraCrescer.Api.Controllers
         }
 
 
+        [HttpPut]       
+        public HttpResponseMessage AlterarAutor (int id, Autor autor)
         {
+            var mensagens = new List<string>();
+            if (_autorRepositorio.Alterar(id, autor, out mensagens))
+                return Request.CreateResponse(HttpStatusCode.OK, new { data = autor });
+
+            return Request.CreateResponse(HttpStatusCode.BadRequest, new { message = mensagens });
+        }
+
+
         public HttpResponseMessage Delete(int id)
         {
             Autor autor;
