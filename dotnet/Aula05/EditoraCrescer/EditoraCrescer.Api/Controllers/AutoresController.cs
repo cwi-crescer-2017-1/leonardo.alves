@@ -45,13 +45,19 @@ namespace EditoraCrescer.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, new { data = livros });
         }
 
+        [HttpPost]
+        public HttpResponseMessage InserirAutor(Autor autor)
+        {
             var mensagens = new List<string>();
 
             if (!autor.Validar(out mensagens))
-                return BadRequest(string.Join("; ", mensagens.ToArray()));
+                return 
+                    Request.CreateResponse(HttpStatusCode.BadRequest, new { message = mensagens });
+                    
 
             _autorRepositorio.Criar(autor);
-            return Ok("Autor adicionado.");
+            return Request.CreateResponse(HttpStatusCode.OK, new { data = autor });
+                
         }
 
         public IHttpActionResult Delete(int id)
