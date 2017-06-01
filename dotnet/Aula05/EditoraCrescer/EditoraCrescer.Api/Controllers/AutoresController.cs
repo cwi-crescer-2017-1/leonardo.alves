@@ -22,8 +22,17 @@ namespace EditoraCrescer.Api.Controllers
             return Ok(new { data = autores });
         }
 
-        public IHttpActionResult Post(Autor autor)
+        [HttpGet]        
+        public HttpResponseMessage ObterAutor(int id)
         {
+            var autor = _autorRepositorio.ObterAutor(id);
+
+            if (autor == null)
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { message = "O id informado é inválido" });
+
+            return Request.CreateResponse(HttpStatusCode.OK, new { data = autor });
+        }
+
             var mensagens = new List<string>();
 
             if (!autor.Validar(out mensagens))
