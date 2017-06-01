@@ -20,7 +20,6 @@ namespace EditoraCrescer.Api.Controllers
             return Ok(_revisorRepositorio.ObterRevisores());
         }
 
-        public IHttpActionResult Post (Revisor revisor)
         [HttpGet]
         public HttpResponseMessage ObterRevisor(int id)
         {
@@ -30,13 +29,18 @@ namespace EditoraCrescer.Api.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, new { data = revisor });
         }
+
+        [HttpPost]
+        public HttpResponseMessage AdicionarRevisor (Revisor revisor)
+        {
             var mensagens = new List<string>();
 
             if (!revisor.Validar(out mensagens))
-                return BadRequest(string.Join("; ", mensagens.ToArray()));
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { message = mensagens });                    
 
             _revisorRepositorio.Criar(revisor);
-            return Ok("Revisor adicionado");
+
+            return Request.CreateResponse(HttpStatusCode.OK, new { data = revisor });                
         }
 
         [HttpDelete]
