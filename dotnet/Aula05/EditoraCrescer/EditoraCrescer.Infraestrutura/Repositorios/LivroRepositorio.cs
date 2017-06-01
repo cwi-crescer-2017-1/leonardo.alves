@@ -28,9 +28,12 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
             return contexto.Livros.FirstOrDefault(l => l.Isbn == isbn);
         }
         public List<Livro> ObterPorGenero(string genero)
+        public object ObterPorLancamento()
         {
             return contexto.Livros
-                .Where(l => l.Genero.Contains(genero)).ToList();
+                 .Where(l => (DateTime.Today - l.DataPublicacao).TotalDays <= 7)
+                 .Select(l => gerarResumo(l))
+                 .ToList();
         }
 
         public void Criar (Livro livro)
