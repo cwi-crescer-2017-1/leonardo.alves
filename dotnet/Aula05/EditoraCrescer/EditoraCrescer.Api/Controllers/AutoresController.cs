@@ -9,14 +9,17 @@ using System.Web.Http;
 
 namespace EditoraCrescer.Api.Controllers
 {
-    
+    [RoutePrefix("api/Autores")]
+
     public class AutoresController : ApiController
     {
         private AutorRepositorio _autorRepositorio = new AutorRepositorio();
-        public IHttpActionResult Get ()
+
+        [HttpGet]
+        public IHttpActionResult ObterAutores ()
         {
-            var autores = _autorRepositorio.Obter();
-            return Ok(autores);
+            var autores = _autorRepositorio.ObterAutores();
+            return Ok(new { data = autores });
         }
 
         public IHttpActionResult Post(Autor autor)
