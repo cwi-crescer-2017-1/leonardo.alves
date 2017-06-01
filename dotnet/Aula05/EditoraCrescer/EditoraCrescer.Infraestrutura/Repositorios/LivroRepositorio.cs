@@ -14,7 +14,14 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
         public dynamic Obter()
         {
             return contexto.Livros
-                .Select(l => gerarResumo(l))
+                .Select(l => new
+                {
+                    Isbn = l.Isbn,
+                    Titulo = l.Titulo,
+                    Capa = l.Capa,
+                    NomeAutor = l.Autor.Nome,
+                    Genero = l.Genero
+                })
                 .ToList();
         }
 
@@ -26,7 +33,13 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
         {
             return contexto.Livros
                 .Where(l => l.Genero.Contains(genero))
-                .Select(l => gerarResumo(l))
+                .Select(l => new {
+                    Isbn = l.Isbn,
+                    Titulo = l.Titulo,
+                    Capa = l.Capa,
+                    NomeAutor = l.Autor.Nome,
+                    Genero = l.Genero
+                })
                 .ToList();
         }
 
@@ -120,19 +133,7 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
                     contexto.Revisores.Add(livro.Revisor);
             }
         }
-
-        private dynamic gerarResumo(Livro livro)
-        {
-            return new
-            {
-                Isbn = livro.Isbn,
-                Titulo = livro.Titulo,
-                Capa = livro.Capa,
-                NomeAutor = livro.Autor.Nome,
-                Genero = livro.Genero
-            };
-        }
-
+               
         public void Dispose ()
         {
             contexto.Dispose();
