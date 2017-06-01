@@ -123,12 +123,14 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
             }
         }
 
-        private Expression<Func<Livro, dynamic>> resumo = (x => new
-        {
-            Isbn = x.Isbn,
-            Titulo = x.Titulo,
-            NomeAutor = x.Autor.Nome,
-            Genero = x.Genero
+        private Expression<Func<Livro, dynamic>> resumo =
+            (x => new
+            {
+                Isbn = x.Isbn,
+                Titulo = x.Titulo,
+                NomeAutor = x.Autor.Nome,
+                Genero = x.Genero,
+                Capa = x.Capa
         });
                
         public void Dispose ()
