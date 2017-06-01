@@ -60,10 +60,16 @@ namespace EditoraCrescer.Api.Controllers
                 
         }
 
-        public IHttpActionResult Delete(int id)
+
         {
-            _autorRepositorio.Deletar(id);
-            return Ok("Autor deletado.");
+        public HttpResponseMessage Delete(int id)
+        {
+            Autor autor;
+
+            if (_autorRepositorio.Deletar(id, out autor))
+                return Request.CreateResponse(HttpStatusCode.OK, new { data = autor });
+
+            return Request.CreateResponse(HttpStatusCode.BadRequest, new { message = "O autor não foi encontrado." });
         }
 
         protected override void Dispose(bool disposing)
