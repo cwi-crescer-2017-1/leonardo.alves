@@ -1,6 +1,7 @@
 ﻿using EditoraCrescer.Infraestrutura.Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,8 +47,15 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
         public object ObterPorLancamento()
         {
             return contexto.Livros
-                 .Where(l => (DateTime.Today - l.DataPublicacao).TotalDays <= 7)
-                 .Select(l => gerarResumo(l))
+                 .Where(l => DbFunctions.DiffDays(l.DataPublicacao, DateTime.Now) <= 7)
+                 .Select(l => new
+                 {
+                     Isbn = l.Isbn,
+                     Titulo = l.Titulo,
+                     Capa = l.Capa,
+                     NomeAutor = l.Autor.Nome,
+                     Genero = l.Genero
+                 })
                  .ToList();
         }
 
