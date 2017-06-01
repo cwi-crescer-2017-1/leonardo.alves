@@ -11,7 +11,7 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
     {
         private Contexto contexto = new Contexto();
         
-        public List<Revisor> Obter ()
+        public List<Revisor> ObterRevisores ()
         {
             return contexto.Revisores.ToList();
         }
