@@ -39,10 +39,14 @@ namespace EditoraCrescer.Api.Controllers
             return Ok("Revisor adicionado");
         }
 
-        public IHttpActionResult Delete (int id)
+        [HttpDelete]
+        public HttpResponseMessage DeletarRevisor (int id)
         {
-            _revisorRepositorio.Deletar(id);
-            return Ok("Revisor deletado");
+            var revisor = _revisorRepositorio.Deletar(id);
+            if(revisor == null)
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { message = "Id inválido" });
+
+            return Request.CreateResponse(HttpStatusCode.OK, new { data = revisor });
         }
 
         protected override void Dispose(bool disposing)
