@@ -24,6 +24,7 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
         public void Criar (Revisor revisor)
         {
             contexto.Revisores.Add(revisor);            
+            contexto.SaveChanges();          
         }
 
         public void Deletar (int id)
