@@ -1,4 +1,10 @@
-.news .card .card-title {
-    font-size: initial;
-    font-weight: initial;
+
+.news .card {
+    background: none;
+    box-shadow: none;
+}
+
+nav.row {
+    height: 40px;
+    line-height: 40px;
 }
