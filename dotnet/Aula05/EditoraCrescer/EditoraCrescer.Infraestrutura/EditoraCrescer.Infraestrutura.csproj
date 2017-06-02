@@ -80,6 +80,14 @@
     <Compile Include="Migrations\201705312316523_ajustarCamposObrigatoriosEmLivro.Designer.cs">
       <DependentUpon>201705312316523_ajustarCamposObrigatoriosEmLivro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706020147536_removerCamposObrigatoriosDasDatas.cs" />
+    <Compile Include="Migrations\201706020147536_removerCamposObrigatoriosDasDatas.Designer.cs">
+      <DependentUpon>201706020147536_removerCamposObrigatoriosDasDatas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706020152359_ajustarOpcionalidadeEmIdDoRevisor.cs" />
+    <Compile Include="Migrations\201706020152359_ajustarOpcionalidadeEmIdDoRevisor.Designer.cs">
+      <DependentUpon>201706020152359_ajustarOpcionalidadeEmIdDoRevisor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\AutorRepositorio.cs" />
@@ -108,6 +116,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705312316523_ajustarCamposObrigatoriosEmLivro.resx">
       <DependentUpon>201705312316523_ajustarCamposObrigatoriosEmLivro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706020147536_removerCamposObrigatoriosDasDatas.resx">
+      <DependentUpon>201706020147536_removerCamposObrigatoriosDasDatas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706020152359_ajustarOpcionalidadeEmIdDoRevisor.resx">
+      <DependentUpon>201706020152359_ajustarOpcionalidadeEmIdDoRevisor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
