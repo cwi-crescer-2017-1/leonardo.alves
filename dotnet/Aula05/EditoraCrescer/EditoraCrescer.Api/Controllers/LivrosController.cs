@@ -12,9 +12,9 @@ namespace EditoraCrescer.Api.Controllers
         private LivroRepositorio _repositorioLivro = new LivroRepositorio();
 
         [HttpGet]
-        public IHttpActionResult ObterLivros()
+        public IHttpActionResult ObterLivros(int pular, int pegar)
         {
-            var livros = _repositorioLivro.Obter();
+            var livros = _repositorioLivro.Obter(pular, pegar);
             return Ok(new { data = livros });
         }
 

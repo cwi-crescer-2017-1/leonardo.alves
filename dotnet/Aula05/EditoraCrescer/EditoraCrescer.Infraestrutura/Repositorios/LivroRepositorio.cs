@@ -13,10 +13,13 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
     public class LivroRepositorio
     {
         private Contexto contexto = new Contexto();
-        public dynamic Obter()
+        public dynamic Obter(int pular, int pegar)
         {
-            return contexto.Livros
+            return contexto.Livros   
+                .OrderByDescending(x => x.DataPublicacao)             
                 .Select(resumo)
+                .Skip(pular)
+                .Take(pegar)
                 .ToList();
         }
 
@@ -44,9 +47,7 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
         {
             procurarPorAutor(livro);
 
-            procurarPorRevisor(livro);
-
-            adicionarDataSeNaoExiste(livro);
+            procurarPorRevisor(livro);            
 
             contexto.Livros.Add(livro);
             contexto.SaveChanges();
@@ -81,14 +82,7 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
             return data.CompareTo(DateTime.MinValue);
         }
 
-        private void adicionarDataSeNaoExiste (Livro livro)
-        {
-            if (compararData(livro.DataPublicacao) < 1)
-                livro.DataPublicacao = DateTime.Now;
-
-            if (compararData(livro.DataRevisao) < 1)
-                livro.DataRevisao = DateTime.Now;
-        }
+        
 
         private void verificarDadosAtualizacao(int isbn, Livro livro, List<string> mensagens)
         {
@@ -106,21 +100,21 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
         {
             if (livro.IdAutor == 0)
             {
-                if (contexto.Autores.Any(a => a.Nome == livro.Autor.Nome))
+                if (contexto.Autores.Count(a => a.Nome == livro.Autor.Nome) > 1)
                     livro.Autor = contexto.Autores.First(a => a.Nome == livro.Autor.Nome);
                 else
-                    contexto.Revisores.Add(livro.Revisor);
+                    contexto.Autores.Add(livro.Autor);
             }
         }
         private void procurarPorRevisor(Livro livro)
         {
-            if (livro.IdRevisor == 0)
-            {
-                if (contexto.Revisores.Any(r => r.Nome == livro.Revisor.Nome))
-                    livro.Revisor = contexto.Revisores.First(r => r.Nome == livro.Revisor.Nome);
-                else
-                    contexto.Revisores.Add(livro.Revisor);
-            }
+            //if (livro.IdRevisor == 0)
+            //{
+            //    if (contexto.Revisores.Any(r => r.Nome == livro.Revisor.Nome))
+            //        livro.Revisor = contexto.Revisores.First(r => r.Nome == livro.Revisor.Nome);
+            //    else
+            //        contexto.Revisores.Add(livro.Revisor);
+            //}
         }
 
         private Expression<Func<Livro, dynamic>> resumo =
