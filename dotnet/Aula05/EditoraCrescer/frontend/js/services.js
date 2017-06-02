@@ -1,37 +1,10 @@
-app.factory("livroService", livroService);
 app.factory("autorService", autorService);
 app.factory("revisorService", revisorService);
 app.factory("usuarioService", usuarioService);
 
 var url = "http://localhost:61097/api/";
 
-function livroService ($http) {
 
-    var getLivros = () => $http.get(url + "livros");
-
-    var getLivro = (id) => $http.get(url + "livros/" + id, id);
-
-    var getLivrosPorGenero = (genero) => $http.get(url + "livros/" + genero, genero);
-
-    var getLivrosLancamento = () => $http.get(url + "livros/" + "lancamentos");
-
-    var postLivro = (livro) => $http.post(url + "livros", livro);    
-
-    var putLivro = (livro) => $http.put(url + "livros/" + livro.id, livro);
-
-    var deleteLivro = (livro) => $http.delete(url + "livros/" + livro.id, livro)
-
-
-    return {
-        read: getLivro,
-        readAll: getLivros,
-        readGender: getLivrosPorGenero,
-        readNews: getLivrosLancamento,        
-        create: postLivro,
-        update: putLivro,
-        delete: deleteLivro    
-    }
-}
 function autorService ($http) {
 
     var getAutores  = () => $http.get(url + "autores");
