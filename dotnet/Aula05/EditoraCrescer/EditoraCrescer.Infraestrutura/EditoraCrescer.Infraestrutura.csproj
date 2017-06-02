@@ -53,9 +53,11 @@
     <Compile Include="Entidades\Autor.cs" />
     <Compile Include="Entidades\Livro.cs" />
     <Compile Include="Entidades\Revisor.cs" />
+    <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Mappings\AutorMap.cs" />
     <Compile Include="Mappings\LivroMap.cs" />
     <Compile Include="Mappings\RevisorMap.cs" />
+    <Compile Include="Mappings\UsuarioMap.cs" />
     <Compile Include="Migrations\201705301939367_InitialCreate.cs" />
     <Compile Include="Migrations\201705301939367_InitialCreate.Designer.cs">
       <DependentUpon>201705301939367_InitialCreate.cs</DependentUpon>
