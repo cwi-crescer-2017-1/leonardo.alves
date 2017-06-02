@@ -8,3 +8,7 @@ nav.row {
     height: 40px;
     line-height: 40px;
 }
+
+.news .small {
+    height: inherit;
+}
