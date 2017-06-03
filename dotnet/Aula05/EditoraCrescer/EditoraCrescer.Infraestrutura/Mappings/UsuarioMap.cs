@@ -14,8 +14,20 @@ namespace EditoraCrescer.Infraestrutura.Mappings
         {
             ToTable("Usuarios");
 
+            Property(x => x.Email).IsRequired();
+            Property(x => x.Senha).IsRequired();
+
+
             HasKey(x => x.Id);
 
+            HasMany(x => x.Permissoes)
+                .WithMany()
+                .Map(x =>
+                {
+                   x.MapLeftKey("IdUsuario");
+                   x.MapRightKey("IdPermissao");
+                   x.ToTable("UsuarioPermissao");
+                });
         }
     }
 }
