@@ -12,3 +12,8 @@ nav.row {
 .news .small {
     height: inherit;
 }
+
+#warning-notfound{
+    position: relative;
+    top: 20px;
+}
