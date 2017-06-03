@@ -1,0 +1,42 @@
+<div class="container">
+    <!--Error Message-->
+    <div ng-if="showError" class="row">
+        <div class="col s12 red accent-3">
+            <article class="flow-text">
+                <p class="center-align">
+                    <i class="medium material-icons" id="warning-notfound">warning</i> Opa! Não conseguimos achar o que você
+                    procurava :(
+                </p>
+                <p class="center-align">Verifique se você não digitou algo errado, e tente novamente.</p>
+
+                <blockquote class="red accent-2" cite="Erro:">
+                    mensagem: {{mensagens}}
+                </blockquote>
+            </article>
+        </div>
+    </div>
+
+    <!--Livro-->
+    <div ng-if="exibir" class="row">
+        <div class="col s12 lime darken-1">
+            <h2 class="header">{{livro.Titulo}}</h2>            
+            <div class="card horizontal">
+                <div class="card-image">
+                    <img ng-src="{{livro.Capa}}">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content flow-text">
+                        <p><strong>ISBN: </strong>{{livro.Isbn}}</p>
+                        <p><strong>Data de publicação: </strong>{{livro.DataPublicacao | date:'fullDate'}}</p>
+                        <p><strong>Autor: </strong>{{livro.Autor.Nome}}</p>
+                        <p><strong>Genero: </strong>{{livro.Genero}}</p>
+                        <p><strong>Descrição: </strong>{{livro.Descricao}}</p>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+       
+
+</div>
