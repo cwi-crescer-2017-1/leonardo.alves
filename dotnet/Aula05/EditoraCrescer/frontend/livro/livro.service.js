@@ -2,7 +2,7 @@ app.factory("livroService", livroService);
 
 
 function livroService ($http) {
-    let url = "http://localhost:61097/api/livros/";
+    let url = "http://localhost:6200/api/livros/";
 
     var getLivros = (parametros) => $http({
            url: url,

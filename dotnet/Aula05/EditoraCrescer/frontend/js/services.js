@@ -1,8 +1,8 @@
 app.factory("autorService", autorService);
 app.factory("revisorService", revisorService);
-app.factory("usuarioService", usuarioService);
 
-var url = "http://localhost:61097/api/";
+
+var url = "http://localhost:6200/api/";
 
 
 function autorService ($http) {
@@ -50,8 +50,5 @@ function revisorService ($http) {
         update: putRevisor,
         delete: deleteRevisor
     } 
-    
-}
-function usuarioService ($http) {
     
 }
