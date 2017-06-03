@@ -102,11 +102,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\Autorizacao.cs" />
+    <Compile Include="App_Start\ErrosGlobaisFilterAttribute.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AutController.cs" />
     <Compile Include="Controllers\AutoresController.cs" />
     <Compile Include="Controllers\LivrosController.cs" />
     <Compile Include="Controllers\RevisoresController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -146,7 +148,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>61097</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:61097/</IISUrl>
+          <IISUrl>http://localhost:6200/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
