@@ -1,6 +1,8 @@
 ﻿using EditoraCrescer.Infraestrutura.Entidades;
 using EditoraCrescer.Infraestrutura.Repositorios;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 
 namespace EditoraCrescer.Api.Controllers
@@ -20,10 +22,13 @@ namespace EditoraCrescer.Api.Controllers
 
         [HttpGet]
         [Route("{isbn:int}")]
-        public IHttpActionResult ObterLivroPorIsbn (int isbn)
+        public HttpResponseMessage ObterLivroPorIsbn (int isbn)
         {
             var livro = _repositorioLivro.ObterPorIsbn(isbn);
-            return Ok(new { data = livro });
+            if (livro != null)
+                return Request.CreateResponse(HttpStatusCode.OK, new { data = livro });
+                    
+            else return Request.CreateResponse(HttpStatusCode.BadRequest, new { mensagens = "ISBN não encontrado nos registros." });
         }
 
         [HttpGet]

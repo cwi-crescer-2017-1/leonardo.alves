@@ -25,7 +25,7 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
 
         public Livro ObterPorIsbn (int isbn)
         {
-            return contexto.Livros.FirstOrDefault(l => l.Isbn == isbn);
+            return contexto.Livros.Include(x => x.Autor).FirstOrDefault(l => l.Isbn == isbn);
         }
         public dynamic ObterPorGenero(string genero)
         {
