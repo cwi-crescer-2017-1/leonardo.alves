@@ -15,7 +15,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.2/angular-materialize.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.5.5/angular-locale_pt-br.js"></script>
 </head>
 
 <body class="grey lighten-2">
@@ -23,11 +23,11 @@
         <nav class="row">
             <div class="nav-wrapper">
                 <div class="col s12 deep-purple darken-2">
-                    <span class="col s6">Livraria Crescer</span>
-                    
+                    <span class="col s6">Livraria Crescer</span>                    
                     <div class="right">
-                        <a class="waves-effect waves-light white-text btn-flat">Login</a>
-                    </div>
+                        <a ng-hide="logado" class="waves-effect waves-light white-text btn-flat">Login</a>                
+                        <a ng-hide="logado" class="waves-effect waves-light white-text btn-flat">Cadastrar-se</a>
+                    </div>               
                 </div>
             </div>
         </nav>
@@ -38,6 +38,7 @@
     <script src="js/module.js"></script>
     <script src="js/route.js"></script>
     <script src="js/services.js"></script>
+    <script src="livro/listagem-livro.controller.js"></script>
     <script src="livro/livro.controller.js"></script>
     <script src="livro/livro.service.js"></script>
 </body>
