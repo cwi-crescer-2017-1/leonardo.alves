@@ -18,8 +18,74 @@
 
     <!--Livro-->
     <div ng-if="exibir" class="row">
+        <!--Modal edit-->
+        <div id="editarLivro" class="modal  pink accent-1">
+            <div class="modal-content">
+                <h4>Editar Livro</h4>
+                <form novalidate>
+                    <div class="input-field">
+                        <input type="text" ng-model="livro.Titulo" required length="150" name="titulo">
+                        <label>Titulo</label>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="text" ng-model="livro.Autor.Nome" required length="150" name="nomeautor">
+                        <label>Autor</label>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="text" ng-model="livro.Genero" required length="150" name="genero">
+                        <label>Genero</label>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="text" ng-model="livro.Capa" required length="150" name="capa">
+                        <label>Capa</label>
+                    </div>
+
+                    <div class="input-field">
+                        <textarea ng-model="livro.Descricao" required class="materialize-textarea"></textarea>
+                        <label>Descrição</label>
+                    </div>
+                </form>
+                <div class="modal-footer pink accent-1">
+                    <a ng-click="editarLivro(livro)" class=" modal-action modal-close waves-effect waves-green btn-flat  grey lighten-3">Editar</a>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal delete-->
+        <div id="deletarLivro" class="modal bottom-sheet">
+            <div class="modal-content">
+                <h5><i class="small material-icons">error</i> Deseja mesmo deletar o livro? :(</h5>
+                <div class="modal-footer">
+                    <a ng-click="deletarLivro()" class="modal-action modal-close waves-effect waves-green btn-flat">Sim, quero deletar.</a>
+                </div>
+            </div>
+        </div>
+        
+        <div ng-show="auth.isAutenticado()" class="fixed-action-btn horizontal">
+            <a class="btn-floating btn-large purple">
+                <i class="large material-icons">mode_edit</i>
+            </a>
+            <ul>
+                <li ng-if="auth.possuiPermissao('publicador')">
+                    <a class="btn-floating green">
+                        <i class="material-icons">publish</i></a>
+                </li>
+                <li ng-if="auth.possuiPermissao('revisor')">
+                    <a class="btn-floating green">
+                        <i class="material-icons">done</i></a>
+                </li>
+                <li><a class="btn-floating blue" data-target="editarLivro" modal><i class="material-icons">edit</i></a></li>
+
+
+                <li><a class="btn-floating red darken-1" data-target="deletarLivro" modal><i class="material-icons">delete</i></a></li>
+            </ul>
+        </div>
+
         <div class="col s12 lime darken-1">
-            <h2 class="header">{{livro.Titulo}}</h2>            
+            <h2 class="header">{{livro.Titulo}}</h2>
             <div class="card horizontal">
                 <div class="card-image">
                     <img ng-src="{{livro.Capa}}">
@@ -31,12 +97,12 @@
                         <p><strong>Autor: </strong>{{livro.Autor.Nome}}</p>
                         <p><strong>Genero: </strong>{{livro.Genero}}</p>
                         <p><strong>Descrição: </strong>{{livro.Descricao}}</p>
-                    </div>                    
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-       
+
 
 </div>

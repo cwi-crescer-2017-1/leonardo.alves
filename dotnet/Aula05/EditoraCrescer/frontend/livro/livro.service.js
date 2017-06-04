@@ -18,9 +18,13 @@ function livroService ($http) {
 
     var postLivro = (livro) => $http.post(url, livro);    
 
-    var putLivro = (livro) => $http.put(url + livro.id, livro);
+    var putLivro = (idLivro,livro) => $http.put(url + idLivro, livro);
 
-    var deleteLivro = (livro) => $http.delete(url + livro.id, livro)
+    var deleteLivro = (id) => $http({
+        url: url + id,
+        method: 'DELETE',
+        params: id
+    });
 
 
     return {
