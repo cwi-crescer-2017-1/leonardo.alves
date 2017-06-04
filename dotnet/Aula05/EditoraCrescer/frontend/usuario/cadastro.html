@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row   deep-purple lighten-1">
+        <div class="container col s12">
+
+            <form novalidate name="cadastroForm" ng-submit="cadastroForm.$valid && cadastrar(usuario)">
+                <div class="container">
+                    <p class="flow-text white-text">Acompanhe por perto as novidades!</p>
+                    
+                    <div class="input-field" id="nome-input">
+                        <i class="material-icons prefix white-text">account_circle</i>
+                        <input class="validate" min="5" type="text" ng-model="usuario.nome" required length="150" name="nome">
+                        <label>Nome</label>
+                    </div>
+
+                    <div class="input-field" id="email-input">
+                        <i class="material-icons prefix white-text">email</i>
+                        <input type="email" class="validate" ng-model="usuario.email" required length="150" name="email">
+                        <label>Email</label>
+                    </div>
+
+                    <div class="input-field" id="senha-input">
+                        <i class="material-icons prefix white-text">lock</i>
+                        <input type="password" class="validate" min="6" ng-model="usuario.senha" required length="150" name="senha">
+                        <label>Senha</label>
+                    </div>
+
+                    <button class="btn btn-send waves-effect waves-light deep-purple accent-1 right" type="submit">
+                    Mantenha-me informado! <i class="material-icons right">send</i>
+                </button>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
