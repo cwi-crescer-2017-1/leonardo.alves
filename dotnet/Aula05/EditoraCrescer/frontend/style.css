@@ -34,6 +34,9 @@ nav.row {
     margin: auto;
 }
 
+#btn-showmore-footer{   
+    transform: translateY(-25%);
+}
 *::-webkit-scrollbar {width: 10px; height: 10px; border: 7px solid #e0e0e0;}
 *::-webkit-scrollbar-button:vertical {display: block;}
 *::-webkit-scrollbar-thumb:vertical {background-color: #bdbdbd;}
@@ -51,5 +54,4 @@ nav.row {
 .progress {
     position: relative;
     top:0;
-
 }
