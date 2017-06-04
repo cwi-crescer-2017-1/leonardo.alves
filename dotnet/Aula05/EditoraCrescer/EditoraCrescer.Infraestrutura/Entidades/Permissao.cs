@@ -13,6 +13,12 @@ namespace EditoraCrescer.Infraestrutura.Entidades
             Nome = nome;
         }
 
+        protected Permissao()
+        {
+
+        }
+                
+
         public int Id { get; set; }
 
         public string Nome { get; set; }
