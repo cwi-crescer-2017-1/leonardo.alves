@@ -14,6 +14,7 @@ using System.Web.Security;
 namespace EditoraCrescer.Api.Controllers
 {
     [RoutePrefix("api/Usuarios")]
+    
     public class UsuarioController : ApiController
     {
         private HttpResponseMessage responder(bool exito, dynamic mensagens)
@@ -34,7 +35,8 @@ namespace EditoraCrescer.Api.Controllers
                 email = Thread.CurrentPrincipal.Identity.Name,
                 Permissoes = _usuarioRepositorio.pegarPermissoes()
             };
-
+            var e = usuario.email;
+            if (e == "") return Request.CreateResponse(HttpStatusCode.Forbidden, new { mensagem = "Informações incorretas." });
             return Request.CreateResponse(HttpStatusCode.OK, new { dados = usuario});
         }
 
@@ -47,16 +49,17 @@ namespace EditoraCrescer.Api.Controllers
 
         }
 
-        [HttpPost]
-        public HttpResponseMessage CadastrarUsuario (Usuario usuario)
+        
+        [HttpPost]        
+        public HttpResponseMessage CadastrarUsuario (Usuario Usuario)
         {
-            if (_usuarioRepositorio.Buscar(usuario.Email) == null)
+            if (_usuarioRepositorio.Buscar(Usuario.Email) == null)
             {
-                if (usuario.Validar())
-                    _usuarioRepositorio.Cadastrar(usuario);
+                if (Usuario.Validar())
+                    _usuarioRepositorio.Cadastrar(Usuario);
 
                 else
-                    return responder(false, usuario.Mensagens);
+                    return responder(false, Usuario.Mensagens);
             }
             else
                 return responder(false, "usuário já existe.");

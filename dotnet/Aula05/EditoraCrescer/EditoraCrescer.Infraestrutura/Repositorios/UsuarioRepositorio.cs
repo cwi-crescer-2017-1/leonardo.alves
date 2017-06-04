@@ -22,9 +22,15 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
         public Usuario Buscar(string email)
         {
             var usuario = contexto.Usuarios.FirstOrDefault(u => u.Email == email);
-            var permissoes = contexto.Usuarios.SelectMany(u => u.Permissoes).ToList();
+            if (usuario == null) return null;
+            var permissoes = contexto.Usuarios
+                .Where(u => u.Email == email)
+                .SelectMany(u => u.Permissoes)
+                .ToList();
+                
 
-            usuario.Permissoes = permissoes;       
+            if(permissoes != null)
+                usuario.Permissoes = permissoes;       
 
             return usuario;
         }
@@ -52,6 +58,7 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
         public void Cadastrar(Usuario usuario)
         {            
             contexto.Usuarios.Add(usuario);
+            //Aqui vai o serviço de email!
             contexto.SaveChanges();           
         }
     }
