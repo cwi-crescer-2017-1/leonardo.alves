@@ -1,15 +1,19 @@
-﻿using EditoraCrescer.Infraestrutura.Entidades;
+﻿using EditoraCrescer.Api.App_Start;
+using EditoraCrescer.Infraestrutura.Entidades;
 using EditoraCrescer.Infraestrutura.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
+using System.Web;
 using System.Web.Http;
+using System.Web.Security;
 
 namespace EditoraCrescer.Api.Controllers
 {
-    
+    [RoutePrefix("api/Usuarios")]
     public class UsuarioController : ApiController
     {
         private HttpResponseMessage responder(bool exito, dynamic mensagens)
@@ -22,11 +26,16 @@ namespace EditoraCrescer.Api.Controllers
 
         UsuarioRepositorio _usuarioRepositorio = new UsuarioRepositorio();
 
-        [HttpGet]
-        public IHttpActionResult BuscarUsuario (string email)
+        [HttpGet, Autorizacao]       
+        public HttpResponseMessage BuscarUsuario ()
         {
-            _usuarioRepositorio.Buscar(email);
-            return Ok();
+            var usuario = new
+            {
+                email = Thread.CurrentPrincipal.Identity.Name,
+                Permissoes = _usuarioRepositorio.pegarPermissoes()
+            };
+
+            return Request.CreateResponse(HttpStatusCode.OK, new { dados = usuario});
         }
 
         [HttpPut]

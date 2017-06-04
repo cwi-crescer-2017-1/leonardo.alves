@@ -1,4 +1,5 @@
-﻿using EditoraCrescer.Infraestrutura.Entidades;
+﻿using EditoraCrescer.Api.App_Start;
+using EditoraCrescer.Infraestrutura.Entidades;
 using EditoraCrescer.Infraestrutura.Repositorios;
 using System.Collections.Generic;
 using System.Net;
@@ -47,7 +48,7 @@ namespace EditoraCrescer.Api.Controllers
             return Ok(new { data = livros });
         }
 
-        [HttpPut]
+        [HttpPut, Autorizacao]
         [Route("{isbn:int}")]
         public IHttpActionResult AtualizarLivro (int isbn, Livro livro)
         {
@@ -59,24 +60,28 @@ namespace EditoraCrescer.Api.Controllers
                 return BadRequest(string.Join("; ", mensagens.ToArray()));
         }
     
-        [HttpPost]
-        public IHttpActionResult InserirLivro (Livro livro)
+        [HttpPost, Autorizacao]
+        public HttpResponseMessage InserirLivro (Livro livro)
         {
-            var mensagens = new List<string>();
+            var mensagem = new List<string>();
 
-            if (!livro.Validar(out mensagens))
-                return BadRequest(string.Join("; ", mensagens.ToArray()));
+            if (!livro.Validar(out mensagem))
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { mensagem = mensagem });
+                   
 
             _repositorioLivro.Criar(livro);  
 
-            return Ok(new { data = livro });
+            return Request.CreateResponse(HttpStatusCode.OK, new { dados = "Sucesso." });
         }
 
         [HttpDelete]
-        public IHttpActionResult DeletarLivro (int id)
+        [Route("{id:int}")]
+        public HttpResponseMessage Delete(int id)
         {
             _repositorioLivro.Deletar(id);
-            return Ok("Deletado");
+
+            return Request.CreateResponse(HttpStatusCode.OK, new { dados = "deletado" });
+
         }
 
 

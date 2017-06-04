@@ -81,6 +81,7 @@ namespace EditoraCrescer.Api.App_Start
                                 return;
                             }
                         }
+                        negarAcesso(actionContext);
                     }
                 }
             }
