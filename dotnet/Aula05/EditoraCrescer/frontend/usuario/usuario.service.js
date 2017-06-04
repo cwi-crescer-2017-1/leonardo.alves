@@ -1,11 +1,9 @@
 app.factory("usuarioService", usuarioService);
 
 function usuarioService ($http) {
-    let url = "http://localhost:6200/api/usuarios";
+    let url = "http://localhost:6200/api/usuario";
 
-    var usuario   = () => $http.get(url + "usuarios");
-
-   
+    var usuario   = () => $http.get(url + "usuario");   
 
     return {
         read: getAutor,
