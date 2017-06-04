@@ -45,9 +45,7 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
 
         public void Criar (Livro livro)
         {
-            procurarPorAutor(livro);
-
-            procurarPorRevisor(livro);            
+            procurarPorAutor(livro);                        
 
             contexto.Livros.Add(livro);
             contexto.SaveChanges();
@@ -61,7 +59,7 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
 
             verificarDadosAtualizacao(isbn, livro, mensagens);
 
-            if (mensagens.Count > 0) return false;
+            if (mensagens.Count > 0) return false;            
 
             contexto.Entry(livro).State = System.Data.Entity.EntityState.Modified;
             contexto.SaveChanges();
@@ -73,6 +71,7 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
         {
             var livro = contexto.Livros.FirstOrDefault(l => l.Isbn == id);
             contexto.Livros.Remove(livro) ;
+            contexto.SaveChanges();
         }
 
        
@@ -89,9 +88,13 @@ namespace EditoraCrescer.Infraestrutura.Repositorios
             if (isbn < 1)
                 mensagens.Add("O isbn não pode ser negativo.");
 
-            if (contexto.Livros.Count(l => l.Isbn == isbn) > 0)
-                mensagens.Add("O isbn não existe no banco de dados.");
+            var procuraLivro = contexto.Livros
+                .AsNoTracking()
+                .FirstOrDefault(l => l.Isbn == isbn);
 
+            if (procuraLivro == null)
+                mensagens.Add("O isbn não existe no banco de dados.");            
+          
             if (livro.Isbn != isbn)
                 mensagens.Add("O url não é compativel com o livro que você quer alterar.");
         }

@@ -56,11 +56,11 @@
     <Compile Include="Entidades\Permissao.cs" />
     <Compile Include="Entidades\Revisor.cs" />
     <Compile Include="Entidades\Usuario.cs" />
-    <Compile Include="Mappings\AutorMap.cs" />
-    <Compile Include="Mappings\LivroMap.cs" />
-    <Compile Include="Mappings\PermissaoMap.cs" />
-    <Compile Include="Mappings\RevisorMap.cs" />
-    <Compile Include="Mappings\UsuarioMap.cs" />
+    <Compile Include="Entidades\Mappings\AutorMap.cs" />
+    <Compile Include="Entidades\Mappings\LivroMap.cs" />
+    <Compile Include="Entidades\Mappings\PermissaoMap.cs" />
+    <Compile Include="Entidades\Mappings\RevisorMap.cs" />
+    <Compile Include="Entidades\Mappings\UsuarioMap.cs" />
     <Compile Include="Migrations\201705301939367_InitialCreate.cs" />
     <Compile Include="Migrations\201705301939367_InitialCreate.Designer.cs">
       <DependentUpon>201705301939367_InitialCreate.cs</DependentUpon>
