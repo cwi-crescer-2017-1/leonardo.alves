@@ -1,0 +1,61 @@
+<div id="adicionarLivro" class="modal brown darken-2">
+    <div class="modal-content">
+        <h4>Adicionar Livro</h4>
+        <form novalidate>
+            <div class="input-field">
+                <input  type="text" ng-model="livro.titulo" required length="150" name="titulo">
+                <label>Titulo</label>
+            </div>
+
+            <div class="input-field">
+                <input  type="text" ng-model="livro.Autor.Nome" required length="150" name="nomeautor">
+                <label>Autor</label>
+            </div>
+
+            <div class="input-field">
+                <input  type="text" ng-model="livro.genero" required length="150" name="genero">
+                <label>Genero</label>
+            </div>
+
+            <div class="input-field">
+                <input  type="text" ng-model="livro.capa" required length="150" name="capa">
+                <label>Capa</label>
+            </div>
+
+            <div class="input-field">
+                 <textarea ng-model="livro.descricao" required class="materialize-textarea"></textarea>
+                <label>Descrição</label>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer #5d4037 brown darken-2">
+        <a ng-click="adicionarLivro(livro)" class=" modal-action modal-close waves-effect waves-green btn-flat  grey lighten-3">Adicionar</a>
+    </div>
+</div>
+<div class="container">
+    <ul class="collection with-header">
+        <li class="collection-header">
+            <span class="badge">
+                <a class="btn-floating btn-medium waves-effect waves-light yellow" data-target="adicionarLivro" modal>
+                    <i class="material-icons">playlist_add</i>
+                </a>                    
+            </span>
+            <h4>Todos os livros</h4>
+        </li>
+
+        <li class="collection-item avatar" ng-repeat="livro in livros track by $index">
+
+            <a ng-href="/#/livro/{{livro.Isbn}}" class="secondary-content"><i class="material-icons">edit</i></a>
+            <img ng-src="{{livro.Capa}}" alt="{{livro.Titulo}}" class="circle">
+            <span class="title"><strong>{{livro.Titulo}} </strong>-- {{livro.Isbn}}</span>
+            <p>{{livro.Genero}} -- {{livro.NomeAutor}}</p>
+
+        </li>
+
+    </ul>
+    <div class="fixed-action-btn">
+        <a ng-click="getLivros()" class="btn-floating btn-large red">
+            <i class="large material-icons">add</i>
+        </a>
+    </div>
+</div>

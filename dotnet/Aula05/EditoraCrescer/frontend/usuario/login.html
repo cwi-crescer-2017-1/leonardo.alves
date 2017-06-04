@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row   light-green accent-2">
+
+        <div class="container col s12">
+            <p class="flow-text">Informe suas credenciais</p>
+
+            <form novalidate name="loginForm" ng-submit="login(usuario)">
+
+                <div class="input-field" id="email-input">
+                    <input  type="email" ng-model="usuario.email" required length="150" name="email">
+                    <label>Email</label>
+                </div>
+
+                <div class="input-field" id="senha-input">
+                    <input  type="password" ng-model="usuario.senha" required length="150" name="senha">
+                    <label>Senha</label>
+                </div>
+
+                <button class="btn btn-send waves-effect waves-light deep-purple accent-1 right" type="submit">
+                    Login <i class="material-icons right">send</i>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
