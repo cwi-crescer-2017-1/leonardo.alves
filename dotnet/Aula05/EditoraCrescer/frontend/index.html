@@ -9,24 +9,40 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
     <link href="style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- JavaScript for: jQuery, angular, materialize, and angular-materialize. All of which are needed. -->
+    
+    <!-- JavaScript for: jQuery, angular, materialize, angular-materialize. All of which are needed. -->
+    
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.5.5/angular-locale_pt-br.js"></script>
+    <script type="text/javascript" src="https://rawgit.com/cwi-crescer-2017-1/instrutores/master/modulo-05-angularjs/auth/auth.module.js"></script>
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.2/angular-materialize.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.5.5/angular-locale_pt-br.js"></script>
+
+   <script type="text/javascript">
+        $(window).on('load', function() {
+            $(".loader").fadeOut("slow");
+        })       
+        </script>
+
+
 </head>
 
-<body class="grey lighten-2">
+<body id="inicio" class="grey lighten-2">
     <div ng-app="livrariaCrescer">        
         <nav class="row">
             <div class="nav-wrapper">
                 <div class="col s12 deep-purple darken-2">
-                    <span class="col s6">Livraria Crescer</span>                    
-                    <div class="right">
-                        <a ng-hide="logado" class="waves-effect waves-light white-text btn-flat">Login</a>                
-                        <a ng-hide="logado" class="waves-effect waves-light white-text btn-flat">Cadastrar-se</a>
+                    <span class="col s3">Livraria Crescer</span>                    
+                    <div class="right">                      
+                        <a ng-show="isAutenticado()" ng-click="logout()" class="waves-effect waves-light white-text btn-flat">Logout</a>                
+                        <a ng-hide="isAutenticado()" ng-href="/#/login" class="waves-effect waves-light white-text btn-flat">Login</a>                
+                        <a ng-hide="isAutenticado()" class="waves-effect waves-light white-text btn-flat">Cadastrar-se</a>
                     </div>               
                 </div>
             </div>
@@ -38,9 +54,21 @@
     <script src="js/module.js"></script>
     <script src="js/route.js"></script>
     <script src="js/services.js"></script>
+
     <script src="livro/listagem-livro.controller.js"></script>
     <script src="livro/livro.controller.js"></script>
     <script src="livro/livro.service.js"></script>
+
+    <script src="usuario/usuario.controller.js"></script>
+    <script src="usuario/usuario.service.js"></script>
 </body>
+
+<div class="loader"> 
+  <div class="progress">
+      <div class="indeterminate"></div>
+  </div>
+</div>
+
+ 
 
 </html>
