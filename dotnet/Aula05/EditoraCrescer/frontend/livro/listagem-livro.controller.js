@@ -37,8 +37,12 @@ function listagemLivroController($scope, livroService){
                 }               
                 
                 //substitui a view apenas se haver livros.
-                if(!!response.data.data) $scope.livros = response.data.data;
-                
+                if(!!response.data.data) {
+                    $scope.livros = response.data.data;
+
+                    //vai pro inicio da pagina
+                    document.getElementById('inicio').scrollIntoView()
+                }
             });
     } 
     function getLivrosNovos () {
