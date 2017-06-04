@@ -1,13 +1,16 @@
 app.controller("listagemLivroController", listagemLivroController);
 
-function listagemLivroController($scope,livroService){
+function listagemLivroController($scope, livroService){
     $scope.parametros = {pegar: 6, pular: 0};
     $scope.paginacao = {proximo: true, anterior: false};
     $scope.proximaPagina = getLivros;
     $scope.paginaAnterior = getLivros;    
     getLivros();
     getLivrosNovos();
-    
+
+    //timeout pro carroussel funcionar
+    setTimeout(() => $('.slider').slider(), 1000);
+
     function getLivros (){
        return livroService.readAll($scope.parametros)
             .then(response =>  {                   

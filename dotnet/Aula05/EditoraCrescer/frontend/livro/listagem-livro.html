@@ -4,17 +4,28 @@
     <div class="deep-orange lighten-2">
         <article class="row news">
             <h5>Novos livros:</h5>
-            <div>
+            <!--<div>
                 <div class="card col m4 newscard" ng-repeat="livro in livrosNovos">
                     <a ng-href="/#/livro/{{livro.Isbn}}">
                         <div class="container col m12">
                             <div class="card-image hoverable">
-                                <img src="https://cdn.pixabay.com/photo/2011/06/07/15/29/tree-7835__340.jpg">
+                                <img  ng-src="{{livro.Capa}}">
                                 <span class="card-title">{{livro.Titulo}}</span>
                             </div>
                         </div>
                     </a>
                 </div>
+            </div>-->
+            <div class="slider" slider>
+                <ul class="slides">
+                    <li ng-repeat="livro in livrosNovos">
+                        <img  ng-src="{{livro.Capa}}">
+                        <div class="caption center-align">
+                            <h3>{{livro.Titulo}}</h3>
+                            <h5 class="light grey-text text-lighten-3">{{livro.Descricao}}</h5>
+                        </div>
+                    </li>      
+                </ul>
             </div>
         </article>
     </div>
@@ -24,7 +35,7 @@
                 <div class="container">
                     <div class="card hoverable">
                         <div class="card-image">
-                            <img src="https://cdn.pixabay.com/photo/2011/06/07/15/29/tree-7835__340.jpg">
+                            <img class="livro-capa" ng-src="{{livro.Capa}}">
                             <span class="card-title">{{livro.Titulo}}</span>
                         </div>
                         <div class="card-content">
