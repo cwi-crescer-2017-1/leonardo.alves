@@ -14,11 +14,19 @@ namespace EditoraCrescer.Api.Controllers
     {
         private LivroRepositorio _repositorioLivro = new LivroRepositorio();
 
-        [HttpGet]
+        [HttpGet, Autorizacao]
+        [Route("todos")]
         public IHttpActionResult ObterLivros(int pular, int pegar)
         {
             var livros = _repositorioLivro.Obter(pular, pegar);
-            return Ok(new { data = livros });
+            return Ok(new { dados = livros });
+        }
+
+        [HttpGet]        
+        public IHttpActionResult ObterLivrosPublicados(int pular, int pegar)
+        {
+            var livros = _repositorioLivro.ObterPublicados(pular, pegar);
+            return Ok(new { dados = livros });
         }
 
         [HttpGet]
@@ -27,7 +35,7 @@ namespace EditoraCrescer.Api.Controllers
         {
             var livro = _repositorioLivro.ObterPorIsbn(isbn);
             if (livro != null)
-                return Request.CreateResponse(HttpStatusCode.OK, new { data = livro });
+                return Request.CreateResponse(HttpStatusCode.OK, new { dados = livro });
                     
             else return Request.CreateResponse(HttpStatusCode.BadRequest, new { mensagens = "ISBN não encontrado nos registros." });
         }
@@ -37,7 +45,7 @@ namespace EditoraCrescer.Api.Controllers
         public IHttpActionResult ObterLivrosPorGenero (string genero)
         {
             var livros = _repositorioLivro.ObterPorGenero(genero);
-            return Ok(new { data = livros });
+            return Ok(new { dados = livros });
         }
 
         [HttpGet]
@@ -45,10 +53,10 @@ namespace EditoraCrescer.Api.Controllers
         public IHttpActionResult ObterLivrosPorLancamento()
         {
             var livros = _repositorioLivro.ObterPorLancamento();
-            return Ok(new { data = livros });
+            return Ok(new { dados = livros });
         }
 
-        [HttpPut, Autorizacao]
+        [HttpPut, Autorizacao(Roles = "Colaborador,Administrador,Revisor,Publicador")]
         [Route("{isbn:int}")]
         public IHttpActionResult AtualizarLivro (int isbn, Livro livro)
         {
@@ -60,7 +68,7 @@ namespace EditoraCrescer.Api.Controllers
                 return BadRequest(string.Join("; ", mensagens.ToArray()));
         }
     
-        [HttpPost, Autorizacao]
+        [HttpPost, Autorizacao(Roles = "Colaborador,Administrador,Revisor,Publicador")]
         public HttpResponseMessage InserirLivro (Livro livro)
         {
             var mensagem = new List<string>();
@@ -74,7 +82,7 @@ namespace EditoraCrescer.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, new { dados = "Sucesso." });
         }
 
-        [HttpDelete]
+        [HttpDelete, Autorizacao(Roles ="Colaborador,Administrador,Revisor,Publicador")]
         [Route("{id:int}")]
         public HttpResponseMessage Delete(int id)
         {

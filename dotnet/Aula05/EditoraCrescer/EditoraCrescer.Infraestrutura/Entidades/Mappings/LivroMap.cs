@@ -16,17 +16,19 @@ namespace EditoraCrescer.Infraestrutura.Mappings
 
             HasKey(x => x.Isbn);
 
-            Property(l => l.Titulo).IsRequired();
-            Property(l => l.Genero).IsRequired();
-            Property(l => l.Descricao).IsRequired();
-            Property(l => l.Capa).IsRequired();
+            Property(l => l.Titulo).IsRequired().HasMaxLength(300);
+            Property(l => l.Genero).IsRequired().HasMaxLength(100);
+            Property(l => l.Descricao).IsRequired().HasMaxLength(500);
+            Property(l => l.Capa).IsRequired().HasMaxLength(500);
 
             HasRequired(x => x.Autor)
                 .WithMany()
                 .HasForeignKey(x => x.IdAutor);
+
             HasOptional(x => x.Revisor)
                 .WithMany()
                 .HasForeignKey(x => x.IdRevisor);
+
         }
     }
 }

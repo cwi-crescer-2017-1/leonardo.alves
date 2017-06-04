@@ -107,7 +107,6 @@
     <Compile Include="Controllers\AutController.cs" />
     <Compile Include="Controllers\AutoresController.cs" />
     <Compile Include="Controllers\LivrosController.cs" />
-    <Compile Include="Controllers\RevisoresController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
