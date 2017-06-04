@@ -1,61 +1,55 @@
 
 
 <div>
-    <div class="deep-orange lighten-2">
-        <article class="row news">
-            <h5>Novos livros:</h5>
-            <!--<div>
-                <div class="card col m4 newscard" ng-repeat="livro in livrosNovos">
-                    <a ng-href="/#/livro/{{livro.Isbn}}">
-                        <div class="container col m12">
-                            <div class="card-image hoverable">
-                                <img  ng-src="{{livro.Capa}}">
-                                <span class="card-title">{{livro.Titulo}}</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>-->
+    <div>
+        <article class="row news">            
             <div class="slider" slider>
                 <ul class="slides">
                     <li ng-repeat="livro in livrosNovos">
-                        <img  ng-src="{{livro.Capa}}">
-                        <div class="caption center-align">
-                            <h3>{{livro.Titulo}}</h3>
-                            <h5 class="light grey-text text-lighten-3">{{livro.Descricao}}</h5>
-                        </div>
+                        <a  ng-href="/#/livro/{{livro.Isbn}}">
+                            <img  ng-src="{{livro.Capa}}">
+                            <div class="caption center-align">
+                                <h3>{{livro.Titulo}}</h3>
+                                <h5 class="light grey-text text-lighten-3">{{livro.Genero}}</h5>
+                            </div>
+                        </a>
+                        
                     </li>      
                 </ul>
             </div>
         </article>
     </div>
-    <div class="container deep-orange lighten-3">
+    <div class="deep-orange lighten-3">
         <article class="row">
-            <div class="col s12 m12 l12" ng-repeat="livro in livros">                
-                <div class="container">
-                    <div class="card hoverable">
+            <div class="col s12 m12 l6" ng-repeat="livro in livros track by $index">                
+                
+                    <div class="card horizontal hoverable">
                         <div class="card-image">
-                            <img class="livro-capa" ng-src="{{livro.Capa}}">
-                            <span class="card-title">{{livro.Titulo}}</span>
+                            <img class="livro-capa" ng-src="{{livro.Capa}}">                            
                         </div>
-                        <div class="card-content">
-                            <p>Autor: {{livro.NomeAutor}}</p>
-                            <p>Genero: {{livro.Genero}}</p>
-                        </div>
-                        <div class="card-action">
-                            <a ng-href="/#/livro/{{livro.Isbn}}">Ver mais</a>
-                        </div>
+                        <div class="card-stacked">
+                             <div class="card-content">
+                                <span class="card-title">{{livro.Titulo}}</span>
+                                <p>Autor: {{livro.Autor.Nome}}</p>
+                                <p>Genero: {{livro.Genero}}</p>
+                            </div>
+                            <div class="card-action">
+                                <a ng-href="/#/livro/{{livro.Isbn}}">Ver mais</a>
+                            </div>
+                        </div>                 
                     </div>
-                </div>
+               
             </div>
         </article>        
     </div>    
 </div>
-<footer class="page-footer">
+<footer class="page-footer pink lighten-1">
         <div class="row">
-            <div class="col m2 push-m5">
-                <button ng-show="paginacao.proximo" ng-click="proximaPagina()">Próxima página</button>
-                <button ng-show="paginacao.anterior" ng-click="paginaAnterior()">Página anterior</button>
+            <div id="btn-showmore-footer" class="col s12 center-align">
+                 <button ng-show="haLivros" class="btn waves-effect waves-light  pink lighten-4 blue-grey-text darken-3-text" ng-click="carregarLivros()">Exibir mais
+                    <i class="material-icons right">library_books</i>
+                </button>
             </div>
+             
         </div>        
     </footer>
