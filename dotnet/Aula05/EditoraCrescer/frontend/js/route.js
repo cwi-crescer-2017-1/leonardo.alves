@@ -18,6 +18,15 @@ angular.module('livrariaCrescer')
             controller: "usuarioController",
             templateUrl: "usuario/cadastro.html"
       })
+      .when("/administrativo", {
+            controller: "usuarioController",
+            templateUrl: "usuario/administrativo.html",
+            resolve: {
+              autenticado: function (authService) {
+                  return authService.isAutenticadoPromise();
+                }
+            }
+      })
       .otherwise({ redirectTo:'/home' });
 
   });
