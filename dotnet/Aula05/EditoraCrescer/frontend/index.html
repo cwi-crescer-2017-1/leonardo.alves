@@ -36,11 +36,12 @@
         <nav class="row">
             <div class="nav-wrapper">
                 <div class="col s12 deep-purple darken-2">
-                    <span class="col s3">Livraria Crescer</span>                    
+                    <a ng-href="/#/home"><span class="col s3">Livraria Crescer</span></a>                   
                     <div class="right">                      
+                        <a ng-show="isAutenticado()" ng-href="/#/administrativo" class="waves-effect waves-light white-text btn-flat">Administração</a>                
                         <a ng-show="isAutenticado()" ng-click="logout()" class="waves-effect waves-light white-text btn-flat">Logout</a>                
                         <a ng-hide="isAutenticado()" ng-href="/#/login" class="waves-effect waves-light white-text btn-flat">Login</a>                
-                        <a ng-hide="isAutenticado()" class="waves-effect waves-light white-text btn-flat">Cadastrar-se</a>
+                        <a ng-hide="isAutenticado()" ng-href="/#/cadastro" class="waves-effect waves-light white-text btn-flat">Inscrever-se</a>
                     </div>               
                 </div>
             </div>
