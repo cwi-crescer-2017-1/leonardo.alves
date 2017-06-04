@@ -66,16 +66,16 @@
         
         <div ng-show="auth.isAutenticado()" class="fixed-action-btn horizontal">
             <a class="btn-floating btn-large purple">
-                <i class="large material-icons">mode_edit</i>
+                <i class="large material-icons">reorder</i>
             </a>
             <ul>
-                <li ng-if="auth.possuiPermissao('publicador')">
+                <li ng-if="isLivroRevisado() && auth.possuiPermissao('Publicador')" ng-click="podeSerPublicado()">
                     <a class="btn-floating green">
                         <i class="material-icons">publish</i></a>
                 </li>
-                <li ng-if="auth.possuiPermissao('revisor')">
-                    <a class="btn-floating green">
-                        <i class="material-icons">done</i></a>
+                <li ng-if="auth.possuiPermissao('Revisor') && !isLivroRevisado()">
+                    <a class="btn-floating green" ng-click="revisar()">
+                        <i class="material-icons">spellcheck</i></a>
                 </li>
                 <li><a class="btn-floating blue" data-target="editarLivro" modal><i class="material-icons">edit</i></a></li>
 

@@ -5,10 +5,16 @@ function livroService ($http) {
     let url = "http://localhost:6200/api/livros/";
 
     var getLivros = (parametros) => $http({
-           url: url,
+           url: url + "/todos",
            method: 'GET',
            params: parametros
-         });   
+         }); 
+
+    var getLivrosPublicados = (parametros) => $http({
+        url: url,
+        method: 'GET',
+        params: parametros
+    })
 
     var getLivro = (id) => $http.get(url + id, id);
 
@@ -19,6 +25,8 @@ function livroService ($http) {
     var postLivro = (livro) => $http.post(url, livro);    
 
     var putLivro = (idLivro,livro) => $http.put(url + idLivro, livro);
+
+    
 
     var deleteLivro = (id) => $http({
         url: url + id,
@@ -31,9 +39,10 @@ function livroService ($http) {
         read: getLivro,
         readAll: getLivros,
         readGender: getLivrosPorGenero,
-        readNews: getLivrosLancamento,        
+        readNews: getLivrosLancamento, 
+        readPublished: getLivrosPublicados,       
         create: postLivro,
-        update: putLivro,
+        update: putLivro,        
         delete: deleteLivro    
     }
 }
