@@ -16,7 +16,7 @@ function livroController($scope, $routeParams, $rootScope, $location, livroServi
 
     function podeSerPublicado() {
         let diaAtual = new Date().getDay;
-        let podePublicar = diaAtual !== 0 && diaAtual !== 6 && typeof $scope.livro.DataPublicacao === "undefined";
+        let podePublicar = diaAtual !== 0 && diaAtual !== 6 &&  $scope.livro.DataPublicacao === null;
 
         if (podePublicar)
             publicarLivro();
