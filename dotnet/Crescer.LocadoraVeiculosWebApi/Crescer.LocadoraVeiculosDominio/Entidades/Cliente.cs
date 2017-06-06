@@ -11,7 +11,7 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
         public int Id { get; set; }
 
         public string NomeCompleto { get; set; }
-
+        public int IdEndereco { get; set; }
         public Endereco Endereco { get; set; }
 
         public string Cpf { get; set; }
