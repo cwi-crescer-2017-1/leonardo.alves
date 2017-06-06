@@ -1,8 +1,6 @@
 ﻿using Crescer.LocadoraVeiculosDominio.Entidades;
 using Crescer.LocadoraVeiculosInfraestrutura.Repositorio;
 using EditoraCrescer.Api.App_Start;
-using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
@@ -15,7 +13,15 @@ namespace Crescer.LocadoraVeiculos.Controllers
     {
         private UsuarioRepositorio _usuarioRepositorio = new UsuarioRepositorio();
 
-        
+        public HttpResponseMessage MensagemErro(dynamic mensagens)
+        {
+            return Request.CreateResponse(HttpStatusCode.BadRequest, new { mensagens = mensagens });
+        }
+
+        public HttpResponseMessage MensagemSucesso(dynamic dados)
+        {
+            return Request.CreateResponse(HttpStatusCode.OK, new { dados = dados });
+        }
 
         [HttpGet, Autorizacao]
         public HttpResponseMessage Obter()
@@ -30,38 +36,11 @@ namespace Crescer.LocadoraVeiculos.Controllers
 
             return MensagemSucesso(usuario);
         }       
-
-        [HttpPost]
-        public HttpResponseMessage Criar(dynamic usuario)
-        {
-            if (_usuarioRepositorio.Obter(usuario.Email) == null)
-            {
-                if (usuario.Validar())
-                    _usuarioRepositorio.Cadastrar(usuario);
-
-                else
-                    return MensagemErro(usuario.Mensagens);
-            }
-            else
-                return MensagemErro("usuário já cadastrado.");
-
-            return MensagemSucesso(usuario);
-        }
-      
+            
         protected override void Dispose(bool disposing)
         {
             _usuarioRepositorio.Dispose();
             base.Dispose(disposing);
-        }
-
-        public HttpResponseMessage MensagemErro(dynamic mensagens)
-        {
-            return Request.CreateResponse(HttpStatusCode.BadRequest, new { mensagens = mensagens });
-        }
-
-        public HttpResponseMessage MensagemSucesso(dynamic dados)
-        {
-            return Request.CreateResponse(HttpStatusCode.OK, new { dados = dados });
-        }
+        }        
     }
 }
