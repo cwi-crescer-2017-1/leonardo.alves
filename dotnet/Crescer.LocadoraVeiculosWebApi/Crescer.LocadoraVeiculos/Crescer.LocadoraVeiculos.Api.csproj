@@ -95,6 +95,7 @@
   <ItemGroup>
     <Compile Include="App_Start\Autorizacao.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\IMensagens.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
@@ -115,6 +116,10 @@
     <Compile Include="Migrations\201706060156356_ajustarNomeDoPrecoEmPacote.cs" />
     <Compile Include="Migrations\201706060156356_ajustarNomeDoPrecoEmPacote.Designer.cs">
       <DependentUpon>201706060156356_ajustarNomeDoPrecoEmPacote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706061921550_AdicionarTabelaPedidoOpcionalPersonalizada.cs" />
+    <Compile Include="Migrations\201706061921550_AdicionarTabelaPedidoOpcionalPersonalizada.Designer.cs">
+      <DependentUpon>201706061921550_AdicionarTabelaPedidoOpcionalPersonalizada.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -153,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706060156356_ajustarNomeDoPrecoEmPacote.resx">
       <DependentUpon>201706060156356_ajustarNomeDoPrecoEmPacote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706061921550_AdicionarTabelaPedidoOpcionalPersonalizada.resx">
+      <DependentUpon>201706061921550_AdicionarTabelaPedidoOpcionalPersonalizada.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
