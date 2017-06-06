@@ -1,17 +1,19 @@
-﻿namespace Crescer.LocadoraVeiculosDominio.Entidades
+﻿using System;
+
+namespace Crescer.LocadoraVeiculosDominio.Entidades
 {
-    public class Endereco
+    public class Endereco : IValidar
     {
-        public int Id { get; set; }
-        public int Numero { get; set; }
+        public int Id { get; private set; }
+        public int Numero { get; private set; }
 
-        public string Rua { get; set; }
+        public string Rua { get;private set; }
 
-        public string Cidade { get; set; }
+        public string Cidade { get;private set; }
 
-        public string UF { get; set; }
+        public string UF { get;private set; }
 
-        public string  Bairro { get; set; }        
+        public string  Bairro { get;private set; }        
         
         protected Endereco() { }
 
@@ -22,6 +24,14 @@
             Cidade = cidade;
             UF = uf;
             Bairro = bairro;
+        }
+
+        public bool Validar()
+        {
+            return !(string.IsNullOrWhiteSpace(Rua) &&
+                string.IsNullOrWhiteSpace(Cidade) &&
+                string.IsNullOrWhiteSpace(UF) &&
+                string.IsNullOrWhiteSpace(Bairro));
         }
     }
 }

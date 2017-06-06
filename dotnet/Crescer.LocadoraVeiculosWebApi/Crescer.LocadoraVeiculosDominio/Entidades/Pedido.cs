@@ -8,39 +8,25 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
 {
     public class Pedido
     {
-        public int IdCliente { get; set; }
-        public Cliente Cliente { get; set; }
-        public int? IdPacote { get; set; }
-        public Pacote Pacote { get; set;}
-        public List<Opcional> Opcionais { get; set; }
-        public int Id { get; set; }
-        public Veiculo Veiculo { get; set; }
-        public int IdVeiculo { get; set; }
-        public DateTime DataPedido { get; set; }
-        public DateTime DataEntregaPrevista { get; set; }
-        public DateTime? DataEntregaReal { get; set; }
+        public Cliente Cliente { get; private set; }        
+        public Pacote Pacote { get; private set;}
+        public List<Opcional> Opcionais { get; private set; }
+        public int Id { get; private set; }
+        public Veiculo Veiculo { get; private set; }        
+        public DateTime DataPedido { get; private set; }
+        public DateTime DataEntregaPrevista { get; private set; }
+        public DateTime? DataEntregaReal { get; private set; }
 
         protected Pedido () { }
 
-        public Pedido (DateTime dataEntregaReal)
-        {
-            //Construtor para setar a entrega do veículo
-            DataEntregaReal = dataEntregaReal;
-        }
+        public void Devolver() {
+            DataEntregaReal = DateTime.Now;
+        }       
 
-        public Pedido(int idVeiculo, DateTime dataPedido, DateTime dataEntregaPrevista)
-        {
-            //Construtor caso não haja pacote
-            IdVeiculo = idVeiculo;            
-            DataPedido = dataPedido;
-            DataEntregaPrevista = dataEntregaPrevista;
-            Opcionais = new List<Opcional>();
-        }
-
-        public Pedido(int idVeiculo, int idPacote, DateTime dataPedido, DateTime dataEntregaPrevista) {
-            //Construtor caso haja pacote
-            IdVeiculo = idVeiculo;
-            IdPacote = idPacote;
+        public Pedido(Veiculo veiculo, DateTime dataPedido, 
+            DateTime dataEntregaPrevista, Pacote pacote = null) {
+            Pacote = pacote;
+            Veiculo = veiculo;
             DataPedido = dataPedido;
             DataEntregaPrevista = dataEntregaPrevista;
             Opcionais = new List<Opcional>();
