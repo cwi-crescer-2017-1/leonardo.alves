@@ -46,6 +46,7 @@
     <Compile Include="Entidades\Opcional.cs" />
     <Compile Include="Entidades\Pacote.cs" />
     <Compile Include="Entidades\Pedido.cs" />
+    <Compile Include="Entidades\Permissao.cs" />
     <Compile Include="Entidades\Veiculo.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

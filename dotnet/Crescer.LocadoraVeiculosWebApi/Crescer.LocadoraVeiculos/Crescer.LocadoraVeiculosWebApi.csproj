@@ -94,9 +94,35 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Contexto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mappings\ClienteMap.cs" />
+    <Compile Include="Mappings\EnderecoMap.cs" />
+    <Compile Include="Mappings\OpcionalMap.cs" />
+    <Compile Include="Mappings\PacoteMap.cs" />
+    <Compile Include="Mappings\PedidoMap.cs" />
+    <Compile Include="Mappings\PermissaoMap.cs" />
+    <Compile Include="Mappings\UsuarioMap.cs" />
+    <Compile Include="Mappings\VeiculoMap.cs" />
+    <Compile Include="Migrations\201706060015405_adicionarTabelasIniciais.cs" />
+    <Compile Include="Migrations\201706060015405_adicionarTabelasIniciais.Designer.cs">
+      <DependentUpon>201706060015405_adicionarTabelasIniciais.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706060112114_ajustarNomeNaTabelaVeiculoSobreAdicional.cs" />
+    <Compile Include="Migrations\201706060112114_ajustarNomeNaTabelaVeiculoSobreAdicional.Designer.cs">
+      <DependentUpon>201706060112114_ajustarNomeNaTabelaVeiculoSobreAdicional.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706060122277_adicionarNomeAoPacote.cs" />
+    <Compile Include="Migrations\201706060122277_adicionarNomeAoPacote.Designer.cs">
+      <DependentUpon>201706060122277_adicionarNomeAoPacote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706060156356_ajustarNomeDoPrecoEmPacote.cs" />
+    <Compile Include="Migrations\201706060156356_ajustarNomeDoPrecoEmPacote.Designer.cs">
+      <DependentUpon>201706060156356_ajustarNomeDoPrecoEmPacote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -111,7 +137,26 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
-    <Folder Include="Mappings\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Crescer.LocadoraVeiculosDominio\Crescer.LocadoraVeiculosDominio.csproj">
+      <Project>{DCB6914E-CEA9-437E-86E8-99BB257C5765}</Project>
+      <Name>Crescer.LocadoraVeiculosDominio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201706060015405_adicionarTabelasIniciais.resx">
+      <DependentUpon>201706060015405_adicionarTabelasIniciais.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706060112114_ajustarNomeNaTabelaVeiculoSobreAdicional.resx">
+      <DependentUpon>201706060112114_ajustarNomeNaTabelaVeiculoSobreAdicional.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706060122277_adicionarNomeAoPacote.resx">
+      <DependentUpon>201706060122277_adicionarNomeAoPacote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706060156356_ajustarNomeDoPrecoEmPacote.resx">
+      <DependentUpon>201706060156356_ajustarNomeDoPrecoEmPacote.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
