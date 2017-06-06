@@ -1,8 +1,7 @@
-﻿using Crescer.LocadoraVeiculos.Mappings;
+﻿
+using Crescer.LocadoraVeiculos.Mappings;
 using Crescer.LocadoraVeiculosDominio.Entidades;
-using System;
 using System.Data.Entity;
-using System.Web;
 
 namespace Crescer.LocadoraVeiculos
 {
@@ -19,8 +18,7 @@ namespace Crescer.LocadoraVeiculos
         public DbSet<Veiculo> Veiculos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            
+        {            
             modelBuilder.Configurations.Add(new ClienteMap());
             modelBuilder.Configurations.Add(new EnderecoMap());
             modelBuilder.Configurations.Add(new OpcionalMap());

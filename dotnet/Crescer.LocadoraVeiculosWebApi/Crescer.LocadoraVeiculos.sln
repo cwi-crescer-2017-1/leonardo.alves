@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crescer.LocadoraVeiculosWebApi", "Crescer.LocadoraVeiculos\Crescer.LocadoraVeiculosWebApi.csproj", "{3EF250C9-7A0D-4CAC-A819-C5F2F92389DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crescer.LocadoraVeiculos.Api", "Crescer.LocadoraVeiculos\Crescer.LocadoraVeiculos.Api.csproj", "{3EF250C9-7A0D-4CAC-A819-C5F2F92389DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crescer.LocadoraVeiculosInfraestrutura", "Crescer.LocadoraVeiculosInfraestrutura\Crescer.LocadoraVeiculosInfraestrutura.csproj", "{04B2DF8D-D61A-4454-A324-22F763BA3A7E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crescer.LocadoraVeiculos.Infraestrutura", "Crescer.LocadoraVeiculosInfraestrutura\Crescer.LocadoraVeiculos.Infraestrutura.csproj", "{04B2DF8D-D61A-4454-A324-22F763BA3A7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crescer.LocadoraVeiculosDominio", "Crescer.LocadoraVeiculosDominio\Crescer.LocadoraVeiculosDominio.csproj", "{DCB6914E-CEA9-437E-86E8-99BB257C5765}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crescer.LocadoraVeiculos.Dominio", "Crescer.LocadoraVeiculosDominio\Crescer.LocadoraVeiculos.Dominio.csproj", "{DCB6914E-CEA9-437E-86E8-99BB257C5765}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
