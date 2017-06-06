@@ -10,9 +10,11 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
     {
         public int Id { get; set; }
 
+        public string Nome { get; set; }
+
         public string Descricao { get; set; }
 
-        public decimal Preco { get; set; }
+        public decimal PrecoDiaria { get; set; }
 
 
         protected Pacote() { }
