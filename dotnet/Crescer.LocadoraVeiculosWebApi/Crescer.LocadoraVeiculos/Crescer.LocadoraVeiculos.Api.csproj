@@ -93,19 +93,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\Autorizacao.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Contexto.cs" />
+    <Compile Include="Controllers\IMensagens.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Mappings\ClienteMap.cs" />
-    <Compile Include="Mappings\EnderecoMap.cs" />
-    <Compile Include="Mappings\OpcionalMap.cs" />
-    <Compile Include="Mappings\PacoteMap.cs" />
-    <Compile Include="Mappings\PedidoMap.cs" />
-    <Compile Include="Mappings\PermissaoMap.cs" />
-    <Compile Include="Mappings\UsuarioMap.cs" />
-    <Compile Include="Mappings\VeiculoMap.cs" />
     <Compile Include="Migrations\201706060015405_adicionarTabelasIniciais.cs" />
     <Compile Include="Migrations\201706060015405_adicionarTabelasIniciais.Designer.cs">
       <DependentUpon>201706060015405_adicionarTabelasIniciais.cs</DependentUpon>
@@ -136,12 +130,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Crescer.LocadoraVeiculosDominio\Crescer.LocadoraVeiculosDominio.csproj">
+    <ProjectReference Include="..\Crescer.LocadoraVeiculosDominio\Crescer.LocadoraVeiculos.Dominio.csproj">
       <Project>{DCB6914E-CEA9-437E-86E8-99BB257C5765}</Project>
-      <Name>Crescer.LocadoraVeiculosDominio</Name>
+      <Name>Crescer.LocadoraVeiculos.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Crescer.LocadoraVeiculosInfraestrutura\Crescer.LocadoraVeiculos.Infraestrutura.csproj">
+      <Project>{04B2DF8D-D61A-4454-A324-22F763BA3A7E}</Project>
+      <Name>Crescer.LocadoraVeiculos.Infraestrutura</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
