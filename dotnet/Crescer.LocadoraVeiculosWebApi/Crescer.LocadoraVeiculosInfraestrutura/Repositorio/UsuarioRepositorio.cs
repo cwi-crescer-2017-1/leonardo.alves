@@ -26,6 +26,12 @@ namespace Crescer.LocadoraVeiculosInfraestrutura.Repositorio
             return usuario;
         }
 
+        public void Cadastrar(Usuario usuario)
+        {
+            contexto.Usuarios.Add(usuario);
+            contexto.SaveChanges();
+        }
+
         public List<Permissao> pegarPermissoes()
         {
             List<Permissao> permissoes = new List<Permissao>();
@@ -42,16 +48,6 @@ namespace Crescer.LocadoraVeiculosInfraestrutura.Repositorio
         public void Dispose()
         {
             contexto.Dispose();
-        }
-
-        public object Alterar()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Cadastrar(Usuario usuario)
-        {
-            throw new NotImplementedException();
-        }
+        }        
     }
 }
