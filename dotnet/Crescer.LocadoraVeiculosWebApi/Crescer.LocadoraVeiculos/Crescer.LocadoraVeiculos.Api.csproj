@@ -122,6 +122,11 @@
       <DependentUpon>201706061921550_AdicionarTabelaPedidoOpcionalPersonalizada.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ClienteModel.cs" />
+    <Compile Include="Models\EnderecoModel.cs" />
+    <Compile Include="Models\GeneroModel.cs" />
+    <Compile Include="Models\PermissaoModel.cs" />
+    <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
