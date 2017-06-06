@@ -10,7 +10,7 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
     {
         public Cliente Cliente { get; private set; }        
         public Pacote Pacote { get; private set;}
-        public List<Opcional> Opcionais { get; private set; }
+        public List<PedidoOpcional> Opcionais { get; private set; } //mudar
         public int Id { get; private set; }
         public Veiculo Veiculo { get; private set; }        
         public DateTime DataPedido { get; private set; }
@@ -29,7 +29,7 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
             Veiculo = veiculo;
             DataPedido = dataPedido;
             DataEntregaPrevista = dataEntregaPrevista;
-            Opcionais = new List<Opcional>();
+            Opcionais = new List<PedidoOpcional>();
         }
 
     }
