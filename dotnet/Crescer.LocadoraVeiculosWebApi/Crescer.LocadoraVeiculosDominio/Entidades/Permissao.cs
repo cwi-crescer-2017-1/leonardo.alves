@@ -10,5 +10,7 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
     {
         public int Id { get; set; }
         public string Nome { get; set; }
+        protected Permissao() { }
+        public Permissao(string nome) { }
     }
 }
