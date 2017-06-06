@@ -16,7 +16,7 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
 
         public decimal PrecoDiaria { get; set; }
 
-        public decimal AdicionarDiaria { get; set; }
+        public decimal AdicionalDiaria { get; set; }
 
         protected Veiculo () { }       
 
