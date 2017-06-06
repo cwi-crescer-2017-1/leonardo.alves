@@ -9,14 +9,14 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
 {
     public class Usuario
     {
-        public int Id { get; set; }
+        public int Id { get; private set; }
+        public List<Permissao> Permissoes { get; private set; }
+        public List<string> Mensagens { get; private set; }
+        public string Email { get; private set; }
+        public string Senha { get; private set; }        
 
-        public List<Permissao> Permissoes { get; set; }
-
-        public List<string> Mensagens { get; set; }
-        public string Email { get; set; }
-        public string Senha { get; set; }        
         protected Usuario() { }
+
         public Usuario(string email, string senha)
         {
             Email = email;
@@ -51,7 +51,6 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
 
         public  bool Validar()
         {           
-
             if (string.IsNullOrWhiteSpace(Email))
                 Mensagens.Add("Email é inválido.");
 

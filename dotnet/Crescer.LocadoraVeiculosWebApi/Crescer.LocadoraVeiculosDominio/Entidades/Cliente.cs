@@ -6,19 +6,18 @@ using System.Threading.Tasks;
 
 namespace Crescer.LocadoraVeiculosDominio.Entidades
 {
-    public class Cliente
+    public class Cliente : IValidar
     {
-        public int Id { get; set; }
+        public int Id { get; private set; }
 
-        public string NomeCompleto { get; set; }
-        public int IdEndereco { get; set; }
-        public Endereco Endereco { get; set; }
+        public string NomeCompleto { get; private set; }        
+        public Endereco Endereco { get; private set; }
 
-        public string Cpf { get; set; }
+        public string Cpf { get; private set; }
 
-        public Genero Genero { get; set; }
+        public Genero Genero { get; private set; }
 
-        public DateTime DataNascimento { get; set; }
+        public DateTime DataNascimento { get; private set; }
 
         protected Cliente () { }
 
@@ -31,5 +30,14 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
             Genero = genero;
             DataNascimento = dataNascimento;
         }
+
+        public bool Validar ()
+        {
+            return !(string.IsNullOrWhiteSpace(NomeCompleto) &&
+                    string.IsNullOrWhiteSpace(Cpf) &&
+                    Endereco == null &&                    
+                    DataNascimento == null);
+        }
+
     }
 }
