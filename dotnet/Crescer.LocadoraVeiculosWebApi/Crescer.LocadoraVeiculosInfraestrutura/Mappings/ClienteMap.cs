@@ -22,7 +22,7 @@ namespace Crescer.LocadoraVeiculos.Mappings
 
             HasRequired(x => x.Endereco)
                 .WithMany()
-                .HasForeignKey(x => x.IdEndereco);
+                .Map(x => x.MapKey("IdEndereco"));
 
         }
     }

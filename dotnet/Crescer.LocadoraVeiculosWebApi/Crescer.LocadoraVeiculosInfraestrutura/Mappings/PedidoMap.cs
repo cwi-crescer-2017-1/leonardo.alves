@@ -13,10 +13,7 @@ namespace Crescer.LocadoraVeiculos.Mappings
         {
             ToTable("Pedido");
 
-            HasKey(x => x.Id);
-
-            Property(x => x.IdCliente).IsRequired();
-            Property(x => x.IdVeiculo).IsRequired();
+            HasKey(x => x.Id);           
 
             Property(x => x.DataPedido).IsRequired();
             Property(x => x.DataEntregaPrevista).IsRequired();
@@ -25,15 +22,15 @@ namespace Crescer.LocadoraVeiculos.Mappings
 
             HasRequired(x => x.Cliente)
                 .WithMany()
-                .HasForeignKey(x => x.IdCliente);
+                .Map(x => x.MapKey("IdCliente"));
 
             HasOptional(x => x.Pacote)
                 .WithMany()
-                .HasForeignKey(x => x.IdPacote);
+                .Map(x => x.MapKey("IdPacote"));
 
             HasRequired(x => x.Veiculo)
                 .WithMany()
-                .HasForeignKey(x => x.IdVeiculo);
+                .Map(x => x.MapKey("IdVeiculo"));
 
             HasMany(x => x.Opcionais)
                 .WithMany()
