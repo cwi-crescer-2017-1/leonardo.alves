@@ -13,6 +13,7 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
 
         public List<Permissao> Permissoes { get; set; }
 
+        public List<string> Mensagens { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }        
         protected Usuario() { }
@@ -34,6 +35,30 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
                 sb.Append(hash[i].ToString("x2"));
 
             return sb.ToString();
+        }
+
+        public bool ValidarSenha(string senha)
+        {
+            return CriptografarSenha(senha) == Senha;
+        }
+
+        public void AtribuirPermissoes(params string[] nomes)
+        {
+            foreach (var nome in nomes)
+                Permissoes.Add(new Permissao(nome));
+        }
+
+
+        public  bool Validar()
+        {           
+
+            if (string.IsNullOrWhiteSpace(Email))
+                Mensagens.Add("Email é inválido.");
+
+            if (string.IsNullOrWhiteSpace(Senha))
+                Mensagens.Add("Senha é inválido.");
+
+            return Mensagens.Count == 0;
         }
 
     }
