@@ -50,6 +50,7 @@
     <Compile Include="Entidades\Pacote.cs" />
     <Compile Include="Entidades\Pedido.cs" />
     <Compile Include="Entidades\Permissao.cs" />
+    <Compile Include="Exceções\PedidoInvalidoException.cs" />
     <Compile Include="Exceções\RecursoIlimitadoException.cs" />
     <Compile Include="Entidades\Veiculo.cs" />
     <Compile Include="Entidades\Usuario.cs" />

@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace Crescer.LocadoraVeiculos.Controllers
 {
-    public interface IMensagens 
+    internal interface IMensagens 
     {
 
         HttpResponseMessage MensagemErro(dynamic mensagens);
