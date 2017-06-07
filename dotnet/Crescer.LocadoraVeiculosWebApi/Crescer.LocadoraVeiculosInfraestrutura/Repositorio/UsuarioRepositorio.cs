@@ -19,7 +19,13 @@ namespace Crescer.LocadoraVeiculosInfraestrutura.Repositorio
             var usuario = contexto.Usuarios.FirstOrDefault(u => u.Email == email);
             if (usuario == null) return null;
 
-            string[] papeis = usuario.Permissoes.Select(papel => papel.Nome).ToArray();
+            var permissoes = contexto.Usuarios
+                .Where(u => u.Email == email)
+                .SelectMany(u => u.Permissoes)
+                .Select(u => u.Nome)
+                .ToArray();
+
+            string[] papeis = permissoes;
 
             usuario.AtribuirPermissoes(papeis);
 
