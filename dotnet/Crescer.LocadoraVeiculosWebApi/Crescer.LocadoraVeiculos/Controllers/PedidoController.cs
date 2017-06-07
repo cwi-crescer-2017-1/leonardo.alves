@@ -10,21 +10,12 @@ using System.Web.Http;
 namespace Crescer.LocadoraVeiculos.Controllers
 {
     [RoutePrefix("api/pedidos")]   
-    public class PedidoController : ApiController, IMensagens
+    public class PedidoController : ControllerBasico
     {
         PedidoRepositorio _pedidoRepositorio = new PedidoRepositorio();
 
-        public HttpResponseMessage MensagemErro(dynamic mensagens)
-        {
-            return Request.CreateResponse(HttpStatusCode.BadRequest, new { mensagens = mensagens });
-        }
-
-        public HttpResponseMessage MensagemSucesso(dynamic dados)
-        {
-            return Request.CreateResponse(HttpStatusCode.OK, new { dados = dados });
-        }            
-
         [HttpGet, Autorizacao]
+        [Route("pendente")]
         public HttpResponseMessage ObterPedidoPendente (string cpf)
         {
             var pedido = _pedidoRepositorio.ObterPedido(cpf);
@@ -35,6 +26,7 @@ namespace Crescer.LocadoraVeiculos.Controllers
         }
 
         [HttpGet, Autorizacao(Roles ="Gerente")]
+        [Route("relatorio")]
         public HttpResponseMessage ObterRelatorio (DateTime data)
         {
            var pedidosMensais = _pedidoRepositorio.ObterPedidosMensais(data);
@@ -45,7 +37,7 @@ namespace Crescer.LocadoraVeiculos.Controllers
         }
 
         [HttpGet]
-        [Route("")]
+        [Route("atrasos")]
         public HttpResponseMessage ObterAtrasos ()
         {
             var pedidosAtrasados = _pedidoRepositorio.ObterPedidosAtrasados();
@@ -70,6 +62,7 @@ namespace Crescer.LocadoraVeiculos.Controllers
         }  
 
         [HttpPost]
+        [Route("devolver")]
         public HttpResponseMessage Devolver ()
         {
             throw new NotImplementedException();

@@ -1,4 +1,5 @@
-﻿using Crescer.LocadoraVeiculosDominio.Entidades;
+﻿using Crescer.LocadoraVeiculos.Models;
+using Crescer.LocadoraVeiculosDominio.Entidades;
 using Crescer.LocadoraVeiculosInfraestrutura.Repositorio;
 using EditoraCrescer.Api.App_Start;
 using System.Net;
@@ -8,22 +9,13 @@ using System.Web.Http;
 
 namespace Crescer.LocadoraVeiculos.Controllers
 {
-
-    public class UsuarioController : ApiController, IMensagens
+    [RoutePrefix("api/usuarios")]
+    public class UsuarioController : ControllerBasico
     {
-        private UsuarioRepositorio _usuarioRepositorio = new UsuarioRepositorio();
-
-        public HttpResponseMessage MensagemErro(dynamic mensagens)
-        {
-            return Request.CreateResponse(HttpStatusCode.BadRequest, new { mensagens = mensagens });
-        }
-
-        public HttpResponseMessage MensagemSucesso(dynamic dados)
-        {
-            return Request.CreateResponse(HttpStatusCode.OK, new { dados = dados });
-        }
+        private UsuarioRepositorio _usuarioRepositorio = new UsuarioRepositorio();        
 
         [HttpGet, Autorizacao]
+        [Route("")]
         public HttpResponseMessage Obter()
         {
             var usuario = new
@@ -35,7 +27,22 @@ namespace Crescer.LocadoraVeiculos.Controllers
             if (usuario.email == "") return MensagemErro("Informações inválidas.");
 
             return MensagemSucesso(usuario);
-        }       
+        }  
+        
+        [HttpPost]
+        [Route("")]
+        public HttpResponseMessage Criar (UsuarioModel usuarioModel)
+        {
+            if (_usuarioRepositorio.Obter(usuarioModel.Email) == null)
+            {
+                var usuario = new Usuario(usuarioModel.Email, usuarioModel.Senha);
+                if (usuario.Validar())
+                    _usuarioRepositorio.Cadastrar(usuario);
+                else
+                    return MensagemErro("Verifique os dados no usuário.");
+            }
+            return MensagemErro("Usuario cadastrado no sistema");
+        }     
             
         protected override void Dispose(bool disposing)
         {

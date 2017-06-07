@@ -13,7 +13,7 @@ using System.Web.Http;
 namespace Crescer.LocadoraVeiculos.Controllers
 {
     [RoutePrefix("api/clientes")]
-    public class ClienteController : ApiController, IMensagens
+    public class ClienteController : ControllerBasico
     {
         ClienteRepositorio _clienteRepositorio = new ClienteRepositorio();
 
@@ -28,17 +28,7 @@ namespace Crescer.LocadoraVeiculos.Controllers
                 c.Endereco.Bairro
             );
         }
-
-        public HttpResponseMessage MensagemErro(dynamic mensagens)
-        {
-            return Request.CreateResponse(HttpStatusCode.BadRequest, new { mensagens = mensagens });
-        }
-
-        public HttpResponseMessage MensagemSucesso(dynamic dados)
-        {
-            return Request.CreateResponse(HttpStatusCode.OK, new { dados = dados });
-        }
-
+       
         [HttpGet, Autorizacao]
         public HttpResponseMessage Obter(string cpf)
         {            
