@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+
 
 namespace Crescer.LocadoraVeiculos.Models
 {
@@ -13,9 +11,7 @@ namespace Crescer.LocadoraVeiculos.Models
         public EnderecoModel Endereco { get; set; }
 
         public string Cpf { get;  set; }
-
         public GeneroModel Genero { get; set; }
-
         public DateTime DataNascimento { get; set; }
 
     }

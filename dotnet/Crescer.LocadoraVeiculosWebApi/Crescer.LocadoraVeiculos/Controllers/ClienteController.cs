@@ -12,9 +12,23 @@ using System.Web.Http;
 
 namespace Crescer.LocadoraVeiculos.Controllers
 {
+    [RoutePrefix("api/clientes")]
     public class ClienteController : ApiController, IMensagens
     {
         ClienteRepositorio _clienteRepositorio = new ClienteRepositorio();
+
+         private Endereco GerarEndereco (ClienteModel c)
+        {
+            return new Endereco
+            (
+                c.Endereco.Numero, 
+                c.Endereco.Rua, 
+                c.Endereco.Cidade, 
+                c.Endereco.UF,
+                c.Endereco.Bairro
+            );
+        }
+
         public HttpResponseMessage MensagemErro(dynamic mensagens)
         {
             return Request.CreateResponse(HttpStatusCode.BadRequest, new { mensagens = mensagens });
@@ -26,24 +40,37 @@ namespace Crescer.LocadoraVeiculos.Controllers
         }
 
         [HttpGet, Autorizacao]
-        public HttpResponseMessage Obter(ClienteModel clienteModel)
+        public HttpResponseMessage Obter(string cpf)
         {            
-           var clienteRetorno = _clienteRepositorio.Obter(clienteModel.Cpf);
+           var clienteRetorno = _clienteRepositorio.Obter(cpf);
             if(clienteRetorno != null)
                 return MensagemSucesso(clienteRetorno);
 
-            return MensagemErro("Usuário não existente no sistema.");
+            return MensagemErro("Cliente não existente no sistema.");
         }
 
         [HttpPost]
+        [Route("")]
         public HttpResponseMessage Criar(ClienteModel c)
         {
-            Endereco endereco = new Endereco(c.Endereco.Numero, c.Endereco.Rua, c.Endereco.Cidade, c.Endereco.UF, c.Endereco.Bairro);
             Genero genero = (Genero) c.Genero;
-            Cliente gerarCliente = new Cliente(c.NomeCompleto, endereco, c.Cpf, genero, c.DataNascimento);
+            Endereco endereco = GerarEndereco(c);
 
-            _clienteRepositorio.Cadastrar(gerarCliente);
-            return null; //todo
+            if (endereco.Validar())
+            {
+                Cliente cliente =
+                    new Cliente(c.NomeCompleto, endereco, c.Cpf, genero, c.DataNascimento);
+
+                if (!cliente.Validar())
+                    return MensagemErro("As informações no cliente foram informadas incorretamente. Por favor cheque novamente.");
+
+                _clienteRepositorio.Cadastrar(cliente);
+
+                return MensagemSucesso(cliente);
+            }
+            else
+                return MensagemErro("O endereço informado é inválido. Verifique novamente as informações.");
         }
+            
     }
 }

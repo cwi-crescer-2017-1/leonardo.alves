@@ -17,8 +17,7 @@ namespace Crescer.LocadoraVeiculosInfraestrutura.Repositorio
             return contexto.Clientes.FirstOrDefault(c => c.Cpf == cpf);
         }
 
-        public void Cadastrar(Cliente cliente)
-        {
+        public void Cadastrar(Cliente cliente)  {
             contexto.Clientes.Add(cliente);
             contexto.SaveChanges();
         }
