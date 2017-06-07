@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Crescer.LocadoraVeiculosDominio.Entidades
 {
-    public class Usuario
+    public class Usuario : IValidar
     {
         public int Id { get; private set; }
         public List<Permissao> Permissoes { get; private set; }

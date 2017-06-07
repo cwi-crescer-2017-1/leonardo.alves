@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Crescer.LocadoraVeiculosDominio.Entidades
 {
-    public class Opcional
+    public class Opcional : IValidar
     {
         public int Id { get; private set; }
 
@@ -36,6 +36,12 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
             if (Quantidade == null)
                 throw new RecursoIlimitadoException("Esse opcional não pode receber mais unidades, pois é um recurso ilimitado.");
                 
+        }
+
+        public bool Validar ()
+        {
+            return !string.IsNullOrWhiteSpace(Descricao) &&
+                Preco > 0;
         }
 
 

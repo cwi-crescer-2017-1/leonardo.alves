@@ -28,9 +28,9 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
 
         public bool Validar()
         {
-            return !(string.IsNullOrWhiteSpace(Rua) &&
-                string.IsNullOrWhiteSpace(Cidade) &&
-                string.IsNullOrWhiteSpace(UF) &&
+            return !(string.IsNullOrWhiteSpace(Rua) ||
+                string.IsNullOrWhiteSpace(Cidade) ||
+                string.IsNullOrWhiteSpace(UF) ||
                 string.IsNullOrWhiteSpace(Bairro));
         }
     }

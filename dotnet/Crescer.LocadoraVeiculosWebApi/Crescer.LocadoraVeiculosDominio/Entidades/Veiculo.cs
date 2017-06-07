@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Crescer.LocadoraVeiculosDominio.Entidades
 {
-    public class Veiculo
+    public class Veiculo : IValidar
     {
         public int Id { get; private set; }
 
@@ -18,7 +13,10 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
 
         public decimal AdicionalDiaria { get; private set; }
 
-        protected Veiculo () { }       
+        protected Veiculo () { }
+
+        public Veiculo(string Descricao, int Estoque, decimal PrecoDiaria, decimal AdicionalDiaria) { }
+
 
 
         public void diminuirEstoque ()
@@ -33,6 +31,12 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
         public void aumentarEstoque ()
         {
             Estoque++;
+        }
+
+        public bool Validar()
+        {
+            return !string.IsNullOrWhiteSpace(Descricao) &&
+                Estoque > 0 && PrecoDiaria > 0 && AdicionalDiaria > 0;
         }
     }
 }
