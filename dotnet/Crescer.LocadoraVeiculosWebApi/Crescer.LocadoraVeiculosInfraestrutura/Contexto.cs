@@ -17,6 +17,7 @@ namespace Crescer.LocadoraVeiculos
         public DbSet<Pedido> Pedidos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Veiculo> Veiculos { get; set; }
+        public DbSet<Permissao> Permissoes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {            

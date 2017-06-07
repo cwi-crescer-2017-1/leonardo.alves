@@ -33,10 +33,10 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
 
         public bool Validar ()
         {
-            return !(string.IsNullOrWhiteSpace(NomeCompleto) ||
-                    string.IsNullOrWhiteSpace(Cpf) ||
-                    Endereco == null ||                    
-                    DataNascimento == null);
+            return !string.IsNullOrWhiteSpace(NomeCompleto) ||
+                    !string.IsNullOrWhiteSpace(Cpf) ||
+                    Endereco != null ||                    
+                    DataNascimento < DateTime.Now;
         }
 
     }

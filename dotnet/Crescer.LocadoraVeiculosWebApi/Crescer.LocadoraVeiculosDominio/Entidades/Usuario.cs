@@ -40,22 +40,19 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
             return CriptografarSenha(senha) == Senha;
         }
 
-        public void AtribuirPermissoes(params string[] nomes)
+        public void AtribuirPermissoes(string[] nomes)
         {
+            Permissoes = new List<Permissao>();
             foreach (var nome in nomes)
                 Permissoes.Add(new Permissao(nome));
         }
 
 
         public  bool Validar()
-        {           
-            if (string.IsNullOrWhiteSpace(Email))
-                Mensagens.Add("Email é inválido.");
-
-            if (string.IsNullOrWhiteSpace(Senha))
-                Mensagens.Add("Senha é inválido.");
-
-            return Mensagens.Count == 0;
+        {
+            return !string.IsNullOrWhiteSpace(Email) &&
+                !string.IsNullOrWhiteSpace(Senha);        
+          
         }
 
     }
