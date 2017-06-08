@@ -5,7 +5,7 @@ namespace Crescer.LocadoraVeiculos.Models
 {
     public class CriarPedidoModel
     {
-        public int IdCliente { get; set; }
+        public string Cpf { get; set; }
         public int IdVeiculo { get; set; }
         public int? IdPacote { get; set; }
         public int [] IdOpcional { get; set; }

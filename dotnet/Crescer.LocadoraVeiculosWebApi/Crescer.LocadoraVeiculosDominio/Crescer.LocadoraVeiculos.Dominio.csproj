@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Entidades\Endereco.cs" />
     <Compile Include="Entidades\PedidoOpcional.cs" />
+    <Compile Include="Exceções\CombinacoesImpossiveisException.cs" />
     <Compile Include="Exceções\ForaDeEstoqueException.cs" />
     <Compile Include="Entidades\Genero.cs" />
     <Compile Include="Entidades\Cliente.cs" />
