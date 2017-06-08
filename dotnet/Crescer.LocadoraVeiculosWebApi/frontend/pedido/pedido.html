@@ -1,0 +1,32 @@
+<form novalidate ng-submit="gerarPedido()">
+
+    <label for="cpf">Informe o CPF do cliente:</label>
+    <input type="text" id="cpf" ng-model="pedido.cliente.cpf">
+
+    <label for="veiculoSelect">Selecione o veículo</label>
+    <select 
+        ng-model="pedido.Veiculo"  
+        ng-options="veiculo as veiculo.Descricao for veiculo in veiculos" 
+        id="veiculoSelect">        
+    </select>
+
+    <label for="pacoteSelect">Selecione o pacote</label>
+    <select 
+        id="pacoteSelect" 
+        ng-options="pacote as pacote.Nome for pacote in pacotes" 
+        ng-model="pedido.Pacote">
+    </select>
+    
+    <span ng-repeat="opcional in opcionais">
+        <label for="{{opcional.Id}}">{{opcional.Descricao}}</label>
+        <input ng-model="pedido.idOpcional[opcional.Id]" ng-value="opcional.Id" type="checkbox">
+    </span>
+    
+    <label for="dataEntrega">Informe a data de entrega:</label>
+    <input type="date" ng-model="pedido.dataEntrega">
+
+    <button type="submit">Enviar</button>
+</form>        
+
+</br>
+Preço total:  {{precoTotal}}
