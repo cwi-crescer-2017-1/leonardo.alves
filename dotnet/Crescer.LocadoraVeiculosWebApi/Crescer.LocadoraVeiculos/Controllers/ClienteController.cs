@@ -17,7 +17,8 @@ namespace Crescer.LocadoraVeiculos.Controllers
     {
         ClienteRepositorio _clienteRepositorio = new ClienteRepositorio();
 
-         private Endereco GerarEndereco (ClienteModel c)
+        [Route("")]
+        private Endereco GerarEndereco (ClienteModel c)
         {
             return new Endereco
             (

@@ -17,6 +17,7 @@ namespace Crescer.LocadoraVeiculos.Controllers
         VeiculoRepositorio _veiculoRepositorio = new VeiculoRepositorio();        
 
         [HttpGet]
+        [Route("")]
         public HttpResponseMessage ObterVeiculos ()
         {
            List<Veiculo> veiculos = _veiculoRepositorio.ObterTodos();
