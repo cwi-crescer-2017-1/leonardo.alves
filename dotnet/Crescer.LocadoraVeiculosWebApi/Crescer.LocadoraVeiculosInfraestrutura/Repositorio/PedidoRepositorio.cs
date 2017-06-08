@@ -43,12 +43,12 @@ namespace Crescer.LocadoraVeiculosInfraestrutura.Repositorio
                 .ToList();                
         }
 
-        public void GerarPedido(int idCliente, int idVeiculo, int? idPacote, int [] idOpcional, DateTime dataEntrega)
+        public void GerarPedido(string cpf, int idVeiculo, int? idPacote, int [] idOpcional, DateTime dataEntrega)
         {
             Pacote pacote = null;
             var opcionais = new List<PedidoOpcional>();
             //pega cliente e veiculo pelo id
-            var cliente = contexto.Clientes.FirstOrDefault(c => c.Id == idCliente);
+            var cliente = contexto.Clientes.FirstOrDefault(c => c.Cpf == cpf);
             var veiculo = contexto.Veiculos.FirstOrDefault(v => v.Id == idVeiculo);
 
             if(idPacote != null)
@@ -59,12 +59,15 @@ namespace Crescer.LocadoraVeiculosInfraestrutura.Repositorio
 
             foreach (var id in idOpcional)
             {
-                var opcional = contexto.Opcionais.AsNoTracking().FirstOrDefault(o => o.Id == id);
+                var opcional = contexto.Opcionais.FirstOrDefault(o => o.Id == id);
                 pedido.Opcionais.Add(new PedidoOpcional(pedido, opcional));
-            }
+            }            
 
-            contexto.Pedidos.Add(pedido);
 
+            pedido.EhPossivelEssaConfiguracao();
+
+            contexto.Pedidos.Add(pedido);            
+           
             if (pacote != null)
             {
                 if(pacote.Validar())

@@ -1,4 +1,5 @@
 ﻿using Crescer.LocadoraVeiculos.Models;
+using Crescer.LocadoraVeiculosDominio.Entidades;
 using Crescer.LocadoraVeiculosDominio.Exceções;
 using Crescer.LocadoraVeiculosInfraestrutura.Repositorio;
 using EditoraCrescer.Api.App_Start;
@@ -52,18 +53,22 @@ namespace Crescer.LocadoraVeiculos.Controllers
         {
             try
             {
-                _pedidoRepositorio.GerarPedido(pedido.IdCliente, pedido.IdVeiculo, pedido.IdPacote, pedido.IdOpcional, pedido.DataEntrega);
+                _pedidoRepositorio.GerarPedido(pedido.Cpf, pedido.IdVeiculo, pedido.IdPacote, pedido.IdOpcional, pedido.DataEntrega);
                 return MensagemSucesso("Pedido criado com sucesso.");
             }
             catch (PedidoInvalidoException e)
             {
                 return MensagemErro(e.Message);
             }
+            catch (CombinacoesImpossiveisException e)
+            {
+                return MensagemErro(e.Message);
+            }
         }  
 
-        [HttpPost]
+        [HttpPut]
         [Route("devolver")]
-        public HttpResponseMessage Devolver ()
+        public HttpResponseMessage Devolver (int id)
         {
             throw new NotImplementedException();
         }

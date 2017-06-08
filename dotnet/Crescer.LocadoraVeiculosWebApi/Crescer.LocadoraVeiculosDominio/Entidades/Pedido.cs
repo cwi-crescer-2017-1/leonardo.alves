@@ -57,6 +57,27 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
                 DataEntregaPrevista.Date < DateTime.Now.Date;
         }
 
+        public void EhPossivelEssaConfiguracao ()
+        {
+            foreach (PedidoOpcional pedidoOpcional in Opcionais)
+            {
+                if (pedidoOpcional.Opcional.Id == 1 && Veiculo.Id == 1)
+                    //fiat mobi não aceita reboque
+                    throw new CombinacoesImpossiveisException("Não é possível acoplar reboque no Fiat Mobi");
+
+                if (pedidoOpcional.Opcional.Id == 2 && Veiculo.Id == 3)
+                    //hilux não pode ter rack
+                    throw new CombinacoesImpossiveisException("Hilux não pode ter rack.");
+
+                if (pedidoOpcional.Opcional.Id == 4 && Veiculo.Id != 4)
+                    //apenas kombi aceita cabo bateria
+                    throw new CombinacoesImpossiveisException("Não é possível levar cabo bateria com esse tipo de veículo, apenas com Kombi.");
+
+                if (pedidoOpcional.Opcional.Id == 3 && Pacote.Id == 3)
+                    throw new CombinacoesImpossiveisException("Não é possível adicionar seguro, pois o pacote selecionado já contém seguro.");
+            }           
+        }
+
     }
 
 }
