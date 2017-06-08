@@ -10,6 +10,10 @@ angular.module('locadoraCrescer')
             controller: "usuarioController",
             templateUrl: "usuario/cadastro.html"
       })
+      .when("/pedido", {
+            controller: "pedidoController",
+            templateUrl: "pedido/pedido.html"
+      })
       .when("/administrativo", {
             controller: "usuarioController",
             templateUrl: "usuario/administrativo.html",

@@ -1,4 +1,4 @@
-app.controller("usuarioController", usuarioController);
+angular.module('locadoraCrescer').controller("usuarioController", usuarioController);
 
 function usuarioController ($scope, authService) {
     $scope.auth = authService;
