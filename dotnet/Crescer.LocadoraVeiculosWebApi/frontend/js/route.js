@@ -14,6 +14,10 @@ angular.module('locadoraCrescer')
             controller: "pedidoController",
             templateUrl: "pedido/pedido.html"
       })
+      .when("/relatoriomensal", {
+            controller: "relatorioController",
+            templateUrl: "relatorio/relatorio-mensal.html"
+      })
       .when("/administrativo", {
             controller: "usuarioController",
             templateUrl: "usuario/administrativo.html",
