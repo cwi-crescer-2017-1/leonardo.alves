@@ -1,0 +1,10 @@
+<form novalidate ng-submit="getRelatorioMensal(data)">
+    <input type="date" ng-model="data.Data">
+    <button type="submit">Pegar relatorio</button>
+</form>
+
+<ul>
+    <li ng-repeat="pedido in pedidos">
+        {{pedido | json}}
+    </li>
+</ul>
