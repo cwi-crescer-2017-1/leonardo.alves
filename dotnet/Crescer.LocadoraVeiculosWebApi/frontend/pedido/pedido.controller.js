@@ -5,6 +5,8 @@ function pedidoController($scope, authService, pedidoService, opcionalService, p
     $scope.auth = authService;
     $scope.logout = authService.logout;
     $scope.gerarPedido = gerarPedido;
+    $scope.reservar = reservar;
+    
     getOpcionais();
     getPacotes();
     getVeiculos();  
@@ -12,6 +14,8 @@ function pedidoController($scope, authService, pedidoService, opcionalService, p
     function gerarPedido() {
         let precoVeiculo = $scope.pedido.Veiculo.PrecoDiaria;
         let precoPacote = $scope.pedido.Pacote.PrecoDiaria;
+
+        if(typeof precoPacote == "undefined") precoPacote = 0;
 
         let precoOpcionais = $scope.opcionais.map(p => {            
             if(getIdOpcionais().includes(p.Id)) 
