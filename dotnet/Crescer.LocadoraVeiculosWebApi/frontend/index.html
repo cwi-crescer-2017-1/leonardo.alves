@@ -10,16 +10,29 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.5.5/angular-locale_pt-br.js"></script>
         <script type="text/javascript" src="https://rawgit.com/cwi-crescer-2017-1/instrutores/master/modulo-05-angularjs/auth/auth.module.js"></script>
-
+        <script type="text/javascript" src="http://momentjs.com/downloads/moment.min.js"></script>
     </head>
     <body ng-app="locadoraCrescer">
         <div class="container">
+
+
             <h1>Locadora Crescer</h1>
             {{HAHAAHA}}
             <ng-view></ng-view>
-            <script src="js/modulo.js"></script>
-            <script src="js/route.js"></script>
-            <script src="usuario/usuario.controller.js"></script>
+
         </div>
+
+        <script src="js/modulo.js"></script>
+        <script src="js/route.js"></script>
+
+        <script src="usuario/usuario.controller.js"></script>
+        <script src="pedido/pedido.controller.js"></script>            
+
+                  
+        <script src="pedido/pedido.service.js"></script>
+        <script src="pacote/pacote.service.js"></script>
+        <script src="cliente/cliente.service.js"></script>
+        <script src="opcional/opcional.service.js"></script>
+        <script src="veiculo/veiculo.service.js"></script>
     </body>
 </html>
