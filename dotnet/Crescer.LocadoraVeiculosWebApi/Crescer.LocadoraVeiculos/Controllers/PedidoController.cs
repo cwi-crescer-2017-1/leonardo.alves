@@ -28,9 +28,9 @@ namespace Crescer.LocadoraVeiculos.Controllers
 
         [HttpGet, Autorizacao(Roles ="Gerente")]
         [Route("relatorio")]
-        public HttpResponseMessage ObterRelatorio (DateTime data)
+        public HttpResponseMessage ObterRelatorio (DataModel data)
         {
-           var pedidosMensais = _pedidoRepositorio.ObterPedidosMensais(data);
+           var pedidosMensais = _pedidoRepositorio.ObterPedidosMensais(data.Data);
 
             if (pedidosMensais == null) return MensagemErro("Data inválida.");
 

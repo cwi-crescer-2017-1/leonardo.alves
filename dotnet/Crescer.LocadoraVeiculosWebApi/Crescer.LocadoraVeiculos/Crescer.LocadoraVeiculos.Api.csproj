@@ -105,6 +105,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\ControllerBasico.cs" />
+    <Compile Include="Models\DataModel.cs" />
     <Compile Include="Controllers\OpcionalController.cs" />
     <Compile Include="Controllers\PacoteController.cs" />
     <Compile Include="Controllers\PedidoController.cs" />
