@@ -22,6 +22,10 @@ angular.module('locadoraCrescer')
             controller: "relatorioController",
             templateUrl: "relatorio/relatorio-atrasos.html"
       })
+      .when("/cadastrocliente", {            
+            controller: "clienteController",
+            templateUrl: "cliente/cadastrocliente.html"
+      })
 
       .when("/administrativo", {
             controller: "usuarioController",

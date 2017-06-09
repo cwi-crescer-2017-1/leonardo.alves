@@ -36,15 +36,14 @@
     <button ng-click="getPendente(cpfdevolucao)">Procurar devolução pendente</button>
     
     <div ng-show="!!pendente" class="pedido-info">
-        <p>Id: {{pendente.Id}}
-            Data do pedido: {{pendente.DataPedido | date}} 
-            Data de entrega prevista: {{pendente.DataEntregaPrevista | date}}
-            Preço total: {{pendente.precoTotal}}
-            <span ng-show="pendente.atraso">Pedido atrasado. Valor adicional por dia atrasado: {{pendente.Veiculo.AdicionalDiaria}}</span>
+        <p>Id: {{pendente.Id}} |
+            Data do pedido: {{pendente.DataPedido | date}} |
+            Data de entrega prevista: {{pendente.DataEntregaPrevista | date}} |
+            Preço total: {{pendente.precoTotal}} |
+            <span ng-show="pendente.atraso">[ Pedido atrasado. Valor adicional por dia atrasado: {{pendente.Veiculo.AdicionalDiaria}} ]</span>
         </p>
         <button ng-click="devolverPedido()">Finalizar pedido</button>
     </div>
 </section>
 
 <br/>
- {{pendente | json}}

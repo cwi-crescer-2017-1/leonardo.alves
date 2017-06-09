@@ -1,3 +1,12 @@
 <ul ng-init="getPedidosAtrasados()">
-    <li ng-repeat="pedido in pedidosAtrasados"></li>
+    <h3>Pedidos Atrasados:</h3>
+    <li ng-repeat="pedido in pedidosAtrasados">
+        <p>Id: {{pedido.Id}} |
+            [Cliente Id: {{pedido.Cliente.Id}} -- Nome: {{pedido.Cliente.NomeCompleto}}] |
+            Data do pedido: {{pedido.DataPedido | date}} |
+            Data de entrega prevista: {{pedido.DataEntregaPrevista | date}}
+            
+        </p>
+    </li>
 </ul>
+

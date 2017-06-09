@@ -1,8 +1,8 @@
 angular.module('locadoraCrescer').controller("usuarioController", usuarioController);
 
-function usuarioController ($scope, authService) {
-    $scope.auth = authService;
-    $scope.login = login;
+function usuarioController ($scope, $rootScope,authService) {
+    $rootScope.login = login;
+    $scope.auth = authService;    
     $scope.logout = authService.logout;
 
     function login (usuario) {           

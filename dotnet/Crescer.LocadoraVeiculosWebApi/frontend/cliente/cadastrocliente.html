@@ -1,0 +1,19 @@
+ <form novalidate name="formPedido" ng-submit="cadastrar(cliente)">
+
+        <label for="cpf">Informe o CPF do cliente:</label>
+        <input type="text" id="cpf" ng-model="cliente.Cpf">
+        <br/>
+        <label for="veiculoSelect">Informe o nome:</label>
+        <input type="text" ng-model="cliente.NomeCompleto">
+        Genero:<input type="text" ng-model="cliente.Genero">
+        Data nascimento:<input type="date" ng-model="cliente.DataNascimento">
+
+        <label for="pacoteSelect">Informe o endereço</label>
+        Numero:<input type="text" ng-model="cliente.endereco.Numero">
+        Rua:<input type="text" ng-model="cliente.endereco.Rua">
+        UF:<input type="text "ng-model="cliente.endereco.UF">
+        Cidade:<input type="text "ng-model="cliente.endereco.Cidade">
+        Bairro: <input type="text" ng-model="cliente.Endereco.Bairro">
+
+        <button type="submit"></button>
+    </form>   
