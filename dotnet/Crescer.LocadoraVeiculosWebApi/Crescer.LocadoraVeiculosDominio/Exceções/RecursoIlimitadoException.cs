@@ -3,7 +3,7 @@
 
 namespace Crescer.LocadoraVeiculosDominio.Entidades
 {
-    internal class RecursoIlimitadoException : Exception
+    public class RecursoIlimitadoException : Exception
     {
         public RecursoIlimitadoException() { }
 

@@ -3,7 +3,7 @@
 
 namespace Crescer.LocadoraVeiculosDominio.Entidades
 {
-    internal class ForaDeEstoqueException : Exception
+    public class ForaDeEstoqueException : Exception
     {
         public ForaDeEstoqueException() { }
 
