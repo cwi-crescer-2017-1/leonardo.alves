@@ -17,6 +17,14 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
         public int? Quantidade { get; private set; }
 
         protected Opcional() { }
+        
+        public Opcional (int id, string descricao, decimal preco, int? quantidade)
+        {
+            Id = id;
+            Descricao = descricao;
+            Preco = preco;
+            Quantidade = quantidade;
+        }        
 
         public void diminuirEstoque()
         {

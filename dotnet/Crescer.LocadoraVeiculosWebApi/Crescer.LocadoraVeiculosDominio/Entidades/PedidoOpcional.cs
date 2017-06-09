@@ -9,11 +9,12 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
     public class PedidoOpcional : IValidar
     {
         public int Id { get; set; }
-        public Pedido Pedido { get; private set; }
+        public Pedido Pedido { get; set; }
         public Opcional Opcional { get; private set; }
 
        // public 
         protected PedidoOpcional() { }
+               
 
         public PedidoOpcional(Pedido pedido, Opcional opcional)
         {

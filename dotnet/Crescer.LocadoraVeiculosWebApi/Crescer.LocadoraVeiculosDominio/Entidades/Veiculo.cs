@@ -15,7 +15,12 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
 
         protected Veiculo () { }
 
-        public Veiculo(string Descricao, int Estoque, decimal PrecoDiaria, decimal AdicionalDiaria) { }
+        public Veiculo(string descricao, int estoque, decimal precoDiaria, decimal adicionalDiaria) {
+            Descricao = descricao;
+            Estoque = estoque;
+            PrecoDiaria = precoDiaria;
+            AdicionalDiaria = adicionalDiaria;
+        }
 
 
 

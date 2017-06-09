@@ -33,6 +33,11 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
             Opcionais = new List<PedidoOpcional>();
         }
 
+        public void anularReferenciaCircular ()
+        {
+            Opcionais.ForEach(o => o.Pedido = null);
+        }
+
         private bool validarTodosOpcionais ()
         {
             foreach (var opcional in Opcionais)
