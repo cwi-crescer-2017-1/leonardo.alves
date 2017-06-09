@@ -7,6 +7,6 @@ namespace Crescer.LocadoraVeiculos.Models
 {
     public class DataModel
     {
-        public DateTime Data { get; set; }
+        public string Data { get; set; }
     }
 }

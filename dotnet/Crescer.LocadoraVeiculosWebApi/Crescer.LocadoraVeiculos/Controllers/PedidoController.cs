@@ -26,13 +26,13 @@ namespace Crescer.LocadoraVeiculos.Controllers
             return MensagemSucesso(pedido);
         }
 
-        [HttpGet, Autorizacao(Roles ="Gerente")]
-        [Route("relatorio")]
-        public HttpResponseMessage ObterRelatorio (DataModel data)
+        [HttpGet]
+        [Route("relatorio")]        
+        public HttpResponseMessage ObterRelatorio (string data)
         {
-           var pedidosMensais = _pedidoRepositorio.ObterPedidosMensais(data.Data);
+           var pedidosMensais = _pedidoRepositorio.ObterPedidosMensais(DateTime.Parse(data));
 
-            if (pedidosMensais == null) return MensagemErro("Data inválida.");
+            if (pedidosMensais.Count == 0) return MensagemErro("Data inválida.");
 
             return MensagemSucesso(pedidosMensais);
         }
@@ -42,13 +42,13 @@ namespace Crescer.LocadoraVeiculos.Controllers
         public HttpResponseMessage ObterAtrasos ()
         {
             var pedidosAtrasados = _pedidoRepositorio.ObterPedidosAtrasados();
-            if (pedidosAtrasados == null) return MensagemErro("Não há pedidos atrasados.");
+            if (pedidosAtrasados.Count == 0) return MensagemErro("Não há pedidos atrasados.");
 
             return MensagemSucesso(pedidosAtrasados);
         }
 
         [HttpPost]
-        [Route("")]        
+        [Route(""), Autorizacao]        
         public HttpResponseMessage CriarPedido (CriarPedidoModel pedido)
         {
             try
@@ -67,10 +67,11 @@ namespace Crescer.LocadoraVeiculos.Controllers
         }  
 
         [HttpPut]
-        [Route("devolver")]
+        [Route("devolver"), Autorizacao]
         public HttpResponseMessage Devolver (int id)
-        {
-            throw new NotImplementedException();
+        {            
+            _pedidoRepositorio.Devolver(id);
+            return MensagemSucesso("Veiculo devolvido com sucesso.");
         }
     }
 }
