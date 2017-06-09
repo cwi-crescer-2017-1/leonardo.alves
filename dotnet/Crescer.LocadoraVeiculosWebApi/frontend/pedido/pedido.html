@@ -1,32 +1,50 @@
-<form novalidate name="formPedido" ng-submit="gerarPedido()">
+<section>
+    <h3>Alugar veículo</h3>
+    <form novalidate name="formPedido" ng-submit="gerarPedido()">
 
-    <label for="cpf">Informe o CPF do cliente:</label>
-    <input type="text" id="cpf" ng-model="pedido.cliente.cpf">
+        <label for="cpf">Informe o CPF do cliente:</label>
+        <input type="text" id="cpf" ng-model="pedido.cliente.cpf">
+        <br/>
+        <label for="veiculoSelect">Selecione o veículo</label>
+        <select ng-model="pedido.Veiculo" ng-options="veiculo as veiculo.Descricao for veiculo in veiculos" id="veiculoSelect">        
+        </select>
 
-    <label for="veiculoSelect">Selecione o veículo</label>
-    <select 
-        ng-model="pedido.Veiculo"  
-        ng-options="veiculo as veiculo.Descricao for veiculo in veiculos" 
-        id="veiculoSelect">        
-    </select>
+        <label for="pacoteSelect">Selecione o pacote</label>
+        <select id="pacoteSelect" ng-options="pacote as pacote.Nome for pacote in pacotes" ng-model="pedido.Pacote">
+        </select>
 
-    <label for="pacoteSelect">Selecione o pacote</label>
-    <select 
-        id="pacoteSelect" 
-        ng-options="pacote as pacote.Nome for pacote in pacotes" 
-        ng-model="pedido.Pacote">
-    </select>
+        <span ng-repeat="opcional in opcionais">
+            <label for="{{opcional.Id}}">{{opcional.Descricao}}</label>
+            <input ng-model="pedido.idOpcional[opcional.Id]" ng-value="opcional.Id" type="checkbox">
+        </span>
+        <br/>
+        <label for="dataEntrega">Informe a data de entrega:</label>
+        <input type="date" ng-model="pedido.dataEntrega">
+        <br/>
+        <button type="submit">Orçamento</button>
+        <button ng-click="reservar()">Alugar</button>
+    </form>   
     
-    <span ng-repeat="opcional in opcionais">
-        <label for="{{opcional.Id}}">{{opcional.Descricao}}</label>
-        <input ng-model="pedido.idOpcional[opcional.Id]" ng-value="opcional.Id" type="checkbox">
-    </span>
-    
-    <label for="dataEntrega">Informe a data de entrega:</label>
-    <input type="date" ng-model="pedido.dataEntrega">
+    <strong>Preço total: {{precoTotal}}</strong>
+</section>
 
-    <button type="submit">Orçamento</button>
-</form>        
-<button ng-click="reservar()">Alugar</button>
-</br>
-Preço total:  {{precoTotal}}
+<section>
+    <h3>Devolver veículo</h3>
+    
+    <label for="cpfDevolucao">Insira o CPF do cliente:</label>
+    <input type="text" id="cpfDevolucao" ng-model="cpfdevolucao">
+    <button ng-click="getPendente(cpfdevolucao)">Procurar devolução pendente</button>
+    
+    <div ng-show="!!pendente" class="pedido-info">
+        <p>Id: {{pendente.Id}}
+            Data do pedido: {{pendente.DataPedido | date}} 
+            Data de entrega prevista: {{pendente.DataEntregaPrevista | date}}
+            Preço total: {{pendente.precoTotal}}
+            <span ng-show="pendente.atraso">Pedido atrasado. Valor adicional por dia atrasado: {{pendente.Veiculo.AdicionalDiaria}}</span>
+        </p>
+        <button ng-click="devolverPedido()">Finalizar pedido</button>
+    </div>
+</section>
+
+<br/>
+ {{pendente | json}}

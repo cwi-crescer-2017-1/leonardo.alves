@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crescer.LocadoraVeiculos.In
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crescer.LocadoraVeiculos.Dominio", "Crescer.LocadoraVeiculosDominio\Crescer.LocadoraVeiculos.Dominio.csproj", "{DCB6914E-CEA9-437E-86E8-99BB257C5765}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crescer.LocadoraVeiculos.Testes", "Crescer.LocadoraVeiculos.Testes\Crescer.LocadoraVeiculos.Testes.csproj", "{38393159-B691-4885-B9F5-B993F5EC54DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{DCB6914E-CEA9-437E-86E8-99BB257C5765}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCB6914E-CEA9-437E-86E8-99BB257C5765}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCB6914E-CEA9-437E-86E8-99BB257C5765}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38393159-B691-4885-B9F5-B993F5EC54DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38393159-B691-4885-B9F5-B993F5EC54DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38393159-B691-4885-B9F5-B993F5EC54DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38393159-B691-4885-B9F5-B993F5EC54DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

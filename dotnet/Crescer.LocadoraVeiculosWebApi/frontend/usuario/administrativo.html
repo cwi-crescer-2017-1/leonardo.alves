@@ -1,6 +1,15 @@
-<h2>Administrativo</h2>
-<button ng-click="logout()">Log out</button>
-<h3><a ng-href="/#/relatoriomensal">Relatorio Mensal</a></h3>
-<h3>Relatorio de atrasos</h3>
-<h3><a ng-href="/#/pedido">Criar Pedido</a></h3>
-<h3>Finalizar Pedido</h3>
+<ul id="slide-out" class="side-nav fixed">
+    <li>
+        <p class="center-align">Administrativo</p>
+    </li>
+    <li><a ng-href="/#/relatoriomensal">Relatorio Mensal</a></li>
+    <li><a ng-href="/#/relatorioatrasos">Relatorio de atrasos</a></li>
+    <li><a ng-href="/#/pedido">Pedido</a></li>
+   
+    <li class="center-align">
+        <button  ng-click="logout()" class="btn waves-effect waves-light">Logout
+            <i class="material-icons right">power_settings_new</i>
+        </button>
+    </li>
+</ul>
+<a data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>

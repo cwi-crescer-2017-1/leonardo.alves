@@ -9,10 +9,10 @@ function usuarioController ($scope, authService) {
         authService.login(usuario)       
         .then(
             function (response) {          
-                alert("TU È BOM");
+                alert("logado!");
             },
             function (response) {  
-                alert("TU NAO E BOM");
+                alert("Erro ocorreu");
             });
 
     }
