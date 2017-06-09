@@ -40,7 +40,7 @@ namespace Crescer.LocadoraVeiculos.Testes
         }
 
         [TestMethod]
-        [ExpectedException(typeof(RecursoIlimitadoException))]
+        [ExpectedException(typeof(ForaDeEstoqueException))]
         public void OpcionalDiminuirComRecursoIlimitado()
         {
             int id = 843;
@@ -51,10 +51,11 @@ namespace Crescer.LocadoraVeiculos.Testes
             Opcional o = new Opcional(id, descricao, preco, quantidade);
             o.diminuirEstoque();
 
+            Assert.AreEqual(quantidade, o.Quantidade);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(RecursoIlimitadoException))]
+        
         public void OpcionalAumentarComRecursoIlimitado()
         {
             int id = 843;
@@ -64,6 +65,8 @@ namespace Crescer.LocadoraVeiculos.Testes
 
             Opcional o = new Opcional(id, descricao, preco, quantidade);
             o.aumentarEstoque();
+
+            Assert.AreEqual(quantidade, o.Quantidade);
 
         }
     }

@@ -28,10 +28,7 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
 
         public void diminuirEstoque()
         {
-            if (Quantidade > 0) Quantidade--;
-
-            if (Quantidade == null)
-                throw new RecursoIlimitadoException("Esse opcional não pode ser decrescido, pois é um recurso ilimitado.");
+            if (Quantidade > 0 && Id != 3) Quantidade--;           
 
             else
                 throw new ForaDeEstoqueException("Não há estoque para esse opcional!");
@@ -39,10 +36,7 @@ namespace Crescer.LocadoraVeiculosDominio.Entidades
 
         public void aumentarEstoque ()
         {
-            if (Quantidade >= 0) Quantidade++;
-
-            if (Quantidade == null)
-                throw new RecursoIlimitadoException("Esse opcional não pode receber mais unidades, pois é um recurso ilimitado.");
+            if (Quantidade >= 0) Quantidade++;          
                 
         }
 

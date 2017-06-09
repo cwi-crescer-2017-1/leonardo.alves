@@ -10,11 +10,12 @@ using System.Web.Http;
 namespace Crescer.LocadoraVeiculos.Controllers
 {
     [RoutePrefix("api/usuarios")]
+    [Autorizacao]
     public class UsuarioController : ControllerBasico
     {
         private UsuarioRepositorio _usuarioRepositorio = new UsuarioRepositorio();        
 
-        [HttpGet, Autorizacao]
+        [HttpGet]
         [Route("")]
         public HttpResponseMessage Obter()
         {

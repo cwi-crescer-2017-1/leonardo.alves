@@ -13,6 +13,7 @@ using System.Web.Http;
 namespace Crescer.LocadoraVeiculos.Controllers
 {
     [RoutePrefix("api/clientes")]
+    [Autorizacao]
     public class ClienteController : ControllerBasico
     {
         ClienteRepositorio _clienteRepositorio = new ClienteRepositorio();
@@ -30,7 +31,7 @@ namespace Crescer.LocadoraVeiculos.Controllers
             );
         }
        
-        [HttpGet, Autorizacao]
+        [HttpGet]
         public HttpResponseMessage Obter(string cpf)
         {            
            var clienteRetorno = _clienteRepositorio.Obter(cpf);

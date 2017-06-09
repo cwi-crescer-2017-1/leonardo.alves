@@ -11,11 +11,12 @@ using System.Web.Http;
 namespace Crescer.LocadoraVeiculos.Controllers
 {
     [RoutePrefix("api/pedidos")]   
+    [Autorizacao]
     public class PedidoController : ControllerBasico
     {
         PedidoRepositorio _pedidoRepositorio = new PedidoRepositorio();
 
-        [HttpGet, Autorizacao]
+        [HttpGet]
         [Route("pendente")]
         public HttpResponseMessage ObterPedidoPendente (string cpf)
         {
@@ -27,7 +28,7 @@ namespace Crescer.LocadoraVeiculos.Controllers
         }
 
         [HttpGet]
-        [Route("relatorio")]        
+        [Route("relatorio"), Autorizacao(Roles ="Gerente")]        
         public HttpResponseMessage ObterRelatorio (string data)
         {
            var pedidosMensais = _pedidoRepositorio.ObterPedidosMensais(DateTime.Parse(data));
@@ -48,7 +49,7 @@ namespace Crescer.LocadoraVeiculos.Controllers
         }
 
         [HttpPost]
-        [Route(""), Autorizacao]        
+        [Route("")]        
         public HttpResponseMessage CriarPedido (CriarPedidoModel pedido)
         {
             try
@@ -67,7 +68,7 @@ namespace Crescer.LocadoraVeiculos.Controllers
         }  
 
         [HttpPut]
-        [Route("devolver"), Autorizacao]
+        [Route("devolver")]
         public HttpResponseMessage Devolver (int id)
         {            
             _pedidoRepositorio.Devolver(id);

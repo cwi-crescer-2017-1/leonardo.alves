@@ -54,7 +54,7 @@ namespace Crescer.LocadoraVeiculosInfraestrutura.Repositorio
             //retorna os pedidos que nao foram entregados e que já passaram da data de entrega prevista
             var pedidos = contexto.Pedidos
                 .Include(p => p.Cliente)
-                .Where(p => DbFunctions.DiffDays(DateTime.Now, p.DataEntregaPrevista) > 0 &&
+                .Where(p => DbFunctions.DiffDays(p.DataEntregaPrevista, DateTime.Now) > 0 &&
                         p.DataEntregaReal == null)
                 .OrderByDescending(p => DbFunctions.DiffDays(DateTime.Now, p.DataEntregaPrevista))
                 .ToList();            
@@ -93,9 +93,12 @@ namespace Crescer.LocadoraVeiculosInfraestrutura.Repositorio
             foreach (var id in idOpcional)
             {
                 var opcional = contexto.Opcionais.FirstOrDefault(o => o.Id == id);
+                opcional.diminuirEstoque();
                 pedido.Opcionais.Add(new PedidoOpcional(pedido, opcional));
-            }            
 
+            }
+
+            veiculo.diminuirEstoque();
 
             pedido.EhPossivelEssaConfiguracao();
 
