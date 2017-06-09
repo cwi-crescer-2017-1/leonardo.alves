@@ -19,28 +19,61 @@ namespace Crescer.LocadoraVeiculosInfraestrutura.Repositorio
         public Pedido ObterPedido (string cpf)
         {
             //Pega o ultimo pedido ja feito pelo cliente.            
-            return contexto.Pedidos
+            var pedido = contexto.Pedidos
+                .AsNoTracking()                
+                .Include(p => p.Opcionais.Select(o => o.Opcional))
+                .Include(p => p.Pacote)
+                .Include(p => p.Veiculo)
                 .Where(p => p.Cliente.Cpf == cpf && p.DataEntregaReal == null)
                 .OrderByDescending(p => p.DataPedido)
                 .FirstOrDefault();
+
+            if (pedido != null) pedido.anularReferenciaCircular();
+
+            return pedido;
+            
         }
 
         public List<Pedido> ObterPedidosMensais (DateTime data)
         {          
-            return contexto.Pedidos                
+            var pedidos = contexto.Pedidos  
+                .Include(p => p.Opcionais.Select(o => o.Opcional))
+                .Include(p => p.Pacote)
+                .Include(p => p.Veiculo)              
                 .Where(p => DbFunctions.DiffDays(data, p.DataEntregaReal) <= 30 && 
                         p.DataEntregaReal != null)
                 .ToList();
+
+            pedidos.ForEach(p => p.anularReferenciaCircular());
+
+            return pedidos;
         }
 
         public List<Pedido> ObterPedidosAtrasados()
         {
             //retorna os pedidos que nao foram entregados e que já passaram da data de entrega prevista
-            return contexto.Pedidos
+            var pedidos = contexto.Pedidos
+                .Include(p => p.Cliente)
                 .Where(p => DbFunctions.DiffDays(DateTime.Now, p.DataEntregaPrevista) > 0 &&
                         p.DataEntregaReal == null)
                 .OrderByDescending(p => DbFunctions.DiffDays(DateTime.Now, p.DataEntregaPrevista))
-                .ToList();                
+                .ToList();            
+
+            return pedidos;
+        }
+
+        public void Devolver(int id)
+        {
+            var pedido = contexto.Pedidos
+                .Include(p => p.Veiculo)
+                .Include(p => p.Opcionais.Select(o => o.Opcional))
+                .FirstOrDefault(x => x.Id == id);
+            
+            pedido.Veiculo.aumentarEstoque();
+            pedido.Opcionais.ForEach(o => o.Opcional.aumentarEstoque());
+            pedido.Devolver();
+
+            contexto.SaveChanges();
         }
 
         public void GerarPedido(string cpf, int idVeiculo, int? idPacote, int [] idOpcional, DateTime dataEntrega)
