@@ -72,4 +72,13 @@ begin
 
 end;
 
+--Crie uma rotina que atualize todos os clientes que não realizaram nenhum 
+--pedido nos últimos 6 meses (considere apenas o mês, dia 01 do 6º mês anterior)
+--Definir o atributo Situacao para I.
 
+update cliente 
+set situacao = 'I'
+where idcliente not in
+    (select distinct idcliente 
+     from pedido  
+     where months_between(trunc(sysdate, 'MONTH'), trunc(datapedido, 'MONTH')) <= 6);
