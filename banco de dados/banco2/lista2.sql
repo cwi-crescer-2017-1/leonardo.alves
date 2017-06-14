@@ -4,74 +4,49 @@
 
 --select nome, uf, count(2) from cidade group by nome, uf having count(2) >1;
 
-declare  
+declare 
 
-  vCidadeNome cidade.nome%type;  
-  vContadorCidade cidade.idcidade%type;
-  
   cursor c_cidadeDup is  
     select nome,
-           uf,           
-           count(2) as ocorrencias,
-           count(3)
+           uf
     from cidade
     group by nome, uf
-    having count(2) > 1 AND count(3) > 1
+    having count(1)> 1
     order by nome;
     
-    cursor c_clientesDup is
-      select nome  
-      from cliente 
-      where idcidade = (select idcidade from cidade where nome like vCidadeNome AND rownum = vContadorCidade);  
+    cursor c_clientesDup (pCidade in varchar2, pUf in varchar2) is
+      select cliente.nome from cliente inner join cidade 
+      on cliente.idcidade = cidade.idcidade
+      where cidade.nome = pCidade AND cidade.uf = pUf;  
       
 begin
-  for c in c_cidadeDup loop
-  
-     DBMS_OUTPUT.PUT_LINE('------------CIDADE----------');
-     DBMS_OUTPUT.PUT_LINE( c.nome || '-'|| c.uf);
-     vContadorCidade := 0;
-     vCidadeNome := c.nome;
-
-     DBMS_OUTPUT.PUT_LINE('---------CLIENTES----------');  
-     while vContadorCidade < c.ocorrencias loop     
-       vContadorCidade := vContadorCidade + 1;  
-       
-       for cliente in c_clientesDup loop     
-          DBMS_OUTPUT.PUT_LINE( cliente.nome);
-       end loop;
-       
+  for c in c_cidadeDup loop    
+     DBMS_OUTPUT.PUT_LINE('Cidade: '|| c.nome || '-'|| c.uf);           
+     for h in c_clientesDup(c.nome, c.uf) loop     
+        DBMS_OUTPUT.PUT_LINE(h.nome);
      end loop;
-     
   end loop; 
 end;
 
+--create index IX_Cidade_NomeUF   on Cidade (Nome,UF);
+--create index IX_Cliente_Cidade  on Cliente (IDCidade);
 
 --Faça uma rotina que permita atualizar o valor do pedido a partir dos seus itens.
 --Esta rotina deve receber por parametro o IDPedido e então verificar o valor 
 --total de seus itens (quantidade x valor unitário).
-declare 
-
+create or replace 
+procedure atualiza_valor_pedido (pIdPedido in integer) as
   vValorTotal pedido.valorpedido%type;
-  vIdPedido pedido.idPedido%type;
+begin  
   
-  cursor c_itensDoPedido (pIdPedido in number) is
-    select  quantidade, 
-            precounitario 
-    from pedidoitem where idpedido = pIdPedido;
-    
-begin 
-  vValorTotal := 0;
-  vIdPedido := :idPedido;
-  for item in c_itensDoPedido(vIdPedido) loop
-    
-    vValorTotal := vValorTotal + (item.quantidade * item.precounitario);
-  end loop;
-  
-  DBMS_OUTPUT.PUT_LINE(vValorTotal);  
-  update pedido set valorpedido = vValorTotal where idpedido = vIdPedido; 
+  select sum(quantidade * precounitario) into vValorTotal
+  from pedidoitem where idPedido = pIdPedido;  
+
+  update pedido set valorpedido = vValorTotal where idpedido = pIdPedido; 
 
 end;
 
+exec atualiza_valor_pedido (56);
 --Crie uma rotina que atualize todos os clientes que não realizaram nenhum 
 --pedido nos últimos 6 meses (considere apenas o mês, dia 01 do 6º mês anterior)
 --Definir o atributo Situacao para I.
