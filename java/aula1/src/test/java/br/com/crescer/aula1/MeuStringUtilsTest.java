@@ -90,4 +90,48 @@ public class MeuStringUtilsTest {
         assertEquals(expResult, result);        
     }
     
+        @Test
+    public void testIsEmptys() {
+        MeuStringUtils stringUtils = new MeuStringUtils();
+        assertTrue(stringUtils.isEmpty(null));
+        assertTrue(stringUtils.isEmpty(""));
+        assertTrue(stringUtils.isEmpty(" "));
+        assertFalse(stringUtils.isEmpty("a"));
+        assertFalse(stringUtils.isEmpty(" a "));
+    }
+
+    /**
+     * Test of inverter method, of class StringUtils.
+     */
+    @Test
+    public void testInverters() {
+                MeuStringUtils stringUtils = new MeuStringUtils();
+
+        assertEquals("solrac", stringUtils.inverter("carlos"));
+    }
+
+    /**
+     * Test of contaVogais method, of class StringUtils.
+     */
+    @Test
+    public void testContaVogaiss() {
+                MeuStringUtils stringUtils = new MeuStringUtils();
+
+        assertEquals(2, stringUtils.contaVogais("carlos"));
+    }
+
+    /**
+     * Test of isPalindromo method, of class StringUtils.
+     */
+    @Test
+    public void testIsPalindromos() {
+                MeuStringUtils stringUtils = new MeuStringUtils();
+
+        assertTrue(stringUtils.isPalindromo("ovo"));
+        assertTrue(stringUtils.isPalindromo("Ame a Ema"));
+        assertTrue(stringUtils.isPalindromo("A sogra má e amargosa"));
+        assertFalse(stringUtils.isPalindromo("uva"));
+        assertFalse(stringUtils.isPalindromo("Ame a Emo"));
+    }
+    
 }
