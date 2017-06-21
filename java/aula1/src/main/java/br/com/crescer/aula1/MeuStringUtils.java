@@ -21,7 +21,7 @@ public class MeuStringUtils implements StringUtils {
 
     @Override
     public boolean isEmpty(String string) {
-        return string.length() == 0 || string == null ;
+        return string == null || string.length() == 0;
     }
 
     @Override
@@ -44,8 +44,9 @@ public class MeuStringUtils implements StringUtils {
     }
 
     @Override
-    public boolean isPalindromo(String string) {        
-        return trim(normalizar(string)).equals(trim(inverter(normalizar(string))));
+    public boolean isPalindromo(String string) {
+        String stringNormalizada = trim(normalizar(string));
+        return stringNormalizada.equals(inverter(stringNormalizada));
     }
 
 }
