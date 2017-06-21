@@ -12,6 +12,7 @@ public class MeuStringUtils implements StringUtils {
         return Normalizer
                 .normalize(string, Normalizer.Form.NFD)
                 .replaceAll("[^\\p{ASCII}]", "")
+                .trim()
                 .toLowerCase();
     }
     
@@ -21,7 +22,7 @@ public class MeuStringUtils implements StringUtils {
 
     @Override
     public boolean isEmpty(String string) {
-        return string == null || string.length() == 0;
+        return string == null || normalizar(string).isEmpty();
     }
 
     @Override
