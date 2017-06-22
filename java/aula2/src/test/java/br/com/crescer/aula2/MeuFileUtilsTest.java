@@ -42,7 +42,7 @@ public class MeuFileUtilsTest {
         String string = "file.txt";        
         instance.mk(string);
         
-        String expResult = "C:\\Users\\Leu\\Documents\\cwi\\leonardo.alves\\java\\aula2\\file.txt";
+        String expResult = "C:\\Users\\leonardo.alves\\Documents\\crescer\\leonardo.alves\\java\\aula2\\file.txt";
         String result = instance.ls(string);
         
         assertEquals(expResult, result);

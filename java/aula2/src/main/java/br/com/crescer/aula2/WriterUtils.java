@@ -8,6 +8,6 @@ import java.io.IOException;
  */
 public interface WriterUtils {
 
-    void write(String file, String conteudo) throws IOException;
+    void write(String file, String conteudo);
 
 }

@@ -16,7 +16,7 @@ public class MeuReaderUtils implements ReaderUtils {
     public String read(String string) throws IOException {        
         StringBuilder sb = new StringBuilder();  
         
-        if(!string.contains(".txt")) throw new IOException("Só é permitido arquivos .txt");
+        if(!string.endsWith(".txt")) throw new IOException("Só é permitido arquivos .txt");
         
         try(Reader r = new FileReader(string);
             BufferedReader reader = new BufferedReader(r)) {

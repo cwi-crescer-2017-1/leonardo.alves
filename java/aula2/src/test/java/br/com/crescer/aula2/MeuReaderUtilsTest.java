@@ -1,5 +1,6 @@
 package br.com.crescer.aula2;
 
+import java.io.IOException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -13,7 +14,7 @@ public class MeuReaderUtilsTest {
     }
 
     @Test
-    public void testRead() {       
+    public void testRead() throws IOException {       
         MeuReaderUtils instance = new MeuReaderUtils();
         String string = "readerFile.txt";
         String expResult = "Hello World\n1\n2\n3\nBatata Frita\nArroz\nChuva de panelinha dourada";

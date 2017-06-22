@@ -13,9 +13,9 @@ import java.io.Writer;
 public class MeuWriterUtils implements WriterUtils  {
 
     @Override
-    public void write(String file, String conteudo) throws IOException {
+    public void write(String file, String conteudo) {
         
-        if(!file.contains(".txt")) throw new IOException("O arquivo precisa ser .txt");
+        if(!file.endsWith(".txt")) throw new RuntimeException("O arquivo precisa ser .txt");
         
         try(Writer w = new FileWriter(file);
             BufferedWriter writer = new BufferedWriter(w)){
