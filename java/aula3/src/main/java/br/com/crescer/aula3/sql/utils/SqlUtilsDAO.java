@@ -83,7 +83,7 @@ public final class SqlUtilsDAO {
         
         try (final Connection connection = ConnectionUtils.getConnection();
                 final PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            
+            connection.setAutoCommit(false);
             int pos = 0;
             
             for(int i = 0; i < numValores; i++){ 
