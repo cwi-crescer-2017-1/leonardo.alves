@@ -60,8 +60,8 @@ public abstract class GenericDAO<E, N extends Long> implements CrudDao<E, N> {
     }
     
     @Override
-    public final E loadById(N n) {
-        return (E) this.session.load(this.entityClass, n);        
+    public final E loadById(Long id) {
+        return (E) this.session.load(this.entityClass, id);        
     }
     
     @Override
