@@ -43,16 +43,18 @@ public abstract class GenericDAO<E, N extends Long> implements CrudDao<E, N> {
         manipulate(Manipulate.DELETE, e);
     }
     
-    private void manipulate (Manipulate option, E e) {
-        boolean isEqualToSave = option.equals(Manipulate.SAVE);
+    private void manipulate (Manipulate option, E e) {        
                 
         this.transaction.begin();
 
-        if(isEqualToSave) {
-            this.session.saveOrUpdate(e);
-        } else  {
-            this.session.delete(e);
-        }            
+        switch(option) {
+            case SAVE:
+                session.saveOrUpdate(e);
+                break;
+            case DELETE:
+                session.delete(e);
+                break;
+        }
         
         this.transaction.commit();        
     }
