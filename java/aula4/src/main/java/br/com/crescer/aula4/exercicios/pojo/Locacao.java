@@ -23,7 +23,7 @@ public class Locacao implements Serializable {
 
     @Id
     @GeneratedValue(strategy = SEQUENCE, generator = "SEQ_LOCACAO")
-    @SequenceGenerator(name = "SEQ_LOCACAO", sequenceName = "SEQ_LOCACAO")
+    @SequenceGenerator(name = "SEQ_LOCACAO", sequenceName = "SEQ_LOCACAO", allocationSize = 1)
     @Basic(optional = false)
     private Long id;
     

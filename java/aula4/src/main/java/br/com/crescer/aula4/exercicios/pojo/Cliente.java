@@ -23,7 +23,7 @@ import javax.persistence.TemporalType;
 public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy = SEQUENCE, generator = "SEQ_CLIENTE")
-    @SequenceGenerator(name = "SEQ_CLIENTE", sequenceName = "SEQ_CLIENTE")
+    @SequenceGenerator(name = "SEQ_CLIENTE", sequenceName = "SEQ_CLIENTE", allocationSize=1)
     @Basic(optional = false)
     private Long   id;  
     
