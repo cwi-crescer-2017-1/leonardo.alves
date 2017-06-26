@@ -76,6 +76,9 @@ public abstract class GenericDAO<E, N extends Long> implements CrudDao<E, N> {
         return this.entityManager;
     }
     
+    /**
+     * Fecha conexão do EntityManagerFactory, EntityManager e da Session.
+     */
     public final void close () {
         this.managerFactory.close();
         this.entityManager.close();
