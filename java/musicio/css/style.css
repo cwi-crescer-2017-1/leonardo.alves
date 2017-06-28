@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+body {
+    margin: 0;
+    display: flex;
+    flex-flow: column wrap;
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    background-color: purple;
+    flex: 0.1;
+    color: white;
+    padding: 1em 0;
+}
+
+header span, header i {
+    margin-left: 0.5rem;
+    align-self: center;
+}
+
+.content {
+    flex: 10;
+}
+
+footer {
+    display: flex;
+    flex-flow: row wrap;
+    align-self: flex-end;
+    flex: 0.1;
+    width: 100vw;
+    background-color: purple;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    justify-content: space-around;
+}
+
+.login {
+    align-self: center;
+    color: white;
+}
+
+.login input {
+    border: none;
+    border-bottom: 2px solid white;
+    background: none;   
+    width: 30%;
+} 
+
+.login button {
+    background: white;
+    border-radius: 10px;
+    margin: 1px;
+    margin-top: 3px;
+    border: none;
+}
+
+.suporte {
+    display: flex;
+    flex-flow: row;
+    align-content: center;
+    justify-content: space-around;
+}
+
+.suporte a {
+    align-self: center;
+    margin: 0 1rem;
+    color: white;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 1000px) {
+    footer {
+        flex-flow: column wrap;
+    }
+    .login {
+        align-self: center;
+    }
+
+    .login button {
+        flex-basis: 100%;
+        border-radius: 0;
+        margin-top: 0.5rem;
+        height: 1.3rem;
+    }
+
+    .login input {
+        width: 80vw;
+    }
+    
+    .login-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .suporte {
+        margin-top: 1rem;
+        order: 1;
+    }
+
+    .login label {
+        margin: 0 1px 0 1px;
+    }
+
+}
