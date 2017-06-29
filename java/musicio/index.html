@@ -4,23 +4,48 @@
         <title>Musicio</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/style.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
         <header>  
-            <i class="material-icons">queue_music</i>                      
-            <span>Musicio</span>
+            <i class="material-icons iconed-header">queue_music</i>                      
+            <span class="iconed-header">Musicio</span>
+            <a class="login-link" href="#login">
+                <i class="material-icons footer-link iconed-header">keyboard_arrow_down</i>
+            </a>
+            
         </header>
         <section class="content">
-            
+            <article>
+                
+                <h3 class="text-center">
+                     <i class="material-icons centered-icon">people_outline</i>
+                     O lugar perfeito para compartilhar de suas emoções
+                </h3>
+                <p>
+                    Aqui você encontrará pessoas que têm o mesmo gosto musical em comum que você!
+                    Já pensou em ouvir as suas bandas que "ninguém" gosta com alguém? Com o Musicio
+                    Isso ficou muito mais fácil! Cadastre-se gratuitamente e bora dalhe nas músicas :)
+                </p>
+            </article>
+            <article>
+                <h3 class="text-center">
+                    <i class="material-icons centered-icon">forum</i>
+                    Venha fazer parte dos amantes de música
+                </h3>
+                <p>
+                    Que tal você publicar sobre a nova música do momento? Vem com a gente, nos diga
+                    do que você gosta e comece hoje mesmo a criar novos amigos.
+                </p>
+            </article>
         </section>
         <footer>
             <section class="suporte">
                <a href="#">Criar minha conta</a>
                <!--<a href="#">Esqueci minha senha</a>-->
             </section>
-            <section class="login">
+            <section class="login" id="login">
                 <form class="login-form">
                     <label for="usuario-email">Email: </label>
                     <input type="email" id="usuario-email" name="usuario-email">
