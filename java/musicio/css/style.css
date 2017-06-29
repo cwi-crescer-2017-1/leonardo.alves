@@ -3,7 +3,13 @@
 * {
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
+    
 }
+
+p, h1, h2, h3, h4, h5, h6, span, a, label, button {
+    font-size: 1.187em;
+}
+
 body {
     margin: 0;
     display: flex;
@@ -19,13 +25,42 @@ header {
     padding: 1em 0;
 }
 
-header span, header i {
-    margin-left: 0.5rem;
-    align-self: center;
+.login-link {
+    display: none;
+}
+
+.iconed-header {
+    margin-left: 0.5rem;    
 }
 
 .content {
     flex: 10;
+    /*background temporario*/
+    background-image: 
+    url(https://s-media-cache-ak0.pinimg.com/originals/34/25/12/342512aa4866e6bfe5e0e6e314375839.jpg);
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.content article {
+    background: rgba(255,255,255,0.4);
+    max-width: 45vw;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.centered-icon {
+    vertical-align: middle;
+    font-size: 42px;
+}
+
+.text-center {
+    text-align: center;
 }
 
 footer {
@@ -50,14 +85,17 @@ footer {
     border-bottom: 2px solid white;
     background: none;   
     width: 30%;
+    color: white;
 } 
 
 .login button {
-    background: white;
-    border-radius: 10px;
-    margin: 1px;
-    margin-top: 3px;
+    background: white;   
     border: none;
+}
+
+.login-form {
+    display: flex;
+    justify-content: space-between;
 }
 
 .suporte {
@@ -75,36 +113,64 @@ footer {
 }
 
 @media screen and (max-width: 1000px) {
-    footer {
-        flex-flow: column wrap;
+    .content {
+        flex-flow: column wrap;          
     }
+    .content article {
+        max-width: 80vw;
+        align-self: center;
+    }
+
+    .content article:last-child {
+        margin-bottom: 1rem;
+    }
+
+    footer {
+        flex-flow: column-reverse wrap;
+    }
+
     .login {
         align-self: center;
     }
 
     .login button {
         flex-basis: 100%;
-        border-radius: 0;
-        margin-top: 0.5rem;
-        height: 1.3rem;
+        border-radius: 0;              
     }
 
     .login input {
         width: 80vw;
-    }
-    
+        margin-bottom: 1rem;
+    }    
+   
     .login-form {
         display: flex;
         flex-direction: column;
     }
 
     .suporte {
-        margin-top: 1rem;
-        order: 1;
+        margin-top: 1rem;       
     }
 
     .login label {
         margin: 0 1px 0 1px;
     }
 
+}
+
+@media screen and (max-width: 670px) {
+    header {
+        justify-content: space-around;
+    }
+
+     .login-link {
+        display: block;        
+    }
+
+    .login-link i {
+        border: 2px solid white;
+        color: white;
+        border-radius: 50%;
+    }
+    
 }
