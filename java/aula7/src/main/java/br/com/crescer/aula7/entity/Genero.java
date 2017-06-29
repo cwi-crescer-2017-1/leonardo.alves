@@ -1,13 +1,16 @@
 
 package br.com.crescer.aula7.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.SEQUENCE;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 /** 
@@ -15,18 +18,20 @@ import javax.persistence.SequenceGenerator;
  **/
 
 @Entity
-public class GeneroEntity implements Serializable {
+public class Genero implements Serializable {
     
     @Id
     @GeneratedValue(strategy = SEQUENCE, generator = "SEQ_GENERO")
     @SequenceGenerator(name = "SEQ_GENERO", sequenceName = "SEQ_GENERO", allocationSize = 1)
     @Basic(optional = false)
-    @Column(name = "id")
     private Long   id;  
     
     @Basic(optional = false)
-    @Column(name = "descricao")
     private String descricao;
+    
+    @OneToMany(mappedBy = "genero", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Video> videos;    
     
 
     public Long getId() {
@@ -45,5 +50,14 @@ public class GeneroEntity implements Serializable {
         this.descricao = descricao;
     }
 
+    public List<Video> getVideos() {
+        return videos;
+    }
+
+    public void setVideos(List<Video> videos) {
+        this.videos = videos;
+    }
+
+    
     
 }
