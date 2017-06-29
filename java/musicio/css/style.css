@@ -23,6 +23,7 @@ header {
     flex: 0.1;
     color: white;
     padding: 1em 0;
+    max-height: 10vh;
 }
 
 .login-link {
@@ -33,19 +34,43 @@ header {
     margin-left: 0.5rem;    
 }
 
-.content {
-    flex: 10;
-    /*background temporario*/
-    background-image: 
-    url(https://s-media-cache-ak0.pinimg.com/originals/34/25/12/342512aa4866e6bfe5e0e6e314375839.jpg);
-    background-size: cover;
-    background-position: center;
+ng-view {
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 10;    
+}
 
+.content {
+    flex: 10;      
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
     align-items: flex-start;
 }
+
+.content-home {
+    /*background temporario*/
+    background-image: 
+    url(https://s-media-cache-ak0.pinimg.com/originals/34/25/12/342512aa4866e6bfe5e0e6e314375839.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.content-cadastro {
+    flex-flow: column nowrap;
+    background-color: #e1bee7;
+}
+
+.content-cadastro form {
+    align-self: center;
+    width: 80vw;
+}
+
+.content-cadastro form label {
+    display: block;
+    
+}
+
 
 .content article {
     background: rgba(255,255,255,0.4);
@@ -80,7 +105,7 @@ footer {
     color: white;
 }
 
-.login input {
+.input-flat {
     border: none;
     border-bottom: 2px solid white;
     background: none;   
@@ -114,7 +139,7 @@ footer {
 
 @media screen and (max-width: 1000px) {
     .content {
-        flex-flow: column wrap;          
+        flex-flow: column nowrap;          
     }
     .content article {
         max-width: 80vw;
@@ -126,7 +151,8 @@ footer {
     }
 
     footer {
-        flex-flow: column-reverse wrap;
+        flex-flow: column nowrap;
+        min-height: 20vh;
     }
 
     .login {
