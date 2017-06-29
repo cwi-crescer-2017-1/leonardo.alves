@@ -6,7 +6,7 @@
     
 }
 
-p, h1, h2, h3, h4, h5, h6, span, a, label, button, input {
+p, h1, h2, h3, h4, h5, h6, span, a, label, button, input, select {
     font-size: 1.187em;
 }
 
@@ -23,7 +23,7 @@ header {
     flex: 0.1;
     color: white;
     padding: 1em 0;
-    max-height: 10vh;
+    max-height: 15vh;
 }
 
 .login-link {
@@ -64,7 +64,7 @@ ng-view {
 
 .content-cadastro form {
     align-self: center;
-    width: 80vw;
+    width: 60vw;
     margin-top: 1rem;
 }
 
@@ -80,6 +80,15 @@ ng-view {
 
 .form-input {
     margin: 1rem 0;
+}
+
+.complex-input {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.complex-content {
+    align-self: center;
 }
 
 .content article {
@@ -108,6 +117,10 @@ footer {
     padding-top: 1em;
     padding-bottom: 1em;
     justify-content: space-around;
+}
+
+hr {
+    display: none;
 }
 
 .login {
@@ -158,6 +171,10 @@ footer {
 }
 
 @media screen and (max-width: 1000px) {
+    hr {
+        display: block;
+    }
+
     .content {
         flex-flow: column nowrap;          
     }
@@ -168,6 +185,10 @@ footer {
 
     .content article:last-child {
         margin-bottom: 1rem;
+    }
+
+    .content-cadastro form {
+        width: 80vw;
     }
 
     footer {
