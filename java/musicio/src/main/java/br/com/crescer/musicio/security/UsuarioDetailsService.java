@@ -2,8 +2,11 @@
 package br.com.crescer.musicio.security;
 
 
+import br.com.crescer.musicio.entity.Permissao;
 import br.com.crescer.musicio.entity.Usuario;
+import br.com.crescer.musicio.entity.Usuariopermissao;
 import br.com.crescer.musicio.repository.UsuarioRepository;
+import br.com.crescer.musicio.repository.UsuariopermissaoRepository;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,22 +26,27 @@ import org.springframework.stereotype.Service;
 public class UsuarioDetailsService implements UserDetailsService {
     
     @Autowired
-    UsuarioRepository repositorio;
+    UsuarioRepository repoUsuario;
+    
+    @Autowired
+    UsuariopermissaoRepository repoPermissoes;
     
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {
-        Usuario usuario = repositorio.findByEmail(username);
+        Usuario usuario = repoUsuario.findByEmail(username);
+        List<Usuariopermissao> permissoes = 
+                repoPermissoes.findByUsuarioIdUsuario(usuario.getIdUsuario());       
+        
         
         if(usuario == null) 
             throw new UsernameNotFoundException("As credenciais informadas não são válidas.");
         
         List<GrantedAuthority> roles = new ArrayList<>();
 
-        usuario.getPermissoes()
-            .stream()
-            .forEach((p) -> {
-                roles.add(() -> p.getPermissao().getPermissao());
-            });
+        for(Usuariopermissao p : permissoes) {
+            String roleName = p.getPermissao().getPermissao();
+            roles.add(() -> "ROLE_".concat(roleName));
+        }
 
         return new User(usuario.getEmail(), usuario.getSenha(), roles);       
         
