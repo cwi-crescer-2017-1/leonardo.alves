@@ -43,12 +43,12 @@ public class Usuarioamigo implements Serializable {
     @JoinColumn(name = "AMIGO_ID_USUARIO", referencedColumnName = "ID_USUARIO")
     @JsonBackReference
     @ManyToOne(optional = false)
-    private Usuario amigoIdUsuario;
+    private Usuario amigo;
     //---------------------------------    
     @JoinColumn(name = "USUARIO_ID_USUARIO", referencedColumnName = "ID_USUARIO")
     @JsonBackReference
     @ManyToOne(optional = false)
-    private Usuario usuarioIdUsuario;
+    private Usuario usuario;
 
     public Usuarioamigo() {
     }
@@ -78,20 +78,20 @@ public class Usuarioamigo implements Serializable {
         this.situacao = situacao;
     }
 
-    public Usuario getAmigoIdUsuario() {
-        return amigoIdUsuario;
+    public Usuario getAmigo() {
+        return amigo;
     }
 
-    public void setAmigoIdUsuario(Usuario amigoIdUsuario) {
-        this.amigoIdUsuario = amigoIdUsuario;
+    public void setAmigo(Usuario amigo) {
+        this.amigo = amigo;
     }
 
-    public Usuario getUsuarioIdUsuario() {
-        return usuarioIdUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setUsuarioIdUsuario(Usuario usuarioIdUsuario) {
-        this.usuarioIdUsuario = usuarioIdUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @Override

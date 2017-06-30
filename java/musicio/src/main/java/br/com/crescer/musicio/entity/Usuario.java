@@ -32,6 +32,7 @@ import javax.validation.constraints.Size;
 
 public class Usuario implements Serializable {
 
+    
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -76,7 +77,7 @@ public class Usuario implements Serializable {
     private List<Post> postList;
     //---------------------------
     @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "amigoIdUsuario")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "amigo")
     private List<Usuarioamigo> amigos;
     /* //---------------------------
     @JsonManagedReference
@@ -90,7 +91,10 @@ public class Usuario implements Serializable {
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario")
     private List<Curtida> curtidaList;
-
+    //---------------------------    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    private List<Usuariopermissao> permissoes;
+    
     public Usuario() {
     }
 
@@ -222,6 +226,14 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "br.com.crescer.musicio.entity.Usuario[ idUsuario=" + idUsuario + " ]";
+    }
+
+    public List<Usuariopermissao> getPermissoes() {
+        return permissoes;
+    }
+
+    public void setPermissoes(List<Usuariopermissao> permissoes) {
+        this.permissoes = permissoes;
     }
 
 }
