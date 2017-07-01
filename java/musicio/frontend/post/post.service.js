@@ -5,7 +5,10 @@ function postService ($http) {
 
     var addPost = (post) => $http.post(url, post);
 
+    var pegarPosts = (num) => $http.get(`${url}/${num}`);
+
     return {
-        addPost: addPost
+        addPost: addPost,
+        pegarPosts: pegarPosts
     }
 }
