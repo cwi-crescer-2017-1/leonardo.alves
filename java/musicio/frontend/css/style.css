@@ -3,6 +3,7 @@
 * {
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
+    outline: none;
     
 }
 
@@ -22,8 +23,7 @@ header {
     background-color: purple;
     flex: 0.1;
     color: white;
-    padding: 1em 0;
-    max-height: 15vh;
+    padding: 1em 0;    
 }
 
 .login-link {
@@ -31,7 +31,9 @@ header {
 }
 
 .iconed-header {
-    margin-left: 0.5rem;    
+    margin-left: 0.5rem;
+    font-size: 1.4rem;
+    align-self: center;
 }
 
 ng-view {
@@ -123,6 +125,10 @@ hr {
     display: none;
 }
 
+.hr-show {
+    display: block;
+}
+
 .login {
     align-self: center;
     color: white;
@@ -147,8 +153,16 @@ hr {
     padding: 0.5rem;
 }
 
+.button-centered {
+    vertical-align: middle;
+}
+
 .button-inline {
     padding: 0;
+}
+
+.button-bordered {
+    border: 1px solid rgb(169,169,169);
 }
 
 .login-form {
@@ -169,6 +183,94 @@ hr {
     color: white;
     text-decoration: none;
 }
+/*------------------------------------------------------------------*/
+.linked {   
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.text-box {
+    display: flex;
+    justify-content: center;
+    background: #f3e5f5;
+    width: 100%;
+    padding: 1rem;
+}
+
+textarea {
+    width: 40vw;
+    resize: none;
+    vertical-align: middle;
+}
+
+
+.content-dashboard {
+    flex-flow: column nowrap;
+}
+
+.content-data {
+    
+    display: flex;
+    flex-direction: row;
+}
+
+.user {   
+    display: flex;
+    flex-flow: column nowrap;
+   
+    padding: 1rem;
+}
+
+.posts {
+    display: flex;
+    justify-content: center;
+    flex-flow: column nowrap;
+    padding: 1rem;
+    flex-grow: 8;
+    background: #e1bee7;    
+}
+
+.post-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.time {
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+.post-comments form {
+    display: flex;
+    justify-content: center;
+}
+
+.post-comments textarea {
+    width: 60vw;
+    flex: 10;
+}
+
+.comment-icon {
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+.bottom-icon {
+    vertical-align: bottom;
+}
+
+.load-posts {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.button-load {
+    width: 100%;
+}
+
+/*------------------------------------------------------------------*/
+/*------------------------------------------------------------------*/
 
 @media screen and (max-width: 1000px) {
     hr {
@@ -179,10 +281,10 @@ hr {
         flex-flow: column nowrap;          
     }
     .content article {
-        max-width: 80vw;
+        max-width: inherit;
         align-self: center;
-    }
-
+    }    
+    
     .content article:last-child {
         margin-bottom: 1rem;
     }
@@ -200,9 +302,7 @@ hr {
         align-self: center;
     }
 
-    .button-flat {
-        margin-top: 1rem;
-        flex-basis: 100%;
+    .button-flat {           
         border-radius: 0;     
         align-self: center;         
     }
@@ -223,6 +323,20 @@ hr {
 
     .login label {
         margin: 0 1px 0 1px;
+    }
+    /*-------------------------------------------------------------*/
+    .content-data {
+        flex-direction: column-reverse;  
+        width: 100%;      
+    }
+
+    .user {
+        flex-direction: row;
+    }
+
+    
+    article.post-wrapper {
+        align-self: auto;
     }
 
 }
