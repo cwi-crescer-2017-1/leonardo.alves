@@ -1,6 +1,7 @@
 
 package br.com.crescer.musicio.entity;
 
+import br.com.crescer.musicio.model.PostModel;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
@@ -11,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.SEQUENCE;
 import javax.persistence.Id;
@@ -55,7 +57,7 @@ public class Post implements Serializable {
     //------------------------
     @JoinColumn(name = "USUARIO_ID_USUARIO", referencedColumnName = "ID_USUARIO")
     @JsonBackReference("usuario-post")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Usuario usuario;
     //------------------------
     
@@ -125,6 +127,18 @@ public class Post implements Serializable {
     public void setCurtidaList(List<Curtida> curtidaList) {
         this.curtidaList = curtidaList;
     }
+    
+    public PostModel converterParaPostModel() {
+       
+        return new PostModel(
+                this.idPost, 
+                this.texto, 
+                this.dataPost, 
+                this.comentarioList, 
+                this.curtidaList, 
+                this.usuario);
+    }
+    
 
     @Override
     public int hashCode() {
