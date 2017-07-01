@@ -2,6 +2,8 @@
 package br.com.crescer.musicio.controller;
 
 import br.com.crescer.musicio.entity.Usuario;
+import br.com.crescer.musicio.entity.UsuarioBase;
+import br.com.crescer.musicio.model.AmigoModel;
 import br.com.crescer.musicio.service.UsuarioServiceImpl;
 import java.math.BigDecimal;
 import java.util.List;
@@ -70,7 +72,7 @@ public class UsuarioController {
     }
     
     @GetMapping("/{id}/amigos")
-    public List<Usuario> pegarAmigos (@PathVariable("id") BigDecimal id) {
+    public List<UsuarioBase> pegarAmigos (@PathVariable("id") BigDecimal id) {
         Usuario usuario = service.findOneByIdUsuario(id);
         return service.getAmigos(usuario);
     }

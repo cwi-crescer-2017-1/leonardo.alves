@@ -32,7 +32,7 @@ import org.springframework.context.annotation.Lazy;
 @Entity
 @Table(name = "USUARIO")
 @XmlRootElement
-public class Usuario implements Serializable {
+public class Usuario extends UsuarioBase implements Serializable {
 
     
     private static final long serialVersionUID = 1L;
@@ -66,6 +66,7 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "SEXO")
+    
     private Character sexo;
     //---------------------------
     @Basic(optional = false)
@@ -118,55 +119,7 @@ public class Usuario implements Serializable {
         this.senha = senha;
         this.sexo = sexo;
         this.dataNascimento = dataNascimento;
-    }
-
-    public BigDecimal getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(BigDecimal idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public Character getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(Character sexo) {
-        this.sexo = sexo;
-    }
-
-    public Date getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(Date dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
+    }    
 
     public List<Post> getPostList() {
         return postList;
@@ -211,7 +164,7 @@ public class Usuario implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idUsuario != null ? idUsuario.hashCode() : 0);
+        hash += (getIdUsuario() != null ? getIdUsuario().hashCode() : 0);
         return hash;
     }
 
@@ -222,7 +175,7 @@ public class Usuario implements Serializable {
             return false;
         }
         Usuario other = (Usuario) object;
-        if ((this.idUsuario == null && other.idUsuario != null) || (this.idUsuario != null && !this.idUsuario.equals(other.idUsuario))) {
+        if ((this.getIdUsuario() == null && other.getIdUsuario() != null) || (this.getIdUsuario() != null && !this.idUsuario.equals(other.idUsuario))) {
             return false;
         }
         return true;
@@ -230,7 +183,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.crescer.musicio.entity.Usuario[ idUsuario=" + idUsuario + " ]";
+        return "br.com.crescer.musicio.entity.Usuario[ idUsuario=" + getIdUsuario() + " ]";
     }
 
     public List<Usuariopermissao> getPermissoes() {
@@ -239,6 +192,64 @@ public class Usuario implements Serializable {
 
     public void setPermissoes(List<Usuariopermissao> permissoes) {
         this.permissoes = permissoes;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    @Override
+    public String getNome() {
+        return nome;
+    }
+
+    @Override
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    @Override
+    public String getEmail() {
+        return email;
+    }
+
+    @Override
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public Character getSexo() {
+        return sexo;
+    }
+
+    @Override
+    public void setSexo(Character sexo) {
+        this.sexo = sexo;
+    }
+
+    @Override
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+
+    @Override
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    @Override
+    public BigDecimal getIdUsuario() {
+        return idUsuario;
+    }
+
+    @Override
+    public void setIdUsuario(BigDecimal idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
 }

@@ -3,13 +3,16 @@ package br.com.crescer.musicio.service;
 
 import br.com.crescer.musicio.entity.Permissao;
 import br.com.crescer.musicio.entity.Usuario;
+import br.com.crescer.musicio.entity.UsuarioBase;
 import br.com.crescer.musicio.entity.Usuarioamigo;
 import br.com.crescer.musicio.entity.Usuariopermissao;
+import br.com.crescer.musicio.model.AmigoModel;
 import br.com.crescer.musicio.repository.PermissaoRepository;
 import br.com.crescer.musicio.repository.UsuarioRepository;
 import br.com.crescer.musicio.repository.UsuarioamigoRepository;
 import br.com.crescer.musicio.repository.UsuariopermissaoRepository;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -70,8 +73,20 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public List<Usuario> getAmigos(Usuario usuario) {
-        return usuarioAmigoRepo.getAmigos(usuario);
+    public List<UsuarioBase> getAmigos(Usuario usuario) {
+        List<Usuario> amigos = usuarioAmigoRepo.getAmigos(usuario);
+        List<UsuarioBase> amigoModel = new ArrayList<>();
+        
+        for(Usuario a : amigos){
+            amigoModel.add(new AmigoModel(a.getNome(), 
+                    a.getEmail(), 
+                    a.getSexo(),                     
+                    a.getIdUsuario(), 
+                    a.getDataNascimento()));
+        }
+           
+            
+        return amigoModel;
     }
 
     @Override
