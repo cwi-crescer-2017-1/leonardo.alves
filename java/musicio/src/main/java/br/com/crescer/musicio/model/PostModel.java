@@ -17,7 +17,8 @@ public final class PostModel {
     private Date dataPost;
     private List<Comentario> comentarioList;
     private List<Curtida> curtidaList;
-    private BigDecimal idUsuario;
+    private PostUsuarioModel usuario;
+    
     
     public PostModel(BigDecimal idPost, 
             String texto, 
@@ -31,7 +32,13 @@ public final class PostModel {
        this.setDataPost(dataPost);
        this.setCurtidaList(curtidas);
        this.setComentarioList(comentarios);
-       this.setIdUsuario(usuario.getIdUsuario());
+      
+       PostUsuarioModel umodel = new PostUsuarioModel(
+               usuario.getIdUsuario(), 
+               usuario.getNome(), 
+               usuario.getEmail());
+       
+        this.setUsuario(umodel);
       
     }
 
@@ -73,17 +80,15 @@ public final class PostModel {
 
     public void setCurtidaList(List<Curtida> curtidaList) {
         this.curtidaList = curtidaList;
+    }   
+
+    public PostUsuarioModel getUsuario() {
+        return usuario;
     }
 
-    public BigDecimal getIdUsuario() {
-        return idUsuario;
+    public void setUsuario(PostUsuarioModel usuario) {
+        this.usuario = usuario;
     }
-
-    public void setIdUsuario(BigDecimal idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-   
     
     
 }
