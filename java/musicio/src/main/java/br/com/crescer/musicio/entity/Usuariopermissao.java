@@ -1,6 +1,7 @@
 
 package br.com.crescer.musicio.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Basic;
@@ -14,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import org.springframework.context.annotation.Lazy;
 
 /** 
  * @author leonardo.alves
@@ -34,13 +36,20 @@ public class Usuariopermissao implements Serializable {
     //------------------------------------
     @JoinColumn(name = "PERMISSAO_ID_PERMISSAO", referencedColumnName = "ID_PERMISSAO")
     @ManyToOne(optional = false)
+    @JsonBackReference
     private Permissao permissao;
     //------------------------------------
     @JoinColumn(name = "USUARIO_ID_USUARIO", referencedColumnName = "ID_USUARIO")
     @ManyToOne(optional = false)
+    @JsonBackReference(value = "usuario-permissoes")
     private Usuario usuario;
 
     public Usuariopermissao() {
+    }
+    
+    public Usuariopermissao(Usuario usuario, Permissao permissao){
+        this.usuario = usuario;
+        this.permissao = permissao;
     }
 
     public Usuariopermissao(BigDecimal idUsuarioPermissao) {

@@ -43,14 +43,14 @@ public class Comentario implements Serializable {
     private String comentario;
     //------------------
     @JoinColumn(name = "POST_ID_POST", referencedColumnName = "ID_POST")
-    @JsonBackReference
+    
     @ManyToOne(optional = false)
     private Post postIdPost;
     //------------------
     @JoinColumn(name = "USUARIO_ID_USUARIO", referencedColumnName = "ID_USUARIO")
-    @JsonBackReference
+    @JsonBackReference(value = "usuario-comentario")
     @ManyToOne(optional = false)
-    private Usuario usuarioIdUsuario;
+    private Usuario usuario;
 
     public Comentario() {
     }
@@ -88,12 +88,12 @@ public class Comentario implements Serializable {
         this.postIdPost = postIdPost;
     }
 
-    public Usuario getUsuarioIdUsuario() {
-        return usuarioIdUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
     public void setUsuarioIdUsuario(Usuario usuarioIdUsuario) {
-        this.usuarioIdUsuario = usuarioIdUsuario;
+        this.usuario = usuarioIdUsuario;
     }
 
     @Override

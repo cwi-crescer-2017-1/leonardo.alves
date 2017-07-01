@@ -23,13 +23,15 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import org.springframework.context.annotation.Lazy;
 
 /** 
  * @author leonardo.alves
  **/
 @Entity
 @Table(name = "USUARIO")
-
+@XmlRootElement
 public class Usuario implements Serializable {
 
     
@@ -72,30 +74,33 @@ public class Usuario implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataNascimento;
     //---------------------------
-    @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario")
+    @JsonManagedReference(value="usuario-post")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Post> postList;
     //---------------------------
-    @JsonManagedReference
+    @JsonManagedReference(value ="usuario-usuarioamigo")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "amigo")
+    
     private List<Usuarioamigo> amigos;
     /* //---------------------------
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario")
     private List<Usuarioamigo> usuarioamigoList1;
     //--------------------------- */
-    @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario")
+    @JsonManagedReference(value="usuario-comentario")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Comentario> comentarioList;
     //---------------------------
-    @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario")
+    @JsonManagedReference(value = "usuario-curtida")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Curtida> curtidaList;
-    //---------------------------    
+    //---------------------------   
+    @JsonManagedReference(value = "usuario-permissoes")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Usuariopermissao> permissoes;
     
     public Usuario() {
+        
     }
 
     public Usuario(BigDecimal idUsuario) {

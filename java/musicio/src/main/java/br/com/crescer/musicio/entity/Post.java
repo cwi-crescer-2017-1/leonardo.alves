@@ -54,15 +54,15 @@ public class Post implements Serializable {
     private Date dataPost;
     //------------------------
     @JoinColumn(name = "USUARIO_ID_USUARIO", referencedColumnName = "ID_USUARIO")
-    @JsonBackReference
+    @JsonBackReference("usuario-post")
     @ManyToOne(optional = false)
-    private Usuario usuarioIdUsuario;
+    private Usuario usuario;
     //------------------------
-    @JsonManagedReference
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "postIdPost")
     private List<Comentario> comentarioList;
     //------------------------
-    @JsonManagedReference
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "postIdPost")
     private List<Curtida> curtidaList;
 
@@ -103,15 +103,14 @@ public class Post implements Serializable {
         this.dataPost = dataPost;
     }
 
-    public Usuario getUsuarioIdUsuario() {
-        return usuarioIdUsuario;
+    public Usuario getUsuario() {   
+        return this.usuario;
+    }    
+    public void setUsuario(Usuario usuario){
+        this.usuario = usuario;
     }
 
-    public void setUsuarioIdUsuario(Usuario usuarioIdUsuario) {
-        this.usuarioIdUsuario = usuarioIdUsuario;
-    }
-
-    public List<Comentario> getComentarioList() {
+    public List<Comentario> gusuario() {
         return comentarioList;
     }
 

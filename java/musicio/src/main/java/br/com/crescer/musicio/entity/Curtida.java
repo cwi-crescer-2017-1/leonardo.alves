@@ -34,14 +34,14 @@ public class Curtida implements Serializable {
     private BigDecimal idCurtida;
     //------------------------------
     @JoinColumn(name = "POST_ID_POST", referencedColumnName = "ID_POST")
-    @JsonBackReference
+    
     @ManyToOne(optional = false)
     private Post postIdPost;
     //------------------------------
     @JoinColumn(name = "USUARIO_ID_USUARIO", referencedColumnName = "ID_USUARIO")
-    @JsonBackReference
+    @JsonBackReference(value = "usuario-curtida")
     @ManyToOne(optional = false)
-    private Usuario usuarioIdUsuario;
+    private Usuario usuario;
 
     public Curtida() {
     }
@@ -67,11 +67,11 @@ public class Curtida implements Serializable {
     }
 
     public Usuario getUsuarioIdUsuario() {
-        return usuarioIdUsuario;
+        return usuario;
     }
 
     public void setUsuarioIdUsuario(Usuario usuarioIdUsuario) {
-        this.usuarioIdUsuario = usuarioIdUsuario;
+        this.usuario = usuarioIdUsuario;
     }
 
     @Override

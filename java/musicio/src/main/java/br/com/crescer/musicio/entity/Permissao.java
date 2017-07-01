@@ -1,6 +1,7 @@
 
 package br.com.crescer.musicio.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -43,6 +44,7 @@ public class Permissao implements Serializable {
     private String permissao;
     //-----------------------------
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "permissao")
+    @JsonManagedReference
     private List<Usuariopermissao> usuarios;
     //-----------------------------
     

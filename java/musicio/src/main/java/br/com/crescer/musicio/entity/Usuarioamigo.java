@@ -41,12 +41,13 @@ public class Usuarioamigo implements Serializable {
     private Character situacao;
     //---------------------------------
     @JoinColumn(name = "AMIGO_ID_USUARIO", referencedColumnName = "ID_USUARIO")
-    @JsonBackReference
+    
     @ManyToOne(optional = false)
+    @JsonBackReference("usuario-usuarioamigo")
     private Usuario amigo;
     //---------------------------------    
     @JoinColumn(name = "USUARIO_ID_USUARIO", referencedColumnName = "ID_USUARIO")
-    @JsonBackReference
+    
     @ManyToOne(optional = false)
     private Usuario usuario;
 
