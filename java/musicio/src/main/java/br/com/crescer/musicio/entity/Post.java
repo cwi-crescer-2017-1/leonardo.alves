@@ -1,11 +1,13 @@
 
 package br.com.crescer.musicio.entity;
 
+import br.com.crescer.musicio.model.ComentarioModel;
 import br.com.crescer.musicio.model.PostModel;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -129,12 +131,18 @@ public class Post implements Serializable {
     }
     
     public PostModel converterParaPostModel() {
+        
+        List<ComentarioModel> comentarioDto = new ArrayList<>();  
+        
+        for(Comentario c : comentarioList) {
+            comentarioDto.add(c.converterParaComentarioModel());
+        }
        
         return new PostModel(
                 this.idPost, 
                 this.texto, 
                 this.dataPost, 
-                this.comentarioList, 
+                comentarioDto,
                 this.curtidaList, 
                 this.usuario);
     }

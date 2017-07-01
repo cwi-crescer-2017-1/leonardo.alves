@@ -15,4 +15,5 @@ public interface PostService {
     
     Post publicar(Post post);
     Page<PostModel> pegarPosts(Pageable pageable);
+    Post findByIdPost (BigDecimal idPost);
 }

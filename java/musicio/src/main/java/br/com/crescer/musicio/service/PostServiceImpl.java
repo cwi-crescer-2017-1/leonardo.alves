@@ -74,4 +74,9 @@ public class PostServiceImpl implements PostService {
         return usuarioRepo.findOneByEmail(sessionAttributes.getUsername());
     }
 
+    @Override
+    public Post findByIdPost(BigDecimal idPost) {
+       return repositorio.findByIdPost(idPost);
+    }
+
 }

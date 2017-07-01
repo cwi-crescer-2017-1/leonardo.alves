@@ -17,4 +17,6 @@ public interface PostRepository extends PagingAndSortingRepository<Post, BigDeci
     @Query("select p from Post p where p.usuario in ?1 order by p.dataPost desc")
     Page<Post> pegarPostsAmigosUsuario(Collection<Usuario> usuario, Pageable pageable);
     
+    
+    Post findByIdPost(BigDecimal idPost);
 }

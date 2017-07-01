@@ -15,7 +15,7 @@ public final class PostModel {
     private BigDecimal idPost;
     private String texto;
     private Date dataPost;
-    private List<Comentario> comentarioList;
+    private List<ComentarioModel> comentarioList;
     private List<Curtida> curtidaList;
     private PostUsuarioModel usuario;
     
@@ -23,7 +23,7 @@ public final class PostModel {
     public PostModel(BigDecimal idPost, 
             String texto, 
             Date dataPost, 
-            List<Comentario> comentarios, 
+            List<ComentarioModel> comentarios, 
             List<Curtida> curtidas, 
             Usuario usuario){
         
@@ -66,11 +66,11 @@ public final class PostModel {
         this.dataPost = dataPost;
     }
 
-    public List<Comentario> getComentarioList() {
+    public List<ComentarioModel> getComentarioList() {
         return comentarioList;
     }
 
-    public void setComentarioList(List<Comentario> comentarioList) {
+    public void setComentarioList(List<ComentarioModel> comentarioList) {
         this.comentarioList = comentarioList;
     }
 
