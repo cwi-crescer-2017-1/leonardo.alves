@@ -13,10 +13,10 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  */
 public interface UsuarioRepository extends PagingAndSortingRepository<Usuario, BigDecimal> {
     
-   
+    
     
     Page<Usuario> findAll ();
-    
-    Usuario findByEmail (String email);
+    Usuario findOneByIdUsuario(BigDecimal idUsuario);
+    Usuario findOneByEmail (String email);
     
 }

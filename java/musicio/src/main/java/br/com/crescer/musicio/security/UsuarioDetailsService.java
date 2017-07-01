@@ -33,7 +33,7 @@ public class UsuarioDetailsService implements UserDetailsService {
     
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {
-        Usuario usuario = repoUsuario.findByEmail(username);
+        Usuario usuario = repoUsuario.findOneByEmail(username);
         List<Usuariopermissao> permissoes = 
                 repoPermissoes.findByUsuarioIdUsuario(usuario.getIdUsuario());       
         
