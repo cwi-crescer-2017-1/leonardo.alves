@@ -1,50 +1,58 @@
 <section class="content content-dashboard">
     <div class="text-box">
         <form novalidate ng-submit="postar()">
-            <textarea required ng-maxlength="1023" ng-model="post.texto" placeholder="Escreve algo aí"></textarea>
-            <button type="submit" class="button-flat button-centered">Publicar</button>
+            <textarea class="textarea" required ng-maxlength="1023" ng-model="post.texto" placeholder="Escreve algo aí"></textarea>
+            <button type="submit" class="button-flat button-centered button-bordered">
+                Publicar
+                <i class="material-icons button-centered">send</i>
+            </button>
         </form>
     </div>
     <section class="content-data">
         <div class="posts">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla elementum iaculis risus quis imperdiet. Vivamus
-                sem purus, fringilla ac elementum vitae, egestas et orci. Maecenas ultricies erat sed ante vehicula placerat.
-                In feugiat pellentesque nisl quis fringilla. Etiam in diam quis velit sagittis eleifend. Suspendisse interdum
-                nulla eu lacus porta tristique. Mauris a cursus elit. Duis diam eros, eleifend sit amet dolor sed, lobortis
-                ullamcorper eros. Ut sapien tortor, hendrerit eget mauris eu, rutrum consectetur ex. Phasellus ac diam vitae
-                odio ultricies sagittis et a mauris. Etiam ut tempus lorem. Nulla ligula nibh, commodo quis felis ut, ultricies
-                congue mauris. Donec in sem tincidunt, ornare tellus eu, rhoncus magna. Morbi nulla leo, luctus sed metus
-                vel, sagittis laoreet diam. Aenean at libero non augue molestie finibus at sit amet nibh. Ut a nisl semper,
-                mollis tortor in, rhoncus nunc. Maecenas eleifend ex sit amet ante interdum, sit amet dignissim risus fermentum.
-                Duis eu interdum nisl. Donec porta nec ante et pulvinar. Nulla pulvinar felis eu mauris fermentum aliquet.
-                Donec imperdiet enim quis augue gravida ultrices id a libero. Etiam porta ultrices euismod. Sed pretium at
-                risus vitae volutpat. Sed vitae viverra odio, a pretium felis. Aliquam erat volutpat. Etiam mollis lobortis
-                tellus, ut tincidunt nibh tempus in. In id leo sit amet risus semper tempor. Orci varius natoque penatibus
-                et magnis dis parturient montes, nascetur ridiculus mus. Curabitur arcu felis, dignissim nec molestie quis,
-                dapibus nec tortor. Vestibulum eleifend suscipit diam. Nullam scelerisque augue eget sodales scelerisque.
-                In hac habitasse platea dictumst. Nam eros risus, malesuada non arcu nec, euismod faucibus elit. Donec lacinia
-                viverra justo non semper. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-                Curae; Aliquam aliquam nunc id est convallis blandit. Donec vestibulum ultricies nunc nec volutpat. Proin
-                et elit euismod, vulputate risus ut, sagittis magna. Mauris vitae dolor ac augue tempus fermentum.</p>
+            <article ng-repeat="post in posts" class="post-wrapper">
+                <section class="post-content">
+                    <div class="post-details">
+                        <p><i>{{post.usuario.nome}}</i></p>
+                        <p class="time">{{post.dataPost | timeago }}</p>
+                    </div>
+                    
+                    <p>                        
+                        <pre>{{post.texto}}</pre>
+                    </p>
+                    <hr class="hr-show">
+                    <span class="linked">
+                        <i class="material-icons bottom-icon">favorite</i>
+                        Amei
+                    </span>
+                    <div class="post-comments">
+                        <div ng-repeat="comentario in post.comentarioList">
+                            {{comentario.comentario}}
+                        </div>
+                        <hr class="hr-show">
+                        <form novalidade ng-submit="comentar()">
+                            <textarea required ng-model="comentario.texto"></textarea>
+                            <button type="submit" class="button-flat button-bordered">
+                                Comentar
+                                <i class="material-icons bottom-icon">comment</i>
+                            </button>
+                        </form>
+                    </div>
+                </section>               
+            </article>
+
+            <section ng-hide="ultimaPagina" class="load-posts">
+                <button class="button-flat button-load linked" ng-click="carregarPosts()">
+                    Carregar mais...
+                </button>
+            </section>
         </div>
         <div class="user">
             <div class="info">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at pulvinar diam. Fusce feugiat mauris odio, non dignissim lorem
-                    porttitor et. Proin luctus ut justo ac suscipit. Nullam pharetra justo augue, vitae ornare elit tempor
-                    id. Sed vel cursus arcu, quis volutpat mauris. Morbi dignissim vulputate magna id consectetur. Sed lobortis
-                    turpis nec lectus gravida efficitur. Aliquam sagittis est ut nisi consectetur lobortis. Suspendisse eget
-                    elit augue.
-                </p>
+               
             </div>
             <div class="invites">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at pulvinar diam. Fusce feugiat mauris odio, non dignissim lorem
-                    porttitor et. Proin luctus ut justo ac suscipit. Nullam pharetra justo augue, vitae ornare elit tempor
-                    id. Sed vel cursus arcu, quis volutpat mauris. Morbi dignissim vulputate magna id consectetur. Sed lobortis
-                    turpis nec lectus gravida efficitur. Aliquam sagittis est ut nisi consectetur lobortis. Suspendisse eget
-                    elit augue.
-                </p>
+               
             </div>
         </div>
     </section>
