@@ -1,6 +1,8 @@
 
 package br.com.crescer.musicio.entity;
 
+import br.com.crescer.musicio.model.ComentarioModel;
+import br.com.crescer.musicio.model.PostUsuarioModel;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -62,6 +64,19 @@ public class Comentario implements Serializable {
     public Comentario(BigDecimal idComentario, String comentario) {
         this.idComentario = idComentario;
         this.comentario = comentario;
+    }
+    
+    public ComentarioModel converterParaComentarioModel () {
+        PostUsuarioModel usuarioDto = 
+                new PostUsuarioModel(
+                    this.usuario.getIdUsuario(), 
+                    this.usuario.getNome(), 
+                    this.usuario.getEmail());
+        
+        return new ComentarioModel(                
+                this.idComentario, 
+                this.comentario, 
+                usuarioDto);
     }
 
     public BigDecimal getIdComentario() {
