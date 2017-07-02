@@ -17,6 +17,15 @@ app.config(function($routeProvider) {
                return authService.isAutenticadoPromise();
             }
         }
+    })
+    .when("/amigos", {
+        templateUrl: "amigos/amigos.html",
+        controller: "amigoController",
+        resolve: {
+            autenticado: function  (authService)  {
+               return authService.isAutenticadoPromise();
+            }
+        }
     })     
 });
 

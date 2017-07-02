@@ -1,0 +1,13 @@
+<section class="content content-amigos">
+    <h3 class="user-welcome text-center">{{usuario.nome}}, esses são seus amigos: </h3>
+    <section class="amigos-wrapper">
+        <div class="amigo text-center" ng-repeat="amigo in amigos">
+            <p><b>{{amigo.nome}}</b></p>
+            <p>Email: {{amigo.email}}</p>
+            <!--todo: formatar data-->
+            <p>Data de nascimento: {{amigo.dataNascimento}}</p> 
+            <p>Sexo: {{amigo.sexo}}</p>
+        </div>
+    </section>
+    
+</section>
