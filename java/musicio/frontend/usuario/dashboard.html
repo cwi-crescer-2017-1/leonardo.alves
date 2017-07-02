@@ -13,32 +13,31 @@
             <article ng-repeat="post in posts" class="post-wrapper">
                 <section class="post-content">
                     <div class="post-details">
-                        <p><i>{{post.usuario.nome}}</i></p>
+                        <p><i>{{post.usuario.nome}} disse...</i></p>
                         <p class="time">{{post.dataPost | timeago }}</p>
                     </div>
                     
-                    <p>                        
+                    <p>
                         <pre>{{post.texto}}</pre>
                     </p>
-                    <hr class="hr-show">
                     <span class="linked">
                         <i class="material-icons bottom-icon">favorite</i>
                         Amei
                     </span>
+                    <hr class="hr-show">
                     <div class="post-comments">
                         <div ng-repeat="comentario in post.comentarioList">
-                            {{comentario.comentario}}
+                            {{comentario.usuario.nome}}: {{comentario.comentario}}
                         </div>
-                        <hr class="hr-show">
-                        <form novalidade ng-submit="comentar()">
-                            <textarea required ng-model="comentario.texto"></textarea>
+                        <form novalidade ng-submit="comentar(post.idPost)">
+                            <textarea required ng-model="comentario[post.idPost].comentario"></textarea>
                             <button type="submit" class="button-flat button-bordered">
                                 Comentar
                                 <i class="material-icons bottom-icon">comment</i>
                             </button>
                         </form>
                     </div>
-                </section>               
+                </section>
             </article>
 
             <section ng-hide="ultimaPagina" class="load-posts">
@@ -49,10 +48,39 @@
         </div>
         <div class="user">
             <div class="info">
-               
+                <h3>Meu perfil</h3>
+                <section class="details">
+
+                    <img ng-src="{{infoUsuario.urlFoto}}" class="userFoto">
+
+                    <div class="info-details">
+                        <div class="info-content">
+                            <p><b>Nome:</b></p>
+                            <p>{{infoUsuario.nome}}</p>
+                        </div>
+                        <div class="info-content">
+                            <p><b>Email:</b></p>
+                            <p>{{infoUsuario.email}}</p>
+                        </div>
+                    </div>
+
+                </section>
+
+
             </div>
-            <div class="invites">
-               
+            <div ng-show="amizadesPendentes.length !== 0"  class="invites">               
+                <h3 class="text-center">Solicitações pendentes</h3>
+                <section class="pending-friend" ng-repeat="amigo in amizadesPendentes">
+                    <div class="pending-info">
+                        <span>{{amigo.nome}}</span>
+                        <span>{{amigo.email}}</span>
+                    </div>
+                    <div class="pending-options">
+                        <i class="material-icons centered-icon linked large" ng-click="aceitarAmigo(amigo.idUsuario)">add</i>
+                        <i class="material-icons centered-icon linked large" ng-click="recusarAmigo(amigo.idUsuario)">clear</i>
+                    </div>
+                    
+                </section>
             </div>
         </div>
     </section>
