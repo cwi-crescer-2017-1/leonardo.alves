@@ -11,6 +11,19 @@ p, h1, h2, h3, h4, h5, h6, span, a, label, button, input, select {
     font-size: 1.187em;
 }
 
+a {
+    text-decoration: none;
+    color: white;
+}
+
+pre {
+ white-space: pre-wrap;       /* css-3 */
+ white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+ white-space: -pre-wrap;      /* Opera 4-6 */
+ white-space: -o-pre-wrap;    /* Opera 7 */
+ word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
 body {
     margin: 0;
     display: flex;
@@ -25,6 +38,7 @@ header {
     color: white;
     padding: 1em 0;    
 }
+
 
 .login-link {
     display: none;
@@ -73,6 +87,32 @@ ng-view {
 .content-cadastro form label {
     display: block;
     
+}
+
+.content-amigos {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background: #e1bee7;
+}
+
+.amigos-wrapper {
+    margin-top: 2rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.amigo {
+    margin: 1rem;
+    width: 30%;
+    flex-basis: 30%;
+    background: #42a5f5;
+}
+
+.user-welcome {
+    width: 100%;
 }
 
 .cadastro-form {
@@ -165,6 +205,21 @@ hr {
     border: 1px solid rgb(169,169,169);
 }
 
+.button-search {
+    padding: 0 0.5rem 0 0.5rem;
+    border-radius: 10px;
+}
+
+.input-search {
+    border-radius: 50px;
+    margin-left: 1rem;
+    border: none;
+}
+
+.sm-search-icon {
+    display: none;
+}
+
 .login-form {
     display: flex;
     justify-content: space-between;
@@ -189,6 +244,11 @@ hr {
     cursor: pointer;
 }
 
+.large {
+    font-size: 42px;
+}
+
+
 .text-box {
     display: flex;
     justify-content: center;
@@ -209,7 +269,7 @@ textarea {
 }
 
 .content-data {
-    
+    width: 100%;
     display: flex;
     flex-direction: row;
 }
@@ -217,11 +277,12 @@ textarea {
 .user {   
     display: flex;
     flex-flow: column nowrap;
-   
+    width: 30%;
     padding: 1rem;
 }
 
 .posts {
+    width: 100%;
     display: flex;
     justify-content: center;
     flex-flow: column nowrap;
@@ -240,6 +301,11 @@ textarea {
     font-style: italic;
 }
 
+article.post-wrapper {
+    max-width: inherit;
+    width: 100%;
+}
+
 .post-comments form {
     display: flex;
     justify-content: center;
@@ -249,6 +315,7 @@ textarea {
     width: 60vw;
     flex: 10;
 }
+
 
 .comment-icon {
     font-size: 20px;
@@ -269,12 +336,63 @@ textarea {
     width: 100%;
 }
 
+.info {
+    display: flex;
+    flex-flow: column nowrap;  
+    background: #e91e63;  
+}
+
+.info h3 {
+    align-self: center;
+}
+
+.info-content {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.info-details {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.details {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.invites {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #388e3c;
+}
+
+.pending-friend {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pending-friend:nth-child(odd) {
+    background: #2e7d32;
+}
+
+.pending-info {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+
 /*------------------------------------------------------------------*/
 /*------------------------------------------------------------------*/
 
 @media screen and (max-width: 1000px) {
     hr {
         display: block;
+    }
+
+    .details {
+        flex-flow: row nowrap;
+        margin: 0.5rem;
     }
 
     .content {
@@ -331,14 +449,31 @@ textarea {
     }
 
     .user {
-        flex-direction: row;
+        
+        width: 100%;
+    }
+
+    .info-details {
+        width: 60%;
     }
 
     
     article.post-wrapper {
         align-self: auto;
     }
+    /*--------------------------------------------------------------*/
+    .content-amigos {
+        flex-flow: column wrap;
+    }
 
+    .amigos-wrapper {
+        flex-flow: column wrap;
+    }
+
+    .amigo {
+        margin: 1rem 0 1rem 0;
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 670px) {
@@ -355,5 +490,20 @@ textarea {
         color: white;
         border-radius: 50%;
     }
+
+    .search-form {
+        display: none;
+    }
+
+    .sm-search-icon {
+        display: block;
+    }
     
+}
+
+@media screen and (max-width: 435px) {
+    .userFoto {
+        width: 100px;
+        height: 100px;
+    }
 }
