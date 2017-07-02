@@ -68,10 +68,7 @@ public class Comentario implements Serializable {
     
     public ComentarioModel converterParaComentarioModel () {
         PostUsuarioModel usuarioDto = 
-                new PostUsuarioModel(
-                    this.usuario.getIdUsuario(), 
-                    this.usuario.getNome(), 
-                    this.usuario.getEmail());
+               usuario.converterParaUsuarioModel();
         
         return new ComentarioModel(                
                 this.idComentario, 

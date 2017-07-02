@@ -1,6 +1,7 @@
 
 package br.com.crescer.musicio.entity;
 
+import br.com.crescer.musicio.model.PostUsuarioModel;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -250,6 +251,10 @@ public class Usuario extends UsuarioBase implements Serializable {
     @Override
     public void setIdUsuario(BigDecimal idUsuario) {
         this.idUsuario = idUsuario;
+    }
+    
+    public PostUsuarioModel converterParaUsuarioModel () {
+        return new PostUsuarioModel(this.idUsuario, this.nome, this.email, this.sexo, this.dataNascimento);
     }
 
 }

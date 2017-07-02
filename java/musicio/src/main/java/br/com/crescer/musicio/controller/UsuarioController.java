@@ -4,6 +4,7 @@ package br.com.crescer.musicio.controller;
 import br.com.crescer.musicio.entity.Usuario;
 import br.com.crescer.musicio.entity.UsuarioBase;
 import br.com.crescer.musicio.model.AmigoModel;
+import br.com.crescer.musicio.model.PostUsuarioModel;
 import br.com.crescer.musicio.service.UsuarioServiceImpl;
 import java.math.BigDecimal;
 import java.util.List;
@@ -43,11 +44,15 @@ public class UsuarioController {
     
     @GetMapping("/currentUser")
       public Map<String, Object> usuarioLogado(Authentication authentication) {
-          User u = Optional.ofNullable(authentication)
+          PostUsuarioModel u = Optional.ofNullable(authentication)
                   .map(Authentication::getPrincipal)
                   .map(User.class::cast)
+                  .map(User::getUsername)
+                  .map(service::findOneByEmail)
+                  .map(Usuario::converterParaUsuarioModel)
                   .orElse(null);
-          final HashMap<String, Object> hashMap = new HashMap<>();
+          final HashMap<String, Object> hashMap = new HashMap<>();         
+          
           hashMap.put("dados", u);
           return hashMap;
       }    

@@ -36,7 +36,9 @@ public final class PostModel {
        PostUsuarioModel umodel = new PostUsuarioModel(
                usuario.getIdUsuario(), 
                usuario.getNome(), 
-               usuario.getEmail());
+               usuario.getEmail(),
+               usuario.getSexo(),
+               usuario.getDataNascimento());
        
         this.setUsuario(umodel);
       
