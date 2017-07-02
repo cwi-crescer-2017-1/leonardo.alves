@@ -1,0 +1,81 @@
+
+package br.com.crescer.musicio.service;
+
+import br.com.crescer.musicio.entity.Solicitacao;
+import br.com.crescer.musicio.entity.Usuario;
+import br.com.crescer.musicio.entity.Usuarioamigo;
+import br.com.crescer.musicio.model.PostUsuarioModel;
+import br.com.crescer.musicio.repository.UsuarioRepository;
+import br.com.crescer.musicio.repository.UsuarioamigoRepository;
+import br.com.crescer.musicio.security.SessionAttr;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/** 
+ * @author leonardo.alves
+ **/
+@Service
+public class UsuarioamigoServiceImpl implements UsuarioamigoService {
+
+    @Autowired
+    UsuarioamigoRepository repositorio;
+    
+    @Autowired
+    SessionAttr sessionAttributes;
+            
+    @Autowired
+    UsuarioRepository usuarioRepo;
+    
+    @Override
+    public List<PostUsuarioModel> getSolicitacoes() {
+        
+        List<PostUsuarioModel> usuariosDto = new ArrayList<>();
+        
+         repositorio.getSolicitacoes(getUsuario())
+                 .forEach((u) -> usuariosDto.add(u.converterParaUsuarioModel()));
+        return usuariosDto;
+    }
+
+    @Override
+    public Usuarioamigo aceitarSolicitacao(Usuario amigo) {       
+        return responderSolicitacao(Solicitacao.ACEITO, amigo);
+    }
+    
+    @Override
+    public Usuarioamigo recusarSolicitacao(Usuario amigo) {
+       return responderSolicitacao(Solicitacao.RECUSADO, amigo);
+    }
+    
+    private Usuarioamigo responderSolicitacao(Solicitacao solicitacao, Usuario amigo) {
+        Usuarioamigo amizade = getSolicitacao(amigo);
+        
+        amizade.setSituacao(solicitacao.getSituacao());
+        
+        repositorio.save(amizade);
+        return amizade;
+    }
+    
+    private Usuarioamigo getSolicitacao(Usuario amigo) {
+         amigo = usuarioRepo.findOneByIdUsuario(amigo.getIdUsuario());
+        Usuario usuario = getUsuario();
+        
+        return repositorio.getSolicitacao(usuario, amigo);
+    }
+    
+    private Usuario getUsuario() {
+        sessionAttributes.init();
+        return usuarioRepo.findOneByEmail(sessionAttributes.getUsername());
+    }
+
+    @Override
+    public List<PostUsuarioModel> getAmigos() {
+        List<PostUsuarioModel> amigosDto = new ArrayList<>();
+        
+        repositorio.getAmigos(getUsuario())
+                 .forEach((u) -> amigosDto.add(u.converterParaUsuarioModel()));
+         
+        return amigosDto;
+    }
+}

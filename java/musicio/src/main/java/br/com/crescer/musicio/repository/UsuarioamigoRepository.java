@@ -19,6 +19,12 @@ public interface UsuarioamigoRepository extends PagingAndSortingRepository<Usuar
 //    Page<Usuario> findByUsuarioIdUsuario();
 //    
 //    Page<Usuario> findBySituacao();
-    @Query("select u.amigo from Usuarioamigo u where u.usuario = ?1 ")
+    @Query("select u.amigo from Usuarioamigo u where u.usuario = ?1 and situacao = 'A'")
     List<Usuario>   getAmigos(Usuario usuario);
+    
+    @Query("select u.amigo from Usuarioamigo u where u.usuario = ?1 and situacao = 'P'")
+    List<Usuario>   getSolicitacoes(Usuario usuario);
+    
+    @Query("select u from Usuarioamigo u where u.usuario = ?1 and u.amigo = ?2")
+    Usuarioamigo getSolicitacao (Usuario usuario, Usuario amigo);
 }
