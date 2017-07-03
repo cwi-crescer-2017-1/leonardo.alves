@@ -11,10 +11,16 @@ function amizadeService ($http) {
 
     var getAmigos = () => $http.get(`${url}/todos`);
 
+    var getAmigo = (id) => $http.get(`${url}/${id}`, id);
+
+    var enviarSolicitacao = (usuario) => $http.post(url, usuario);
+
     return {
+        getAmigo: getAmigo,
         getAmizadesPendentes : getAmizadesPendentes,
         getAmigos: getAmigos,
         aceitarAmizade: aceitarAmizade,
-        recusarAmizade: recusarAmizade
+        recusarAmizade: recusarAmizade,
+        enviarSolicitacao: enviarSolicitacao
     }
 }
