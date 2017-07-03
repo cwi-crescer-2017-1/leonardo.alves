@@ -3,23 +3,16 @@ package br.com.crescer.musicio.exception;
 
 
 
-import javax.persistence.RollbackException;
-import org.hibernate.HibernateException;
-import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.http.HttpStatus;
-import org.springframework.transaction.TransactionSystemException;
+import javassist.NotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * @author leonardo.alves
  */
 @ControllerAdvice
-public class HandlerException {
-    
-   
+public class HandlerException {   
     
     @ResponseBody
     @ExceptionHandler(AlreadyFriendsException.class)     
@@ -38,6 +31,24 @@ public class HandlerException {
     @ResponseBody
     @ExceptionHandler(EmailBeingUsedException.class)    
     public ExceptionResponse emailBeingUsedException (final EmailBeingUsedException exception) {
+        return new ExceptionResponse(exception.getMessage());
+    } 
+    
+    @ResponseBody
+    @ExceptionHandler(UserNotFoundException.class)    
+    public ExceptionResponse userNotFoundException (final EmailBeingUsedException exception) {
+        return new ExceptionResponse(exception.getMessage());
+    } 
+    
+    @ResponseBody
+    @ExceptionHandler(InvalidInformationsException.class)    
+    public ExceptionResponse invalidInformationsException (final EmailBeingUsedException exception) {
+        return new ExceptionResponse(exception.getMessage());
+    } 
+    
+    @ResponseBody
+    @ExceptionHandler(NotFoundException.class)    
+    public ExceptionResponse notFoundException (final EmailBeingUsedException exception) {
         return new ExceptionResponse(exception.getMessage());
     } 
     
