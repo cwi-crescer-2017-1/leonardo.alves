@@ -3,11 +3,12 @@ var app = angular.module("musicio", ['ngRoute', 'auth', 'ngtimeago']);
 app.config(function($routeProvider) {
     $routeProvider
     .when("/", {
-        controller: "usuarioController",
+        controller: "homeController",
         templateUrl: "home/home.html",        
     })
     .when("/cadastro", {
-        templateUrl: "usuario/cadastro.html"
+        controller: "cadastroController",
+        templateUrl: "cadastro/cadastro.html"
     })
     .when("/dashboard", {
         templateUrl: "usuario/dashboard.html",
@@ -26,7 +27,26 @@ app.config(function($routeProvider) {
                return authService.isAutenticadoPromise();
             }
         }
-    })     
+    }) 
+    .when("/amigo/:id", {
+        templateUrl: "amigos/amigos-perfil.html",
+        controller: "amigosPerfilController",
+        resolve: {
+            autenticado: function  (authService)  {
+               return authService.isAutenticadoPromise();
+            }
+        }
+    })
+    .when("/pesquisa", {
+        templateUrl: "pesquisa/pesquisa.html",
+        controller: "pesquisaController",
+        resolve: {
+            autenticado: function  (authService)  {
+               return authService.isAutenticadoPromise();
+            }
+        }
+    })
+
 });
 
 
