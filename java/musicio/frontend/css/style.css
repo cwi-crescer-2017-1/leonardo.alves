@@ -177,6 +177,7 @@ hr {
 .input-flat {
     border: none;
     border-bottom: 2px solid white;
+    border-left: 4px;
     background: none;   
     width: 100%;
     color: white;
@@ -208,6 +209,10 @@ hr {
 .button-search {
     padding: 0 0.5rem 0 0.5rem;
     border-radius: 10px;
+}
+
+.button-edit {
+    background: #c62828;
 }
 
 .input-search {
@@ -282,6 +287,10 @@ textarea {
     flex-direction: row;
 }
 
+.friend-wrapper {
+    flex-direction: row-reverse;
+}
+
 .content-pesquisa {
     flex-direction: column;
     justify-content: flex-start;
@@ -304,10 +313,17 @@ textarea {
     padding: 1rem;
 }
 
+.user-edit {
+    display: flex;
+    justify-content: center;
+    flex-flow: column nowrap;
+    background: #b71c1c;
+}
+
 .posts {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-flow: column nowrap;
     padding: 1rem;
     flex-grow: 8;
@@ -423,6 +439,38 @@ article.post-wrapper {
     display: none;
 }
 
+.edit-form {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    
+}
+
+.form-edit {
+    align-self: center;
+}
+
+.edit-wrapper, .edit-open {
+    -webkit-transition:all cubic-bezier(.17,.67,.73,.3) .5s;
+    -moz-transition:all cubic-bezier(.17,.67,.73,.3) .5s;
+    -o-transition:all cubic-bezier(.17,.67,.73,.3) .5s;
+    transition:all cubic-bezier(.17,.67,.73,.3) .5s;
+}
+
+.edit-wrapper {
+    display: block;
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+
+
+.edit-open{
+    opacity: 1; 
+    width: 100%; 
+    height: 100%;    
+}
+
 
 /*------------------------------------------------------------------*/
 /*------------------------------------------------------------------*/
@@ -499,6 +547,10 @@ article.post-wrapper {
         width: 60%;
     }
 
+    .form-edit {
+        width: 80%;
+    }
+
     
     
     article.post-wrapper {
@@ -527,6 +579,19 @@ article.post-wrapper {
     .details-search {
         width: inherit;
         margin: 0.5rem;
+    }
+    
+    .details-friend p {
+        margin: .2rem 0 .2rem 0;
+    }
+
+    .form-edit {
+        display: flex;
+        justify-content: center;
+    }
+
+    .button-edit {
+        margin: 0 0.5rem 0 0.5rem;
     }
 }
 
@@ -583,10 +648,6 @@ article.post-wrapper {
         margin-right: 0;
     }
 
-    
-}
-
-@media screen and (max-width: 435px) {
     .userFoto {
         width: 100px;
         height: 100px;
