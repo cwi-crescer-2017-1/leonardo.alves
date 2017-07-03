@@ -16,13 +16,13 @@
                         <p><i>{{post.usuario.nome}} disse...</i></p>
                         <p class="time">{{post.dataPost | timeago }}</p>
                     </div>
-                    
+
                     <p>
                         <pre>{{post.texto}}</pre>
                     </p>
                     <span class="linked">
                         <i class="material-icons bottom-icon">favorite</i>
-                        Amei
+                        Amei {{post.curtidaList.length ? post.curtidaList.length : 'Seja o primeiro a curtir' }}
                     </span>
                     <hr class="hr-show">
                     <div class="post-comments">
@@ -66,9 +66,49 @@
 
                 </section>
 
-
             </div>
-            <div ng-show="amizadesPendentes.length !== 0"  class="invites">               
+            <div class="user-edit">
+                <button class="button-flat button-centered button-edit linked" ng-click="open='edit-open'">Editar perfil</button>
+                <section class="edit-wrapper" ng-class="open">
+                    <form novalidate class="edit-form" name="edit">
+
+                        <div class="form-input form-edit">
+                            <label for="usuario-nome">Nome:</label>
+                            <input required name="nome" class="input-flat" type="text" ng-model="infoUsuario.nome" id="usuario-nome">
+                        </div>
+
+                        <div class="form-input form-edit">
+                            <label for="usuario-senha">Senha:</label>
+                            <input required nome="senha" placeholder="vazio se não mudar senha" class="input-flat" type="password" ng-model="infoUsuario.senha"
+                                id="usuario-senha">
+                        </div>
+
+                        <div class="form-input form-edit complex-input">
+                            <label for="usuario-sexo complex-content">
+                                Sexo:                
+                            </label>
+                            <select required name="sexo" ng-model="infoUsuario.sexo">
+                                <option value="F">Feminino</option>
+                                <option value="M">Masculino</option>
+                                <option value="O">Outro</option>
+                            </select>
+
+                            <label for="usuario-nascimento complex-content">
+                                Data de nascimento:                            
+                            </label>
+                            <input required name="nascimento" type="date" ng-model="infoUsuario.dataNascimento" id="usuario-data">
+                        </div>
+
+                        <div class="form-input form-edit">
+                            <button ng-click="editar()" class="button-flat button-edit linked">Salvar</button>
+                            <button class="button-flat button-edit linked" ng-click="closeEdit()">Cancelar</button>
+                        </div>
+
+                    </form>
+
+                </section>
+            </div>
+            <div ng-show="amizadesPendentes.length !== 0" class="invites">
                 <h3 class="text-center">Solicitações pendentes</h3>
                 <section class="pending-friend" ng-repeat="amigo in amizadesPendentes">
                     <div class="pending-info">
@@ -79,9 +119,11 @@
                         <i class="material-icons centered-icon linked large" ng-click="aceitarAmigo(amigo.idUsuario)">add</i>
                         <i class="material-icons centered-icon linked large" ng-click="recusarAmigo(amigo.idUsuario)">clear</i>
                     </div>
-                    
+
                 </section>
             </div>
+
+
         </div>
     </section>
 

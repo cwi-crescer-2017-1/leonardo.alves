@@ -7,11 +7,14 @@ function usuarioService ($http) {
 
     var cadastrarUsuario = (usuario) => $http.post(url, usuario);
 
+    var editarUsuario = (usuario) => $http.put(url, usuario);
+
     var resultadoPesquisa = [];
 
     return {
         pesquisarUsuario: pesquisarUsuario,
         resultadoPesquisa: resultadoPesquisa,
-        cadastrarUsuario: cadastrarUsuario
+        cadastrarUsuario: cadastrarUsuario,
+        editarUsuario: editarUsuario
     }
 }

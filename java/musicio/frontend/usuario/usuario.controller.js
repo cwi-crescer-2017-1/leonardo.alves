@@ -7,7 +7,11 @@ function usuarioController ($scope, $rootScope, amizadeService, authService,
     $scope.numPagina = 0;
     $scope.posts = [];
     $scope.comentario = [];
-    $scope.infoUsuario = authService.getUsuario();
+    $scope.infoUsuario = authService.getUsuario();    
+    //converte string data para date    
+    $scope.infoUsuario.dataNascimento = new Date($scope.infoUsuario.dataNascimento);
+    
+    $scope.copiaUsuario = angular.copy($scope.infoUsuario);
 
     $rootScope.isAutenticado = authService.isAutenticado();
     $rootScope.isHome = false;
@@ -20,7 +24,8 @@ function usuarioController ($scope, $rootScope, amizadeService, authService,
     $scope.comentar = comentar;
     $scope.aceitarAmigo = aceitarAmigo;
     $scope.recusarAmigo = recusarAmigo;
-
+    $scope.editar = editar;
+    $scope.closeEdit = closeEdit;
     
     carregarPosts();
     carregarSolicitacoes();
@@ -36,10 +41,47 @@ function usuarioController ($scope, $rootScope, amizadeService, authService,
                 $scope.post.texto = "";
                 atualizarPostsAposPostar(0);
                 publicacaoPostada.show();
-            }, fail => {
-                erroGenerico.setText(fail.data.message);
-                erroGenerico.show();
+            }, fail => { 
+                    new Noty({                    
+                    type: 'error',
+                    text: fail.data.message
+                }).show();
+                
             })
+    }
+
+    function editar(){
+        $scope.open = '';
+        let copia = {
+            "idUsuario": $scope.infoUsuario.idUsuario,
+            "email": $scope.infoUsuario.email,
+            "senha": $scope.infoUsuario.senha,
+            "sexo": $scope.infoUsuario.sexo,
+            "dataNascimento": $scope.infoUsuario.dataNascimento,
+            "nome": $scope.infoUsuario.nome
+        }
+       
+        usuarioService.editarUsuario(copia)
+            .then(response => {
+                editarConta.show();
+                $scope.infoUsuario.senha = '';
+            }, fail => {
+                new Noty({                    
+                    type: 'error',
+                    text: fail.data.message
+                }).show();
+                $scope.infoUsuario = $scope.copiaUsuario;
+            })
+        
+    }
+
+    function closeEdit() {
+        $scope.infoUsuario = angular.copy($scope.copiaUsuario);
+        $scope.open = '';
+        new Noty({                    
+            type: 'information',
+            text: "Edição cancelada."
+        }).show();
     }
 
     function comentar(idPost) {
@@ -49,10 +91,11 @@ function usuarioController ($scope, $rootScope, amizadeService, authService,
                 $scope.comentario[idPost] = [];
                 atualizarPostsAposPostar(0);
             },fail => {
-                erroGenerico.setText(fail.data.message);
-                erroGenerico.show();
-            });
-            
+                   new Noty({                    
+                    type: 'error',
+                    text: fail.data.message
+                }).show();
+            });            
     }
 
     function carregarPosts () {
@@ -85,8 +128,10 @@ function usuarioController ($scope, $rootScope, amizadeService, authService,
             .then(response => {
                 aceitarAmizade.show();
             }, fail => {
-                erroGenerico.setText(fail.data.message);
-                erroGenerico.show();
+                    new Noty({                    
+                    type: 'error',
+                    text: fail.data.message
+                }).show();
             })
     }
 
@@ -96,8 +141,10 @@ function usuarioController ($scope, $rootScope, amizadeService, authService,
             .then(response => {
                 recusarAmizade.show();
             }, fail => {
-                erroGenerico.setText(fail.data.message);
-                erroGenerico.show();
+                   new Noty({                    
+                    type: 'error',
+                    text: fail.data.message
+                }).show();
             })
     }
 
@@ -128,5 +175,7 @@ function usuarioController ($scope, $rootScope, amizadeService, authService,
                 alert("não foi possivel buscar.");
             });
     }
+
+    
 
 }
