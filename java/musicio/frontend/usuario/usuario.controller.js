@@ -1,16 +1,19 @@
 app.controller("usuarioController", usuarioController);
 
-function usuarioController ($scope, $rootScope, amizadeService, authService, $location, postService, comentarioService) {
-    $scope.ultimaPagina = false;
-    $scope.logar = logar;    
+function usuarioController ($scope, $rootScope, amizadeService, authService, 
+            $location, postService, comentarioService, usuarioService) {
+
+    $scope.ultimaPagina = false;       
     $scope.numPagina = 0;
     $scope.posts = [];
     $scope.comentario = [];
     $scope.infoUsuario = authService.getUsuario();
 
     $rootScope.isAutenticado = authService.isAutenticado();
-    $rootScope.isHome = isHome;
-    $rootScope.logout = authService.logout;   
+    $rootScope.isHome = false;
+    $rootScope.logout = authService.logout;
+    
+    $rootScope.pesquisar = pesquisar;
 
     $scope.postar = postar;
     $scope.carregarPosts = carregarPosts;
@@ -18,8 +21,10 @@ function usuarioController ($scope, $rootScope, amizadeService, authService, $lo
     $scope.aceitarAmigo = aceitarAmigo;
     $scope.recusarAmigo = recusarAmigo;
 
+    
     carregarPosts();
     carregarSolicitacoes();
+   
 
     $scope.infoUsuario.urlFoto = 
         "https://api.adorable.io/avatars/200/" + Math.floor(Math.random() * 100);            
@@ -30,20 +35,22 @@ function usuarioController ($scope, $rootScope, amizadeService, authService, $lo
             .then(response => {
                 $scope.post.texto = "";
                 atualizarPostsAposPostar(0);
+                publicacaoPostada.show();
             }, fail => {
-                alert("Não foi dessa vez.");
+                erroGenerico.setText(fail.data.message);
+                erroGenerico.show();
             })
     }
 
     function comentar(idPost) {
         let comentario = setCommentProperties(idPost);
         comentarioService.comentar(comentario)
-            .then(response => {
-                alert("Comentado");
+            .then(response => {               
                 $scope.comentario[idPost] = [];
                 atualizarPostsAposPostar(0);
             },fail => {
-                alert("Não deu");
+                erroGenerico.setText(fail.data.message);
+                erroGenerico.show();
             });
             
     }
@@ -76,19 +83,21 @@ function usuarioController ($scope, $rootScope, amizadeService, authService, $lo
         let usuario = { "idUsuario": idUsuario };
         amizadeService.aceitarAmizade(usuario)
             .then(response => {
-                alert("aceito");
+                aceitarAmizade.show();
             }, fail => {
-                alert("erro");
+                erroGenerico.setText(fail.data.message);
+                erroGenerico.show();
             })
     }
 
     function recusarAmigo (idUsuario) {
         let usuario = { "idUsuario": idUsuario };
-        amizadeService.recusarAmigo(usuario)
+        amizadeService.recusarAmizade(usuario)
             .then(response => {
-                alert("recusado");
+                recusarAmizade.show();
             }, fail => {
-                alert("erro");
+                erroGenerico.setText(fail.data.message);
+                erroGenerico.show();
             })
     }
 
@@ -107,22 +116,16 @@ function usuarioController ($scope, $rootScope, amizadeService, authService, $lo
         $scope.comentario[idPost].postIdPost = {"idPost": idPost};
         $scope.comentario[idPost].usuario = {"email": authService.getUsuario().email};
         return $scope.comentario[idPost];
-    }
+    }      
 
-    //se o usuario esta logado, ao acessar a index é redirecionado.
-    if($rootScope.isAutenticado && isHome())
-        $location.path("dashboard");
-
-    function isHome() {
-        return $location.url() === "/";
-    }
-
-    function logar () {
-        authService.login($scope.usuario)
-            .then(response => {
-                alert("Logado");
+    function pesquisar () {
+        usuarioService.pesquisarUsuario($scope.pesquisa)
+            .then(response =>{
+                $scope.pesquisa = "";
+                usuarioService.resultadoPesquisa = response.data;
+                $location.path("pesquisa");
             }, fail => {
-                alert("Deu pau");
+                alert("não foi possivel buscar.");
             });
     }
 
