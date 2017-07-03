@@ -5,7 +5,8 @@ import br.com.crescer.musicio.entity.Usuario;
 import br.com.crescer.musicio.entity.UsuarioBase;
 import br.com.crescer.musicio.exception.EmailBeingUsedException;
 import br.com.crescer.musicio.exception.InvalidEmailException;
-import br.com.crescer.musicio.model.AmigoModel;
+import br.com.crescer.musicio.exception.InvalidInformationsException;
+import br.com.crescer.musicio.exception.UserNotFoundException;
 import br.com.crescer.musicio.model.PostUsuarioModel;
 import br.com.crescer.musicio.service.UsuarioServiceImpl;
 import java.math.BigDecimal;
@@ -45,18 +46,24 @@ public class UsuarioController {
 //    }    
     
     @GetMapping("/currentUser")
-      public Map<String, Object> usuarioLogado(Authentication authentication) {
-          PostUsuarioModel u = Optional.ofNullable(authentication)
-                  .map(Authentication::getPrincipal)
-                  .map(User.class::cast)
-                  .map(User::getUsername)
-                  .map(service::findOneByEmail)
-                  .map(Usuario::converterParaUsuarioModel)
-                  .orElse(null);
-          final HashMap<String, Object> hashMap = new HashMap<>();         
+      public Map<String, Object> usuarioLogado(Authentication authentication) throws UserNotFoundException  {
+          try {
+                PostUsuarioModel u = Optional.ofNullable(authentication)
+                    .map(Authentication::getPrincipal)
+                    .map(User.class::cast)
+                    .map(User::getUsername)
+                    .map(service::findOneByEmail)
+                    .map(Usuario::converterParaUsuarioModel)
+                    .orElse(null);
+            final HashMap<String, Object> hashMap = new HashMap<>();         
           
           hashMap.put("dados", u);
           return hashMap;
+            
+        } catch (Exception e) {
+            throw new UserNotFoundException("Usuário ou senha inválido.");
+        }
+          
       }    
       
     @GetMapping("/pesquisa/{pesquisa}")
@@ -85,8 +92,30 @@ public class UsuarioController {
     }  
     
     @PutMapping(consumes = "application/json")
-    public Usuario editarUsuario (Usuario usuario) {
+    public Usuario editarUsuario (@RequestBody Usuario usuario) throws UserNotFoundException, InvalidInformationsException {
         Usuario usuarioVelho = service.findOneByEmail(usuario.getEmail());
+        
+        if(usuarioVelho.getNome() == null)
+            throw new InvalidInformationsException("O nome é inválido");
+        
+        if(usuarioVelho.getDataNascimento() == null)
+            throw new InvalidInformationsException("A data de nascimento não pode ser nula");
+        
+        if(usuarioVelho.getSexo() == null)
+            throw new InvalidInformationsException("O sexo não pode ser nulo");
+        
+        if(usuarioVelho.getEmail() == null)
+            throw new InvalidInformationsException("Erro ao enviar as informações para o servidor.");
+        
+        if(usuarioVelho == null)
+            throw new UserNotFoundException();
+        
+        if(usuario.getSenha() == null) {
+            usuario.setSenha(usuarioVelho.getSenha());
+        } else {
+            usuario.setSenha(service.criptografarSenha(usuario.getSenha()));
+        }            
+        
         usuarioVelho = usuario;
         return service.save(usuarioVelho);
     }

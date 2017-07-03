@@ -1,6 +1,7 @@
 
 package br.com.crescer.musicio.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -13,6 +14,7 @@ public abstract class UsuarioBase {
    private String nome;
    private String email;
    private Character sexo;
+   @JsonFormat(pattern = "dd/MM/yyyy")
    private Date dataNascimento;
    
    public UsuarioBase(BigDecimal idUsuario, String nome, String email, Character sexo, Date dataNascimento){
