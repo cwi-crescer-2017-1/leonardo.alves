@@ -6,10 +6,14 @@ import br.com.crescer.musicio.entity.Usuario;
 import br.com.crescer.musicio.entity.Usuarioamigo;
 import br.com.crescer.musicio.exception.AlreadyFriendsException;
 import br.com.crescer.musicio.exception.SameUserException;
+import br.com.crescer.musicio.model.AmigoComPostModel;
+import br.com.crescer.musicio.model.PostSemUsuarioModel;
 import br.com.crescer.musicio.model.PostUsuarioModel;
+import br.com.crescer.musicio.repository.PostRepository;
 import br.com.crescer.musicio.repository.UsuarioRepository;
 import br.com.crescer.musicio.repository.UsuarioamigoRepository;
 import br.com.crescer.musicio.security.SessionAttr;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +33,9 @@ public class UsuarioamigoServiceImpl implements UsuarioamigoService {
             
     @Autowired
     UsuarioRepository usuarioRepo;
+    
+    @Autowired
+    PostRepository postRepo;
     
     @Override
     public List<PostUsuarioModel> getSolicitacoes() {
@@ -118,5 +125,17 @@ public class UsuarioamigoServiceImpl implements UsuarioamigoService {
         amizade.setUsuario(getUsuario());
         amizade.setSituacao('P');
         return repositorio.save(amizade);                          
+    }
+
+    @Override
+    public AmigoComPostModel pegarAmigo(BigDecimal id) {
+        Usuario amigoDto = usuarioRepo.findOneByIdUsuario(id);
+        List<PostSemUsuarioModel> postsDto = new ArrayList<>();
+        postRepo.pegarPostsDoAmigo(amigoDto)
+               .forEach(a -> postsDto.add(a.converterParaPostSemUserModel()));
+        
+       return new AmigoComPostModel(amigoDto.getIdUsuario(), 
+               amigoDto.getEmail(), amigoDto.getSexo(), 
+               amigoDto.getDataNascimento(), postsDto);
     }
 }
