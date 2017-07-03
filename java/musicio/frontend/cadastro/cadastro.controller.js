@@ -21,8 +21,10 @@ function cadastroController ($scope, usuarioService, authService) {
                 delete $scope.usuario;
                 contaCriada.show();
             }, fail => { 
-                erroGenerico.setText(fail.data.message);
-                erroGenerico.show();
+                new Noty({                    
+                    type: 'error',
+                    text: fail.data.message
+                }).show();
             });
     }
 }

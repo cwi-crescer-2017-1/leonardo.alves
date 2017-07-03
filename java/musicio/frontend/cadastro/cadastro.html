@@ -1,5 +1,5 @@
 <section class="content content-cadastro">
-    <form novalidate class="cadastro-form" name="cadastro" ng-submit="cadastrar()">
+    <form novalidate class="edit-form" name="cadastro" ng-submit="cadastrar()">
         
         <div class="form-input">
             <label for="usuario-nome">Nome:</label>
@@ -9,12 +9,12 @@
         <div class="form-input">
             <label for="usuario-email">Email:</label>
             <input required name="email" placeholder="joaodesantocristo@gmail.com" class="input-flat" type="email" ng-model="usuario.email" id="usuario-email">
-        </div>        
+        </div> 
 
         <div class="form-input">
             <label for="usuario-senha">Senha:</label>
-            <input required nome="senha" class="input-flat" type="password" ng-model="usuario.senha" id="usuario-senha">
-        </div>
+            <input required  class="input-flat" name="senha" type="password" ng-model="usuario.senha" id="usuario-senha">
+        </div>   
 
         <div class="form-input complex-input">
             <label for="usuario-sexo complex-content">
