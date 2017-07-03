@@ -1,23 +1,21 @@
 
 package br.com.crescer.musicio.service;
 
+import br.com.crescer.musicio.entity.Curtida;
 import br.com.crescer.musicio.entity.Post;
 import br.com.crescer.musicio.entity.Usuario;
-import br.com.crescer.musicio.entity.Usuarioamigo;
 import br.com.crescer.musicio.model.PostModel;
+import br.com.crescer.musicio.repository.CurtidaRepository;
 import br.com.crescer.musicio.repository.PostRepository;
 import br.com.crescer.musicio.repository.UsuarioRepository;
 import br.com.crescer.musicio.repository.UsuarioamigoRepository;
 import br.com.crescer.musicio.security.SessionAttr;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 /** 
@@ -33,7 +31,10 @@ public class PostServiceImpl implements PostService {
     UsuarioRepository usuarioRepo;
     
     @Autowired
-    UsuarioamigoRepository amigosRepo;   
+    UsuarioamigoRepository amigosRepo; 
+    
+    @Autowired
+    CurtidaRepository curtidaRepo;
     
     @Autowired
     SessionAttr sessionAttributes;
@@ -63,7 +64,14 @@ public class PostServiceImpl implements PostService {
             todosEmComum.add(usuario);  
         }
         
-        posts = repositorio.pegarPostsAmigosUsuario(todosEmComum, pageable);        
+        posts = repositorio.pegarPostsAmigosUsuario(todosEmComum, pageable);   
+        
+//        for(Post post : posts) {
+//            List<Curtida> curtidas = curtidaRepo.findByPostIdPost(post);
+//            post.setCurtidaList(curtidas);            
+//        }
+        
+        
         postsDto = posts.map((p) -> p.converterParaPostModel());
         
         return postsDto;

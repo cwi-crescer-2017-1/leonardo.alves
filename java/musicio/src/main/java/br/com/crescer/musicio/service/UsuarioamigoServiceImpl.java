@@ -3,10 +3,13 @@ package br.com.crescer.musicio.service;
 
 import br.com.crescer.musicio.entity.Solicitacao;
 import br.com.crescer.musicio.entity.Usuario;
+import br.com.crescer.musicio.entity.UsuarioBase;
 import br.com.crescer.musicio.entity.Usuarioamigo;
 import br.com.crescer.musicio.exception.AlreadyFriendsException;
 import br.com.crescer.musicio.exception.SameUserException;
+import br.com.crescer.musicio.exception.UserNotFoundException;
 import br.com.crescer.musicio.model.AmigoComPostModel;
+import br.com.crescer.musicio.model.AmigoModel;
 import br.com.crescer.musicio.model.PostSemUsuarioModel;
 import br.com.crescer.musicio.model.PostUsuarioModel;
 import br.com.crescer.musicio.repository.PostRepository;
@@ -128,13 +131,25 @@ public class UsuarioamigoServiceImpl implements UsuarioamigoService {
     }
 
     @Override
-    public AmigoComPostModel pegarAmigo(BigDecimal id) {
+    public UsuarioBase pegarAmigo(BigDecimal id) throws UserNotFoundException {
         Usuario amigoDto = usuarioRepo.findOneByIdUsuario(id);
         List<PostSemUsuarioModel> postsDto = new ArrayList<>();
         postRepo.pegarPostsDoAmigo(amigoDto)
                .forEach(a -> postsDto.add(a.converterParaPostSemUserModel()));
         
-       return new AmigoComPostModel(amigoDto.getIdUsuario(), 
+        if(amigoDto == null)
+            throw new UserNotFoundException();
+        
+        if(repositorio.verificarSeSaoAmigos(getUsuario(), amigoDto) <= 0) {
+            return new AmigoModel(amigoDto.getNome(), 
+                    amigoDto.getEmail(),
+                    amigoDto.getSexo(), 
+                    amigoDto.getIdUsuario(),
+                    amigoDto.getDataNascimento());
+        }
+        
+       return new AmigoComPostModel(amigoDto.getIdUsuario(),
+               amigoDto.getNome(), 
                amigoDto.getEmail(), amigoDto.getSexo(), 
                amigoDto.getDataNascimento(), postsDto);
     }
