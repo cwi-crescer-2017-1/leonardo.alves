@@ -11,8 +11,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.savedrequest.NullRequestCache;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -30,18 +29,24 @@ public class MusicioWebSecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity
+        RestAuthenticationEntryPoint entryPoint = new RestAuthenticationEntryPoint();
+      
+        
+        httpSecurity                
                 .authorizeRequests().antMatchers("/currentUser").permitAll()
                 .and()
                 .authorizeRequests().antMatchers(HttpMethod.POST, "/usuarios").permitAll()
                 .and()
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
-                .httpBasic()                                
-                .and()                
-                .cors()
+                .httpBasic() 
+                .authenticationEntryPoint(entryPoint)
+                .and()               
+                .cors()                                                        
                 .and()
                 .csrf().disable();
+        httpSecurity
+                .addFilterAfter(new CustomFilter(), BasicAuthenticationFilter.class);
     }
 
     @Override

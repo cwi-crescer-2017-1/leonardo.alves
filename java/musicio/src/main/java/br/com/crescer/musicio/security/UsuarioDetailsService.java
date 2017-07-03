@@ -36,11 +36,7 @@ public class UsuarioDetailsService implements UserDetailsService {
         Usuario usuario = repoUsuario.findOneByEmail(username);
         List<Usuariopermissao> permissoes = 
                 repoPermissoes.findByUsuarioIdUsuario(usuario.getIdUsuario());       
-        
-        
-        if(usuario == null) 
-            throw new UsernameNotFoundException("As credenciais informadas não são válidas.");
-        
+      
         List<GrantedAuthority> roles = new ArrayList<>();
 
         for(Usuariopermissao p : permissoes) {
