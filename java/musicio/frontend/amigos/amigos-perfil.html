@@ -1,0 +1,80 @@
+<section class="content">    
+     <section class="content-data friend-wrapper">
+        <div class="posts">
+            <section>
+                <p ng-hide="saoAmigos" class="text-center">
+                    Ei! você e {{amigo.nome}} ainda não são amigos. Adicione-o para 
+                    Poder ver as suas publicações.
+                </p>
+            </section>
+            <article ng-repeat="post in amigo.posts" class="post-wrapper">
+                <section class="post-content">
+                    <div class="post-details">
+                        <p><i>{{amigo.nome}} disse...</i></p>
+                        <p class="time">{{post.dataPost | timeago }}</p>
+                    </div>
+                    
+                    <p>
+                        <pre>{{post.texto}}</pre>
+                    </p>
+                    <span class="linked">
+                        <i class="material-icons bottom-icon">favorite</i>
+                        Amei
+                    </span>
+                    <hr class="hr-show">
+                    <div class="post-comments">
+                        <div ng-repeat="comentario in post.comentarioList">
+                            {{comentario.usuario.nome}}: {{comentario.comentario}}
+                        </div>
+                        <form novalidade ng-submit="comentar(post.idPost)">
+                            <textarea required ng-model="comentario[post.idPost].comentario"></textarea>
+                            <button type="submit" class="button-flat button-bordered">
+                                Comentar
+                                <i class="material-icons bottom-icon">comment</i>
+                            </button>
+                        </form>
+                    </div>
+                </section>
+            </article>
+            
+        </div>
+        <div class="user">
+            <div class="info">
+                <h3>Dados</h3>
+                <section class="details details-friend">
+
+                    <img ng-src="{{amigo.urlFoto}}" class="userFoto">
+
+                    <div class="info-details">
+                        <div class="info-content">
+                            <p><b>Nome:</b></p>
+                            <p>{{amigo.nome}}</p>
+                        </div>
+                        <div class="info-content">
+                            <p><b>Email:</b></p>
+                            <p>{{amigo.email}}</p>
+                        </div>
+                        <div class="info-content">
+                            <p><b>Sexo:</b></p>
+                            <p>{{amigo.sexo}}</p>
+                        </div>
+                        <div class="info-content">
+                            <p><b>Nascimento:</b></p>
+                            <p>{{amigo.dataNascimento}}</p>
+                        </div>
+                        <div ng-hide="saoAmigos" class="info-content">
+                            <span style="align-self: center;">Adicionar</span>
+                            <i class="material-icons large rounded linked" 
+                            ng-click="enviarSolicitacao(amigo.idUsuario)">
+                                add
+                            </i> 
+                        </div>
+                    </div>
+
+                </section>
+
+
+            </div>           
+        </div>
+    </section>
+</section>
