@@ -3,6 +3,8 @@ package br.com.crescer.musicio.controller;
 
 import br.com.crescer.musicio.entity.Usuario;
 import br.com.crescer.musicio.entity.UsuarioBase;
+import br.com.crescer.musicio.exception.EmailBeingUsedException;
+import br.com.crescer.musicio.exception.InvalidEmailException;
 import br.com.crescer.musicio.model.AmigoModel;
 import br.com.crescer.musicio.model.PostUsuarioModel;
 import br.com.crescer.musicio.service.UsuarioServiceImpl;
@@ -56,17 +58,30 @@ public class UsuarioController {
           hashMap.put("dados", u);
           return hashMap;
       }    
+      
+    @GetMapping("/pesquisa/{pesquisa}")
+    public List<PostUsuarioModel> pesquisarUsuarios (@PathVariable("pesquisa") String nome) {
+        return service.pesquisarUsuarios(nome);
+    }
         
    
     @PostMapping(consumes = "application/json")
-    public Usuario cadastrarUsuario (@RequestBody Usuario usuario) {
+    public Usuario cadastrarUsuario (@RequestBody Usuario usuario) throws InvalidEmailException, EmailBeingUsedException {
+       service.verificarSeEmailEstaEmUso(usuario.getEmail());
+            
         usuario.setSenha(
             service.criptografarSenha(usuario.getSenha())
         );
         
         service.adicionarPermissao("USR", usuario);
         
-        return service.save(usuario);
+        try {
+            return service.save(usuario);
+            
+        } catch (Exception e) {
+            throw new InvalidEmailException();
+        }
+   
     }  
     
     @PutMapping(consumes = "application/json")

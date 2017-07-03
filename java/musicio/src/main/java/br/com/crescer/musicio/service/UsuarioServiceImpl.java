@@ -6,7 +6,9 @@ import br.com.crescer.musicio.entity.Usuario;
 import br.com.crescer.musicio.entity.UsuarioBase;
 import br.com.crescer.musicio.entity.Usuarioamigo;
 import br.com.crescer.musicio.entity.Usuariopermissao;
+import br.com.crescer.musicio.exception.EmailBeingUsedException;
 import br.com.crescer.musicio.model.AmigoModel;
+import br.com.crescer.musicio.model.PostUsuarioModel;
 import br.com.crescer.musicio.repository.PermissaoRepository;
 import br.com.crescer.musicio.repository.UsuarioRepository;
 import br.com.crescer.musicio.repository.UsuarioamigoRepository;
@@ -92,5 +94,20 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public Usuario findOneByIdUsuario(BigDecimal idUsuario) {
         return repositorio.findOneByIdUsuario(idUsuario);
+    }
+
+    @Override
+    public List<PostUsuarioModel> pesquisarUsuarios(String nome) {
+        List<PostUsuarioModel> pesquisaDto = new ArrayList<>();
+        repositorio.findByNomeContaining(nome)
+                .forEach((a) -> pesquisaDto.add(a.converterParaUsuarioModel()));
+        
+        return pesquisaDto;
+    }
+
+    @Override
+    public void verificarSeEmailEstaEmUso(String email) throws EmailBeingUsedException {
+        if(repositorio.findOneByEmail(email) != null)
+            throw new EmailBeingUsedException();
     }
 }
