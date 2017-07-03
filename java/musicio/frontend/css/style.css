@@ -248,7 +248,15 @@ hr {
     font-size: 42px;
 }
 
+.rounded {
+    border: 2px solid black;
+    border-radius: 50%;
+    align-self: baseline;
+}
 
+.info-content.add-button {
+    justify-content: flex-end;
+}
 .text-box {
     display: flex;
     justify-content: center;
@@ -272,6 +280,21 @@ textarea {
     width: 100%;
     display: flex;
     flex-direction: row;
+}
+
+.content-pesquisa {
+    flex-direction: column;
+    justify-content: flex-start;
+    background: #d1c4e9 ;
+}
+
+.content-pesquisa h3 {
+    width: 100%;
+}
+
+.pesquisa-wrapper {
+    display: flex;
+    flex-flow: row wrap;
 }
 
 .user {   
@@ -351,9 +374,24 @@ article.post-wrapper {
     justify-content: space-evenly;
 }
 
+.info-search {
+    flex-direction: row;
+    margin: 2rem;
+}
+
 .info-details {
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: column nowrap;   
+    padding: 1rem;   
+}
+
+.details-search {
+     background: #b39ddb;
+     transition: box-shadow 0.3s;
+}
+
+.details-search:hover {
+   box-shadow: 4px 4px 2px grey;
 }
 
 .details {
@@ -379,6 +417,10 @@ article.post-wrapper {
 .pending-info {
     display: flex;
     flex-flow: column nowrap;
+}
+
+.mobile-only {
+    display: none;
 }
 
 
@@ -420,8 +462,7 @@ article.post-wrapper {
         align-self: center;
     }
 
-    .button-flat {           
-        border-radius: 0;     
+    .button-flat {          
         align-self: center;         
     }
 
@@ -452,11 +493,13 @@ article.post-wrapper {
         
         width: 100%;
     }
+   
 
     .info-details {
         width: 60%;
     }
 
+    
     
     article.post-wrapper {
         align-self: auto;
@@ -473,6 +516,17 @@ article.post-wrapper {
     .amigo {
         margin: 1rem 0 1rem 0;
         width: 100%;
+    }
+    /*--------------------------------------------------------------*/
+    .pesquisa-wrapper {
+        flex-flow: row wrap;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .details-search {
+        width: inherit;
+        margin: 0.5rem;
     }
 }
 
@@ -498,6 +552,37 @@ article.post-wrapper {
     .sm-search-icon {
         display: block;
     }
+
+    .mobile-only {
+        display: flex;
+        background: black;
+        
+        justify-content: space-around;
+    }
+
+    .button-search{
+        padding: 2px 1rem 0 1rem;        
+    }
+
+    .button-flat {
+        border-radius: 0;
+    }
+
+    .input-search {
+        border-radius: 0;
+    }
+
+     .info-search {
+        width: 100%;
+        margin: 1rem 0 1rem 0;
+    }
+
+    .details-search {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
     
 }
 
