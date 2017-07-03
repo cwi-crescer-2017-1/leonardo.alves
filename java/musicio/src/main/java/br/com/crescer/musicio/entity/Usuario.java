@@ -109,17 +109,9 @@ public class Usuario extends UsuarioBase implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public Usuario(BigDecimal idUsuario, 
-            String nome, String email,
-            String senha, 
-            Character sexo, 
-            Date dataNascimento) {
-        this.idUsuario = idUsuario;
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.sexo = sexo;
-        this.dataNascimento = dataNascimento;
+    public Usuario(BigDecimal idUsuario, String nome, String email, String senha, Character sexo, Date dataNascimento) {
+       super(idUsuario, nome, email, sexo, dataNascimento);
+       this.senha = senha;
     }    
 
     public List<Post> getPostList() {

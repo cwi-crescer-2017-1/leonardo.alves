@@ -15,6 +15,18 @@ public abstract class UsuarioBase {
    private Character sexo;
    private Date dataNascimento;
    
+   public UsuarioBase(BigDecimal idUsuario, String nome, String email, Character sexo, Date dataNascimento){
+       this.idUsuario = idUsuario;
+       this.nome = nome;
+       this.email = email;
+       this.sexo = sexo;
+       this.dataNascimento = dataNascimento;
+   }
+   
+   public UsuarioBase () {}
+   
+   public UsuarioBase (BigDecimal idUsuario) { this.idUsuario = idUsuario; }
+   
    public BigDecimal getIdUsuario() {
         return idUsuario;
     }

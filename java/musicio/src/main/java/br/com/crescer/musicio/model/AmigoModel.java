@@ -13,10 +13,6 @@ public class AmigoModel extends UsuarioBase {
    
    public AmigoModel (String nome, String email, 
            Character sexo, BigDecimal idUsuario, Date dataNascimento) {
-       this.setNome(nome);
-       this.setEmail(email);
-       this.setSexo(sexo);
-       this.setIdUsuario(idUsuario);
-       this.setDataNascimento(dataNascimento);       
+       super(idUsuario, nome, email, sexo, dataNascimento);
    }
 }
