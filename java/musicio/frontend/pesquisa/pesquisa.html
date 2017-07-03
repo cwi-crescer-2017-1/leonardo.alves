@@ -1,0 +1,51 @@
+<section class="content content-pesquisa">
+    <h3 class="text-center">Talvez você conheça alguém aqui...</h3>
+
+    <div class="pesquisa-wrapper">
+        <section class="pesquisa  info-search" ng-repeat="pesquisa in resultadoPesquisa">
+            <div class="info-details details-search">
+                <div class="info-content ">                    
+                    <p><b>{{pesquisa.nome}}</b></p>
+                </div>
+                <div class="info-content">
+                    <p><b>Email:</b></p>
+                    <p>{{pesquisa.email}}</p>
+                </div>
+                <div class="info-content">
+                    <p><b>Sexo:</b></p>
+                    <p>{{pesquisa.sexo}}</p>
+                </div>
+                <div class="info-content">
+                    <p><b>Nascimento:</b></p>
+                    <p>{{pesquisa.dataNascimento}}</p>
+                </div>
+                <div class="info-content add-button">
+                    <i class="material-icons large rounded linked" 
+                       ng-click="enviarSolicitacao(pesquisa.idUsuario)">
+                       add
+                    </i>                   
+                </div>
+            </div>
+
+        </section>  
+
+    </div>
+    
+</section>
+
+<!--<section class="details">
+
+    <img ng-src="{{infoUsuario.urlFoto}}" class="userFoto">
+
+    <div class="info-details">
+        <div class="info-content">
+            <p><b>Nome:</b></p>
+            <p>{{infoUsuario.nome}}</p>
+        </div>
+        <div class="info-content">
+            <p><b>Email:</b></p>
+            <p>{{infoUsuario.email}}</p>
+        </div>
+    </div>
+
+</section>-->
