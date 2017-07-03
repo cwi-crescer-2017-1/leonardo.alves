@@ -17,8 +17,10 @@ function homeController ($rootScope, authService, $location, $scope) {
             .then(response => {
                 boasVindas.show();
             }, fail => {
-                erroGenerico.setText(fail.data.message);
-                erroGenerico.show();
+                new Noty({                    
+                    type: 'error',
+                    text: fail.data.message
+                }).show();
             });
     }
 }
