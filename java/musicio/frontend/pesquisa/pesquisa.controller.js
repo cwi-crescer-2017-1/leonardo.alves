@@ -14,8 +14,10 @@ function pesquisaController($scope, usuarioService, $rootScope, amizadeService) 
                 usuarioService.resultadoPesquisa = response.data;
                 $scope.resultadoPesquisa = usuarioService.resultadoPesquisa;
             }, fail => {
-                erroGenerico.setText(fail.data.message);
-                erroGenerico.show();
+                 new Noty({                    
+                    type: 'error',
+                    text: fail.data.message
+                }).show();
             });
     }
 
@@ -23,7 +25,7 @@ function pesquisaController($scope, usuarioService, $rootScope, amizadeService) 
         let usuario = {"idUsuario": idUsuario};
         amizadeService.enviarSolicitacao(usuario)
             .then(response => {
-                alert("Solicitação enviada.");
+                solicitacaoAmizade.show();
             }, fail => {
                  new Noty({                    
                     type: 'error',

@@ -29,10 +29,19 @@ var aceitarAmizade = new Noty({
                     text: 'Solicitação aceita.'                    
                 });
 
+var solicitacaoAmizade = new Noty({
+                    text: 'Solicitação enviada.'                    
+                });     
+
 var contaCriada = new Noty({
                     text: 'Conta criada com sucesso',
                     type: 'success'
                 });
+
+var editarConta = new Noty({
+    text: 'Edições salvas.',
+    type: 'success'
+});
 
 var boasVindas = new Noty({
                     text:'Seja bem-vindo novamente!',                   
