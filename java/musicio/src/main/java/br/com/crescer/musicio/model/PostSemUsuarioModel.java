@@ -14,7 +14,7 @@ public class PostSemUsuarioModel extends PostAbstrato{
     public PostSemUsuarioModel(BigDecimal idPost, 
             String texto, Date dataPost, 
             List<ComentarioModel> comentarioList, 
-            List<Curtida> curtidaList) {
+            List<CurtidaModel> curtidaList) {
         
         super(idPost, texto, dataPost, comentarioList, curtidaList);
     }

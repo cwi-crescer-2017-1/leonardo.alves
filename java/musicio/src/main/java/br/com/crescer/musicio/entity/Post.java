@@ -2,6 +2,7 @@
 package br.com.crescer.musicio.entity;
 
 import br.com.crescer.musicio.model.ComentarioModel;
+import br.com.crescer.musicio.model.CurtidaModel;
 import br.com.crescer.musicio.model.PostModel;
 import br.com.crescer.musicio.model.PostSemUsuarioModel;
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -140,6 +141,15 @@ public class Post implements Serializable {
         return comentarioDto;        
     }
     
+    private List<CurtidaModel> converterCurtidas () {
+        List<CurtidaModel> curtidaDto = new ArrayList<>();
+        
+        curtidaList
+                .forEach(c -> curtidaDto.add(c.converterParaCurtidaModel()));
+        
+        return curtidaDto;
+    }
+    
     public PostModel converterParaPostModel() {     
        
         return new PostModel(
@@ -147,7 +157,7 @@ public class Post implements Serializable {
                 this.texto, 
                 this.dataPost, 
                 converterComentarios(),
-                this.curtidaList, 
+                converterCurtidas(), 
                 this.usuario);
     }
     
@@ -157,7 +167,7 @@ public class Post implements Serializable {
                 this.texto, 
                 this.dataPost, 
                 converterComentarios(),
-                this.curtidaList);
+                converterCurtidas());
     }
     
 

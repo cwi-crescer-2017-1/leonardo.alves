@@ -13,8 +13,8 @@ public final class AmigoComPostModel extends UsuarioBase {
 
     private List<PostSemUsuarioModel> posts;
     
-    public AmigoComPostModel(BigDecimal idUsuario, String email, Character sexo, Date dataNascimento, List<PostSemUsuarioModel> posts) {
-        super(idUsuario, email, email, sexo, dataNascimento);
+    public AmigoComPostModel(BigDecimal idUsuario, String nome, String email, Character sexo, Date dataNascimento, List<PostSemUsuarioModel> posts) {
+        super(idUsuario, nome, email, sexo, dataNascimento);
         this.posts = posts;        
     }
 

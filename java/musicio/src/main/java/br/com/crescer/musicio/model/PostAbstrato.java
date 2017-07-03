@@ -1,7 +1,6 @@
 
 package br.com.crescer.musicio.model;
 
-import br.com.crescer.musicio.entity.Curtida;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -15,11 +14,11 @@ public abstract class PostAbstrato {
     private String texto;
     private Date dataPost;
     private List<ComentarioModel> comentarioList;
-    private List<Curtida> curtidaList;
+    private List<CurtidaModel> curtidaList;
     
     public PostAbstrato(BigDecimal idPost, String texto, 
             Date dataPost, List<ComentarioModel> comentarioList, 
-            List<Curtida> curtidaList) {
+            List<CurtidaModel> curtidaList) {
         this.idPost = idPost;
         this.texto = texto;
         this.dataPost= dataPost;
@@ -59,11 +58,11 @@ public abstract class PostAbstrato {
         this.comentarioList = comentarioList;
     }
 
-    public List<Curtida> getCurtidaList() {
+    public List<CurtidaModel> getCurtidaList() {
         return curtidaList;
     }
 
-    public void setCurtidaList(List<Curtida> curtidaList) {
+    public void setCurtidaList(List<CurtidaModel> curtidaList) {
         this.curtidaList = curtidaList;
     }
 

@@ -16,7 +16,7 @@ public final class PostModel extends PostAbstrato {
     private String texto;
     private Date dataPost;
     private List<ComentarioModel> comentarioList;
-    private List<Curtida> curtidaList;
+    private List<CurtidaModel> curtidaList;
     private PostUsuarioModel usuario;
     
     
@@ -24,7 +24,7 @@ public final class PostModel extends PostAbstrato {
             String texto, 
             Date dataPost, 
             List<ComentarioModel> comentarios, 
-            List<Curtida> curtidas, 
+            List<CurtidaModel> curtidas, 
             Usuario usuario){
         super(idPost, texto, dataPost, comentarios, curtidas); 
         

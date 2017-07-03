@@ -1,6 +1,7 @@
 
 package br.com.crescer.musicio.entity;
 
+import br.com.crescer.musicio.model.CurtidaModel;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -97,6 +98,11 @@ public class Curtida implements Serializable {
     @Override
     public String toString() {
         return "br.com.crescer.musicio.entity.Curtida[ idCurtida=" + idCurtida + " ]";
+    }
+    public CurtidaModel converterParaCurtidaModel () {
+        return new CurtidaModel(this.usuario.getNome(), 
+                this.postIdPost.getIdPost(), 
+                this.usuario.getIdUsuario());
     }
 
 }
