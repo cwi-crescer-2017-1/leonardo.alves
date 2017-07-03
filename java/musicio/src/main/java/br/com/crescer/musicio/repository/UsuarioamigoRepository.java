@@ -5,8 +5,6 @@ import br.com.crescer.musicio.entity.Usuario;
 import br.com.crescer.musicio.entity.Usuarioamigo;
 import java.math.BigDecimal;
 import java.util.List;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
