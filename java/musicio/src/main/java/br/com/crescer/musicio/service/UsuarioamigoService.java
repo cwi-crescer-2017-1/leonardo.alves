@@ -7,6 +7,7 @@ package br.com.crescer.musicio.service;
 
 import br.com.crescer.musicio.entity.Usuario;
 import br.com.crescer.musicio.entity.Usuarioamigo;
+import br.com.crescer.musicio.exception.SameUserException;
 import br.com.crescer.musicio.model.PostUsuarioModel;
 import java.util.List;
 
@@ -20,6 +21,6 @@ public interface UsuarioamigoService {
     List<PostUsuarioModel> getAmigos();
     Usuarioamigo aceitarSolicitacao (Usuario amigo);
     Usuarioamigo recusarSolicitacao (Usuario amigo);
-    
+    Usuarioamigo enviarSolicitacao(Usuario amigo) throws Exception;
 
 }

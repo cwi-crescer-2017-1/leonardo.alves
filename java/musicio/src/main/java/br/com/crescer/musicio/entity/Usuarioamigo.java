@@ -2,6 +2,7 @@
 package br.com.crescer.musicio.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Basic;
@@ -47,7 +48,7 @@ public class Usuarioamigo implements Serializable {
     private Usuario amigo;
     //---------------------------------    
     @JoinColumn(name = "USUARIO_ID_USUARIO", referencedColumnName = "ID_USUARIO")
-    
+    @JsonIgnore
     @ManyToOne(optional = false)
     private Usuario usuario;
 
