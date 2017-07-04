@@ -6,7 +6,9 @@
 package br.com.crescer.musicio.service;
 
 import br.com.crescer.musicio.entity.Post;
+import br.com.crescer.musicio.exception.InvalidInformationsException;
 import br.com.crescer.musicio.model.CurtidaModel;
+import java.math.BigDecimal;
 import javassist.NotFoundException;
 
 /**
@@ -15,6 +17,6 @@ import javassist.NotFoundException;
  */
 public interface CurtidaService {
     
-    public CurtidaModel curtirPost(Post post);
-    public void descurtirPost(Post post) throws NotFoundException;
+    public CurtidaModel curtirPost(Post post) throws InvalidInformationsException;
+    public void descurtirPost(BigDecimal idPost) throws NotFoundException;
 }

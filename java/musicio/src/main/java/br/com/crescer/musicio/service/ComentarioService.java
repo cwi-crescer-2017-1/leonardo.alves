@@ -3,8 +3,6 @@ package br.com.crescer.musicio.service;
 
 import br.com.crescer.musicio.entity.Comentario;
 import br.com.crescer.musicio.model.ComentarioModel;
-import java.math.BigDecimal;
-import java.util.List;
 
 /**
  *
@@ -12,7 +10,7 @@ import java.util.List;
  */
 public interface ComentarioService {
     
-    Comentario comentar(Comentario comentario);
+    ComentarioModel comentar(Comentario comentario);
     
     
 }

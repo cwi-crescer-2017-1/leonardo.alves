@@ -28,7 +28,7 @@ public class ComentarioServiceImpl implements ComentarioService {
     PostRepository postRepo;
     
     @Override
-    public Comentario comentar(Comentario comentario) {
+    public ComentarioModel comentar(Comentario comentario) {
         String emailUsuario = comentario.getUsuario().getEmail();        
         Usuario usuario = usuarioRepo.findOneByEmail(emailUsuario);
         Post post = postRepo.findByIdPost(comentario.getPostIdPost().getIdPost());
@@ -39,6 +39,7 @@ public class ComentarioServiceImpl implements ComentarioService {
 //        PostUsuarioModel usuarioModel = new PostUsuarioModel(usuario.getIdUsuario(),
 //                usuario.getNome(), usuario.getEmail());          
         
-        return repositorio.save(comentario);
+        repositorio.save(comentario);
+        return comentario.converterParaComentarioModel();
     }
 }

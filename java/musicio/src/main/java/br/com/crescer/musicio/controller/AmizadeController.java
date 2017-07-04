@@ -4,6 +4,7 @@ package br.com.crescer.musicio.controller;
 import br.com.crescer.musicio.entity.Usuario;
 import br.com.crescer.musicio.entity.UsuarioBase;
 import br.com.crescer.musicio.entity.Usuarioamigo;
+import br.com.crescer.musicio.exception.UserNotFoundException;
 import br.com.crescer.musicio.model.PostUsuarioModel;
 import br.com.crescer.musicio.service.UsuarioamigoServiceImpl;
 import java.math.BigDecimal;
@@ -29,7 +30,7 @@ public class AmizadeController {
     UsuarioamigoServiceImpl service;
     
     @GetMapping("{id}")
-    public UsuarioBase getAmigo (@PathVariable("id") BigDecimal id) {
+    public UsuarioBase getAmigo (@PathVariable("id") BigDecimal id) throws UserNotFoundException {
         return service.pegarAmigo(id);
     }
     

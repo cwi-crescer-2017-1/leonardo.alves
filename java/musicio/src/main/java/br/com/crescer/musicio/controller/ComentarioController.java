@@ -2,6 +2,7 @@
 package br.com.crescer.musicio.controller;
 
 import br.com.crescer.musicio.entity.Comentario;
+import br.com.crescer.musicio.model.ComentarioModel;
 import br.com.crescer.musicio.service.ComentarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +21,7 @@ public class ComentarioController {
     ComentarioService comentarioService;
     
     @PostMapping
-    public Comentario comentar(@RequestBody Comentario comentario) {
+    public ComentarioModel comentar(@RequestBody Comentario comentario) {
         return comentarioService.comentar(comentario);
     }   
     

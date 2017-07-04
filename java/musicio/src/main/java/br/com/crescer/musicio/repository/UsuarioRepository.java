@@ -19,6 +19,6 @@ public interface UsuarioRepository extends PagingAndSortingRepository<Usuario, B
     Page<Usuario> findAll ();
     Usuario findOneByIdUsuario(BigDecimal idUsuario);
     Usuario findOneByEmail (String email);
-    List<Usuario> findByNomeContaining(String pesquisa);
+    List<Usuario> findByNomeContainingIgnoreCase(String pesquisa);
     
 }

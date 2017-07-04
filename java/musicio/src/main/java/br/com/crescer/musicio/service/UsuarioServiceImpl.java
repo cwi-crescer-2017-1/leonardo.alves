@@ -99,7 +99,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public List<PostUsuarioModel> pesquisarUsuarios(String nome) {
         List<PostUsuarioModel> pesquisaDto = new ArrayList<>();
-        repositorio.findByNomeContaining(nome)
+        repositorio.findByNomeContainingIgnoreCase(nome)
                 .forEach((a) -> pesquisaDto.add(a.converterParaUsuarioModel()));
         
         return pesquisaDto;
