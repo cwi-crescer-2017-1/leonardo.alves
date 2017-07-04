@@ -322,6 +322,7 @@ textarea {
 
 .posts {
     width: 100%;
+    height: fit-content;
     display: flex;
     justify-content: flex-start;
     flex-flow: column nowrap;
@@ -371,6 +372,18 @@ article.post-wrapper {
     justify-content: center;
 }
 
+.liked-post {
+    color: white;
+}
+
+.not-liked-post {
+    color: black;
+}
+
+.img-music {
+    max-width: 200px;
+    max-height: 200px;
+}
 .button-load {
     width: 100%;
 }
@@ -458,17 +471,48 @@ article.post-wrapper {
 }
 
 .edit-wrapper {
-    display: block;
+    overflow: hidden;
     opacity: 0;
-    height: 0;
-    width: 0;
+    height: 0px;
+    width: 0px;
 }
 
 
-.edit-open{
+.edit-open{    
+    overflow: auto;
     opacity: 1; 
     width: 100%; 
     height: 100%;    
+}
+
+.content-music {
+    background: #4e342e;
+    color: white;
+}
+
+.form-music {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.form-content {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.music-select {
+    align-self: flex-end;
+    margin-left: 1rem;
+}
+
+.search-result {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.item{
+    align-self: center;
 }
 
 
@@ -478,6 +522,10 @@ article.post-wrapper {
 @media screen and (max-width: 1000px) {
     hr {
         display: block;
+    }
+
+    .search-result{
+        width: 100%;
     }
 
     .details {
@@ -592,6 +640,11 @@ article.post-wrapper {
 
     .button-edit {
         margin: 0 0.5rem 0 0.5rem;
+    }
+
+    .form-music {
+        align-self: center;
+        justify-content: center;
     }
 }
 

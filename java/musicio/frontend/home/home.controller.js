@@ -1,12 +1,18 @@
 app.controller("homeController", homeController);
 
-function homeController ($rootScope, authService, $location, $scope) {
-    $scope.logar = logar;
-    $rootScope.home = true;
-    if(!$rootScope.home) {
-        $rootScope.home = true;
-        $rootScope.$apply();
+app.factory("homeService", homeService);
+
+function homeService () {
+    var isAutenticado;
+
+    return {
+        isAutenticado: isAutenticado
     }
+}
+
+function homeController ($rootScope, authService, $location, $scope, homeService) {
+    $scope.logar = logar;
+    $rootScope.home = true;    
 
     if(authService.isAutenticado()){
         $location.path("dashboard");
@@ -16,6 +22,7 @@ function homeController ($rootScope, authService, $location, $scope) {
         authService.login($scope.usuario)
             .then(response => {
                 boasVindas.show();
+                $rootScope.isAutenticado = true;
             }, fail => {
                 new Noty({                    
                     type: 'error',

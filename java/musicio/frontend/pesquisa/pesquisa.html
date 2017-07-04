@@ -5,7 +5,7 @@
         <section class="pesquisa  info-search" ng-repeat="pesquisa in resultadoPesquisa">
             <div class="info-details details-search">
                 <div class="info-content ">                    
-                    <p><b>{{pesquisa.nome}}</b></p>
+                    <p><b><a ng-href="/#!/amigo/{{pesquisa.idUsuario}}">{{pesquisa.nome}}</a></b></p>
                 </div>
                 <div class="info-content">
                     <p><b>Email:</b></p>

@@ -1,24 +1,24 @@
 app.controller("usuarioController", usuarioController);
 
 function usuarioController ($scope, $rootScope, amizadeService, authService, 
-            $location, postService, comentarioService, usuarioService) {
+            $location, postService, comentarioService, usuarioService, curtidaService) {
 
     $scope.ultimaPagina = false;       
     $scope.numPagina = 0;
     $scope.posts = [];
     $scope.comentario = [];
-    $scope.infoUsuario = authService.getUsuario();    
-    //converte string data para date    
-    $scope.infoUsuario.dataNascimento = new Date($scope.infoUsuario.dataNascimento);
-    
-    $scope.copiaUsuario = angular.copy($scope.infoUsuario);
+    $scope.verificaCurtida = verificaCurtida;
+    $scope.corLike = corLike;
+    $scope.infoUsuario = authService.getUsuario(); 
 
-    $rootScope.isAutenticado = authService.isAutenticado();
-    $rootScope.isHome = false;
-    $rootScope.logout = authService.logout;
-    
-    $rootScope.pesquisar = pesquisar;
+    //converte string data para date 
+    if(typeof $scope.infoUsuario.dataNascimento != 'object'){
+        var from =  $scope.infoUsuario.dataNascimento.split("-");
+        $scope.infoUsuario.dataNascimento = new Date(from[2], from[1] - 1, from[0]);     
 
+    }  
+    $scope.copiaUsuario = angular.copy($scope.infoUsuario);   
+   
     $scope.postar = postar;
     $scope.carregarPosts = carregarPosts;
     $scope.comentar = comentar;
@@ -26,10 +26,15 @@ function usuarioController ($scope, $rootScope, amizadeService, authService,
     $scope.recusarAmigo = recusarAmigo;
     $scope.editar = editar;
     $scope.closeEdit = closeEdit;
-    
+    $scope.curtir = curtir;
+
     carregarPosts();
-    carregarSolicitacoes();
-   
+    carregarSolicitacoes(); 
+
+    if($location.hash() !== ""){
+        $rootScope.hash = $location.hash();
+        $location.path("musica");
+    }  
 
     $scope.infoUsuario.urlFoto = 
         "https://api.adorable.io/avatars/200/" + Math.floor(Math.random() * 100);            
@@ -163,19 +168,43 @@ function usuarioController ($scope, $rootScope, amizadeService, authService,
         $scope.comentario[idPost].postIdPost = {"idPost": idPost};
         $scope.comentario[idPost].usuario = {"email": authService.getUsuario().email};
         return $scope.comentario[idPost];
-    }      
+    }          
 
-    function pesquisar () {
-        usuarioService.pesquisarUsuario($scope.pesquisa)
-            .then(response =>{
-                $scope.pesquisa = "";
-                usuarioService.resultadoPesquisa = response.data;
-                $location.path("pesquisa");
-            }, fail => {
-                alert("não foi possivel buscar.");
-            });
+    function curtir(postIdPost) {
+        let usuarioCurtiu = verificaCurtida(postIdPost).length > 0; 
+        let curtida = { "postIdPost": { "idPost": postIdPost } };
+
+        if(usuarioCurtiu)
+            curtidaService.descurtirPost(postIdPost)
+                .then(response => {
+                    location.reload();
+                }, fail => {
+                    new Noty({                    
+                        type: 'error',
+                        text: fail.data.message
+                    }).show();
+                });
+        else
+            curtidaService.curtirPost(curtida)
+                .then(response => {
+                    location.reload();
+                    curtirPost.show();
+                }, fail => {
+                    new Noty({                    
+                            type: 'error',
+                            text: fail.data.message
+                        }).show();
+                })
     }
 
-    
+    function verificaCurtida (postIdPost) {
+        let post = $scope.posts.filter(p => p.idPost === postIdPost);
+        return post[0].curtidaList.filter(c => c.idUsuario === $scope.infoUsuario.idUsuario);
+    }  
 
+    function corLike (idPost)  {
+        if(verificaCurtida(idPost).length > 0)
+            return {'liked-post': true};
+        return {'not-liked-post': true};
+    }
 }

@@ -1,6 +1,6 @@
 app.controller("cadastroController", cadastroController)
 
-function cadastroController ($scope, usuarioService, authService) {
+function cadastroController ($scope, $rootScope,usuarioService, authService) {
     $scope.cadastrar = cadastrar;
 
     function cadastrar () {
@@ -17,7 +17,9 @@ function cadastroController ($scope, usuarioService, authService) {
 
         usuarioService.cadastrarUsuario($scope.usuario)
             .then(response => {
+                $rootScope.isAutenticado = true;
                 authService.login($scope.usuario);
+                
                 delete $scope.usuario;
                 contaCriada.show();
             }, fail => { 

@@ -1,10 +1,15 @@
 app.controller("amigosPerfilController", amigosPerfilController);
 
-function amigosPerfilController ($scope, $routeParams, amizadeService, comentarioService, authService) {
+function amigosPerfilController ($scope, $routeParams, $location, amizadeService, comentarioService, authService) {
     $scope.comentar = comentar;
     $scope.comentario = [];
     $scope.saoAmigos = false;
     $scope.enviarSolicitacao = enviarSolicitacao;
+
+    if($routeParams.id == authService.getUsuario().idUsuario){
+        $location.path("dashboard");
+        seuPerfil.show();
+    }
     carregarInfoAmigo();
 
     function carregarInfoAmigo () {

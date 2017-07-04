@@ -13,21 +13,21 @@
             <article ng-repeat="post in posts" class="post-wrapper">
                 <section class="post-content">
                     <div class="post-details">
-                        <p><i>{{post.usuario.nome}} disse...</i></p>
+                        <p><a ng-href="/#!/amigo/{{post.usuario.idUsuario}}"><i>{{post.usuario.nome}} disse...</i></a></p>
                         <p class="time">{{post.dataPost | timeago }}</p>
                     </div>
 
                     <p>
                         <pre>{{post.texto}}</pre>
                     </p>
-                    <span class="linked">
-                        <i class="material-icons bottom-icon">favorite</i>
-                        Amei {{post.curtidaList.length ? post.curtidaList.length : 'Seja o primeiro a curtir' }}
+                    <span class="linked" ng-click="curtir(post.idPost)" ng-class="corLike(post.idPost)">
+                        <i class="material-icons bottom-icon" >favorite</i>
+                        Amei {{post.curtidaList.length ? post.curtidaList.length : ' - Seja o primeiro a curtir' }}
                     </span>
                     <hr class="hr-show">
                     <div class="post-comments">
                         <div ng-repeat="comentario in post.comentarioList">
-                            {{comentario.usuario.nome}}: {{comentario.comentario}}
+                            {{comentario.usuario.nome}}:  {{comentario.comentario}}
                         </div>
                         <form novalidade ng-submit="comentar(post.idPost)">
                             <textarea required ng-model="comentario[post.idPost].comentario"></textarea>
@@ -112,7 +112,7 @@
                 <h3 class="text-center">Solicitações pendentes</h3>
                 <section class="pending-friend" ng-repeat="amigo in amizadesPendentes">
                     <div class="pending-info">
-                        <span>{{amigo.nome}}</span>
+                        <span><a href="/#!/amigo/{{amigo.idUsuario}}">{{amigo.nome}}</a></span>
                         <span>{{amigo.email}}</span>
                     </div>
                     <div class="pending-options">

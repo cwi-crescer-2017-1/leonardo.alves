@@ -1,4 +1,11 @@
-var app = angular.module("musicio", ['ngRoute', 'auth', 'ngtimeago']);
+var app = angular.module("musicio", ['ngRoute', 'auth', 'ngtimeago', 'spotify']);
+
+
+app.config(function (SpotifyProvider) {
+    SpotifyProvider.setClientId('54bd7ac663dd46188b46e026a902edb9');
+    SpotifyProvider.setRedirectUri('http://localhost:8080/#!/musica');  
+    SpotifyProvider.setScope('""'); 
+});
 
 app.config(function($routeProvider) {
     $routeProvider
@@ -46,6 +53,15 @@ app.config(function($routeProvider) {
             }
         }
     })
+    .when("/musica", {
+        templateUrl: "pesquisa/musica.html",
+        controller: "musicaController",
+        resolve: {
+            autenticado: function  (authService)  {
+               return authService.isAutenticadoPromise();
+            }
+        }
+    })    
 
 });
 

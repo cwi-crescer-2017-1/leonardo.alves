@@ -29,12 +29,24 @@ var aceitarAmizade = new Noty({
                     text: 'Solicitação aceita.'                    
                 });
 
+                
+var seuPerfil = new Noty({
+                    text: 'Esse é você :p.',
+                    type: 'information'                   
+                });
+
 var solicitacaoAmizade = new Noty({
                     text: 'Solicitação enviada.'                    
                 });     
 
 var contaCriada = new Noty({
                     text: 'Conta criada com sucesso',
+                    type: 'success'
+                });
+
+
+var curtirPost = new Noty({
+                    text: 'Curtido com sucesso',
                     type: 'success'
                 });
 
