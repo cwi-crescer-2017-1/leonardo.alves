@@ -24,6 +24,10 @@ pre {
  word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
 
+iframe {
+    align-self: center;
+}
+
 body {
     margin: 0;
     display: flex;
@@ -54,6 +58,10 @@ ng-view {
     display: flex;
     flex-flow: column nowrap;
     flex: 10;    
+}
+
+.images {
+    text-align: center;
 }
 
 .content {
@@ -513,6 +521,8 @@ article.post-wrapper {
 
 .item{
     align-self: center;
+    display: flex;
+    flex-flow: column;
 }
 
 
