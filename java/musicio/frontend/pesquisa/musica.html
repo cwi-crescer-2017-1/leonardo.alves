@@ -1,0 +1,63 @@
+<div class="content content-music">    
+    <form novalidate class="form-music">
+        <div class="form-content">
+            <div class="form-input">
+                 Faça login com o spotify primeiro:
+                <a ng-href="https://accounts.spotify.com/authorize?client_id=54bd7ac663dd46188b46e026a902edb9&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2F%23%21%2Fmusica&response_type=token" class="button-flat not-liked-post">Spotify Login</a>
+            </div>
+        </div>
+        <div class="form-content">            
+           
+            <div class="form-input">
+                <label for="pesquisa">Pesquisa:</label>
+                <input required name="pesquisa" id="pesquisa" placeholder="David Bowie" class="input-flat" type="text" ng-model="pesquisa.texto">
+            </div>
+            <div class="form-input music-select">
+
+                <label for="tipo">Tipo:</label>
+
+                <select required name="tipo" ng-model="pesquisa.tipo">
+                    <option value="album">Álbum</option>
+                    <option value="artist">Artista</option>
+                    <option value="track">Música</option>           
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="form-content">
+            <button ng-click="procuraMusica()" class="button-flat button-load">Encontrar</button>            
+        </div>
+
+    </form>
+    <div class="search-result">
+        <div class="item" ng-repeat="artista in dados.artists.items">
+            <h3>Artista N°{{$index + 1}} {{artista.name}}</h3>
+            <ul>
+                <li ng-repeat="genero in artista.genres">{{genero}}</li>
+            </ul>
+       
+            <div class="images">
+                <img ng-src="{{artista.images[0].url}}" class="img-music">               
+            </div>
+        </div>
+
+        <div class="item" ng-repeat="album in dados.albums.items">
+            <h3>Artista N°{{$index + 1}} {{album.name}}</h3>            
+       
+            <div class="images">
+                <img ng-src="{{album.images[0].url}}" class="img-music">               
+            </div>
+        </div>
+
+        <div class="item" ng-repeat="musica in dados.tracks.items">
+            <h3>Música N°{{$index + 1}} {{musica.name}}</h3>            
+       
+            <div class="images">
+                <img ng-src="{{musica.album.images[0].url}}" class="img-music">               
+            </div>
+        </div>
+    </div>
+
+</div>
